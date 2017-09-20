@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "antd": "^2.13.2",
+    "antd-mobile": "^1.6.8",
     "autoprefixer": "7.1.2",
     "babel-core": "6.25.0",
     "babel-eslint": "7.2.3",
@@ -106,7 +106,12 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "babel-plugin-import": "^1.4.0",
     "flow-bin": "^0.54.1",
-    "redux-logger": "^3.0.6"
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5",
+    "postcss-pxtorem": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "svg-sprite-loader": "^0.3.1"
   }
 }
