@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 //import logo from './logo.svg';
-import './App.css';
+import style from './App.css';
 
 
 import { Tabs, WhiteSpace, Badge } from 'antd-mobile';
@@ -21,7 +21,7 @@ class App extends Component {
     <div className="App">
     <div className="App-header">
       
-      <h2>Welcome to React</h2>
+      <h2 className={style.title}>Welcome to React<p>1231231</p></h2>
     </div>
       <p className="App-intro">
         To get started, edit <code>src/App.js</code> and save to reload.

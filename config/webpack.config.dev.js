@@ -208,6 +208,8 @@ module.exports = {
                 loader: require.resolve('css-loader'),
                 options: {
                   importLoaders: 1,
+                  modules:true,
+                  localIdentName:'[path][name]---[local]---[hash:base64:5]'
                 },
               },
               {

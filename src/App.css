@@ -1,0 +1,13 @@
+.className {
+  background-color: blue;
+}
+
+.title {
+  composes: className;
+  color: red;
+
+	
+}
+.title p{
+		color: yellow;
+	}
