@@ -1,17 +1,16 @@
-
 let defaultState = {
-	loading: false,
-}
+  loading: false
+};
 
 const login = (state = defaultState, action) => {
-	switch (action.type) {
-		case "LOGIN":
-			return {
-				loading: true,
-			}
-		default:
-			return state
-	}
-}
+  switch (action.type) {
+    case 'LOGIN':
+      return {
+        loading: true
+      };
+    default:
+      return state;
+  }
+};
 
 export default login;

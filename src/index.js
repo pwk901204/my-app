@@ -12,7 +12,6 @@
 // // import reducers from 'reducers/index';
 // import HomePage from './containers/HomePage/index';
 
-
 // //const middleWares = [thunk];
 // // if (process.env.NODE_ENV == "development") {
 // // 	const logger = createLogger();

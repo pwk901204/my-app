@@ -5,9 +5,7 @@
 .title {
   composes: className;
   color: red;
-
-	
 }
-.title p{
-		color: yellow;
-	}
+.title p {
+  color: yellow;
+}
