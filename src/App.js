@@ -8,6 +8,7 @@ const TabPane = Tabs.TabPane;
 
 function callback(key) {
   console.log('onChange', key);
+  console.log("onChange","123")
 }
 function handleTabClick(key) {
   console.log('onTabClick', key);
