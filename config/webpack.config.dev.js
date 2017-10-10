@@ -87,10 +87,13 @@ module.exports = {
     // for React Native Web.
     extensions: ['.web.js', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
-      
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
+      'containers':path.resolve(__dirname, '../src/containers'),
+      'src':path.resolve(__dirname, '../src/'),
+      'images':path.resolve(__dirname, '../src/images'),
+      'svg':path.resolve(__dirname, '../src/svg'),
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -117,13 +120,12 @@ module.exports = {
           {
             options: {
               formatter: eslintFormatter,
-              eslintPath: require.resolve('eslint'),             
+              eslintPath: require.resolve('eslint'),
             },
 
             loader: require.resolve('eslint-loader'),
           },
         ],
-       
         include: paths.appSrc,
       },
       {
@@ -131,7 +133,8 @@ module.exports = {
         loader: 'svg-sprite-loader',
         include: [
           require.resolve('antd-mobile').replace(/warn\.js$/, ''),  // antd-mobile使用的svg目录
-          path.resolve(__dirname, 'src/images'),  // 个人的svg文件目录，如果自己有svg需要在这里配置
+          //paths.appSrc,
+          path.resolve(__dirname, '../src/svg'),  // 个人的svg文件目录，如果自己有svg需要在这里配置
         ]
       },
       {
@@ -189,11 +192,11 @@ module.exports = {
                   cacheDirectory: true,
                   plugins: [["import", {
                     libraryName: "antd-mobile",
-                    style: true, 
-                  }]]     
+                    style: true,
+                  }]]
                 },
               }
-            ],       
+            ],
           },
           // "postcss" loader applies autoprefixer to our CSS.
           // "css" loader resolves paths in CSS and adds assets as dependencies.

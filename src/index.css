@@ -1,0 +1,3 @@
+/* 清除浮动 */
+.clearfix:after{content:"";display:block;clear:both;}
+.clearfix{zoom:1;}

@@ -1,0 +1,19 @@
+.addStudentInfo{
+	height: 100%;
+	background-color: #fff;
+}
+
+.title{
+	font-size: 28px;
+	color: #222;
+	text-align: center;
+	line-height: 100px;
+}
+
+.text input{
+	text-align: right;
+}
+
+.btn{
+	margin-top: 90px;
+}

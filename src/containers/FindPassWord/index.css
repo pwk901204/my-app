@@ -1,0 +1,22 @@
+.findPassWord{
+	height: 100%;
+	overflow: hidden;
+	background-color: #fff;
+	padding-top:82px;
+	box-sizing: border-box;
+}
+.formIcon{
+	width:28px;
+	height:30px;
+	display: block;
+}
+.btn{
+	margin-top: 90px;
+	margin-bottom: 50px;
+}
+.yanzhengmaExtra{
+	background-color: #e6eff5;
+	display: inline-block;
+	padding:10px 15px;
+	font-size: 26px;
+}
