@@ -1,0 +1,135 @@
+.video{
+	display: block;
+	width: 100%;
+}
+
+
+.stream{
+	background:#fff;
+}
+
+.title{
+	display: block;
+	height: 80px;
+	font-size: 30px;
+	line-height: 30px;
+	padding: 25px 20px;
+	box-sizing: border-box;
+	composes: clearfix from 'src/index.css';
+}
+.title i{
+	float: left;
+	width: 4px;
+	height: 30px;
+	background-color: #33a9fc;
+	margin-right: 20px;
+}
+.title p{
+	float: left;
+	color: #222;
+}
+.title span{
+	float: right;
+	color: #222;
+}
+
+.record{
+	background-color: #fff;
+}
+
+.series{
+	background-color: #fff;
+}
+
+.item{
+	height: 160px;
+	border-top: 1px solid #ccc;
+	padding: 30px 20px;
+	composes: clearfix from 'src/index.css';
+	box-sizing: border-box;
+}
+
+.item .left{
+	float: left;
+	width:175px;
+	height: 100px;
+	position: relative;
+}
+.item .left img{
+	width:100%;
+	height: 100%;
+}
+.item .left span{
+	width:100%;
+	height: 30px;
+	background:#000;
+	opacity: 0.6;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	font-size: 22px;
+	line-height: 30px;
+	text-align: center;
+	color: #fff;
+}
+
+.item .right{
+	float: right;
+	width: calc( 100% - 200px );
+}
+.item .right h5{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 30px;
+	line-height: 30px;
+	color: #222;
+}
+.item .right div:nth-of-type(1) span{
+	display: inline-block;
+	width: 50%;
+	color: #565656;
+	font-size: 24px;
+	line-height: 24px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	margin-top: 10px;
+}
+.item .right div:nth-of-type(2) p{
+	display: inline-block;
+	width: 33.3%;
+	color: #565656;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.icon{
+	float: left;
+	height: 24px;
+	box-sizing: border-box;
+}
+.item .right div:nth-of-type(2) p span{
+	float: left;
+	height: 24px;
+	font-size: 24px;
+	line-height: 24px;
+}
+
+.red{
+	background:#ff4800 !important;
+}
+.blue{
+	background:#33a9fc !important;
+}
+.fontRed{
+	color:#ff4800 !important;
+}
+.fontBlue{
+	color:#33a9fc !important;
+}
+
+
+
+

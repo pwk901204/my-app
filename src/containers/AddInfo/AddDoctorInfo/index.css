@@ -1,19 +1,23 @@
-.addDoctorInfo{
-	height: 100%;
-	background-color: #fff;
+.addDoctorInfo {
+  height: 100%;
+  background-color: #fff;
 }
 
-.title{
-	font-size: 28px;
-	color: #222;
-	text-align: center;
-	line-height: 100px;
+.title {
+  font-size: 28px;
+  color: #222;
+  text-align: center;
+  line-height: 100px;
 }
 
-.text input{
-	text-align: right;
+.text input {
+  text-align: right;
 }
 
-.btn{
-	margin-top: 90px;
+.btn {
+  margin-top: 90px;
+}
+
+.listItem>div:nth-of-type(1)>div:nth-of-type(2){
+	flex-basis: 76%;
 }

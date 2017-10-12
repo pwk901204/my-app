@@ -1,139 +1,140 @@
-.homePage{
-	padding-bottom: 100px;
+.homePage {
+  padding-bottom: 100px;
 }
-.title{
-	height:80px;
-	font-size:30px;
-	line-height: 80px;
-	color:#222;
-	text-align: center;
-	background: #fff;
+.title {
+  height: 80px;
+  font-size: 30px;
+  line-height: 80px;
+  color: #222;
+  text-align: center;
+  background: #fff;
 }
-.myCarousel{
-	height: 320px;
+.myCarousel {
+  height: 320px;
 }
 
-.myCarousel a{
-	display: block;
-	height:320px;
+.myCarousel a {
+  display: block;
+  height: 320px;
 }
 .myCarousel a img {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
-.topModule{
-	composes:clearfix from "src/index.css";
+.topModule {
+  composes: clearfix from 'src/index.css';
 }
-.topModule a{
-	width:50%;
-	display: block;
-	float: left;
-	height:280px;
-	background: #fff;
-	box-sizing: border-box;
+.topModule a {
+  width: 50%;
+  display: block;
+  float: left;
+  height: 280px;
+  background: #fff;
+  box-sizing: border-box;
 }
-.topModule a:nth-of-type(1){
-	border-right: 1px solid #ccc;
+.topModule a:nth-of-type(1) {
+  border-right: 1px solid #ccc;
 }
-.topModule a h6{
-	font-size: 34px;
-	color:#222;
-	text-align: center;
-	margin-top: 20px;
+.topModule a h6 {
+  font-size: 34px;
+  color: #222;
+  text-align: center;
+  margin-top: 20px;
 }
-.topModule a p{
-	font-size: 26px;
-	color:#999;
-	text-align: center;
-	margin-top: 12px;
-}
-
-.shipingxueyuan,.yixuehuiyi{
-	width:100px;
-	height:100px;
-	margin: 46px auto 0;
-	display: block;
+.topModule a p {
+  font-size: 26px;
+  color: #999;
+  text-align: center;
+  margin-top: 12px;
 }
 
-.midModule{
-	composes:clearfix from "src/index.css";
-}
-.midModule a{
-	box-sizing: border-box;
-	background: #fff;
-	display: block;
-	float: left;
-	width:33.33%;
-	height: 120px;
-	border-right: 1px solid #ccc;
-	font-size:30px;
-	color:#222;
-	line-height: 120px;
-	text-align: center;
-	font-weight: bold;
-}
-.midModule a:last-child{
-	border:none;
-}
-.midModule a:nth-of-type(1){
-	background: url("images/tuwenkecheng.png") #fff 100% 100%;
-	background-size:100% 100%;
-}
-.midModule a:nth-of-type(2){
-	background: url("images/xilieshiti.png") #fff 100% 100%;
-	background-size:100% 100%;
-}
-.midModule a:nth-of-type(3){
-	background: url("images/jiaoliuyuandi.png") #fff 100% 100%;
-	background-size:100% 100%;
+.shipingxueyuan,
+.yixuehuiyi {
+  width: 100px;
+  height: 100px;
+  margin: 46px auto 0;
+  display: block;
 }
 
-.fuwuTitle{
-	height: 80px;
-	padding: 20px;
-	background-color: #fff;
-	composes:clearfix from "src/index.css";
-	box-sizing: border-box;
+.midModule {
+  composes: clearfix from 'src/index.css';
 }
-.fuwuTitle span{
-	display: block;
-	float: left;
-	width: 4px;
-	height: 40px;
-	background:#33a9fc;
+.midModule a {
+  box-sizing: border-box;
+  background: #fff;
+  display: block;
+  float: left;
+  width: 33.33%;
+  height: 120px;
+  border-right: 1px solid #ccc;
+  font-size: 30px;
+  color: #222;
+  line-height: 120px;
+  text-align: center;
+  font-weight: bold;
 }
-.fuwuTitle h6{
-	margin-left: 20px;
-	font-size:30px;
-	color: #222;
-	line-height: 40px;
+.midModule a:last-child {
+  border: none;
+}
+.midModule a:nth-of-type(1) {
+  background: url('images/tuwenkecheng.png') #fff 100% 100%;
+  background-size: 100% 100%;
+}
+.midModule a:nth-of-type(2) {
+  background: url('images/xilieshiti.png') #fff 100% 100%;
+  background-size: 100% 100%;
+}
+.midModule a:nth-of-type(3) {
+  background: url('images/jiaoliuyuandi.png') #fff 100% 100%;
+  background-size: 100% 100%;
 }
 
-.botModule{
-	composes:clearfix from "src/index.css";
-	background: #fff;
+.fuwuTitle {
+  height: 80px;
+  padding: 20px;
+  background-color: #fff;
+  composes: clearfix from 'src/index.css';
+  box-sizing: border-box;
 }
-.botModule a{
-	display: block;
-	float: left;
-	width:33.33%;
-	height: 170px;
-	border-top: 1px solid #ccc;
-	border-right: 1px solid #ccc;
-	box-sizing: border-box;
+.fuwuTitle span {
+  display: block;
+  float: left;
+  width: 4px;
+  height: 40px;
+  background: #33a9fc;
 }
-.botModule a:nth-of-type(3*n){
-	border:none;
+.fuwuTitle h6 {
+  margin-left: 20px;
+  font-size: 30px;
+  color: #222;
+  line-height: 40px;
 }
-.botModuleIcon{
-	width:70px;
-	height:70px;
-	margin: 20px auto;
-	display: block;
+
+.botModule {
+  composes: clearfix from 'src/index.css';
+  background: #fff;
 }
-.botModule a p{
-	font-size: 30px;
-	color:#222;
-	text-align: center;
+.botModule a {
+  display: block;
+  float: left;
+  width: 33.33%;
+  height: 170px;
+  border-top: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.botModule a:nth-of-type(3*n) {
+  border: none;
+}
+.botModuleIcon {
+  width: 70px;
+  height: 70px;
+  margin: 20px auto;
+  display: block;
+}
+.botModule a p {
+  font-size: 30px;
+  color: #222;
+  text-align: center;
 }

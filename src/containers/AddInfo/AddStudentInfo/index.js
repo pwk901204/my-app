@@ -1,37 +1,130 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import {List, Icon, Button, WhiteSpace, Carousel ,InputItem, Toast, WingBlank, Tabs, Badge ,Picker} from 'antd-mobile';
+import {List, Icon, Button, WhiteSpace, Carousel ,InputItem, Toast, WingBlank, Tabs, Badge ,Picker, ActivityIndicator} from 'antd-mobile';
 import { createForm } from 'rc-form';
-//import { district, provinceLite as province } from 'antd-mobile-demo-data';
+import {connect} from "react-redux";
+import url from "api_url/index.js";
+import {hashHistory} from "react-router";
+
+import {userInfo} from "actions/userInfo.js";
 
 const TabPane = Tabs.TabPane;
-const seasons =[
-	[
-		{
-		  label: '2013',
-		  value: '2013',
-		},
-		{
-		  label: '2014',
-		  value: '2014',
-		},
-		],
-		[
-		{
-		  label: '春',
-		  value: '春',
-		},
-		{
-		  label: '夏',
-		  value: '夏',
-		},
-	],
-];
-
 
 class AddStudentInfoForm extends Component {
 	state={
-		sValue: ['2013', '春'],
+		regions:[],
+		students:[
+			{
+			  label: '请先选择区域',
+			  value: '0',
+			}
+		],
+		titles:[
+			{
+			  label: '学生',
+			  value: '学生',
+			},
+			{
+			  label: '教师',
+			  value: '教师',
+			},
+			{
+			  label: '其他',
+			  value: '其他',
+			}
+		],
+		loading:false
+	}
+
+	componentDidMount() {
+		this.setState({
+			loading:true
+		})
+		let p1 = this.getRegions();
+		let p2 = this.getDepartments();
+		Promise.all([p1,p2]).then(()=>{
+			this.setState({
+				loading:false
+			})
+		})
+	}
+
+	getRegions = () =>{
+		fetch(url.regions)
+		.then((response)=>response.json())
+		.then((data)=>{
+			console.log(data)
+			this.setState({
+				regions:data.regions
+			})
+		})
+	}
+
+	getDepartments = () =>{
+		fetch(url.departments)
+		.then((response)=>response.json())
+		.then((data)=>{
+			console.log(data)
+			this.setState({
+				departments:data.departments
+			})
+		})
+	}
+	areaOk = (value)=>{
+		this.setState({
+			loading:true
+		})
+		fetch(url.schools + "?region=" + value[1])
+		.then((response)=>response.json())
+		.then((data)=>{
+			this.setState({
+				loading:false
+			})
+			this.setState({
+				schools:data.schools
+			})
+		})
+	}
+
+	fnSubmit = ()=>{
+		console.log(this.props.form)
+		let _this = this;
+		this.props.form.validateFields((err, values)=>{
+			if(err){
+				for(var name in err){
+					Toast.info(err[name].errors[0].message);
+					break;
+				}
+			}else{
+				console.log(values)
+				_this.setState({
+					loading:true
+				})
+				let data = {user:{}}
+				data.user.type = this.props.registerInfo.identity;
+				data.user.password = this.props.registerInfo.password;
+				data.user.mobile = this.props.registerInfo.mobile;
+				data.user.name = values.name;
+				data.user.school = values.school[0];
+				data.user.region = values.region[1];
+				data.user.title = values.title[0];
+				fetch(url.sign_up,{
+					method:"POST",
+					headers:{
+						"Content-Type":"application/json"
+					},
+					body:JSON.stringify(data)
+				})
+				.then((response)=>response.json())
+				.then((data)=>{
+					_this.setState({
+						loading:false
+					})
+					this.props.userInfoAction(data.user);
+					hashHistory.push("/");
+				})
+			}
+		})
 	}
 	render() {
 		const { getFieldProps } = this.props.form;
@@ -39,49 +132,72 @@ class AddStudentInfoForm extends Component {
 			<div>
 				<List className={style.list}>
 					<InputItem
+						 {...getFieldProps('name',{
+						 	rules: [{ required: true, message: '请输入姓名！' }]
+						 })}
 						type="text"
 						placeholder="填写姓名"
-						labelNumber={4}
+						labelNumber={2}
 						clear={true}
 						className={style.text}
 					>
 						姓名
 					</InputItem>
 					<Picker
-						data={seasons}
+						data={this.state.regions}
 						title="地区"
-						cascade={false}
-						value={this.state.sValue}
-						onChange={v => this.setState({ sValue: v })}
+						cascade={true}
+						cols={2}
+						{...getFieldProps('region', {
+							rules: [{ required: true, message: '请选择地区' }],
+						})}
+						onOk = {this.areaOk}
 					>
-						<List.Item arrow="horizontal">地区</List.Item>
+						<List.Item arrow="horizontal" className={style.listItem} >地区</List.Item>
 					</Picker>
+
 					<Picker
-						data={seasons}
-						title="医院"
-						cascade={false}
-						value={this.state.sValue}
-						onChange={v => this.setState({ sValue: v })}
+						data={this.state.schools}
+						title="学校"
+						cols={1}
+						{...getFieldProps('school', {
+							rules: [{ required: true, message: '请选择学校' }],
+						})}
 					>
-						<List.Item arrow="horizontal">医院</List.Item>
+						<List.Item arrow="horizontal" className={style.listItem} >学校</List.Item>
 					</Picker>
+
 					<Picker
-						data={seasons}
-						title="科室"
-						cascade={false}
-						value={this.state.sValue}
-						onChange={v => this.setState({ sValue: v })}
+						data={this.state.titles}
+						title="身份"
+						cols={1}
+						{...getFieldProps('title', {
+							rules: [{ required: true, message: '请选择身份' }],
+						})}
 					>
-						<List.Item arrow="horizontal">科室</List.Item>
+						<List.Item arrow="horizontal" className={style.listItem} >身份</List.Item>
 					</Picker>
 				</List>
-				<Button className={style.btn} type="primary" disabled >立即体验</Button>
+				<Button className={style.btn} type="primary" onClick={this.fnSubmit} >立即体验</Button>
+				<ActivityIndicator toast animating={this.state.loading} />
 			</div>
 		);
 	}
 }
-const AddStudentInfoFormWrap = createForm()(AddStudentInfoForm);
-
+const AddStudentInfoFormWrap = connect (
+	(state)=>{
+		return {
+			registerInfo:state.registerInfo
+		}
+	},
+	(dispatch)=>{
+		return {
+			userInfoAction:(data)=>{
+				dispatch(userInfo(data))
+			}
+		}
+	}
+)(createForm()(AddStudentInfoForm));
 
 class AddStudentInfo extends Component {
 	render() {
@@ -96,9 +212,3 @@ class AddStudentInfo extends Component {
 	}
 }
 export default AddStudentInfo;
-
-
-
-
-
-

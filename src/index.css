@@ -1,3 +1,18 @@
 /* 清除浮动 */
-.clearfix:after{content:"";display:block;clear:both;}
-.clearfix{zoom:1;}
+:global(.clearfix ){
+	 zoom: 1;
+}
+:global(.clearfix:after ){
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.clearfix {
+  zoom: 1;
+}
