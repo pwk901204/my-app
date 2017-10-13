@@ -23,6 +23,9 @@ window.addEventListener("load", ()=>{
 	FastClick.attach(document.body);
 })
 
+
+
+
 ReactDOM.render((
 		<Provider store={store}>
 			<Routers />
