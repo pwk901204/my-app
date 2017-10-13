@@ -7,7 +7,7 @@ switch (window.location.host) {
 		// __host__ = "https://doctor.mdsonline.cn";
 		//__host__ = "http://rqiang.mynatapp.cc";
 
-		__host__ = "http://192.168.0.104:3002"
+		__host__ = "http://api.xiayuanyin.cn"
 		// __host__ = "http://192.168.0.111:3001";
 		break;
 }

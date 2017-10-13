@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import logo from '../../../logo.svg';
+import {connect} from "react-redux";
 import style from './index.css';
 import {Icon, Button, WingBlank, WhiteSpace, Carousel, Grid} from 'antd-mobile';
 import minebg  from "images/minebg.png";
@@ -93,8 +93,8 @@ class Mine extends Component {
 		<div className={style.mine}>
 			<div className={style.head}>
 				<img src={minebg} alt="头像" />
-				<h6>刘建军<span>(主任医师)</span></h6>
-				<p>中南大学湘雅医院<span>骨科</span></p>
+				<h6>{this.props.userInfo.name}<span>({this.props.userInfo.title})</span></h6>
+				<p>{this.props.userInfo.hospital}&nbsp;<span>{this.props.userInfo.department}</span></p>
 			</div>
 			<div className={style.nav}>
 				<WingBlank size="lg" className={style.navBlank}>
@@ -118,4 +118,14 @@ class Mine extends Component {
   }
 }
 
-export default Mine;
+export default connect (
+	(state)=>{
+		return {
+			userInfo:state.userInfo
+		}
+	},
+	()=>{
+		return {
+		}
+	}
+)(Mine);

@@ -42,18 +42,26 @@ const VideoCollege = (location, cb) => {
   });
 };
 
+const requireAuth = () => {
+	setTimeout(()=>{
+		if(!localStorage["reduxPersist:userInfo"]){
+			hashHistory.push("/Login")
+		}
+	},500)
+}
+
 class Routers extends Component {
   render() {
     return (
       <Router history={hashHistory} key={Math.random()}>
-        <Route path="/" getComponent={TabBar} />
+        <Route path="/" getComponent={TabBar} onEnter={requireAuth} />
         <Route path="/Login" getComponent={Login} />
         <Route path="/FindPassWord" getComponent={FindPassWord} />
         <Route path="/Register" getComponent={Register} />
         <Route path="/AddDoctorInfo" getComponent={AddDoctorInfo} />
         <Route path="/AddStudentInfo" getComponent={AddStudentInfo} />
         <Route path="/AddVisitorInfo" getComponent={AddVisitorInfo} />
-        <Route path="/VideoCollege" getComponent={VideoCollege} />
+        <Route path="/VideoCollege" getComponent={VideoCollege}  onEnter={requireAuth}/>
       </Router>
     );
   }

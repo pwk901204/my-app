@@ -8,7 +8,7 @@ import mima from "svg/mima.svg";
 import shouji from "svg/shouji.svg";
 import logo from "svg/logo.svg";
 import url from "api_url/index.js";
-import {userInfo} from "actions/userInfo"
+import {userInfo} from "actions/userInfo";
 
 class LoginForm extends Component {
 	state={

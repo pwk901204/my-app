@@ -20,7 +20,7 @@ class TabBarWrap extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			selectedTab: 'Mine'
+			selectedTab: 'HomePage'
 		};
 	}
 	render() {

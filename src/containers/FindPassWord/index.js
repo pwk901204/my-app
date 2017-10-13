@@ -37,19 +37,25 @@ class FindPassWordForm extends Component {
 				_this.setState({
 					loading:true
 				})
-				fetch(url.sendCodeValid + "?mobile=" + values.mobile.replace(/\s+/g, '') + "&code=" + values.code)
+				let data = {};
+				data.mobile = values.mobile.replace(/\s+/g, '');
+				data.code = values.code;
+				data.password = values.password;
+				fetch(url.update_password,{
+					method:"POST",
+					headers:{
+						"Content-Type":"application/json"
+					},
+					body:JSON.stringify(data)
+				})
 					.then((response)=>response.json())
 					.then((data)=>{
 						_this.setState({
 							loading:false
 						})
 						if(data.msg.status == 'success'){
-							_this.props.registerInfoAction({
-								identity:this.state.identity,
-								mobile:values.mobile.replace(/\s+/g, ''),
-								password:values.password
-							});
-							hashHistory.push("/Add" + this.state.identity + "Info");
+							Toast.info(data.msg.message);
+							hashHistory.push("/Login");
 						}else{
 							Toast.info(data.msg.message);
 						}
@@ -67,7 +73,7 @@ class FindPassWordForm extends Component {
 					_this.setState({
 						loading:true
 					})
-					fetch(url.sendCode + "?mobile=" + values.mobile.replace(/\s+/g, '') + "&type=sign_in")
+					fetch(url.sendCode + "?mobile=" + values.mobile.replace(/\s+/g, '') + "&type=change_password")
 					.then((response)=>response.json())
 					.then((data)=>{
 						console.log(data)
