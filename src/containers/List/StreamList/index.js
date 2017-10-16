@@ -4,51 +4,50 @@ import {Icon, ActivityIndicator, Picker} from 'antd-mobile';
 import {connect} from "react-redux";
 import url from "api_url/index.js";
 import StreamItem from "components/StreamItem/index.js";
-const seasons = [
-  [
-    {
-      label: '2013',
-      value: '2013',
-    },
-    {
-      label: '2014',
-      value: '2014',
-    },
-  ],
-  [
-    {
-      label: '春',
-      value: '春',
-    },
-    {
-      label: '夏',
-      value: '夏',
-    },
-  ],
-];
+import xialajiantou from "svg/xialajiantou.svg";
 
 class StreamList extends Component {
 	state = {
 		loading:false,
+		visible:false,
+		pickerValue:["全部科室","0"],
+		regions:null
 	}
-	fnClickAdd = ()=>{
-
+	getRegions = () =>{
+		fetch(url.regions)
+		.then((response)=>response.json())
+		.then((data)=>{
+			console.log(data)
+			this.setState({
+				regions:data.regions
+			})
+		})
 	}
-
 
 	render() {
 		return (
 			<div className={style.streamList}>
+				<div className={style.title} onClick={() => this.setState({ visible: true })}>
+					<span>{this.state.pickerValue[0]}</span><Icon type={xialajiantou} className={style.titleIcon}/>
+				</div>
 				<Picker
-					data={seasons}
-					title="科室"
+					visible={this.state.visible}
+					data={this.state.regions}
 					cascade={true}
 					cols={2}
+					onChange={v => {
+						console.log(v)
+						this.setState({ pickerValue: v })
+					}}
+					onOk={() => this.setState({ visible: false })}
+					onDismiss={() => this.setState({ visible: false })}
 				>
 				</Picker>
 				<div className={style.stream}>
-					<StreamItem />
-					<StreamItem />
+					{
+						//<StreamItem />
+						//<StreamItem />
+					}
 				</div>
 				<ActivityIndicator toast  animating={this.state.loading}/>
 			</div>
