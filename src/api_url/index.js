@@ -5,7 +5,7 @@ let __host__ = '';
 switch (window.location.host) {
   case 'localhost:3000':
     // __host__ = "https://doctor.mdsonline.cn";
-    __host__ = "http://rqiang.mynatapp.cc";
+    __host__ = 'http://rqiang.mynatapp.cc';
 
     //__host__ = 'http://api.xiayuanyin.cn';
     //__host__ = "http://192.168.0.109:3001";
@@ -45,6 +45,5 @@ url.carousels = __host__ + '/api/doctor/carousels';
 
 //首页 轮播图
 url.courses_streams = __host__ + '/api/doctor/courses/streams';
-
 
 module.exports = url;

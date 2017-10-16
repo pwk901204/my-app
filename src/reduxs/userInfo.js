@@ -3,12 +3,15 @@ import { createActions, handleActions } from 'redux-actions';
 const defaultState = {};
 
 export const { userInfo } = createActions({
-  userInfo: data => ({ ...data }),
+  userInfo: data => ({ ...data })
 });
 
-export const reducer = handleActions({
-	userInfo : (state,action) =>({
-		...state,
-		...action.payload
-	})
-},defaultState)
+export const reducer = handleActions(
+  {
+    userInfo: (state, action) => ({
+      ...state,
+      ...action.payload
+    })
+  },
+  defaultState
+);

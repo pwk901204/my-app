@@ -47,13 +47,12 @@ const StreamList = (location, cb) => {
   });
 };
 
-
 const requireAuth = () => {
-	setTimeout(() => {
-		if (!localStorage['reduxPersist:userInfo']) {
-		 	hashHistory.push('/Login');
-		}
-	}, 1000);
+  setTimeout(() => {
+    if (!localStorage['reduxPersist:userInfo']) {
+      hashHistory.push('/Login');
+    }
+  }, 1000);
 };
 
 class Routers extends Component {
@@ -67,8 +66,16 @@ class Routers extends Component {
         <Route path="/AddDoctorInfo" getComponent={AddDoctorInfo} />
         <Route path="/AddStudentInfo" getComponent={AddStudentInfo} />
         <Route path="/AddVisitorInfo" getComponent={AddVisitorInfo} />
-        <Route path="/VideoCollege" getComponent={VideoCollege} onEnter={requireAuth}/>
-        <Route path="/StreamList" getComponent={StreamList} onEnter={requireAuth}/>
+        <Route
+          path="/VideoCollege"
+          getComponent={VideoCollege}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/StreamList"
+          getComponent={StreamList}
+          onEnter={requireAuth}
+        />
       </Router>
     );
   }
