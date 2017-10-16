@@ -96,6 +96,7 @@ module.exports = {
       'svg':path.resolve(__dirname, '../src/svg'),
       'api_url':path.resolve(__dirname, '../src/api_url'),
       'reduxs':path.resolve(__dirname, '../src/reduxs'),
+      'components':path.resolve(__dirname, '../src/components'),
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).

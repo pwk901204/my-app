@@ -40,25 +40,28 @@ class HomePage extends Component {
 		return (
 			<div className={style.homePage}>
 				<h4 className={style.title}>{this.props.userInfo.name}医生</h4>
-				<Carousel
-					className={style.myCarousel}
-					autoplay={false}
-					infinite
-					selectedIndex={0}
-					swipeSpeed={35}
-					beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
-					afterChange={index => console.log('slide to', index)}
-				>
-					{
-						this.state.getCarouselsData.map((item,index)=>{
-							return (
-								<a href={item.button} key={index} >
-									<img src={item.image_srcs.mobile_image} alt="img" />
-								</a>
-							)
-						})
-					}
-				</Carousel>
+				{
+					this.state.getCarouselsData && 
+					<Carousel
+						className={style.myCarousel}
+						autoplay={false}
+						infinite
+						selectedIndex={0}
+						swipeSpeed={35}
+						beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
+						afterChange={index => console.log('slide to', index)}
+					>
+						{
+							this.state.getCarouselsData.map((item,index)=>{
+								return (
+									<a href={item.button} key={index} >
+										<img src={item.image_srcs.mobile_image} alt="img" />
+									</a>
+								)
+							})
+						}
+					</Carousel>
+				}
 				<div className={style.topModule}>
 					<Link to="/VideoCollege">
 						<Icon type={shipingxueyuan}  className={style.shipingxueyuan} />

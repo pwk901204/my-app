@@ -10,7 +10,11 @@
   background: #fff;
 }
 .myCarousel {
-  height: 320px;
+  height: 320px !important;
+}
+
+.myCarousel>div>ul{
+  height: 320px !important;
 }
 
 .myCarousel a {

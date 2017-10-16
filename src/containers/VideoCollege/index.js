@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import {Icon, WhiteSpace, ActivityIndicator} from 'antd-mobile';
-import renshu from "svg/renshu.svg";
-import yisheng from "svg/yisheng.svg";
-import feiyong from "svg/feiyong.svg";
+import { WhiteSpace, ActivityIndicator} from 'antd-mobile';
 import {connect} from "react-redux";
 import url from "api_url/index.js";
+import StreamItem from "components/StreamItem/index.js";
+import RecordItem from "components/RecordItem/index.js";
+import CourseItem from "components/CourseItem/index.js";
 
 class VideoCollege extends Component {
 	state = {
@@ -57,30 +57,7 @@ class VideoCollege extends Component {
 						<span>更多</span>
 					</a>
 					{
-						streams && streams.map((item,index)=>{
-							return (
-								<div className={style.item} key={item.id}>
-									<div className={style.left}>
-										<img src={item.cover_data.size_300} alt="img"/>
-										{item.stream_type === "已结束" && <span >{item.stream_type}</span>}
-										{item.stream_type === "直播中" && <span className={style.red}>{item.stream_type}</span>}
-										{item.stream_type === "未开始" && <span className={style.blue}>{item.stream_type}</span>}
-									</div>
-									<div className={style.right}>
-										<h5>{item.topic}</h5>
-										<div>
-											<span>{item.hospital_name}</span>
-											<span>{item.department_name}</span>
-										</div>
-										<div>
-											<p className="clearfix"><Icon type={yisheng} className={style.icon} /><span>{item.doctor_name}</span></p>
-											<p className="clearfix"><Icon type={renshu} className={style.icon}  /><span>{item.watch_number}</span></p>
-											<p className="clearfix"><Icon type={feiyong} className={style.icon}  /><span className={item.price > 0 ? style.fontRed : style.fontBlue }>{item.price > 0 ? `¥${item.price}` : "免费"}</span></p>
-										</div>
-									</div>
-								</div>
-							)
-						})
+						streams && streams.map((item,index)=>(<StreamItem {...item} key={item.id} />))
 					}
 				</div>
 				<WhiteSpace size="md" />
@@ -92,28 +69,7 @@ class VideoCollege extends Component {
 						<span>更多</span>
 					</a>
 					{
-						recordings && recordings.map((item,index)=>{
-							return (
-								<div className={style.item} key={item.id}>
-									<div className={style.left}>
-										<img src={item.cover_data.size_300} alt="img"/>
-										<span >{item.stream_type}</span>
-									</div>
-									<div className={style.right}>
-										<h5>{item.topic}</h5>
-										<div>
-											<span>{item.hospital_name}</span>
-											<span>{item.department_name}</span>
-										</div>
-										<div>
-											<p className="clearfix"><Icon type={yisheng} className={style.icon} /><span>{item.doctor_name}</span></p>
-											<p className="clearfix"><Icon type={renshu} className={style.icon}  /><span>{item.watch_number}</span></p>
-											<p className="clearfix"><Icon type={feiyong} className={style.icon}  /><span className={item.price > 0 ? style.fontRed : style.fontBlue }>{item.price > 0 ? `¥${item.price}` : "免费"}</span></p>
-										</div>
-									</div>
-								</div>
-							)
-						})
+						recordings && recordings.map((item,index)=>(<RecordItem {...item} key={item.id} />))
 					}
 				</div>
 				<WhiteSpace size="md" />
@@ -125,28 +81,7 @@ class VideoCollege extends Component {
 						<span>更多</span>
 					</a>
 					{
-						courses && courses.map((item,index)=>{
-							return (
-								<div className={style.item} key={item.id}>
-									<div className={style.left}>
-										<img src={item.cover_data.size_300} alt="img"/>
-										<span className={style.blue}>共{item.lesson_index}讲</span>
-									</div>
-									<div className={style.right}>
-										<h5>{item.topic}</h5>
-										<div>
-											<span>{item.hospital_name}</span>
-											<span>{item.department_name}</span>
-										</div>
-										<div>
-											<p className="clearfix"><Icon type={yisheng} className={style.icon} /><span>{item.doctor_name}</span></p>
-											<p className="clearfix"><Icon type={renshu} className={style.icon}  /><span>{item.watch_number}</span></p>
-											<p className="clearfix"><Icon type={feiyong} className={style.icon}  /><span className={item.price > 0 ? style.fontRed : style.fontBlue }>{item.price > 0 ? `¥${item.price}` : "免费"}</span></p>
-										</div>
-									</div>
-								</div>
-							)
-						})
+						courses && courses.map((item,index)=>(<CourseItem {...item} key={item.id} />))
 					}
 				</div>
 				<ActivityIndicator toast  animating={this.state.loading}/>
