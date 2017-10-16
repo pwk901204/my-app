@@ -8,11 +8,10 @@ import {createLogger} from 'redux-logger';
 import registerServiceWorker from './registerServiceWorker';
 import FastClick from 'fastclick';
 import Routers from './routers/router';
-import reducers from './reducers/index';
+import reducers from 'reduxs/index';
 import {persistStore, autoRehydrate} from 'redux-persist';
 
 const middleWares = [thunk];
-
 
 let autoRehydrateLog = false;
 if (process.env.NODE_ENV === "development") {

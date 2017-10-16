@@ -18,6 +18,6 @@
   margin-top: 90px;
 }
 
-.listItem>div:nth-of-type(1)>div:nth-of-type(2){
-	flex-basis: 76%;
+.listItem > div:nth-of-type(1) > div:nth-of-type(2) {
+  flex-basis: 76%;
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import {Icon, Button, WhiteSpace, Carousel, ActivityIndicator} from 'antd-mobile';
+import {Link} from 'react-router';
+import {Icon, WhiteSpace, Carousel, ActivityIndicator} from 'antd-mobile';
 
 import shipingxueyuan from 'svg/shipingxueyuan.svg';
 import yixuehuiyi from 'svg/yixuehuiyi.svg';
@@ -25,7 +26,7 @@ class HomePage extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(url.carousels)
+		fetch(url.carousels + "?token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data);
@@ -52,18 +53,18 @@ class HomePage extends Component {
 						this.state.getCarouselsData.map((item,index)=>{
 							return (
 								<a href={item.button} key={index} >
-									<img src={item.image_srcs.mobile_image} />
+									<img src={item.image_srcs.mobile_image} alt="img" />
 								</a>
 							)
 						})
 					}
 				</Carousel>
 				<div className={style.topModule}>
-					<a >
+					<Link to="/VideoCollege">
 						<Icon type={shipingxueyuan}  className={style.shipingxueyuan} />
 						<h6>视屏学院</h6>
 						<p>可收看精彩直播、课程</p>
-					</a>
+					</Link>
 					<a>
 						<Icon type={yixuehuiyi}  className={style.yixuehuiyi} />
 						<h6>医学会议</h6>

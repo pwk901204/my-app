@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
 import style from './index.css';
-import {Icon, Button, WingBlank, WhiteSpace, Carousel, Grid} from 'antd-mobile';
+import {Icon, WingBlank, Grid} from 'antd-mobile';
 import minebg  from "images/minebg.png";
 import wodezhibo  from "svg/wodezhibo.svg";
 import wodelubo  from "svg/wodelubo.svg";
@@ -24,65 +24,65 @@ import bangzhuyufankui  from "svg/bangzhuyufankui.svg";
 const data=[
 	{
 		icon:<Icon type={wodezhibo} />,
-		text:<a href="javascript:;" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的直播</a>
+		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>我的直播</a>
 	},
 	{
 		icon:<Icon type={wodelubo} />,
-		text:<a href="javascript:;" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的录播</a>
+		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>我的录播</a>
 	},
 	{
 		icon:<Icon type={wodekecheng} />,
-		text:<a href="javascript:;" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的课程</a>
+		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>我的课程</a>
 	},
 	{
 		icon:<Icon type={wodewenzhang} />,
-		text:<a href="javascript:;" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的文章</a>
+		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>我的文章</a>
 	},
 ]
 const data1=[
 	{
 		icon:<Icon type={wodefuwu} />,
-		text:<a href="javascript:;" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的服务</a>
+		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>我的服务</a>
 	},
 	{
 		icon:<Icon type={shimingrenzheng} />,
-		text:<a href="javascript:;" style={{color:"#6f6f6f",fontWeight:'bold'}}>实名认证</a>
+		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>实名认证</a>
 	},
 	{
 		icon:<Icon type={huanzhepingjia} />,
-		text:<a href="javascript:;" style={{color:"#6f6f6f",fontWeight:'bold'}}>患者评价</a>
+		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>患者评价</a>
 	},
 	{
 		icon:<Icon type={xiaoxizhongxin} />,
-		text:<a href="javascript:;" style={{color:"#6f6f6f",fontWeight:'bold'}}>消息中心</a>
+		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>消息中心</a>
 	},
 	{
 		icon:<Icon type={kaitongzhibo} />,
-		text:<a href="javascript:;" style={{color:"#6f6f6f",fontWeight:'bold'}}>开通直播</a>
+		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>开通直播</a>
 	},
 
 
 	{
 		icon:<Icon type={xingyibaozhang} />,
-		text:<a href="javascript:;" style={{color:"#6f6f6f",fontWeight:'bold'}}>行医保障</a>
+		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>行医保障</a>
 	},
 
 	{
 		icon:<Icon type={xiugaiziliao} />,
-		text:<a href="javascript:;" style={{color:"#6f6f6f",fontWeight:'bold'}}>修改资料</a>
+		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>修改资料</a>
 	},
 	{
 		icon:<Icon type={wodeqianbao} />,
-		text:<a href="javascript:;" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的钱包</a>
+		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>我的钱包</a>
 	},
 
 	{
 		icon:<Icon type={shezhi} />,
-		text:<a href="javascript:;" style={{color:"#6f6f6f",fontWeight:'bold'}}>设置</a>
+		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>设置</a>
 	},
 	{
 		icon:<Icon type={bangzhuyufankui} />,
-		text:<a href="javascript:;" style={{color:"#6f6f6f",fontWeight:'bold'}}>帮助与反馈</a>
+		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>帮助与反馈</a>
 	},
 
 ]

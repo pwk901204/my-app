@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import userInfo from './userInfo';
-import registerInfo from './registerInfo';
+import {reducer as userInfo} from 'reduxs/userInfo';
+import {reducer as registerInfo} from 'reduxs/registerInfo';
 
 const reducersApp = combineReducers({
   userInfo,

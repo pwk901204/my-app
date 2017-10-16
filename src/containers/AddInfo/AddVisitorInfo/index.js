@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import {List, Icon, Button, WhiteSpace, Carousel ,InputItem, Toast, WingBlank, Tabs, Badge ,Picker, ActivityIndicator} from 'antd-mobile';
+import {List, Button, InputItem, Toast, WingBlank, ActivityIndicator} from 'antd-mobile';
 import { createForm } from 'rc-form';
 import {connect} from "react-redux";
 import url from "api_url/index.js";
-import {userInfo} from "actions/userInfo.js";
+import {userInfo} from "reduxs/userInfo.js";
 import {hashHistory} from "react-router";
-
-const TabPane = Tabs.TabPane;
 
 class AddVisitorInfoForm extends Component {
 	state={
@@ -101,13 +99,3 @@ class AddVisitorInfo extends Component {
 	}
 }
 export default AddVisitorInfo;
-
-
-
-
-
-
-
-
-
-

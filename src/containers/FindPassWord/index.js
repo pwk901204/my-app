@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import {List, Icon, Button, WhiteSpace, Carousel ,InputItem, Toast, WingBlank, Tabs, Badge, ActivityIndicator} from 'antd-mobile';
-import {connect} from "react-redux";
+import {List, Icon, Button,InputItem, Toast, WingBlank, ActivityIndicator} from 'antd-mobile';
 import {hashHistory} from "react-router";
 import { createForm } from 'rc-form';
 import mima from "svg/mima.svg";
 import shouji from "svg/shouji.svg";
-import logo from "svg/logo.svg";
 import yanzhengma from "svg/yanzhengma.svg";
 import url from "api_url/index.js";
-import {registerInfo} from "actions/registerInfo";
 
-const TabPane = Tabs.TabPane;
 
 class FindPassWordForm extends Component {
 	state = {
@@ -53,7 +49,7 @@ class FindPassWordForm extends Component {
 						_this.setState({
 							loading:false
 						})
-						if(data.msg.status == 'success'){
+						if(data.msg.status === 'success'){
 							Toast.info(data.msg.message);
 							hashHistory.push("/Login");
 						}else{
@@ -82,7 +78,7 @@ class FindPassWordForm extends Component {
 						})
 						let second = 30;
 						Toast.info(data.msg.message);
-						if(data.msg.status == "success"){
+						if(data.msg.status === "success"){
 							_this.setState({
 								sendCodeing:true
 							})

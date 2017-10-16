@@ -41,14 +41,20 @@ const VideoCollege = (location, cb) => {
     cb(null, require('containers/VideoCollege/index').default);
   });
 };
+const StreamList = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/List/StreamList/index').default);
+  });
+};
+
 
 const requireAuth = () => {
-	setTimeout(()=>{
-		if(!localStorage["reduxPersist:userInfo"]){
-			hashHistory.push("/Login")
+	setTimeout(() => {
+		if (!localStorage['reduxPersist:userInfo']) {
+		 	hashHistory.push('/Login');
 		}
-	},500)
-}
+	}, 1000);
+};
 
 class Routers extends Component {
   render() {
@@ -61,7 +67,8 @@ class Routers extends Component {
         <Route path="/AddDoctorInfo" getComponent={AddDoctorInfo} />
         <Route path="/AddStudentInfo" getComponent={AddStudentInfo} />
         <Route path="/AddVisitorInfo" getComponent={AddVisitorInfo} />
-        <Route path="/VideoCollege" getComponent={VideoCollege}  onEnter={requireAuth}/>
+        <Route path="/VideoCollege" getComponent={VideoCollege} onEnter={requireAuth}/>
+        <Route path="/StreamList" getComponent={StreamList} onEnter={requireAuth}/>
       </Router>
     );
   }

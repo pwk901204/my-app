@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import {List, Icon, Button, WhiteSpace, Carousel ,InputItem, Toast, WingBlank, Tabs, Badge, SegmentedControl, ActivityIndicator} from 'antd-mobile';
+import {List, Icon, Button, InputItem, Toast, WingBlank, SegmentedControl, ActivityIndicator} from 'antd-mobile';
 import {connect} from "react-redux";
 import {hashHistory} from "react-router";
 import { createForm } from 'rc-form';
 import mima from "svg/mima.svg";
 import shouji from "svg/shouji.svg";
-import logo from "svg/logo.svg";
+
 import yanzhengma from "svg/yanzhengma.svg";
 import url from "api_url/index.js";
-import {registerInfo} from "actions/registerInfo";
+import {registerInfo} from "reduxs/registerInfo";
 
-const TabPane = Tabs.TabPane;
+
 
 class DoctorForm extends Component {
 	state = {
 		sendCodeing:false,
 		second:30,
-		identity:"Doctor",
 		loading:false,
 		timer:null,
 		identity:"Doctor",
@@ -67,7 +66,7 @@ class DoctorForm extends Component {
 						_this.setState({
 							loading:false
 						})
-						if(data.msg.status == 'success'){
+						if(data.msg.status === 'success'){
 							_this.props.registerInfoAction({
 								identity:this.state.identity,
 								mobile:values.mobile.replace(/\s+/g, ''),
@@ -100,7 +99,7 @@ class DoctorForm extends Component {
 						})
 						let second = 30;
 						Toast.info(data.msg.message);
-						if(data.msg.status == "success"){
+						if(data.msg.status === "success"){
 							_this.setState({
 								sendCodeing:true
 							})

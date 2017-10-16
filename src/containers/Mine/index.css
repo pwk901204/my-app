@@ -1,56 +1,56 @@
-.mine{
-	padding-bottom: 100px;
-	position: relative;
+.mine {
+  padding-bottom: 100px;
+  position: relative;
 }
 
-.head{
-	height: 342px;
-	background: url("images/minebg.png") 0 0;
-	background-size: 100% 100%;
-	overflow: hidden;
-	margin-bottom: 
+.head {
+  height: 342px;
+  background: url('images/minebg.png') 0 0;
+  background-size: 100% 100%;
+  overflow: hidden;
+  margin-bottom: ;
 }
-.head img{
-	display: block;
-	border-radius: 50% 50%;
-	margin: 30px auto;
-	width:130px;
-	height:130px;
+.head img {
+  display: block;
+  border-radius: 50% 50%;
+  margin: 30px auto;
+  width: 130px;
+  height: 130px;
 }
-.head h6{
-	line-height: 30px;
-	font-size: 30px;
-	color: #fff;
-	text-align: center;
+.head h6 {
+  line-height: 30px;
+  font-size: 30px;
+  color: #fff;
+  text-align: center;
 }
-.head h6 span{
-	font-size: 22px;
+.head h6 span {
+  font-size: 22px;
 }
-.head p{
-	line-height: 50px;
-	font-size: 22px;
-	color: #fff;
-	text-align: center;
-}
-
-.nav{
-	position: absolute;
-	left:0;
-	top:290px;
-	width: 100%;
-}
-.nav>div{
-	border-radius: 15px 15px;
-	overflow: hidden;
+.head p {
+  line-height: 50px;
+  font-size: 22px;
+  color: #fff;
+  text-align: center;
 }
 
-.title{
-	margin-top: 120px;
-	height:74px;
-	padding-left: 40px;
-	font-size: 28px;
-	color: #6f6f6f;
-	line-height: 74px;
-	background-color: #fff;
-	border-bottom: 1px solid #ccc;
+.nav {
+  position: absolute;
+  left: 0;
+  top: 290px;
+  width: 100%;
+}
+.nav > div {
+  border-radius: 15px 15px;
+  overflow: hidden;
+}
+
+.title {
+  margin-top: 120px;
+  height: 74px;
+  padding-left: 40px;
+  font-size: 28px;
+  color: #6f6f6f;
+  line-height: 74px;
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
 }

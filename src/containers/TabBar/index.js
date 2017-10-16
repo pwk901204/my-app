@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import style from './index.css';
 import {TabBar, Icon} from 'antd-mobile';
-import {url} from "api_url/index.js";
 
 import wode from "svg/wode.svg";
 import wodeOn from "svg/wodeOn.svg";

@@ -1,127 +1,168 @@
 import React, { Component } from 'react';
-//import logo from '../../../logo.svg';
 import style from './index.css';
-import {Icon, WhiteSpace} from 'antd-mobile';
-
+import {Icon, WhiteSpace, ActivityIndicator} from 'antd-mobile';
 import renshu from "svg/renshu.svg";
 import yisheng from "svg/yisheng.svg";
 import feiyong from "svg/feiyong.svg";
+import {connect} from "react-redux";
+import url from "api_url/index.js";
 
 class VideoCollege extends Component {
-  render() {
-    return (
-		<div>
-			<video
-				className={style.video}
-				autoPlay
-				loop
-				src="http://vodlrv4exh9.vod.126.net/vodlrv4exh9/521e3ace-5fcd-424d-998e-7f77a90fd6eb.mp4"
-			>
-				您的浏览器不支持 video 标签。
-			</video>
-			<WhiteSpace size="md" />
+	state = {
+		loading:false,
+		data:null
+	}
+	componentDidMount(){
+		this.getDetail();
+	}
+	getDetail = ()=>{
+		//http://rqiang.mynatapp.cc/api/doctor/courses/streams?stream_limit=2&recording_limit=2&course_limit=2
+		this.setState({
+			loading:true
+		})
+		fetch(url.courses_streams + "?token=" + this.props.userInfo.token + "&stream_limit=2&recording_limit=2&course_limit=2")
+		.then((response)=>response.json())
+		.then((data)=>{
+			console.log(data);
+			this.setState({
+				loading:false,
+			})
+			if(data.msg.status === "success"){
+				this.setState({
+					...data,
+				})
+			}
+		})
+	}
+	render() {
+		let {advertisement, courses, recordings, streams} = this.state;
+		return (
+			<div>
+				{
+					advertisement &&
+					<video
+						className={style.video}
+						autoPlay
+						loop
+						src={advertisement.url}
+					>您的浏览器不支持 video 标签
+					</video>
+				}
+				<WhiteSpace size="md" />
 
-			<div className={style.stream}>
-				<a href="javascript:;" className={style.title}>
-					<i></i>
-					<p>热门直播</p>
-					<span>更多</span>
-				</a>
-				<div className={style.item}>
-					<div className={style.left}>
-						<img src=""  />
-						<span className={style.red}>直播中</span>
-					</div>
-					<div className={style.right}>
-						<h5>一步道都撒的撒都撒的撒十大大赛大 当时的撒的撒的啊的</h5>
-						<div>
-							<span>中南大学的撒的大大</span>
-							<span>骨科都撒的撒打算</span>
-						</div>
-						<div>
-							<p className="clearfix"><Icon type={yisheng} className={style.icon} /><span>王光</span></p>
-							<p className="clearfix"><Icon type={renshu} className={style.icon}  /><span>2023</span></p>
-							<p className="clearfix"><Icon type={feiyong} className={style.icon}  /><span className={style.fontRed}>¥12</span></p>
-						</div>
-					</div>
+				<div className={style.stream}>
+					<a href="javascript:;" className={style.title}>
+						<i></i>
+						<p>热门直播</p>
+						<span>更多</span>
+					</a>
+					{
+						streams && streams.map((item,index)=>{
+							return (
+								<div className={style.item} key={item.id}>
+									<div className={style.left}>
+										<img src={item.cover_data.size_300} alt="img"/>
+										{item.stream_type === "已结束" && <span >{item.stream_type}</span>}
+										{item.stream_type === "直播中" && <span className={style.red}>{item.stream_type}</span>}
+										{item.stream_type === "未开始" && <span className={style.blue}>{item.stream_type}</span>}
+									</div>
+									<div className={style.right}>
+										<h5>{item.topic}</h5>
+										<div>
+											<span>{item.hospital_name}</span>
+											<span>{item.department_name}</span>
+										</div>
+										<div>
+											<p className="clearfix"><Icon type={yisheng} className={style.icon} /><span>{item.doctor_name}</span></p>
+											<p className="clearfix"><Icon type={renshu} className={style.icon}  /><span>{item.watch_number}</span></p>
+											<p className="clearfix"><Icon type={feiyong} className={style.icon}  /><span className={item.price > 0 ? style.fontRed : style.fontBlue }>{item.price > 0 ? `¥${item.price}` : "免费"}</span></p>
+										</div>
+									</div>
+								</div>
+							)
+						})
+					}
 				</div>
-				<div className={style.item}>
-					<div className={style.left}>
-						<img src=""  />
-						<span className={style.blue}>直播中</span>
-					</div>
-					<div className={style.right}>
-						<h5>一步道都撒的撒都撒的撒十大大赛大 当时的撒的撒的啊的</h5>
-						<div>
-							<span>中南大学的撒的大大</span>
-							<span>骨科都撒的撒打算</span>
-						</div>
-						<div>
-							<p className="clearfix"><Icon type={yisheng} className={style.icon} /><span>王光</span></p>
-							<p className="clearfix"><Icon type={renshu} className={style.icon}  /><span>2023</span></p>
-							<p className="clearfix"><Icon type={feiyong} className={style.icon}  /><span className={style.fontBlue}>免费</span></p>
-						</div>
-					</div>
+				<WhiteSpace size="md" />
+
+				<div className={style.record}>
+					<a href="javascript:;" className={style.title}>
+						<i></i>
+						<p>精彩录像</p>
+						<span>更多</span>
+					</a>
+					{
+						recordings && recordings.map((item,index)=>{
+							return (
+								<div className={style.item} key={item.id}>
+									<div className={style.left}>
+										<img src={item.cover_data.size_300} alt="img"/>
+										<span >{item.stream_type}</span>
+									</div>
+									<div className={style.right}>
+										<h5>{item.topic}</h5>
+										<div>
+											<span>{item.hospital_name}</span>
+											<span>{item.department_name}</span>
+										</div>
+										<div>
+											<p className="clearfix"><Icon type={yisheng} className={style.icon} /><span>{item.doctor_name}</span></p>
+											<p className="clearfix"><Icon type={renshu} className={style.icon}  /><span>{item.watch_number}</span></p>
+											<p className="clearfix"><Icon type={feiyong} className={style.icon}  /><span className={item.price > 0 ? style.fontRed : style.fontBlue }>{item.price > 0 ? `¥${item.price}` : "免费"}</span></p>
+										</div>
+									</div>
+								</div>
+							)
+						})
+					}
 				</div>
+				<WhiteSpace size="md" />
+
+				<div className={style.series}>
+					<a href="javascript:;" className={style.title}>
+						<i></i>
+						<p>经典系列</p>
+						<span>更多</span>
+					</a>
+					{
+						courses && courses.map((item,index)=>{
+							return (
+								<div className={style.item} key={item.id}>
+									<div className={style.left}>
+										<img src={item.cover_data.size_300} alt="img"/>
+										<span className={style.blue}>共{item.lesson_index}讲</span>
+									</div>
+									<div className={style.right}>
+										<h5>{item.topic}</h5>
+										<div>
+											<span>{item.hospital_name}</span>
+											<span>{item.department_name}</span>
+										</div>
+										<div>
+											<p className="clearfix"><Icon type={yisheng} className={style.icon} /><span>{item.doctor_name}</span></p>
+											<p className="clearfix"><Icon type={renshu} className={style.icon}  /><span>{item.watch_number}</span></p>
+											<p className="clearfix"><Icon type={feiyong} className={style.icon}  /><span className={item.price > 0 ? style.fontRed : style.fontBlue }>{item.price > 0 ? `¥${item.price}` : "免费"}</span></p>
+										</div>
+									</div>
+								</div>
+							)
+						})
+					}
+				</div>
+				<ActivityIndicator toast  animating={this.state.loading}/>
 			</div>
-			<WhiteSpace size="md" />
-
-			<div className={style.record}>
-				<a href="javascript:;" className={style.title}>
-					<i></i>
-					<p>精彩录像</p>
-					<span>更多</span>
-				</a>
-				<div className={style.item}>
-					<div className={style.left}>
-						<img src=""  />
-						<span>录像回放</span>
-					</div>
-					<div className={style.right}>
-						<h5>一步道都撒的撒都撒的撒十大大赛大 当时的撒的撒的啊的</h5>
-						<div>
-							<span>中南大学的撒的大大</span>
-							<span>骨科都撒的撒打算</span>
-						</div>
-						<div>
-							<p className="clearfix"><Icon type={yisheng} className={style.icon} /><span>王光</span></p>
-							<p className="clearfix"><Icon type={renshu} className={style.icon}  /><span>2023</span></p>
-							<p className="clearfix"><Icon type={feiyong} className={style.icon}  /><span className={style.fontBlue}>免费</span></p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<WhiteSpace size="md" />
-
-			<div className={style.series}>
-				<a href="javascript:;" className={style.title}>
-					<i></i>
-					<p>经典系列</p>
-					<span>更多</span>
-				</a>
-				<div className={style.item}>
-					<div className={style.left}>
-						<img src=""  />
-						<span className={style.blue}>共18讲</span>
-					</div>
-					<div className={style.right}>
-						<h5>一步道都撒的撒都撒的撒十大大赛大 当时的撒的撒的啊的</h5>
-						<div>
-							<span>中南大学的撒的大大</span>
-							<span>骨科都撒的撒打算</span>
-						</div>
-						<div>
-							<p className="clearfix"><Icon type={yisheng} className={style.icon} /><span>王光</span></p>
-							<p className="clearfix"><Icon type={renshu} className={style.icon}  /><span>2023</span></p>
-							<p className="clearfix"><Icon type={feiyong} className={style.icon}  /><span className={style.fontBlue}>免费</span></p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-    );
-  }
+		);
+	}
 }
 
-export default VideoCollege;
+export default connect (
+	(state)=>{
+		return {
+			userInfo:state.userInfo
+		}
+	},
+	()=>{
+		return {
+		}
+	}
+)(VideoCollege);

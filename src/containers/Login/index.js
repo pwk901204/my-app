@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import {connect} from "react-redux";
 import {hashHistory, Link} from "react-router";
 import style from './index.css';
-import {List, Icon, Button, WhiteSpace, Carousel ,InputItem, Toast, WingBlank, ActivityIndicator} from 'antd-mobile';
+import {List, Icon, Button, InputItem, Toast, WingBlank, ActivityIndicator} from 'antd-mobile';
 import { createForm } from 'rc-form';
 import mima from "svg/mima.svg";
 import shouji from "svg/shouji.svg";
 import logo from "svg/logo.svg";
 import url from "api_url/index.js";
-import {userInfo} from "actions/userInfo";
+import {userInfo} from "reduxs/userInfo";
 
 class LoginForm extends Component {
 	state={
@@ -34,7 +34,7 @@ class LoginForm extends Component {
 						loading:false
 					})
 					Toast.info(data.msg.message);
-					if(data.msg.status == "success"){
+					if(data.msg.status === "success"){
 						this.props.userInfoAction(data.user);
 						hashHistory.push("/");
 					}

@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import {List, Icon, Button, WhiteSpace, Carousel ,InputItem, Toast, WingBlank, Tabs, Badge ,Picker, ActivityIndicator} from 'antd-mobile';
+import {List, Button, InputItem, Toast, WingBlank ,Picker, ActivityIndicator} from 'antd-mobile';
 import { createForm } from 'rc-form';
 import {connect} from "react-redux";
 import url from "api_url/index.js";
 import {hashHistory} from "react-router";
 
-import {userInfo} from "actions/userInfo.js";
+import {userInfo} from "reduxs/userInfo.js";
 
-const TabPane = Tabs.TabPane;
 
 class AddDoctorInfoForm extends Component {
 	state={
