@@ -57,7 +57,7 @@ const StreamDetail = (location, cb) => {
 const requireAuth = () => {
   setTimeout(() => {
     if (!localStorage['reduxPersist:userInfo']) {
-      hashHistory.push('/Login');
+      //hashHistory.push('/Login');
     }
   }, 1000);
 };
@@ -84,7 +84,7 @@ class Routers extends Component {
           onEnter={requireAuth}
         />
         <Route
-          path="/StreamDetail"
+          path="/StreamDetail/:id"
           getComponent={StreamDetail}
           onEnter={requireAuth}
         />

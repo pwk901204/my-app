@@ -46,4 +46,7 @@ url.carousels = __host__ + '/api/doctor/carousels';
 //首页 轮播图
 url.courses_streams = __host__ + '/api/doctor/courses/streams';
 
+// 直播列表        // 直播详情 ***/id
+url.streams = __host__ + '/api/doctor/streams';
+
 module.exports = url;

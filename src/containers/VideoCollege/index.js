@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import style from './index.css';
 import { WhiteSpace, ActivityIndicator} from 'antd-mobile';
-import {connect} from "react-redux";
+import { connect } from "react-redux";
+import {Link} from 'react-router';
 import url from "api_url/index.js";
 import StreamItem from "components/StreamItem/index.js";
 import RecordItem from "components/RecordItem/index.js";
@@ -51,11 +52,11 @@ class VideoCollege extends Component {
 				<WhiteSpace size="md" />
 
 				<div className={style.stream}>
-					<a href="javascript:;" className={style.title}>
+					<Link to="/StreamList" className={style.title}>
 						<i></i>
 						<p>热门直播</p>
 						<span>更多</span>
-					</a>
+					</Link>
 					{
 						streams && streams.map((item,index)=>(<StreamItem {...item} key={item.id} />))
 					}

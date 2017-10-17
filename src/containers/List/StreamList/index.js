@@ -6,25 +6,65 @@ import url from "api_url/index.js";
 import StreamItem from "components/StreamItem/index.js";
 import xialajiantou from "svg/xialajiantou.svg";
 
+import ReactIScroll from "react-iscroll";
+import iScroll from "iscroll/build/iscroll-probe.js";
+
 class StreamList extends Component {
+	static defaultProps = {
+		options: {
+			mouseWheel: true,
+			scrollbars: false
+		}
+	}
 	state = {
 		loading:false,
 		visible:false,
-		pickerValue:["全部科室","0"],
-		regions:null
+		pickerValue:["0","0"],
+		departments:null,
+		streams:null
 	}
-	getRegions = () =>{
-		fetch(url.regions)
+	componentDidMount(){
+		let _this = this;
+		this.getDepartments();
+		this.getDetail("");
+	}
+	getDepartments = () =>{
+		this.setState({
+			loading:true
+		})
+		fetch(url.departments)
+		.then((response)=>response.json())
+		.then((data)=>{
+			this.setState({
+				loading:false,
+				departments:data.departments
+			})
+		})
+	}
+	onScrollStart = () => {
+	    console.log("iScroll starts scrolling")
+	}
+	onPickerChange = (v)=>{
+		this.setState({ pickerValue: v });
+		this.getDetail(v[1]);
+	}
+	getDetail = (department_id,page) =>{
+		let _this = this;
+		this.setState({
+			loading:true
+		})
+		fetch(url.streams + "?department_id="+department_id+"&page="+1+"&per_page=20")
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data)
 			this.setState({
-				regions:data.regions
+				loading:false,
+				streams:data.streams
 			})
 		})
 	}
-
 	render() {
+		let {streams} = this.state;
 		return (
 			<div className={style.streamList}>
 				<div className={style.title} onClick={() => this.setState({ visible: true })}>
@@ -32,24 +72,26 @@ class StreamList extends Component {
 				</div>
 				<Picker
 					visible={this.state.visible}
-					data={this.state.regions}
+					data={this.state.departments}
 					cascade={true}
 					cols={2}
-					onChange={v => {
-						console.log(v)
-						this.setState({ pickerValue: v })
-					}}
+					onChange={this.onPickerChange}
 					onOk={() => this.setState({ visible: false })}
 					onDismiss={() => this.setState({ visible: false })}
 				>
 				</Picker>
-				<div className={style.stream}>
-					{
-						//<StreamItem />
-						//<StreamItem />
-					}
-				</div>
-				<ActivityIndicator toast  animating={this.state.loading}/>
+				<ReactIScroll
+					iScroll={iScroll}
+					options={this.props.options}
+					onScrollStart={this.onScrollStart}
+				>
+					<div className={style.stream}>
+						{
+							streams && streams.map((item,index) =>(<StreamItem {...item} key={item.id} />))
+						}
+					</div>
+				</ReactIScroll>
+				<ActivityIndicator toast animating={this.state.loading} />
 			</div>
 		);
 	}
