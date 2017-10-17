@@ -1,0 +1,88 @@
+.comment{
+	height: 100%;
+	position: relative;
+	padding-bottom: 100px;
+	box-sizing: border-box;
+}
+
+.commentList{
+	height: 100%;
+}
+.commentItem{
+	composes: clearfix from 'src/index.css';
+	padding: 10px 10px;
+	background: #fff;
+}
+.commentItem img{
+	float: left;
+	width: 80px;
+	height: 80px;
+	border-radius: 50% 50%;
+	overflow: hidden;
+}
+.commentItem>div{
+	float: right;
+	width: calc( 100% - 80px );
+	padding-left: 20px;
+	box-sizing: border-box;
+}
+.commentItem>div>h6{
+	font-weight: normal;
+	font-size: 30px;
+}
+.commentItem>div>h6>span{
+	float: left;
+	color: #33a9fc;
+}
+.commentItem>div>h6>i{
+	float: right;
+	font-style: normal;
+	color: #ccc;
+}
+.commentItem>div>p{
+	padding: 10px 0;
+	font-size: 26px;
+	line-height: 36px;
+}
+.commentItem>div>div{
+	font-size: 26px;
+	line-height: 40px;
+}
+.commentItem>div>div>span{
+	width: 50%;
+	float: left;
+}
+
+
+.commentInput{
+	composes: clearfix from 'src/index.css';
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	height: 100px;
+	width: 100%;
+	border-top: 1px solid #ccc;
+	background: #fff;
+	padding: 20px 10px;
+	box-sizing: border-box;
+}
+
+.commentInput input{
+	float: left;
+	width: calc( 100% - 145px );
+	height: 60px;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	border-radius: 5px 5px;
+	padding-left: 20px;
+}
+
+.commentInput .btn{
+	float: right;
+}
+
+
+
+
+
+

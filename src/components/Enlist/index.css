@@ -1,0 +1,57 @@
+.enlist{
+	height: 100%;
+}
+
+.title{
+	height: 60px;
+	padding: 10px 20px;
+	line-height: 40px;
+	font-size: 30px;
+	box-sizing: border-box;
+	background: #fff;
+	font-weight: normal;
+	border-bottom: 1px solid #ccc;
+}
+
+.title span{
+	width: 5px;
+	height: 40px;
+	background: #33a9fc;
+	float: left;
+	margin-right: 10px;
+}
+
+.item{
+	composes: clearfix from 'src/index.css';
+	height: 120px;
+	padding: 20px;
+	box-sizing: border-box;
+	background: #fff;
+}
+.item img{
+	height: 80px;
+	width: 80px;
+	float: left;
+	border-radius: 50% 50%;
+	overflow: hidden;
+
+}
+.item span{
+	padding:0 20px;
+	float: left;
+	line-height: 80px;
+	font-size: 30px;
+}
+.item i{
+	float: left;
+	width: 40px;
+	height: 40px;
+	font-size: 24px;
+	border-radius: 50% 50%;
+	background: #33a9fc;
+	margin-top: 20px;
+	color: #fff;
+	line-height: 40px;
+	text-align: center;
+	font-style: normal;
+}

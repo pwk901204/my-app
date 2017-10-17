@@ -10,12 +10,6 @@ import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 
 class StreamList extends Component {
-	static defaultProps = {
-		options: {
-			mouseWheel: true,
-			scrollbars: false
-		}
-	}
 	state = {
 		loading:false,
 		visible:false,
@@ -82,8 +76,6 @@ class StreamList extends Component {
 				</Picker>
 				<ReactIScroll
 					iScroll={iScroll}
-					options={this.props.options}
-					onScrollStart={this.onScrollStart}
 				>
 					<div className={style.stream}>
 						{

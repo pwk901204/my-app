@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import {Icon, ActivityIndicator, List, Tag,  Tabs, Badge} from 'antd-mobile';
+import {Icon, ActivityIndicator, List, Tag,  Tabs, Badge, WhiteSpace} from 'antd-mobile';
 import {connect} from "react-redux";
 import url from "api_url/index.js";
 import LiveVideo from "components/LiveVideo";
+import Comment from "components/Comment";
+import Enlist from "components/Enlist";
 
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
+import jiantou from "svg/jiantou.svg";
 const TabPane = Tabs.TabPane;
 
 function callback(key) {
@@ -40,53 +43,64 @@ class StreamDetail extends Component {
 		let {stream} = this.state;
 		return (
 			<div className={style.streamDetailWrap}>
-				{stream &&
-					<div className={style.streamDetail}>
-						{stream.stream_type === "ended" &&
-							<div className={style.streamEnded}>
-								<img src={stream.cover_data.size_700} alt="img" />
-								<p>{stream.topic}</p>
-							</div>
-						}
-						{stream.stream_type === "live" && <LiveVideo cover_url="http://www.iteye.com/images/logo.gif?1448702469" pull_url_http="http://www.iteye.com/images/logo.gif?1448702469" />}
-						<Tabs defaultActiveKey="1" className={style.tabWrap} onChange={callback} onTabClick={handleTabClick}>
-							<TabPane tab="直播简介" key="1" className={style.tabItemWrap}>
-								<ReactIScroll
-									iScroll={iScroll}
-									options={{
-										mouseWheel: true,
-										scrollbars: false
-									}}
-								>
-									<StreamInfo {...stream}/>
-								</ReactIScroll>
-							</TabPane>
-							<TabPane tab="医生详情" key="2" className={style.tabItemWrap}>
-								<ReactIScroll
-									iScroll={iScroll}
-									options={{
-										mouseWheel: true,
-										scrollbars: false
-									}}
-								>
-									<StreamDoctorInfo/>
-								</ReactIScroll>
-							</TabPane>
-							<TabPane tab={<Badge text={'3'}>评论</Badge>} key="3" className={style.tabItemWrap}>
-								<ReactIScroll
-									iScroll={iScroll}
-									options={{
-										mouseWheel: true,
-										scrollbars: false
-									}}
-								>
-									<StreamInfo {...stream}/>
-								</ReactIScroll>
-							</TabPane>
-						</Tabs>
-						<ActivityIndicator toast  animating={this.state.loading}/>
-					</div>
+				{
+					// stream &&
+					// <div className={style.streamDetail}>
+					// 	{stream.stream_type === "ended" &&
+					// 		<div className={style.streamEnded}>
+					// 			<img src={stream.cover_data.size_700} alt="img" />
+					// 			<p>{stream.topic}</p>
+					// 		</div>
+					// 	}
+					// 	{stream.stream_type === "live" && <LiveVideo cover_url="http://www.iteye.com/images/logo.gif?1448702469" pull_url_http="http://www.iteye.com/images/logo.gif?1448702469" />}
+					// 	<Tabs defaultActiveKey="1" className={style.tabWrap} onChange={callback} onTabClick={handleTabClick}>
+					// 		<TabPane tab="直播简介" key="1" className={style.tabItemWrap}>
+					// 			<ReactIScroll
+					// 				iScroll={iScroll}
+					// 			>
+					// 				<StreamInfo {...stream}/>
+					// 			</ReactIScroll>
+					// 		</TabPane>
+					// 		<TabPane tab="医生详情" key="2" className={style.tabItemWrap}>
+					// 			<ReactIScroll
+					// 				iScroll={iScroll}
+					// 			>
+					// 				<StreamDoctorInfo/>
+					// 			</ReactIScroll>
+					// 		</TabPane>
+					// 		<TabPane tab={<Badge text={'3'}>评论</Badge>} key="3" className={style.tabItemWrap}>
+					// 			<ReactIScroll
+					// 				iScroll={iScroll}
+					// 			>
+					// 				<StreamInfo {...stream}/>
+					// 			</ReactIScroll>
+					// 		</TabPane>
+					// 	</Tabs>
+					// 	<ActivityIndicator toast  animating={this.state.loading}/>
+					// </div>
 				}
+				<Tabs defaultActiveKey="4" className={style.tabWrap} onChange={callback} onTabClick={handleTabClick}>
+					<TabPane tab="直播简介" key="1" className={style.tabItemWrap}>
+						<ReactIScroll
+							iScroll={iScroll}
+						>
+							123
+						</ReactIScroll>
+					</TabPane>
+					<TabPane tab="医生详情" key="2" className={style.tabItemWrap}>
+						<ReactIScroll
+							iScroll={iScroll}
+						>
+							<DoctorInfo/>
+						</ReactIScroll>
+					</TabPane>
+					<TabPane tab={<Badge text={'13'}>评论</Badge>} key="3" className={style.tabItemWrap}>
+						<Comment />
+					</TabPane>
+					<TabPane tab={"报名人数"} key="4" className={style.tabItemWrap}>
+						<Enlist />
+					</TabPane>
+				</Tabs>
 			</div>
 		);
 	}
@@ -148,20 +162,39 @@ class StreamInfo extends Component {
 }
 
 
-class StreamDoctorInfo extends Component {
+class DoctorInfo extends Component {
 	render() {
-		let stream = this.props;
 		return (
-			<div>
-				<div className="clearfix">
-					<img src="" alt="img" />
+			<div className={style.doctorInfo}>
+				<WhiteSpace size="xs" />
+				<div className={style.doctorInfoTitle}>
+					<img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=594559231,2167829292&fm=27&gp=0.jpg" alt="img" />
 					<div>
 						<h5>朱天刚<span>(主任医师)</span></h5>
 						<p><span>医院</span><span>科室</span></p>
 					</div>
+					<Icon type={jiantou} className={style.jiantouIcon}/>
+				</div>
+				<WhiteSpace size="xs" />
+				<div className={style.doctorInfoItem}>
+					<h6 className="clearfix">
+						<span></span>
+						简介
+					</h6>
+					<div>撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊</div>
+				</div>
+				<WhiteSpace size="xs" />
+				<div className={style.doctorInfoItem}>
+					<h6 className="clearfix">
+						<span></span>
+						擅长
+					</h6>
+					<div>撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊撒打算打算啊</div>
 				</div>
 			</div>
 		);
 	}
 }
+
+
 

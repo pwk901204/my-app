@@ -67,7 +67,6 @@ export default class LiveVideo extends Component {
 		var ErrorComponent = window.neplayer.extend(Component, {});
 		//在实例化组件的时候传入组件元素
 		var errorComponent = new ErrorComponent(null, {el:errorElement});
-		
 	}
 	componentWillUnmount() {
 		//当我挂载的时候
