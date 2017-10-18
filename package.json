@@ -31,6 +31,7 @@
     "iscroll": "^5.2.0",
     "jest": "20.0.4",
     "lint-staged": "^4.1.3",
+    "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",

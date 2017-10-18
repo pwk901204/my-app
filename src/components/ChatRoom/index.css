@@ -1,0 +1,113 @@
+.chatRoom{
+	height: 100%;
+	position: relative;
+	padding-bottom: 100px;
+	box-sizing: border-box;
+}
+
+.chatRoomContent{
+	height: 100%;
+	position: relative;
+}
+
+.chatIcon1{
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	background: rgba(0,0,0,0.6);
+	color: #fff;
+	z-index: 100;
+	padding: 10px;
+	border-radius: 10px 10px;
+	font-size: 26px;
+}
+.chatIcon2{
+	position: absolute;
+	right: 10px;
+	top: 60px;
+	background: rgba(0,0,0,0.6);
+	color: #fff;
+	z-index: 100;
+	padding: 10px;
+	border-radius: 10px 10px;
+	font-size: 26px;
+}
+
+
+.message{
+	composes: clearfix from 'src/index.css';
+}
+
+.icon{
+	float: left;
+	width: 100px;
+}
+
+.icon img{
+	display: block;
+	width: 60px;
+	height: 60px;
+	border-radius: 50% 50%;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+.icon p{
+	font-size: 24px;
+	text-align: center;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding:10px;
+}
+.content{
+	float: left;
+	max-width: calc( 100% - 160px );
+	padding: 20px 10px;
+	margin-left: 30px;
+	margin-top: 10px;
+	font-size: 28px;
+	background: #33a9fc;
+	box-sizing: border-box;
+	position: relative;
+	border-radius: 5px 5px;
+	color: #fff;
+}
+.content span{
+	position: absolute;
+	left: -40px;
+	top: 15px;
+	width: 0;
+	height: 0;
+	border-left: 20px solid transparent;
+	border-right: 20px solid #33a9fc;
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent;
+}
+
+.chatRoomInput{
+	composes: clearfix from 'src/index.css';
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	height: 100px;
+	width: 100%;
+	border-top: 1px solid #ccc;
+	background: #fff;
+	padding: 20px 10px;
+	box-sizing: border-box;
+}
+
+.chatRoomInput input{
+	float: left;
+	width: calc( 100% - 145px );
+	height: 60px;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	border-radius: 5px 5px;
+	padding-left: 20px;
+}
+
+.chatRoomInput .btn{
+	float: right;
+}

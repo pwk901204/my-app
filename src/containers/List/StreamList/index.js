@@ -9,18 +9,24 @@ import xialajiantou from "svg/xialajiantou.svg";
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 
+import _ from "lodash";
+
 class StreamList extends Component {
 	state = {
 		loading:false,
 		visible:false,
-		pickerValue:["0","0"],
 		departments:null,
-		streams:null
+
+		streams:[],
+		page:1,
+		selectDepartment:{
+			label:"全部科室",
+			value:""
+		}
 	}
 	componentDidMount(){
-		let _this = this;
 		this.getDepartments();
-		this.getDetail("");
+		this.getDetail();
 	}
 	getDepartments = () =>{
 		this.setState({
@@ -29,40 +35,75 @@ class StreamList extends Component {
 		fetch(url.departments)
 		.then((response)=>response.json())
 		.then((data)=>{
+			console.log(data)
+			var all = [
+				{
+					label:"全部科室",
+					value:"",
+					children:[
+						{
+							label:"全部科室",
+							value:"",
+						}
+					]
+				}
+			]
 			this.setState({
 				loading:false,
-				departments:data.departments
+				departments:all.concat(data.departments)
 			})
 		})
 	}
-	onScrollStart = () => {
-	    console.log("iScroll starts scrolling")
-	}
 	onPickerChange = (v)=>{
-		this.setState({ pickerValue: v });
-		this.getDetail(v[1]);
+		let selectDepartment = {};
+		if(_.find(this.state.departments,{value:v[1]})){
+			selectDepartment.label = _.find(this.state.departments,{value:v[1]}).label;
+			selectDepartment.value = _.find(this.state.departments,{value:v[1]}).value;
+		}else{
+			let children = _.find(this.state.departments,{value:v[0]}).children;
+			selectDepartment.label = _.find(children,{value:v[1]}).label;
+			selectDepartment.value = _.find(children,{value:v[1]}).value;
+		}
+		console.log(selectDepartment)
+		this.setState({
+			selectDepartment: selectDepartment,
+			page:1,
+			streams:[]
+		},()=>{
+			this.getDetail();
+		});
 	}
-	getDetail = (department_id,page) =>{
+	getDetail = () =>{
 		let _this = this;
 		this.setState({
 			loading:true
 		})
-		fetch(url.streams + "?department_id="+department_id+"&page="+1+"&per_page=20")
+		fetch(url.streams + "?department_id="+this.state.selectDepartment.value+"&page="+this.state.page+"&per_page=20")
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data)
 			this.setState({
 				loading:false,
-				streams:data.streams
+				streams:this.state.streams.concat(data.streams)
 			})
 		})
+	}
+	scrollEnd = (iScrollInstance) =>{
+		if(iScrollInstance.maxScrollY === iScrollInstance.y){
+			console.log("到达最底部")
+			this.setState({
+				page:this.state.page+1
+			},()=>{
+				this.getDetail()
+			})
+		}
 	}
 	render() {
 		let {streams} = this.state;
 		return (
 			<div className={style.streamList}>
 				<div className={style.title} onClick={() => this.setState({ visible: true })}>
-					<span>{this.state.pickerValue[0]}</span><Icon type={xialajiantou} className={style.titleIcon}/>
+					<span>{this.state.selectDepartment.label}</span><Icon type={xialajiantou} className={style.titleIcon}/>
 				</div>
 				<Picker
 					visible={this.state.visible}
@@ -70,12 +111,18 @@ class StreamList extends Component {
 					cascade={true}
 					cols={2}
 					onChange={this.onPickerChange}
-					onOk={() => this.setState({ visible: false })}
+					onOk={(c) => {
+							console.log(c)
+							this.setState({ visible: false })
+						}
+					}
 					onDismiss={() => this.setState({ visible: false })}
 				>
 				</Picker>
+
 				<ReactIScroll
 					iScroll={iScroll}
+					onScrollEnd={this.scrollEnd}
 				>
 					<div className={style.stream}>
 						{

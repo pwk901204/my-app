@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import {Icon, ActivityIndicator, List, Tag,  Tabs, Badge, WhiteSpace} from 'antd-mobile';
+import {Icon, ActivityIndicator, List, Tag,  Tabs, Badge, WhiteSpace, Button} from 'antd-mobile';
 import {connect} from "react-redux";
 import url from "api_url/index.js";
 import LiveVideo from "components/LiveVideo";
 import Comment from "components/Comment";
 import Enlist from "components/Enlist";
+import RewardList from "components/RewardList";
+import ChatRoom from "components/ChatRoom";
+import MiniNav from "components/MiniNav";
+
 
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
@@ -44,63 +48,51 @@ class StreamDetail extends Component {
 		return (
 			<div className={style.streamDetailWrap}>
 				{
-					// stream &&
-					// <div className={style.streamDetail}>
-					// 	{stream.stream_type === "ended" &&
-					// 		<div className={style.streamEnded}>
-					// 			<img src={stream.cover_data.size_700} alt="img" />
-					// 			<p>{stream.topic}</p>
-					// 		</div>
-					// 	}
-					// 	{stream.stream_type === "live" && <LiveVideo cover_url="http://www.iteye.com/images/logo.gif?1448702469" pull_url_http="http://www.iteye.com/images/logo.gif?1448702469" />}
-					// 	<Tabs defaultActiveKey="1" className={style.tabWrap} onChange={callback} onTabClick={handleTabClick}>
-					// 		<TabPane tab="直播简介" key="1" className={style.tabItemWrap}>
-					// 			<ReactIScroll
-					// 				iScroll={iScroll}
-					// 			>
-					// 				<StreamInfo {...stream}/>
-					// 			</ReactIScroll>
-					// 		</TabPane>
-					// 		<TabPane tab="医生详情" key="2" className={style.tabItemWrap}>
-					// 			<ReactIScroll
-					// 				iScroll={iScroll}
-					// 			>
-					// 				<StreamDoctorInfo/>
-					// 			</ReactIScroll>
-					// 		</TabPane>
-					// 		<TabPane tab={<Badge text={'3'}>评论</Badge>} key="3" className={style.tabItemWrap}>
-					// 			<ReactIScroll
-					// 				iScroll={iScroll}
-					// 			>
-					// 				<StreamInfo {...stream}/>
-					// 			</ReactIScroll>
-					// 		</TabPane>
-					// 	</Tabs>
-					// 	<ActivityIndicator toast  animating={this.state.loading}/>
-					// </div>
+					stream &&
+					<div className={style.streamDetail}>
+						{stream.stream_type === "ended" &&
+							<div className={style.streamEnded}>
+								<img src={stream.cover_data.size_700} alt="img" />
+								<div className={style.btnWrap}>
+									<Button className={style.btn} size="small" type="primary" inline >付费观看</Button>
+								</div>
+							</div>
+						}
+						{stream.stream_type === "live" && <LiveVideo cover_url="http://www.iteye.com/images/logo.gif?1448702469" pull_url_http="http://www.iteye.com/images/logo.gif?1448702469" />}
+						<Tabs pageSize={4} swipeable={false} defaultActiveKey="6" className={style.tabWrap} onChange={callback} onTabClick={handleTabClick}>
+							<TabPane tab="直播简介" key="1" className={style.tabItemWrap}>
+								<ReactIScroll
+									iScroll={iScroll}
+								>
+									<StreamInfo {...stream}/>
+								</ReactIScroll>
+							</TabPane>
+							<TabPane tab="医生详情" key="2" className={style.tabItemWrap}>
+								<ReactIScroll
+									iScroll={iScroll}
+								>
+									<DoctorInfo/>
+								</ReactIScroll>
+							</TabPane>
+							<TabPane tab={<Badge text={'3'}>评论</Badge>} key="3" className={style.tabItemWrap}>
+								<Comment />
+							</TabPane>
+
+							<TabPane tab={"报名人数"} key="4" className={style.tabItemWrap}>
+								<Enlist />
+							</TabPane>
+							<TabPane tab={"打赏排行榜"} key="5" className={style.tabItemWrap}>
+								<RewardList />
+							</TabPane>
+							<TabPane tab={"聊天室"} key="6" className={style.tabItemWrap}>
+								<ChatRoom />
+							</TabPane>
+						</Tabs>
+						<ActivityIndicator toast  animating={this.state.loading}/>
+
+						<MiniNav/>
+					</div>
 				}
-				<Tabs defaultActiveKey="4" className={style.tabWrap} onChange={callback} onTabClick={handleTabClick}>
-					<TabPane tab="直播简介" key="1" className={style.tabItemWrap}>
-						<ReactIScroll
-							iScroll={iScroll}
-						>
-							123
-						</ReactIScroll>
-					</TabPane>
-					<TabPane tab="医生详情" key="2" className={style.tabItemWrap}>
-						<ReactIScroll
-							iScroll={iScroll}
-						>
-							<DoctorInfo/>
-						</ReactIScroll>
-					</TabPane>
-					<TabPane tab={<Badge text={'13'}>评论</Badge>} key="3" className={style.tabItemWrap}>
-						<Comment />
-					</TabPane>
-					<TabPane tab={"报名人数"} key="4" className={style.tabItemWrap}>
-						<Enlist />
-					</TabPane>
-				</Tabs>
 			</div>
 		);
 	}

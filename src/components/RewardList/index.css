@@ -1,0 +1,54 @@
+.rewardlist{
+	height: 100%;
+}
+.title{
+	height: 60px;
+	padding: 10px 20px;
+	line-height: 40px;
+	font-size: 30px;
+	box-sizing: border-box;
+	background: #fff;
+	font-weight: normal;
+	border-bottom: 1px solid #ccc;
+	composes: clearfix from 'src/index.css';
+}
+
+.title span{
+	width: 5px;
+	height: 40px;
+	background: #33a9fc;
+	float: left;
+	margin-right: 10px;
+}
+
+.title p:nth-of-type(1){
+	float: left;
+}
+.title p:nth-of-type(2){
+	float: right;
+}
+
+.item{
+	composes: clearfix from 'src/index.css';
+	padding: 10px 20px;
+	border-bottom: 1px solid #ccc;
+	background: #fff;
+	height: 60px;
+	line-height: 60px;
+}
+.item i{
+	float: left;
+	width: 40px;
+	height: 40px;
+	font-size: 30px;
+	font-style: normal;
+}
+.item p{
+	font-size: 30px;
+	float: left;
+}
+.item span{
+	float: right;
+	font-size: 30px;
+	color: #fcbc33;
+}

@@ -36,7 +36,7 @@ class LoginForm extends Component {
 					Toast.info(data.msg.message);
 					if(data.msg.status === "success"){
 						this.props.userInfoAction(data.user);
-						hashHistory.push("/");
+						hashHistory.push("/HomePage");
 					}
 				})
 			}

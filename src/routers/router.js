@@ -66,7 +66,7 @@ class Routers extends Component {
   render() {
     return (
       <Router history={hashHistory} key={Math.random()}>
-        <Route path="/" getComponent={TabBar} onEnter={requireAuth} />
+        <Route path="/HomePage(/:index)" getComponent={TabBar} onEnter={requireAuth} />
         <Route path="/Login" getComponent={Login} />
         <Route path="/FindPassWord" getComponent={FindPassWord} />
         <Route path="/Register" getComponent={Register} />

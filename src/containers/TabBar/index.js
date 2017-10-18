@@ -18,8 +18,10 @@ import Mine from "containers/Mine/index";
 class TabBarWrap extends Component {
 	constructor(props) {
 		super(props);
+		console.log(this.props.routeParams.index)
+		let selectedTab = this.props.routeParams.index ? this.props.routeParams.index :'0';
 		this.state = {
-			selectedTab: 'HomePage'
+			selectedTab: selectedTab
 		};
 	}
 	render() {
@@ -34,10 +36,10 @@ class TabBarWrap extends Component {
 					key="首页"
 					icon={<Icon type={zhuye} size="md" />}
 					selectedIcon={<Icon type={zhuyeOn} size="md" />}
-					selected={this.state.selectedTab === 'HomePage'}
+					selected={this.state.selectedTab === '0'}
 					onPress={() => {
 						this.setState({
-							selectedTab: 'HomePage',
+							selectedTab: '0',
 						});
 					}}
 				>
@@ -48,10 +50,10 @@ class TabBarWrap extends Component {
 					selectedIcon={<Icon type={huanzheOn} size="md" />}
 					title="患者"
 					key="患者"
-					selected={this.state.selectedTab === 'redTab'}
+					selected={this.state.selectedTab === '1'}
 					onPress={() => {
 						this.setState({
-							selectedTab: 'redTab',
+							selectedTab: '1',
 						});
 					}}
 				>
@@ -62,10 +64,10 @@ class TabBarWrap extends Component {
 					selectedIcon={<Icon type={yimaiOn} size="md" />}
 					title="医脉"
 					key="医脉"
-					selected={this.state.selectedTab === 'greenTab'}
+					selected={this.state.selectedTab === '2'}
 					onPress={() => {
 						this.setState({
-							selectedTab: 'greenTab',
+							selectedTab: '2',
 						});
 					}}
 				>
@@ -76,10 +78,10 @@ class TabBarWrap extends Component {
 					selectedIcon={<Icon type={wodeOn} size="md" />}
 					title="我的"
 					key="我的"
-					selected={this.state.selectedTab === 'Mine'}
+					selected={this.state.selectedTab === '3'}
 					onPress={() => {
 						this.setState({
-							selectedTab: 'Mine',
+							selectedTab: '3',
 						});
 					}}
 				>

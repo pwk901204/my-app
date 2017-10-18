@@ -42,7 +42,7 @@ class AddVisitorInfoForm extends Component {
 						loading:false
 					})
 					this.props.userInfoAction(data.user);
-					hashHistory.push("/");
+					hashHistory.push("/HomePage");
 				})
 			}
 		})
