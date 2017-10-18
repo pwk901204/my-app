@@ -57,7 +57,7 @@ const StreamDetail = (location, cb) => {
 const requireAuth = () => {
   setTimeout(() => {
     if (!localStorage['reduxPersist:userInfo']) {
-      //hashHistory.push('/Login');
+      hashHistory.push('/Login');
     }
   }, 1000);
 };

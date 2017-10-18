@@ -9,6 +9,8 @@ import Enlist from "components/Enlist";
 import RewardList from "components/RewardList";
 import ChatRoom from "components/ChatRoom";
 import MiniNav from "components/MiniNav";
+import SeriesList from "components/SeriesList";
+
 
 
 import ReactIScroll from "react-iscroll";
@@ -48,51 +50,59 @@ class StreamDetail extends Component {
 		return (
 			<div className={style.streamDetailWrap}>
 				{
-					stream &&
-					<div className={style.streamDetail}>
-						{stream.stream_type === "ended" &&
-							<div className={style.streamEnded}>
-								<img src={stream.cover_data.size_700} alt="img" />
-								<div className={style.btnWrap}>
-									<Button className={style.btn} size="small" type="primary" inline >付费观看</Button>
-								</div>
-							</div>
-						}
-						{stream.stream_type === "live" && <LiveVideo cover_url="http://www.iteye.com/images/logo.gif?1448702469" pull_url_http="http://www.iteye.com/images/logo.gif?1448702469" />}
-						<Tabs pageSize={4} swipeable={false} defaultActiveKey="6" className={style.tabWrap} onChange={callback} onTabClick={handleTabClick}>
-							<TabPane tab="直播简介" key="1" className={style.tabItemWrap}>
-								<ReactIScroll
-									iScroll={iScroll}
-								>
-									<StreamInfo {...stream}/>
-								</ReactIScroll>
-							</TabPane>
-							<TabPane tab="医生详情" key="2" className={style.tabItemWrap}>
-								<ReactIScroll
-									iScroll={iScroll}
-								>
-									<DoctorInfo/>
-								</ReactIScroll>
-							</TabPane>
-							<TabPane tab={<Badge text={'3'}>评论</Badge>} key="3" className={style.tabItemWrap}>
-								<Comment />
-							</TabPane>
+					// stream &&
+					// <div className={style.streamDetail}>
+					// 	{stream.stream_type === "ended" &&
+					// 		<div className={style.streamEnded}>
+					// 			<img src={stream.cover_data.size_700} alt="img" />
+					// 			<div className={style.btnWrap}>
+					// 				<Button className={style.btn} size="small" type="primary" inline >付费观看</Button>
+					// 			</div>
+					// 		</div>
+					// 	}
+					// 	{stream.stream_type === "live" && <LiveVideo cover_url="http://www.iteye.com/images/logo.gif?1448702469" pull_url_http="http://www.iteye.com/images/logo.gif?1448702469" />}
+					// 	<Tabs pageSize={4} swipeable={false} defaultActiveKey="6" className={style.tabWrap} onChange={callback} onTabClick={handleTabClick}>
+					// 		<TabPane tab="直播简介" key="1" className={style.tabItemWrap}>
+					// 			<ReactIScroll
+					// 				iScroll={iScroll}
+					// 			>
+					// 				<StreamInfo {...stream}/>
+					// 			</ReactIScroll>
+					// 		</TabPane>
+					// 		<TabPane tab="医生详情" key="2" className={style.tabItemWrap}>
+					// 			<ReactIScroll
+					// 				iScroll={iScroll}
+					// 			>
+					// 				<DoctorInfo/>
+					// 			</ReactIScroll>
+					// 		</TabPane>
+					// 		<TabPane tab={<Badge text={'3'}>评论</Badge>} key="3" className={style.tabItemWrap}>
+					// 			<Comment />
+					// 		</TabPane>
 
-							<TabPane tab={"报名人数"} key="4" className={style.tabItemWrap}>
-								<Enlist />
-							</TabPane>
-							<TabPane tab={"打赏排行榜"} key="5" className={style.tabItemWrap}>
-								<RewardList />
-							</TabPane>
-							<TabPane tab={"聊天室"} key="6" className={style.tabItemWrap}>
-								<ChatRoom />
-							</TabPane>
-						</Tabs>
-						<ActivityIndicator toast  animating={this.state.loading}/>
+					// 		<TabPane tab={"报名人数"} key="4" className={style.tabItemWrap}>
+					// 			<Enlist />
+					// 		</TabPane>
+					// 		<TabPane tab={"打赏排行榜"} key="5" className={style.tabItemWrap}>
+					// 			<RewardList />
+					// 		</TabPane>
+					// 		<TabPane tab={"聊天室"} key="6" className={style.tabItemWrap}>
+					// 			<ChatRoom />
+					// 		</TabPane>
+					// 	</Tabs>
+					// 	<ActivityIndicator toast  animating={this.state.loading}/>
 
-						<MiniNav/>
-					</div>
+					// 	<MiniNav/>
+					// </div>
 				}
+				<Tabs pageSize={4} swipeable={false} defaultActiveKey="1" className={style.tabWrap} onChange={callback} onTabClick={handleTabClick}>
+					<TabPane tab={"聊天室"} key="1" className={style.tabItemWrap}>
+						<ChatRoom />
+					</TabPane>
+					<TabPane tab={"聊天室"} key="2" className={style.tabItemWrap}>
+						<SeriesList />
+					</TabPane>
+				</Tabs>
 			</div>
 		);
 	}
