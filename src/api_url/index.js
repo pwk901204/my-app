@@ -10,6 +10,13 @@ switch (window.location.host) {
     //__host__ = 'http://api.xiayuanyin.cn';
     //__host__ = "http://192.168.0.109:3001";
     break;
+   case '192.168.0.121:3000':
+    // __host__ = "https://doctor.mdsonline.cn";
+    __host__ = 'http://rqiang.mynatapp.cc';
+
+    //__host__ = 'http://api.xiayuanyin.cn';
+    //__host__ = "http://192.168.0.109:3001";
+    break;
 }
 url.host = __host__;
 
@@ -48,5 +55,18 @@ url.courses_streams = __host__ + '/api/doctor/courses/streams';
 
 // 直播列表        // 直播详情 ***/id
 url.streams = __host__ + '/api/doctor/streams';
+
+// 打赏排行榜
+url.bounty_ranking = __host__ + '/api/doctor/streams/bounty_ranking';
+
+// 评论
+url.commentsDetail = __host__ + '/api/doctor/comments/detail';
+
+// 发布评论
+url.comments = __host__ + '/api/doctor/comments';
+
+// 收藏点赞
+url.actionStores = __host__ + '/api/doctor/action_stores';
+
 
 module.exports = url;

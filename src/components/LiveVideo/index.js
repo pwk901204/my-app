@@ -75,7 +75,7 @@ export default class LiveVideo extends Component {
 	}
 	render() {
 		return (
-			<div>
+			<div className={style.LiveVideo}>
 				<video id="my-video" className="video-js vjs-fluid vjs-big-play-centered">
 				</video>
 			</div>

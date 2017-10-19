@@ -6,29 +6,15 @@
 	position: relative;
 }
 
-.streamEnded{
+.streamEnded,.streamLive{
 	position: relative;
+	width: 100%;
+	height: calc( 100vw / 7 * 4 );
 }
 .streamEnded img{
 	display: block;
 	width: 100%;
-	height: calc( 100vw / 7 * 4 );
-}
-.streamEnded p{
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 60px;
-	background: rgba(0,0,0,0.8);
-	color: #fff;
-	padding-left: 20px;
-	font-size: 30px;
-	line-height: 60px;
-	box-sizing: border-box;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
+	height: 100%;
 }
 
 .btnWrap {
@@ -53,110 +39,10 @@
 .tabItemWrap{
 	height:  calc( 100vh - 87px - (400vw / 7) );
 }
-.listTitle{
-	float: left;
-	font-weight: bold;
-}
-.listContent{
-	float: right;
-	text-align: right;
-	width: 60%;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-.listKeyWordsContent{
-	width: 100%;
-	float: left;
-	padding-top: 20px;
-}
-.listKeyWordsItem{
-	float: left;
-	margin-left: 20px;
-	margin-bottom: 20px;
-}
-.listIntroduction{
-	width: 100%;
-    white-space: normal;
-    font-size: 30px;
-}
 
 
-.doctorInfo{
-	
-}
 
-.doctorInfoTitle{
-	composes: clearfix from 'src/index.css';
-	background: #fff;
-	padding: 20px;
-}
 
-.doctorInfoTitle img{
-	height: 80px;
-	width: 80px;
-	display: block;
-	float: left;
-	border-radius: 50% 50%;
-	overflow: hidden;
-}
-
-.doctorInfoTitle>div{
-	padding: 0 20px;
-	width: calc( 100% - 130px );
-	float: left;
-	box-sizing: border-box;
-}
-
-.doctorInfoTitle div h5{
-	font-size: 30px;
-	font-weight: bold;
-	line-height: 40px;
-}
-
-.doctorInfoTitle div h5 span{
-	font-size: 24px;
-	font-weight: normal;
-}
-
-.doctorInfoTitle div p{
-	font-size: 24px;
-	font-weight: normal;
-	line-height: 40px;
-}
-
-.doctorInfoTitle .jiantouIcon{
-	float: right;
-	width: 50px;
-	height: 50px;
-	margin-top: 16px;
-}
-
-.doctorInfoItem{
-	background: #fff;
-}
-.doctorInfoItem h6{
-	height: 60px;
-	line-height: 40px;
-	font-size: 30px;
-	font-weight: normal;
-	padding: 10px 20px;
-	box-sizing: border-box;
-	border-bottom: 1px solid #ccc;
-}
-
-.doctorInfoItem h6 span{
-	float: left;
-	width: 5px;
-	height: 40px;
-	background: #33a9fc;
-	margin-right: 20px;
-}
-.doctorInfoItem>div{
-	font-size: 26px;
-	line-height: 40px;
-	padding: 20px;
-}
 
 
 

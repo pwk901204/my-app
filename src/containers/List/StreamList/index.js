@@ -126,7 +126,7 @@ class StreamList extends Component {
 				>
 					<div className={style.stream}>
 						{
-							streams && streams.map((item,index) =>(<StreamItem {...item} key={item.id} />))
+							streams.length>0 && streams.map((item,index) =>(<StreamItem {...item} key={item.id} />))
 						}
 					</div>
 				</ReactIScroll>

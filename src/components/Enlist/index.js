@@ -13,27 +13,20 @@ export default class Enlist extends Component {
 				>
 					<div>
 						<WhiteSpace size="xs" />
-						<h5 className={style.title}><span></span>2人已报名</h5>
-						<div className={style.item}>
-							<img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=594559231,2167829292&fm=27&gp=0.jpg" alt="img" />
-							<span>dasdassd大神</span>
-							<i>医</i>
-						</div>
-						<div className={style.item}>
-							<img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=594559231,2167829292&fm=27&gp=0.jpg" alt="img" />
-							<span>dasdassd大神</span>
-							<i>医</i>
-						</div>
-						<div className={style.item}>
-							<img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=594559231,2167829292&fm=27&gp=0.jpg" alt="img" />
-							<span>dasdassd大神</span>
-							<i>医</i>
-						</div>
-						<div className={style.item}>
-							<img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=594559231,2167829292&fm=27&gp=0.jpg" alt="img" />
-							<span>dasdassd大神</span>
-							<i>医</i>
-						</div>
+						<h5 className={style.title}><span></span>{this.props.stream_users_count}人已报名</h5>
+						{
+							this.props.attendee_users.map((item,index)=>{
+								return (
+									<div className={style.item} key={index}>
+										<img src={item.middle} alt="img" />
+										<span>{item.name}</span>
+										{item.user_type == "doctor" && <i>医</i> }
+										{item.user_type == "student" && <i>学</i> }
+										{item.user_type == "visitor" && <i>访</i> }
+									</div>
+								)
+							})
+						}
 					</div>
 				</ReactIScroll>
 			</div>

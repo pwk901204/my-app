@@ -1,0 +1,9 @@
+.LiveVideo{
+	height: 100%;
+	width:100%;
+}
+
+.LiveVideo>div {
+	display: block;
+	height: 100% !important;
+}
