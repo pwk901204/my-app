@@ -5,7 +5,7 @@ import { WhiteSpace, Tag, List} from 'antd-mobile';
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 
-export default class StreamInfo extends Component {
+export default class RecordInfo extends Component {
 	render() {
 		let stream = this.props;
 		return (

@@ -46,13 +46,21 @@ const StreamList = (location, cb) => {
     cb(null, require('containers/List/StreamList/index').default);
   });
 };
+const RecordList = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/List/RecordList/index').default);
+  });
+};
 const StreamDetail = (location, cb) => {
   require.ensure([], require => {
     cb(null, require('containers/StreamDetail/index').default);
   });
 };
-
-
+const RecordDetail = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/RecordDetail/index').default);
+  });
+};
 
 const requireAuth = () => {
   setTimeout(() => {
@@ -83,9 +91,20 @@ class Routers extends Component {
           getComponent={StreamList}
           onEnter={requireAuth}
         />
+         <Route
+          path="/RecordList"
+          getComponent={RecordList}
+          onEnter={requireAuth}
+        />
         <Route
           path="/StreamDetail/:id"
           getComponent={StreamDetail}
+          onEnter={requireAuth}
+        />
+
+        <Route
+          path="/RecordDetail/:id"
+          getComponent={RecordDetail}
           onEnter={requireAuth}
         />
       </Router>

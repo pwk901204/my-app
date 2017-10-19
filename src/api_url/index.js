@@ -68,5 +68,8 @@ url.comments = __host__ + '/api/doctor/comments';
 // 收藏点赞
 url.actionStores = __host__ + '/api/doctor/action_stores';
 
+//录播列表
+url.recordings = __host__ + '/api/doctor/recordings';
+
 
 module.exports = url;

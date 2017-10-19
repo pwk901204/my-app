@@ -70,7 +70,7 @@ class StreamDetail extends Component {
 									<StreamDoctorInfo {...stream.doctor}/>
 								</TabPane>
 								<TabPane tab={<Badge text={stream.comments_count}>评论</Badge>} key="3" className={style.tabItemWrap}>
-									<Comment {...stream}/>
+									<Comment id={stream.id} target_type="stream"/>
 								</TabPane>
 							</Tabs>
 						}
@@ -84,7 +84,7 @@ class StreamDetail extends Component {
 									<StreamDoctorInfo {...stream.doctor}/>
 								</TabPane>
 								<TabPane tab={<Badge text={stream.comments_count}>评论</Badge>} key="3" className={style.tabItemWrap}>
-									<Comment {...stream}/>
+									<Comment id={stream.id} target_type="stream"/>
 								</TabPane>
 								<TabPane tab={"报名人数"} key="4" className={style.tabItemWrap}>
 									<Enlist {...stream}/>

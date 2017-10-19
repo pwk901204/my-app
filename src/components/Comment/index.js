@@ -5,7 +5,6 @@ import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 import {connect} from "react-redux";
 import url from "api_url/index.js";
-import _ from "lodash";
 
 import moment from 'moment';
 moment.lang('zh-cn');
@@ -24,7 +23,7 @@ class Comment extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(url.commentsDetail + "?token=" + this.props.userInfo.token + "&target_type=stream&target_id="+ this.props.id +"&page="+this.state.page+"&per_page=10")
+		fetch(url.commentsDetail + "?token=" + this.props.userInfo.token + "&target_type="+ this.props.target_type +"&target_id="+ this.props.id +"&page="+this.state.page+"&per_page=10")
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data);
@@ -37,7 +36,7 @@ class Comment extends Component {
 	sendMsg = (txt)=>{
 		let data = {}
 		data.token= this.props.userInfo.token;
-		data.subject_type= "stream";
+		data.subject_type= this.props.target_type;
 		data.subject_id=  this.props.id;
 		data.body =  this.state.body;
 		if(data.body){
