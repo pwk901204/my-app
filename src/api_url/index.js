@@ -71,5 +71,10 @@ url.actionStores = __host__ + '/api/doctor/action_stores';
 //录播列表
 url.recordings = __host__ + '/api/doctor/recordings';
 
+//系列列表
+url.videos = __host__ + '/api/doctor/videos';
+
+
+
 
 module.exports = url;

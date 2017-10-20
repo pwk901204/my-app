@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import {Icon, ActivityIndicator, List, Tag,  Tabs, Badge, WhiteSpace, Button} from 'antd-mobile';
+import {Icon, ActivityIndicator, List, Tag,  Tabs, Badge, WhiteSpace, Button, Popup} from 'antd-mobile';
 import {connect} from "react-redux";
 import url from "api_url/index.js";
-
+import {hashHistory} from "react-router";
 import StreamInfo from "components/StreamInfo";
-import StreamDoctorInfo from "components/StreamDoctorInfo";
+import DoctorInfo from "components/DoctorInfo";
 import LiveVideo from "components/LiveVideo";
 import Comment from "components/Comment";
 import Enlist from "components/Enlist";
 import RewardList from "components/RewardList";
 import ChatRoom from "components/ChatRoom";
 import MiniNav from "components/MiniNav";
-import SeriesList from "components/SeriesList";
+import Pay from "components/Pay";
+
+
 const TabPane = Tabs.TabPane;
 
 class StreamDetail extends Component {
@@ -35,6 +37,10 @@ class StreamDetail extends Component {
 			})
 		})
 	}
+	onClick = () => {
+		let stream =this.state.stream;
+		Popup.show(<Pay id={stream.id} topic={stream.topic} price={stream.price}/>, { animationType: 'slide-up', onTouchStart: e => e.preventDefault() });
+	};
 	render() {
 		let {stream} = this.state;
 		return (
@@ -46,18 +52,56 @@ class StreamDetail extends Component {
 							<div className={style.streamEnded}>
 								<img src={stream.cover_data.size_700} alt="img" />
 								<div className={style.btnWrap}>
-									<Button className={style.btn} size="small" type="primary" inline >付费观看</Button>
+									<Button
+										className={style.payBtn}
+										size="small"
+										type="primary"
+										inline
+										onClick={this.onClick}
+									>付费观看</Button>
 								</div>
 							</div>
 						}
-						{	stream.purchase && stream.stream_type === "live" &&
+						{	stream.purchase && stream.stream_type === "ended" &&
 							<div className={style.streamLive}>
-								<LiveVideo cover_url="http://www.iteye.com/images/logo.gif?1448702469" pull_url_http="http://www.iteye.com/images/logo.gif?1448702469" />
+								<LiveVideo
+									cover_url={stream.cover_data.size_700}
+									play_url={stream.pull_url_http}
+								/>
 							</div>
 						}
 						{	stream.purchase && stream.stream_type === "not_begin" &&
 							<div className={style.streamLive}>
-								<LiveVideo cover_url="http://www.iteye.com/images/logo.gif?1448702469" pull_url_http="http://www.iteye.com/images/logo.gif?1448702469" />
+							</div>
+						}
+						{	stream.purchase && stream.stream_type === "ad" &&
+							<div className={style.streamLive}>
+							</div>
+						}
+						{	stream.purchase && stream.stream_type === "live" &&
+							<div className={style.streamEnded}>
+								<img src={stream.cover_data.size_700} alt="img" />
+								<div className={style.btnWrap}>
+									{
+										!stream.recording_id ?
+										<Button
+											className={style.payBtn}
+											size="small"
+											type="primary"
+											inline
+											onClick={()=>{hashHistory.push('/RecordDetail/' + stream.recording_id)}}
+										>观看录播</Button>
+										:
+										<Button
+											className={style.payBtn}
+											disabled
+											style={{color:"#666"}}
+											size="small"
+											type="primary"
+											inline
+										>直播结束</Button>
+									}
+								</div>
 							</div>
 						}
 						{
@@ -67,7 +111,7 @@ class StreamDetail extends Component {
 									<StreamInfo {...stream}/>
 								</TabPane>
 								<TabPane tab="医生详情" key="2" className={style.tabItemWrap}>
-									<StreamDoctorInfo {...stream.doctor}/>
+									<DoctorInfo {...stream.doctor}/>
 								</TabPane>
 								<TabPane tab={<Badge text={stream.comments_count}>评论</Badge>} key="3" className={style.tabItemWrap}>
 									<Comment id={stream.id} target_type="stream"/>
@@ -81,7 +125,7 @@ class StreamDetail extends Component {
 									<StreamInfo {...stream}/>
 								</TabPane>
 								<TabPane tab="医生详情" key="2" className={style.tabItemWrap}>
-									<StreamDoctorInfo {...stream.doctor}/>
+									<DoctorInfo {...stream.doctor}/>
 								</TabPane>
 								<TabPane tab={<Badge text={stream.comments_count}>评论</Badge>} key="3" className={style.tabItemWrap}>
 									<Comment id={stream.id} target_type="stream"/>
@@ -101,7 +145,7 @@ class StreamDetail extends Component {
 									<StreamInfo {...stream}/>
 								</TabPane>
 								<TabPane tab="医生详情" key="3" className={style.tabItemWrap}>
-									<StreamDoctorInfo {...stream.doctor}/>
+									<DoctorInfo {...stream.doctor}/>
 								</TabPane>
 								<TabPane tab={"打赏排行榜"} key="4" className={style.tabItemWrap}>
 									<RewardList {...stream}/>

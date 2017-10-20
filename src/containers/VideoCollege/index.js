@@ -6,7 +6,7 @@ import {Link} from 'react-router';
 import url from "api_url/index.js";
 import StreamItem from "components/StreamItem/index.js";
 import RecordItem from "components/RecordItem/index.js";
-import CourseItem from "components/CourseItem/index.js";
+import SeriesItem from "components/SeriesItem/index.js";
 
 class VideoCollege extends Component {
 	state = {
@@ -64,11 +64,11 @@ class VideoCollege extends Component {
 				<WhiteSpace size="md" />
 
 				<div className={style.record}>
-					<a href="javascript:;" className={style.title}>
+					<Link to="/RecordList" className={style.title}>
 						<i></i>
 						<p>精彩录像</p>
 						<span>更多</span>
-					</a>
+					</Link>
 					{
 						recordings && recordings.map((item,index)=>(<RecordItem {...item} key={item.id} />))
 					}
@@ -76,13 +76,13 @@ class VideoCollege extends Component {
 				<WhiteSpace size="md" />
 
 				<div className={style.series}>
-					<a href="javascript:;" className={style.title}>
+					<Link to="/SeriesList" className={style.title}>
 						<i></i>
 						<p>经典系列</p>
 						<span>更多</span>
-					</a>
+					</Link>
 					{
-						courses && courses.map((item,index)=>(<CourseItem {...item} key={item.id} />))
+						courses && courses.map((item,index)=>(<SeriesItem {...item} key={item.id} />))
 					}
 				</div>
 				<ActivityIndicator toast  animating={this.state.loading}/>

@@ -1,0 +1,50 @@
+.title{
+	height: 88px;
+	composes: clearfix from 'src/index.css';
+	border-bottom: 1px solid #ddd;
+}
+.title span{
+	float: left;
+	font-size: 28px;
+	line-height: 88px;
+}
+
+.title span:nth-of-type(1){
+	width: 170px;
+	text-align: center;
+	color: #888;
+	font-weight: normal;
+}
+.title span:nth-of-type(2){
+	width: calc( 100% - 170px );
+	padding: 0 20px;
+	box-sizing: border-box;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.content{
+	border-bottom: 1px solid #ddd;
+	padding: 40px 0;
+}
+.content p{
+	font-size: 42px;
+	color: #000;
+	text-align: center;
+	font-weight: bold;
+	line-height: 80px
+}
+.content span{
+	display: block;
+	font-size: 28px;
+	color: #666;
+	text-align: center;
+}
+.icon{
+	width: 40px;
+	height: 40px;
+	margin: 0 20px;
+	vertical-align: middle;
+	margin-top: -5px;
+}

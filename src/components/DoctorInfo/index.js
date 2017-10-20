@@ -6,7 +6,7 @@ import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 import jiantou from "svg/jiantou.svg";
 
-export default class StreamDoctorInfo extends Component {
+export default class DoctorInfo extends Component {
 	render() {
 		return (
 			<div className={style.doctorInfo}>

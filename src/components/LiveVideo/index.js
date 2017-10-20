@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Icon} from 'antd-mobile';
 import style from './index.css';
 
 export default class LiveVideo extends Component {
@@ -9,7 +10,7 @@ export default class LiveVideo extends Component {
 	static propTypes = {
 		anchor : React.PropTypes.bool,
 		cover_url : React.PropTypes.string.isRequired,
-		pull_url_http : React.PropTypes.string.isRequired,
+		play_url : React.PropTypes.string.isRequired,
 	};
 	constructor(props){
 		super(props);
@@ -40,19 +41,19 @@ export default class LiveVideo extends Component {
 		this.myPlayer = window.neplayer("my-video", option, ()=> {
 			console.log('播放器初始化完成');
 			//设置数据源
-			let pull_url_http = _this.props.pull_url_http;
+			let play_url = _this.props.play_url;
 			let dataOption = [
-				{type: "video/mp4", src: pull_url_http},
-				{type: "video/x-flv", src: pull_url_http}
+				{type: "video/mp4", src: play_url},
+				{type: "video/x-flv", src: play_url}
 			]
 			this.myPlayer.setDataSource(dataOption)
 			//添加组件到 this.myPlayer.corePlayer根节点
 
 			this.myPlayer.corePlayer.addChild(errorComponent, {})
 			this.myPlayer.onError(function(){
-				console.log(1231231321)
-				let text = _this.props.anchor ? '直播推流失败，请检查推流设备' : '主播讲课有点累了，稍等一会就可以继续观看哦~';
-				errorElement.innerHTML = `<p>${text}</p><img class="shuaxinBtn" src=""></img>`;
+				console.log("出错了～～～", errorElement)
+				let text = _this.props.anchor ? '直播推流失败，请检查推流设备' : '主播讲课有点累了，稍等一会就可以继续观看哦~点我刷新';
+				errorElement.innerHTML = `<p>${text}</p>`; //<img class="shuaxinBtn" src=""></img>
 				errorElement.onclick = function(){
 					_this.myPlayer.refresh()
 				}

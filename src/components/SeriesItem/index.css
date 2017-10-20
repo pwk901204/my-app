@@ -4,6 +4,7 @@
   padding: 30px 20px;
   composes: clearfix from 'src/index.css';
   box-sizing: border-box;
+  display: block;
 }
 
 .item .left {

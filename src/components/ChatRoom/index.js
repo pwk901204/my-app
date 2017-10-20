@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import { WhiteSpace, List, Button, Toast} from 'antd-mobile';
+import { WhiteSpace, List, Button, Toast, Popup} from 'antd-mobile';
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 import {connect} from "react-redux";
+import Reward from "components/Reward";
+
 
 class ChatRoom extends Component {
 	state = {
@@ -14,7 +16,7 @@ class ChatRoom extends Component {
 	constructor(props) {
 		super(props)
 		if(window.location.host === "localhost:3000"){
-			this.ws = new WebSocket('ws://192.168.0.104:3000/cable');
+			this.ws = new WebSocket('ws://192.168.0.102:3000/cable');
 			//this.ws = new WebSocket('ws://rqiang.mynatapp.cc/cable');
 		}else if(window.location.host === "localhost:4000"){
 			this.ws = new WebSocket('ws://' + window.location.host + '/cable');
@@ -70,7 +72,7 @@ class ChatRoom extends Component {
 					})
 				}))
 			}else{
-				 Toast.info('请输入内容', 0.5);
+				 Toast.info('请输入内容', 0.7);
 			}
 		}else{
 			//登陆去
@@ -82,6 +84,9 @@ class ChatRoom extends Component {
 			inputValue:e.target.value
 		})
 	}
+	onReward = () => {
+		Popup.show(<Reward id={this.props.id} />, { animationType: 'slide-up', onTouchStart: e => e.preventDefault() });
+	};
 	render() {
 		return (
 			<div className={style.chatRoom}>
@@ -113,6 +118,7 @@ class ChatRoom extends Component {
 					</ReactIScroll>
 				</div>
 				<div className={style.chatRoomInput}>
+					<i onClick={this.onReward}>赏</i>
 					<input value={this.state.inputValue} onChange={this.inputChange} />
 					<Button type="primary" size="small" className={style.btn} onClick={this.sendMessage}>发送</Button>
 				</div>

@@ -4,11 +4,12 @@ import {Icon} from 'antd-mobile';
 import renshu from "svg/renshu.svg";
 import yisheng from "svg/yisheng.svg";
 import feiyong from "svg/feiyong.svg";
+import {Link} from "react-router";
 
-export default class CourseItem extends Component {
+export default class SeriesItem extends Component {
 	render() {
 		return (
-			<div className={style.item} key={this.props.id}>
+			<Link to={`/SeriesDetail/${this.props.id}`} className={style.item} key={this.props.id}>
 				<div className={style.left}>
 					<img src={this.props.cover_data.size_300} alt="img"/>
 					<span className={style.blue}>共{this.props.lesson_index}讲</span>
@@ -21,11 +22,11 @@ export default class CourseItem extends Component {
 					</div>
 					<div>
 						<p className="clearfix"><Icon type={yisheng} className={style.icon} /><span>{this.props.doctor_name}</span></p>
-						<p className="clearfix"><Icon type={renshu} className={style.icon}  /><span>{this.props.watch_number}</span></p>
+						<p className="clearfix"><Icon type={renshu} className={style.icon}  /><span>{this.props.stars_count}</span></p>
 						<p className="clearfix"><Icon type={feiyong} className={style.icon}  /><span className={this.props.price > 0 ? style.fontRed : style.fontBlue }>{this.props.price > 0 ? `¥${this.props.price}` : "免费"}</span></p>
 					</div>
 				</div>
-			</div>
+			</Link>
 		);
 	}
 }

@@ -3,58 +3,60 @@ import style from './index.css';
 import {ActivityIndicator, Tabs, Badge, Button} from 'antd-mobile';
 import {connect} from "react-redux";
 import url from "api_url/index.js";
-import RecordInfo from "components/RecordInfo";
+
 import DoctorInfo from "components/DoctorInfo";
+import SeriesDetailList from "components/SeriesDetailList";
+import SeriesInfo from "components/SeriesInfo";
+
 import LiveVideo from "components/LiveVideo";
 import Comment from "components/Comment";
 import MiniNav from "components/MiniNav";
 
 const TabPane = Tabs.TabPane;
 
-class RecordDetail extends Component {
+class SeriesDetail extends Component {
 	state = {
 		loading:false,
-		recording:null,
-		selectedTab:"streamInfo"
+		series:null,
 	}
 	componentDidMount(){
 		this.setState({
 			loading:true
 		})
-		fetch(url.recordings + "/"+ this.props.routeParams.id + "?token=" + this.props.userInfo.token)
+		fetch(url.videos + "/"+ this.props.routeParams.id + "?token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data);
 			this.setState({
 				loading:false,
-				recording:data.recording
+				series:data.course
 			})
 		})
 	}
 	render() {
-		let {recording} = this.state;
+		let {series} = this.state;
 		return (
-			<div className={style.recordingDetailWrap}>
+			<div className={style.seriesDetailWrap}>
 				{
-					recording &&
-					<div className={style.recordingDetail}>
-						{ !recording.purchase &&
-							<div className={style.recordingEnded}>
-								<img src={recording.cover_data.size_700} alt="img" />
+					series &&
+					<div className={style.seriesDetail}>
+						{ !series.purchase &&
+							<div className={style.seriesEnded}>
+								<img src={series.cover_data.size_700} alt="img" />
 								<div className={style.btnWrap}>
 									<Button className={style.btn} size="small" type="primary" inline >付费观看</Button>
 								</div>
 							</div>
 						}
 						<Tabs swipeable={false} defaultActiveKey="1" className={style.tabWrap}>
-							<TabPane tab="录播简介" key="1" className={style.tabItemWrap}>
-								<RecordInfo {...recording}/>
+							<TabPane tab="课程目录" key="1" className={style.tabItemWrap}>
+								<SeriesDetailList />
 							</TabPane>
-							<TabPane tab="医生详情" key="2" className={style.tabItemWrap}>
-								<DoctorInfo {...recording.doctor}/>
+							<TabPane tab="课程简介" key="2" className={style.tabItemWrap}>
+								<SeriesInfo {...series} />
 							</TabPane>
-							<TabPane tab={<Badge text={recording.comments_count}>评论</Badge>} key="3" className={style.tabItemWrap}>
-								<Comment id={recording.id} target_type="recording"/>
+							<TabPane tab="医生详情" key="3" className={style.tabItemWrap}>
+								<DoctorInfo {...series.doctor}/>
 							</TabPane>
 						</Tabs>
 						<ActivityIndicator toast  animating={this.state.loading}/>
@@ -76,7 +78,7 @@ export default connect (
 		return {
 		}
 	}
-)(RecordDetail);
+)(SeriesDetail);
 
 
 

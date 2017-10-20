@@ -51,6 +51,13 @@ const RecordList = (location, cb) => {
     cb(null, require('containers/List/RecordList/index').default);
   });
 };
+
+const SeriesList = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/List/SeriesList/index').default);
+  });
+};
+
 const StreamDetail = (location, cb) => {
   require.ensure([], require => {
     cb(null, require('containers/StreamDetail/index').default);
@@ -61,6 +68,13 @@ const RecordDetail = (location, cb) => {
     cb(null, require('containers/RecordDetail/index').default);
   });
 };
+const SeriesDetail = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/SeriesDetail/index').default);
+  });
+};
+
+
 
 const requireAuth = () => {
   setTimeout(() => {
@@ -69,6 +83,8 @@ const requireAuth = () => {
     }
   }, 1000);
 };
+
+
 
 class Routers extends Component {
   render() {
@@ -91,9 +107,14 @@ class Routers extends Component {
           getComponent={StreamList}
           onEnter={requireAuth}
         />
-         <Route
+        <Route
           path="/RecordList"
           getComponent={RecordList}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/SeriesList"
+          getComponent={SeriesList}
           onEnter={requireAuth}
         />
         <Route
@@ -105,6 +126,11 @@ class Routers extends Component {
         <Route
           path="/RecordDetail/:id"
           getComponent={RecordDetail}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/SeriesDetail/:id"
+          getComponent={SeriesDetail}
           onEnter={requireAuth}
         />
       </Router>

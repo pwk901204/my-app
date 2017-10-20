@@ -15,6 +15,7 @@ class Comment extends Component {
 		comments:[],
 		body:"",
 		page:1,
+		total_pages:null
 	}
 	componentDidMount(){
 		this.getList();
@@ -29,7 +30,8 @@ class Comment extends Component {
 			console.log(data);
 			this.setState({
 				loading:false,
-				comments:this.state.comments.concat(data.comments)
+				comments:this.state.comments.concat(data.comments),
+				total_pages:data.meta.total_pages
 			})
 		})
 	}
@@ -51,6 +53,7 @@ class Comment extends Component {
 			.then((data)=>{
 				this.setState({
 					body:"",
+					page:1,
 					comments:[]
 				},()=>{
 					this.getList();
@@ -66,7 +69,10 @@ class Comment extends Component {
 		})
 	}
 	scrollEnd = (iScrollInstance) =>{
-		if(iScrollInstance.maxScrollY === iScrollInstance.y){
+		if(Math.abs(iScrollInstance.scrollerHeight)>iScrollInstance.wrapperHeight &&
+		iScrollInstance.maxScrollY === iScrollInstance.y &&
+		this.state.page < this.state.total_pages
+		){
 			console.log("到达最底部")
 			this.setState({
 				page:this.state.page+1
