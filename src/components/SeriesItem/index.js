@@ -21,9 +21,18 @@ export default class SeriesItem extends Component {
 						<span>{this.props.department_name}</span>
 					</div>
 					<div>
-						<p className="clearfix"><Icon type={yisheng} className={style.icon} /><span>{this.props.doctor_name}</span></p>
-						<p className="clearfix"><Icon type={renshu} className={style.icon}  /><span>{this.props.stars_count}</span></p>
-						<p className="clearfix"><Icon type={feiyong} className={style.icon}  /><span className={this.props.price > 0 ? style.fontRed : style.fontBlue }>{this.props.price > 0 ? `¥${this.props.price}` : "免费"}</span></p>
+						<p>
+							<Icon type={yisheng} className={style.icon} />
+							{this.props.doctor_name}
+						</p>
+						<p>
+							<Icon type={renshu} className={style.icon}  />
+							{this.props.stars_count}
+						</p>
+						<p className={this.props.price > 0 ? style.fontRed : style.fontBlue }>
+							<Icon type={feiyong} className={style.icon}  />
+							{this.props.price > 0 ? `¥${this.props.price}` : "免费"}
+						</p>
 					</div>
 				</div>
 			</Link>

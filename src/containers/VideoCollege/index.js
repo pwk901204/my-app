@@ -7,7 +7,8 @@ import url from "api_url/index.js";
 import StreamItem from "components/StreamItem/index.js";
 import RecordItem from "components/RecordItem/index.js";
 import SeriesItem from "components/SeriesItem/index.js";
-
+import ReactIScroll from "react-iscroll";
+import iScroll from "iscroll/build/iscroll-probe.js";
 class VideoCollege extends Component {
 	state = {
 		loading:false,
@@ -17,7 +18,6 @@ class VideoCollege extends Component {
 		this.getDetail();
 	}
 	getDetail = ()=>{
-		//http://rqiang.mynatapp.cc/api/doctor/courses/streams?stream_limit=2&recording_limit=2&course_limit=2
 		this.setState({
 			loading:true
 		})
@@ -38,55 +38,62 @@ class VideoCollege extends Component {
 	render() {
 		let {advertisement, courses, recordings, streams} = this.state;
 		return (
-			<div>
-				{
-					advertisement &&
-					<video
-						className={style.video}
-						autoPlay
-						loop
-						src={advertisement.url}
-					>您的浏览器不支持 video 标签
-					</video>
-				}
-				<WhiteSpace size="md" />
+			<div className={style.videoCollege}>
+				<ReactIScroll
+					iScroll={iScroll}
+				>
+					<div>
+						{
+							advertisement &&
+							<video
+								className={style.video}
+								autoPlay
+								loop
+								src={advertisement.url}
+							>您的浏览器不支持 video 标签
+							</video>
+						}
+						<WhiteSpace size="md" />
 
-				<div className={style.stream}>
-					<Link to="/StreamList" className={style.title}>
-						<i></i>
-						<p>热门直播</p>
-						<span>更多</span>
-					</Link>
-					{
-						streams && streams.map((item,index)=>(<StreamItem {...item} key={item.id} />))
-					}
-				</div>
-				<WhiteSpace size="md" />
+						<div className={style.stream}>
+							<Link to="/StreamList" className={style.title}>
+								<i></i>
+								<p>热门直播</p>
+								<span>更多</span>
+							</Link>
+							{
+								streams && streams.map((item,index)=>(<StreamItem {...item} key={item.id} />))
+							}
+						</div>
+						<WhiteSpace size="md" />
 
-				<div className={style.record}>
-					<Link to="/RecordList" className={style.title}>
-						<i></i>
-						<p>精彩录像</p>
-						<span>更多</span>
-					</Link>
-					{
-						recordings && recordings.map((item,index)=>(<RecordItem {...item} key={item.id} />))
-					}
-				</div>
-				<WhiteSpace size="md" />
+						<div className={style.record}>
+							<Link to="/RecordList" className={style.title}>
+								<i></i>
+								<p>精彩录像</p>
+								<span>更多</span>
+							</Link>
+							{
+								recordings && recordings.map((item,index)=>(<RecordItem {...item} key={item.id} />))
+							}
+						</div>
+						<WhiteSpace size="md" />
 
-				<div className={style.series}>
-					<Link to="/SeriesList" className={style.title}>
-						<i></i>
-						<p>经典系列</p>
-						<span>更多</span>
-					</Link>
-					{
-						courses && courses.map((item,index)=>(<SeriesItem {...item} key={item.id} />))
-					}
-				</div>
-				<ActivityIndicator toast  animating={this.state.loading}/>
+						<div className={style.series}>
+							<Link to="/SeriesList" className={style.title}>
+								<i></i>
+								<p>经典系列</p>
+								<span>更多</span>
+							</Link>
+							{
+								courses && courses.map((item,index)=>(<SeriesItem {...item} key={item.id} />))
+							}
+						</div>
+						<ActivityIndicator toast  animating={this.state.loading}/>
+					</div>
+				</ReactIScroll>
 			</div>
+			
 		);
 	}
 }

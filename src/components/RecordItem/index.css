@@ -61,18 +61,15 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  height: 24px;
+  font-size: 24px;
+  line-height: 24px;
 }
 
 .icon {
   float: left;
   height: 24px;
   box-sizing: border-box;
-}
-.item .right div:nth-of-type(2) p span {
-  float: left;
-  height: 24px;
-  font-size: 24px;
-  line-height: 24px;
 }
 
 .red {

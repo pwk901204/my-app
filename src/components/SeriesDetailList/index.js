@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import { WhiteSpace, Tag, Button, Popup, List} from 'antd-mobile';
+import { WhiteSpace, Tag} from 'antd-mobile';
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
+import moment from 'moment';
+moment.lang('zh-cn');
 
 export default class SeriesDetailList extends Component {
 	render() {
@@ -13,37 +15,49 @@ export default class SeriesDetailList extends Component {
 				>
 					<div>
 						<WhiteSpace size="xs" />
-						<h5 className={style.title}><span></span>已更新至第2讲</h5>
-						<WhiteSpace size="xs" />
-						<div className={style.item}>
-							<div className={style.itemTop}>
-								<span>
-									录播时长30分钟
-								</span>
-								<span className={style.buy}>
-									¥0.1
-								</span>
-							</div>
-							<div className={style.itemBody}>
-								<p>标题标题标题标题标题标题标题标题标题标题标题</p>
-								<Tag selected>已结束</Tag>
-							</div>
-						</div>
-						<WhiteSpace size="xs" />
-						<div className={style.item}>
-							<div className={style.itemTop}>
-								<span>
-									录播时长30分钟
-								</span>
-								<span className={style.buy}>
-									¥0.1
-								</span>
-							</div>
-							<div className={style.itemBody}>
-								<p>标题标题标题标题标题标题标题标题标题标题标题</p>
-								<Tag selected>已结束</Tag>
-							</div>
-						</div>
+						<h5 className={style.title}><span></span>已更新至第{this.props.videos.length}讲</h5>
+						{
+							this.props.videos.map((item,index)=>{
+
+								if(item.video_type === "stream"){
+									return (
+										<div className={style.item} key={item.id}>
+											<WhiteSpace size="xs" />
+											<div className={style.itemTop}>
+												<span>
+													直播开始时间:{moment(item.start_time).format('YYYY-MM-DD HH:mm')}
+												</span>
+												<span className={style.buy}>
+													¥{item.price}
+												</span>
+											</div>
+											<div className={style.itemBody}>
+												<p>{item.topic}</p>
+												<Tag selected>{item.status}</Tag>
+											</div>
+										</div>
+									)
+								}else{
+									return (
+										<div className={style.item} key={item.id}>
+											<WhiteSpace size="xs" />
+											<div className={style.itemTop}>
+												<span>
+													录播时长{item.duration}
+												</span>
+												<span className={style.buy}>
+													¥{item.price}
+												</span>
+											</div>
+											<div className={style.itemBody}>
+												<p>{item.topic}</p>
+												<Tag selected>{item.status}</Tag>
+											</div>
+										</div>
+									)
+								}
+							})
+						}
 					</div>
 				</ReactIScroll>
 			</div>

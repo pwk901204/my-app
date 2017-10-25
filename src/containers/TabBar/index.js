@@ -14,7 +14,7 @@ import yimaiOn from "svg/yimaiOn.svg";
 
 import HomePage from "containers/HomePage/index";
 import Mine from "containers/Mine/index";
-
+import ComingSoon from "components/ComingSoon";
 class TabBarWrap extends Component {
 	constructor(props) {
 		super(props);
@@ -57,7 +57,9 @@ class TabBarWrap extends Component {
 						});
 					}}
 				>
-					123
+					<div style={{height:"100vh",position:"relative"}}>
+						<ComingSoon/>
+					</div>
 				</TabBar.Item>
 				<TabBar.Item
 					icon={<Icon type={yimai} size="md" />}
@@ -71,7 +73,9 @@ class TabBarWrap extends Component {
 						});
 					}}
 				>
-					123
+					<div style={{height:"100vh",position:"relative"}}>
+						<ComingSoon/>
+					</div>
 				</TabBar.Item>
 				<TabBar.Item
 					icon={<Icon type={wode} size="md" />}

@@ -55,6 +55,8 @@
   white-space: nowrap;
   margin-top: 10px;
 }
+
+
 .item .right div:nth-of-type(2) p {
   display: inline-block;
   width: 33.3%;
@@ -62,6 +64,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  height: 24px;
+  font-size: 24px;
+  line-height: 24px;
 }
 
 .icon {
@@ -69,12 +74,7 @@
   height: 24px;
   box-sizing: border-box;
 }
-.item .right div:nth-of-type(2) p span {
-  float: left;
-  height: 24px;
-  font-size: 24px;
-  line-height: 24px;
-}
+
 
 .red {
   background: #ff4800 !important;

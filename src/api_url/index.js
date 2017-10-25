@@ -5,12 +5,11 @@ let __host__ = '';
 switch (window.location.host) {
   case 'localhost:3000':
     // __host__ = "https://doctor.mdsonline.cn";
-    __host__ = 'http://rqiang.mynatapp.cc';
-
-    //__host__ = 'http://api.xiayuanyin.cn';
-    //__host__ = "http://192.168.0.109:3001";
+    //__host__ = 'http://rqiang.mynatapp.cc';
+    __host__ = 'http://api.xiayuanyin.cn';
+    //__host__ = "http://192.168.0.111:3002";
     break;
-   case '192.168.0.121:3000':
+  case '192.168.0.121:3000':
     // __host__ = "https://doctor.mdsonline.cn";
     __host__ = 'http://rqiang.mynatapp.cc';
 
@@ -47,7 +46,7 @@ url.departments = __host__ + '/api/doctor/departments/all';
 //找回密码
 url.update_password = __host__ + '/api/doctor/users/update_password';
 
-//首页 轮播图
+//轮播图
 url.carousels = __host__ + '/api/doctor/carousels';
 
 //首页 轮播图
@@ -73,6 +72,18 @@ url.recordings = __host__ + '/api/doctor/recordings';
 
 //系列列表
 url.videos = __host__ + '/api/doctor/videos';
+
+//会议首页
+url.coursesMeetings = __host__ + '/api/doctor/courses/meetings';
+
+//会议列表地点
+url.cities = __host__ + '/api/doctor/department_users/cities';
+
+//会议列表
+url.meetings = __host__ + '/api/doctor/meetings';
+
+//会议抢答初始化
+url.posts = __host__ + '/api/doctor/posts';
 
 
 

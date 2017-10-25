@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
+import {hashHistory} from "react-router";
 import style from './index.css';
 import {Icon, WingBlank, Grid} from 'antd-mobile';
 import minebg  from "images/minebg.png";
@@ -19,70 +20,71 @@ import xiugaiziliao  from "svg/xiugaiziliao.svg";
 import wodeqianbao  from "svg/wodeqianbao.svg";
 import shezhi  from "svg/shezhi.svg";
 import bangzhuyufankui  from "svg/bangzhuyufankui.svg";
-
+import ReactIScroll from "react-iscroll";
+import iScroll from "iscroll/build/iscroll-probe.js";
 
 const data=[
 	{
 		icon:<Icon type={wodezhibo} />,
-		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>我的直播</a>
+		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的直播</p>
 	},
 	{
 		icon:<Icon type={wodelubo} />,
-		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>我的录播</a>
+		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的录播</p>
 	},
 	{
 		icon:<Icon type={wodekecheng} />,
-		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>我的课程</a>
+		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的课程</p>
 	},
 	{
 		icon:<Icon type={wodewenzhang} />,
-		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>我的文章</a>
+		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的文章</p>
 	},
 ]
 const data1=[
 	{
 		icon:<Icon type={wodefuwu} />,
-		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>我的服务</a>
+		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的服务</p>
 	},
 	{
 		icon:<Icon type={shimingrenzheng} />,
-		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>实名认证</a>
+		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>实名认证</p>
 	},
 	{
 		icon:<Icon type={huanzhepingjia} />,
-		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>患者评价</a>
+		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>患者评价</p>
 	},
 	{
 		icon:<Icon type={xiaoxizhongxin} />,
-		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>消息中心</a>
+		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>消息中心</p>
 	},
 	{
 		icon:<Icon type={kaitongzhibo} />,
-		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>开通直播</a>
+		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>开通直播</p>
 	},
 
 
 	{
 		icon:<Icon type={xingyibaozhang} />,
-		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>行医保障</a>
+		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>行医保障</p>
 	},
 
 	{
 		icon:<Icon type={xiugaiziliao} />,
-		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>修改资料</a>
+		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>修改资料</p>
 	},
 	{
 		icon:<Icon type={wodeqianbao} />,
-		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>我的钱包</a>
+		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的钱包</p>
 	},
 
 	{
 		icon:<Icon type={shezhi} />,
-		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>设置</a>
+		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>设置</p>
 	},
 	{
 		icon:<Icon type={bangzhuyufankui} />,
-		text:<a style={{color:"#6f6f6f",fontWeight:'bold'}}>帮助与反馈</a>
+		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>帮助与反馈</p>
 	},
 
 ]
@@ -90,30 +92,40 @@ const data1=[
 class Mine extends Component {
   render() {
     return (
-		<div className={style.mine}>
-			<div className={style.head}>
-				<img src={minebg} alt="头像" />
-				<h6>{this.props.userInfo.name}<span>({this.props.userInfo.title})</span></h6>
-				<p>{this.props.userInfo.hospital}&nbsp;<span>{this.props.userInfo.department}</span></p>
-			</div>
-			<div className={style.nav}>
-				<WingBlank size="lg" className={style.navBlank}>
-					<Grid
-						data={data}
-						columnNum={4}
-						hasLine={false}
-					/>
-				</WingBlank>
-			</div>
-			<div className={style.title}>服务与工具</div>
-			<div className={style.content}>
-				<Grid
-					data={data1}
-					columnNum={5}
-					hasLine={false}
-				/>
-			</div>
-		</div>
+    	<div className={style.mineWrap}>
+    		<ReactIScroll
+				iScroll={iScroll}
+			>
+				<div className={style.mine}>
+					<div className={style.head}>
+						<img src={minebg} alt="头像" />
+						<h6>{this.props.userInfo.name}<span>({this.props.userInfo.title})</span></h6>
+						<p>{this.props.userInfo.hospital}&nbsp;<span>{this.props.userInfo.department}</span></p>
+					</div>
+					<div className={style.nav}>
+						<WingBlank size="lg" className={style.navBlank}>
+							<Grid
+								data={data}
+								columnNum={4}
+								hasLine={false}
+							/>
+						</WingBlank>
+					</div>
+					<div className={style.title}>服务与工具</div>
+					<div className={style.content}>
+						<Grid
+							data={data1}
+							columnNum={5}
+							hasLine={false}
+							onClick={(el)=>{
+								if(el.text.props["data-link"])hashHistory.push(el.text.props["data-link"]);
+							}}
+						/>
+					</div>
+				</div>
+			</ReactIScroll>
+    	</div>
+		
     );
   }
 }

@@ -1,11 +1,26 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import { WhiteSpace, ActivityIndicator} from 'antd-mobile';
+import { WhiteSpace} from 'antd-mobile';
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 import url from "api_url/index.js";
+import PropTypes from 'prop-types';
 
 export default class RewardList extends Component {
+	static propTypes = {
+		id:PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.number
+		]).isRequired,
+		bounty_count:PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.number
+		]).isRequired,  //打赏人数
+		payment_count:PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.number
+		]).isRequired,  //打赏金额
+	};
 	state = {
 		bounty_ranking:null
 	}
@@ -16,6 +31,9 @@ export default class RewardList extends Component {
 			this.setState({
 				bounty_ranking:data.bounty_ranking
 			})
+		})
+		.catch((err)=>{
+			console.log(err)
 		})
 	}
 	render() {
@@ -28,8 +46,8 @@ export default class RewardList extends Component {
 						<WhiteSpace size="xs" />
 						<h5 className={style.title}>
 							<span></span>
-							<p>共{this.props.stream_bounty_count}人打赏</p>
-							<p>共{this.props.stream_payment_count}元</p>
+							<p>共{this.props.bounty_count}人打赏</p>
+							<p>共{this.props.payment_count}元</p>
 						</h5>
 						<WhiteSpace size="xs" />
 						{

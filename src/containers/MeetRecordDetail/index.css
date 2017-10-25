@@ -1,0 +1,40 @@
+.meetRecordDetailWrap {
+  height: 100%;
+}
+.meetRecordDetail {
+  height: 100%;
+  position: relative;
+}
+
+.meetPoster {
+  position: relative;
+  width: 100%;
+  height: calc(100vw / 7 * 4);
+}
+.meetPoster img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.btnWrap {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.btn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tabWrap {
+  height: calc(100% - (400vw / 7));
+}
+.tabItemWrap {
+  height: calc(100vh - 87px - (400vw / 7));
+}

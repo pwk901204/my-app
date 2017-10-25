@@ -1,0 +1,36 @@
+.meetInfo {
+  height: 100%;
+}
+.listTitle {
+  float: left;
+  font-weight: bold;
+}
+.listContent {
+  float: right;
+  text-align: right;
+  width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.listKeyWordsContent {
+  width: 100%;
+  float: left;
+  padding-top: 20px;
+}
+.listKeyWordsItem {
+  float: left;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+.listIntroduction {
+  width: 100%;
+  white-space: normal;
+  font-size: 30px;
+}
+.fontRed{
+  color: #ff2654;
+}
+.fontBlue{
+  color: #33a9fc;
+}

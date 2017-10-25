@@ -50,7 +50,7 @@ class SeriesDetail extends Component {
 						}
 						<Tabs swipeable={false} defaultActiveKey="1" className={style.tabWrap}>
 							<TabPane tab="课程目录" key="1" className={style.tabItemWrap}>
-								<SeriesDetailList />
+								<SeriesDetailList {...series}/>
 							</TabPane>
 							<TabPane tab="课程简介" key="2" className={style.tabItemWrap}>
 								<SeriesInfo {...series} />

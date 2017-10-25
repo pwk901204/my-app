@@ -1,127 +1,126 @@
-.chatRoom{
-	height: 100%;
-	position: relative;
-	padding-bottom: 100px;
-	box-sizing: border-box;
+.chatRoom {
+  height: 100%;
+  position: relative;
+  padding-bottom: 100px;
+  box-sizing: border-box;
 }
 
-.chatRoomContent{
-	height: 100%;
-	position: relative;
+.chatRoomContent {
+  height: 100%;
+  position: relative;
 }
 
-.chatIcon1{
-	position: absolute;
-	right: 10px;
-	top: 5px;
-	background: rgba(0,0,0,0.6);
-	color: #fff;
-	z-index: 100;
-	padding: 10px;
-	border-radius: 10px 10px;
-	font-size: 26px;
+.chatIcon1 {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  z-index: 100;
+  padding: 10px;
+  border-radius: 10px 10px;
+  font-size: 26px;
 }
-.chatIcon2{
-	position: absolute;
-	right: 10px;
-	top: 60px;
-	background: rgba(0,0,0,0.6);
-	color: #fff;
-	z-index: 100;
-	padding: 10px;
-	border-radius: 10px 10px;
-	font-size: 26px;
-}
-
-
-.message{
-	composes: clearfix from 'src/index.css';
+.chatIcon2 {
+  position: absolute;
+  right: 10px;
+  top: 60px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  z-index: 100;
+  padding: 10px;
+  border-radius: 10px 10px;
+  font-size: 26px;
 }
 
-.icon{
-	float: left;
-	width: 100px;
+.message {
+  composes: clearfix from 'src/index.css';
 }
 
-.icon img{
-	display: block;
-	width: 60px;
-	height: 60px;
-	border-radius: 50% 50%;
-	overflow: hidden;
-	margin: 0 auto;
+.icon {
+  float: left;
+  width: 100px;
 }
 
-.icon p{
-	font-size: 24px;
-	text-align: center;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	padding:10px;
-}
-.content{
-	float: left;
-	max-width: calc( 100% - 180px );
-	padding: 20px;
-	margin-left: 30px;
-	margin-top: 10px;
-	font-size: 28px;
-	background: #33a9fc;
-	box-sizing: border-box;
-	position: relative;
-	border-radius: 5px 5px;
-	color: #fff;
-	word-break: break-all;
-}
-.content span{
-	position: absolute;
-	left: -40px;
-	top: 15px;
-	width: 0;
-	height: 0;
-	border-left: 20px solid transparent;
-	border-right: 20px solid #33a9fc;
-	border-top: 20px solid transparent;
-	border-bottom: 20px solid transparent;
+.icon img {
+  display: block;
+  width: 60px;
+  height: 60px;
+  border-radius: 50% 50%;
+  overflow: hidden;
+  margin: 0 auto;
 }
 
-.chatRoomInput{
-	composes: clearfix from 'src/index.css';
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	height: 100px;
-	width: 100%;
-	border-top: 1px solid #ccc;
-	background: #fff;
-	padding: 20px 10px;
-	box-sizing: border-box;
+.icon p {
+  font-size: 24px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 10px;
 }
-.chatRoomInput i{
-	float: left;
-	width: 60px;
-	height: 60px;
-	border-radius: 50% 50%;
-	line-height: 60px;
-	text-align: center;
-	background: red;
-	font-style: normal;
-	background: #FF8C00;
-	color: #fff;
-	margin-right: 20px;
+.content {
+  float: left;
+  max-width: calc(100% - 180px);
+  padding: 20px;
+  margin-left: 30px;
+  margin-top: 10px;
+  font-size: 28px;
+  background: #33a9fc;
+  box-sizing: border-box;
+  position: relative;
+  border-radius: 5px 5px;
+  color: #fff;
+  word-break: break-all;
 }
-
-.chatRoomInput input{
-	float: left;
-	width: calc( 100% - 225px );
-	height: 60px;
-	border: 1px solid #ccc;
-	box-sizing: border-box;
-	border-radius: 5px 5px;
-	padding-left: 20px;
+.content span {
+  position: absolute;
+  left: -40px;
+  top: 15px;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid #33a9fc;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
 }
 
-.chatRoomInput .btn{
-	float: right;
+.chatRoomInput {
+  composes: clearfix from 'src/index.css';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 100px;
+  width: 100%;
+  border-top: 1px solid #ccc;
+  background: #fff;
+  padding: 20px 10px;
+  box-sizing: border-box;
+}
+.chatRoomInput i {
+  float: left;
+  width: 60px;
+  height: 60px;
+  border-radius: 50% 50%;
+  line-height: 60px;
+  text-align: center;
+  background: red;
+  font-style: normal;
+  background: #ff8c00;
+  color: #fff;
+  margin-right: 20px;
+}
+
+.chatRoomInput input {
+  float: left;
+  width: calc(100% - 225px);
+  height: 60px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 5px 5px;
+  padding-left: 20px;
+}
+
+.chatRoomInput .btn {
+  float: right;
 }

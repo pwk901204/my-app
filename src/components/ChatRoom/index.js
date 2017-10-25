@@ -5,9 +5,28 @@ import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 import {connect} from "react-redux";
 import Reward from "components/Reward";
-
+import PropTypes from 'prop-types';
 
 class ChatRoom extends Component {
+	static propTypes = {
+		id:PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.number
+		]).isRequired,
+		users_count:PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.number
+		]).isRequired,  //报名人数
+		bounty_count:PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.number
+		]).isRequired,  //打赏人数
+		payment_count:PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.number
+		]).isRequired,  //打赏金额
+	};
+
 	state = {
 		loading:false,
 		chatList:[],
@@ -16,7 +35,7 @@ class ChatRoom extends Component {
 	constructor(props) {
 		super(props)
 		if(window.location.host === "localhost:3000"){
-			this.ws = new WebSocket('ws://192.168.0.102:3000/cable');
+			this.ws = new WebSocket('ws://192.168.0.101:3000/cable');
 			//this.ws = new WebSocket('ws://rqiang.mynatapp.cc/cable');
 		}else if(window.location.host === "localhost:4000"){
 			this.ws = new WebSocket('ws://' + window.location.host + '/cable');
@@ -91,8 +110,8 @@ class ChatRoom extends Component {
 		return (
 			<div className={style.chatRoom}>
 				<div className={style.chatRoomContent}>
-					<span className={style.chatIcon1}>共{this.props.stream_users_count}人报名</span>
-					<span className={style.chatIcon2}>{this.props.stream_bounty_count}人共打赏了{this.props.stream_payment_count}元</span>
+					<span className={style.chatIcon1}>共{this.props.users_count}人报名</span>
+					<span className={style.chatIcon2}>{this.props.bounty_count}人共打赏了{this.props.payment_count}元</span>
 					<ReactIScroll
 						iScroll={iScroll}
 					>

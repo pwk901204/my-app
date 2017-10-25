@@ -22,10 +22,19 @@ export default class StreamItem extends Component {
 						<span>{this.props.hospital_name}</span>
 						<span>{this.props.department_name}</span>
 					</div>
-					<div>
-						<p className="clearfix"><Icon type={yisheng} className={style.icon} /><span>{this.props.doctor_name}</span></p>
-						<p className="clearfix"><Icon type={renshu} className={style.icon}  /><span>{this.props.watch_number}</span></p>
-						<p className="clearfix"><Icon type={feiyong} className={style.icon}  /><span className={this.props.price > 0 ? style.fontRed : style.fontBlue }>{this.props.price > 0 ? `¥${this.props.price}` : "免费"}</span></p>
+					<div className={style.rightBottom}>
+						<p>
+							<Icon type={yisheng} className={style.icon}/>
+							{this.props.doctor_name}
+						</p>
+						<p>
+							<Icon type={renshu} className={style.icon}/>
+							{this.props.watch_number}
+						</p>
+						<p className={this.props.price > 0 ? style.fontRed : style.fontBlue}>
+							<Icon type={feiyong} className={style.icon}/>
+							{this.props.price > 0 ? `¥${this.props.price}` : "免费"}
+						</p>
 					</div>
 				</div>
 			</Link>

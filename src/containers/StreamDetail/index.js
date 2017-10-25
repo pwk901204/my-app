@@ -139,7 +139,12 @@ class StreamDetail extends Component {
 							stream.stream_type === "live" &&
 							<Tabs pageSize={4} swipeable={false} defaultActiveKey="1" className={style.tabWrap}>
 								<TabPane tab={"聊天室"} key="1" className={style.tabItemWrap}>
-									<ChatRoom {...stream}/>
+									<ChatRoom 
+										id={stream.id}
+										users_count={stream.stream_users_count}
+										bounty_count={stream.stream_bounty_count}
+										payment_count={stream.stream_payment_count}
+									/>
 								</TabPane>
 								<TabPane tab="直播简介" key="2" className={style.tabItemWrap}>
 									<StreamInfo {...stream}/>
@@ -148,7 +153,11 @@ class StreamDetail extends Component {
 									<DoctorInfo {...stream.doctor}/>
 								</TabPane>
 								<TabPane tab={"打赏排行榜"} key="4" className={style.tabItemWrap}>
-									<RewardList {...stream}/>
+									<RewardList
+										id={stream.id}
+										bounty_count={stream.stream_bounty_count}
+										payment_count={stream.stream_payment_count}
+									/>
 								</TabPane>
 								<TabPane tab={"报名人数"} key="5" className={style.tabItemWrap}>
 									<Enlist  {...stream}/>

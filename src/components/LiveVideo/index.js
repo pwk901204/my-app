@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Icon} from 'antd-mobile';
 import style from './index.css';
+import PropTypes from 'prop-types';
 
 export default class LiveVideo extends Component {
 
@@ -8,9 +9,9 @@ export default class LiveVideo extends Component {
 		anchor: false
 	};
 	static propTypes = {
-		anchor : React.PropTypes.bool,
-		cover_url : React.PropTypes.string.isRequired,
-		play_url : React.PropTypes.string.isRequired,
+		anchor : PropTypes.bool,
+		cover_url : PropTypes.string.isRequired,
+		play_url : PropTypes.string.isRequired,
 	};
 	constructor(props){
 		super(props);

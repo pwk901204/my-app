@@ -1,33 +1,32 @@
-.recordingList{
-	position: relative;
-	height: 100%;
-	overflow: hidden;
-	border: 1px solid #ccc;
+.recordingList {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid #ccc;
 }
 .title {
-	width: 100%;
-	height: 80px;
-	text-align: center;
-	background: #fff;
-	position: fixed;
-	left: 0;
-	top: 0;
-	z-index: 10;
-	border-bottom: 1px solid #ccc;
+  width: 100%;
+  height: 80px;
+  text-align: center;
+  background: #fff;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid #ccc;
 }
-.title span{
-	display: inline-block;
-	vertical-align: middle;
-	line-height: 80px;
+.title span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 80px;
 }
 .recording {
-	padding-top:80px;
-	background: #fff;
-
+  padding-top: 80px;
+  background: #fff;
 }
-.titleIcon{
-	vertical-align:middle;
-	width:30px;
-	height: 30px;
-	margin-left: 15px;
+.titleIcon {
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  margin-left: 15px;
 }

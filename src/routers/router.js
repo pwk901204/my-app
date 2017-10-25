@@ -74,6 +74,65 @@ const SeriesDetail = (location, cb) => {
   });
 };
 
+const Meet = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/Meet/index').default);
+  });
+};
+
+const MeetOffLineList = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/List/MeetOffLineList/index').default);
+  });
+};
+
+const MeetStreamList = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/List/MeetStreamList/index').default);
+  });
+};
+
+const MeetRecordList = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/List/MeetRecordList/index').default);
+  });
+};
+
+const MeetOffLineDetail = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/MeetOffLineDetail/index').default);
+  });
+};
+
+const MeetOffLineEnroll = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/MeetOffLineEnroll/index').default);
+  });
+};
+
+const MeetStreamDetail = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/MeetStreamDetail/index').default);
+  });
+};
+
+const MeetRecordDetail = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/MeetRecordDetail/index').default);
+  });
+};
+
+const ComingSoonPage = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/ComingSoonPage/index').default);
+  });
+};
+
+
+
+
+
+
 
 
 const requireAuth = () => {
@@ -84,13 +143,15 @@ const requireAuth = () => {
   }, 1000);
 };
 
-
-
 class Routers extends Component {
   render() {
     return (
       <Router history={hashHistory} key={Math.random()}>
-        <Route path="/HomePage(/:index)" getComponent={TabBar} onEnter={requireAuth} />
+        <Route
+          path="/HomePage(/:index)"
+          getComponent={TabBar}
+          onEnter={requireAuth}
+        />
         <Route path="/Login" getComponent={Login} />
         <Route path="/FindPassWord" getComponent={FindPassWord} />
         <Route path="/Register" getComponent={Register} />
@@ -131,6 +192,51 @@ class Routers extends Component {
         <Route
           path="/SeriesDetail/:id"
           getComponent={SeriesDetail}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/Meet"
+          getComponent={Meet}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/MeetOffLineList"
+          getComponent={MeetOffLineList}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/MeetStreamList"
+          getComponent={MeetStreamList}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/MeetRecordList"
+          getComponent={MeetRecordList}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/MeetOffLineDetail/:id"
+          getComponent={MeetOffLineDetail}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/MeetOffLineEnroll"
+          getComponent={MeetOffLineEnroll}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/MeetStreamDetail/:id/:stream_id"
+          getComponent={MeetStreamDetail}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/MeetRecordDetail/:id"
+          getComponent={MeetRecordDetail}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/ComingSoonPage"
+          getComponent={ComingSoonPage}
           onEnter={requireAuth}
         />
       </Router>

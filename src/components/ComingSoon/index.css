@@ -1,0 +1,15 @@
+.comingSoon{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+}
+.icon{
+	width: 200px;
+	height: 200px;
+}
+.comingSoon p{
+	font-size: 40px;
+	line-height: 80px;
+	text-align: center;
+}

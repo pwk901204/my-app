@@ -1,75 +1,75 @@
-.doctorInfo{
-	height: 100%;
+.doctorInfo {
+  height: 100%;
 }
 
-.doctorInfoTitle{
-	composes: clearfix from 'src/index.css';
-	background: #fff;
-	padding: 20px;
+.doctorInfoTitle {
+  composes: clearfix from 'src/index.css';
+  background: #fff;
+  padding: 20px;
 }
 
-.doctorInfoTitle img{
-	height: 80px;
-	width: 80px;
-	display: block;
-	float: left;
-	border-radius: 50% 50%;
-	overflow: hidden;
+.doctorInfoTitle img {
+  height: 80px;
+  width: 80px;
+  display: block;
+  float: left;
+  border-radius: 50% 50%;
+  overflow: hidden;
 }
 
-.doctorInfoTitle>div{
-	padding: 0 20px;
-	width: calc( 100% - 130px );
-	float: left;
-	box-sizing: border-box;
+.doctorInfoTitle > div {
+  padding: 0 20px;
+  width: calc(100% - 130px);
+  float: left;
+  box-sizing: border-box;
 }
 
-.doctorInfoTitle div h5{
-	font-size: 30px;
-	font-weight: bold;
-	line-height: 40px;
+.doctorInfoTitle div h5 {
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 40px;
 }
 
-.doctorInfoTitle div h5 span{
-	font-size: 24px;
-	font-weight: normal;
+.doctorInfoTitle div h5 span {
+  font-size: 24px;
+  font-weight: normal;
 }
 
-.doctorInfoTitle div p{
-	font-size: 24px;
-	font-weight: normal;
-	line-height: 40px;
+.doctorInfoTitle div p {
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 40px;
 }
 
-.doctorInfoTitle .jiantouIcon{
-	float: right;
-	width: 50px;
-	height: 50px;
-	margin-top: 16px;
+.doctorInfoTitle .jiantouIcon {
+  float: right;
+  width: 50px;
+  height: 50px;
+  margin-top: 16px;
 }
 
-.doctorInfoItem{
-	background: #fff;
+.doctorInfoItem {
+  background: #fff;
 }
-.doctorInfoItem h6{
-	height: 60px;
-	line-height: 40px;
-	font-size: 30px;
-	font-weight: normal;
-	padding: 10px 20px;
-	box-sizing: border-box;
-	border-bottom: 1px solid #ccc;
+.doctorInfoItem h6 {
+  height: 60px;
+  line-height: 40px;
+  font-size: 30px;
+  font-weight: normal;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ccc;
 }
 
-.doctorInfoItem h6 span{
-	float: left;
-	width: 5px;
-	height: 40px;
-	background: #33a9fc;
-	margin-right: 20px;
+.doctorInfoItem h6 span {
+  float: left;
+  width: 5px;
+  height: 40px;
+  background: #33a9fc;
+  margin-right: 20px;
 }
-.doctorInfoItem>div{
-	font-size: 26px;
-	line-height: 40px;
-	padding: 20px;
+.doctorInfoItem > div {
+  font-size: 26px;
+  line-height: 40px;
+  padding: 20px;
 }

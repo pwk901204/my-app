@@ -1,0 +1,35 @@
+.meetOffLineEnroll {
+  height: 100%;
+  background-color: #fff;
+}
+
+.title {
+	composes: clearfix from 'src/index.css';
+	padding:20px 0;
+	font-size: 24px;
+}
+
+.title span{
+	float: left;
+}
+.title i{
+	float: right;
+	font-style:normal;
+	color: #33a9fc;
+}
+.phone{
+	font-size: 24px;
+	line-height: 100px;
+	text-align: center;
+}
+.phone a{
+	color: #33a9fc;
+}
+
+.text input {
+  text-align: right;
+}
+
+.listItem > div:nth-of-type(1) > div:nth-of-type(2) {
+  flex-basis: 76%;
+}
