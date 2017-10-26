@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import {ActivityIndicator, Tabs, Badge, Button} from 'antd-mobile';
+import {ActivityIndicator, Tabs, Badge, Button,Popup} from 'antd-mobile';
 import {connect} from "react-redux";
 import url from "api_url/index.js";
 import RecordInfo from "components/RecordInfo";
@@ -8,6 +8,8 @@ import DoctorInfo from "components/DoctorInfo";
 import LiveVideo from "components/LiveVideo";
 import Comment from "components/Comment";
 import MiniNav from "components/MiniNav";
+import {Pay} from "components/Pay";
+import {ordersAction} from "reduxs/orders.js";
 
 const TabPane = Tabs.TabPane;
 
@@ -18,6 +20,9 @@ class RecordDetail extends Component {
 		selectedTab:"streamInfo"
 	}
 	componentDidMount(){
+		this.getDetail();
+	}
+	getDetail= ()=>{
 		this.setState({
 			loading:true
 		})
@@ -29,8 +34,36 @@ class RecordDetail extends Component {
 				loading:false,
 				recording:data.recording
 			})
+			if( Number(data.recording.price) === 0 && !data.stream.purchase){
+				this.props.ordersAction({
+					type:"video",
+					id:data.recording.id,
+					callBack:this.getDetail
+				})
+			}
 		})
 	}
+	onClick = () => {
+		let recording =this.state.recording;
+		let _this = this;
+		if(Number(recording.price)>0){
+			//付费报名
+			Popup.show(<Pay
+				id={recording.id}
+				type="video"
+				topic={recording.topic}
+				amount={recording.price}
+				ordersAction={this.props.ordersAction}
+			/>, { animationType: 'slide-up', onTouchStart: e => e.preventDefault() });
+		}else{
+			//免费报名
+			this.props.ordersAction({
+				type:"video",
+				id:recording.id,
+				callBack:this.getDetail
+			})
+		}
+	};
 	render() {
 		let {recording} = this.state;
 		return (
@@ -39,11 +72,22 @@ class RecordDetail extends Component {
 					recording &&
 					<div className={style.recordingDetail}>
 						{ !recording.purchase &&
-							<div className={style.recordingEnded}>
+							<div className={style.recordingVideo}>
 								<img src={recording.cover_data.size_700} alt="img" />
 								<div className={style.btnWrap}>
-									<Button className={style.btn} size="small" type="primary" inline >付费观看</Button>
+									<Button
+										className={style.payBtn}
+										size="small"
+										type="primary"
+										inline
+										onClick={this.onClick}
+									>{Number(recording.price) ? `付费观看/¥${recording.price}` : "免费报名"}</Button>
 								</div>
+							</div>
+						}
+						{	recording.purchase &&
+							<div className={style.recordingVideo}>
+								<LiveVideo cover_url={recording.cover_data.size_700} play_url={recording.pull_url_http}/>
 							</div>
 						}
 						<Tabs swipeable={false} defaultActiveKey="1" className={style.tabWrap}>
@@ -72,8 +116,11 @@ export default connect (
 			userInfo:state.userInfo
 		}
 	},
-	()=>{
+	(dispatch)=>{
 		return {
+			ordersAction:(data)=>{
+   				dispatch(ordersAction(data))
+   			}
 		}
 	}
 )(RecordDetail);

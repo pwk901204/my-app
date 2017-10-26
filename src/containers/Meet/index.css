@@ -1,8 +1,7 @@
-.meet{
-
+.meet {
 }
-.myCarousel{
-	height: 320px !important;
+.myCarousel {
+  height: 320px !important;
 }
 
 .myCarousel > div > ul {
@@ -19,15 +18,15 @@
 }
 
 .title {
-	background: #fff;
-	display: block;
-	height: 80px;
-	font-size: 30px;
-	line-height: 30px;
-	padding: 25px 20px;
-	box-sizing: border-box;
-	composes: clearfix from 'src/index.css';
-	border-bottom: 1px solid #ddd;
+  background: #fff;
+  display: block;
+  height: 80px;
+  font-size: 30px;
+  line-height: 30px;
+  padding: 25px 20px;
+  box-sizing: border-box;
+  composes: clearfix from 'src/index.css';
+  border-bottom: 1px solid #ddd;
 }
 .title i {
   float: left;
@@ -45,13 +44,13 @@
   color: #222;
 }
 
-.List{
-	composes: clearfix from 'src/index.css';
-	background: #fff;
+.List {
+  composes: clearfix from 'src/index.css';
+  background: #fff;
 }
-.List li{
-	float: left;
-	width: 50%;
-	padding: 20px;
-	box-sizing: border-box;
+.List li {
+  float: left;
+  width: 50%;
+  padding: 20px;
+  box-sizing: border-box;
 }

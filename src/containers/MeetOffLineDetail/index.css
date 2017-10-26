@@ -1,16 +1,15 @@
-.meetOffLineDetail{
-
+.meetOffLineDetail {
 }
 
-.meetPoster{
-	position: relative;
-	width: 100%;
-	height: calc(100vw / 7 * 4);
+.meetPoster {
+  position: relative;
+  width: 100%;
+  height: calc(100vw / 7 * 4);
 }
-.meetPoster img{
-	display: block;
-	width: 100%;
-	height: 100%;
+.meetPoster img {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .btnWrap {
@@ -22,20 +21,20 @@
   top: 0;
   text-align: center;
 }
-.payBtn{
-	margin: 140px auto 0
+.payBtn {
+  margin: 140px auto 0;
 }
-.btnWrap p{
-	text-align: center;
-	margin-top: 20px;
-	color: #fff;
-	font-size: 24px;
+.btnWrap p {
+  text-align: center;
+  margin-top: 20px;
+  color: #fff;
+  font-size: 24px;
 }
-.btnWrap h5{
-	text-align: center;
-	margin-top: 10px;
-	color: #f00;
-	font-size: 28px;
+.btnWrap h5 {
+  text-align: center;
+  margin-top: 10px;
+  color: #f00;
+  font-size: 28px;
 }
 .tabWrap {
   height: calc(100% - (400vw / 7));

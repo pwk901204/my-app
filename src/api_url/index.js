@@ -5,9 +5,9 @@ let __host__ = '';
 switch (window.location.host) {
   case 'localhost:3000':
     // __host__ = "https://doctor.mdsonline.cn";
-    //__host__ = 'http://rqiang.mynatapp.cc';
-    __host__ = 'http://api.xiayuanyin.cn';
-    //__host__ = "http://192.168.0.111:3002";
+    __host__ = 'http://rqiang.mynatapp.cc';
+    //__host__ = 'http://api.xiayuanyin.cn';
+    //__host__ = "http://192.168.0.104:3002";
     break;
   case '192.168.0.121:3000':
     // __host__ = "https://doctor.mdsonline.cn";
@@ -85,7 +85,11 @@ url.meetings = __host__ + '/api/doctor/meetings';
 //会议抢答初始化
 url.posts = __host__ + '/api/doctor/posts';
 
+//订单接口地址
+url.orders = __host__ + '/api/doctor/mobile/orders';
 
+//直播轮训接口
+url.streams_check_status = __host__ + '/api/doctor/streams/check_status';
 
 
 module.exports = url;

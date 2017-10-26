@@ -6,13 +6,12 @@
   position: relative;
 }
 
-.streamEnded,
-.streamLive {
+.streamVideo{
   position: relative;
   width: 100%;
   height: calc(100vw / 7 * 4);
 }
-.streamEnded img {
+.streamVideo img {
   display: block;
   width: 100%;
   height: 100%;

@@ -12,8 +12,8 @@ import Enlist from "components/Enlist";
 import RewardList from "components/RewardList";
 import ChatRoom from "components/ChatRoom";
 import MiniNav from "components/MiniNav";
-import Pay from "components/Pay";
-
+import {Pay} from "components/Pay";
+import {ordersAction} from "reduxs/orders.js";
 
 const TabPane = Tabs.TabPane;
 
@@ -24,6 +24,13 @@ class StreamDetail extends Component {
 		selectedTab:"streamInfo"
 	}
 	componentDidMount(){
+		this.getDetail();
+		clearInterval(this.timer);
+		this.timer=setInterval(()=>{
+			this.getFresh();
+		},3000)
+	}
+	getDetail = ()=>{
 		this.setState({
 			loading:true
 		})
@@ -35,11 +42,47 @@ class StreamDetail extends Component {
 				loading:false,
 				stream:data.stream
 			})
+			if( Number(data.stream.price) === 0 && data.stream.stream_type ==="live" && !data.stream.purchase){
+				this.props.ordersAction({
+					type:"live",
+					id:data.stream.id,
+					callBack:this.getDetail
+				})
+			}
+			if(this.state.stream.stream_type === "ended"){
+				clearInterval(this.timer);
+			}
+		})
+	}
+	getFresh = ()=>{
+		fetch(url.streams_check_status + "?token=" + this.props.userInfo.token + "&id=" + this.props.routeParams.id)
+		.then((response)=>response.json())
+		.then((data)=>{
+			if(this.state.stream.stream_type !== data.status){
+				this.getDetail();
+			}
 		})
 	}
 	onClick = () => {
 		let stream =this.state.stream;
-		Popup.show(<Pay id={stream.id} topic={stream.topic} price={stream.price}/>, { animationType: 'slide-up', onTouchStart: e => e.preventDefault() });
+		let _this = this;
+		if(Number(stream.price)>0){
+			//付费报名
+			Popup.show(<Pay
+				id={stream.id}
+				type="live"
+				topic={stream.topic}
+				amount={stream.price}
+				ordersAction={this.props.ordersAction}
+			/>, { animationType: 'slide-up', onTouchStart: e => e.preventDefault() });
+		}else{
+			//免费报名
+			this.props.ordersAction({
+				type:"live",
+				id:stream.id,
+				callBack:this.getDetail
+			})
+		}
 	};
 	render() {
 		let {stream} = this.state;
@@ -48,8 +91,9 @@ class StreamDetail extends Component {
 				{
 					stream &&
 					<div className={style.streamDetail}>
-						{ !stream.purchase &&
-							<div className={style.streamEnded}>
+						{
+							!stream.purchase && stream.stream_type !== "ended" &&
+							<div className={style.streamVideo}>
 								<img src={stream.cover_data.size_700} alt="img" />
 								<div className={style.btnWrap}>
 									<Button
@@ -58,50 +102,39 @@ class StreamDetail extends Component {
 										type="primary"
 										inline
 										onClick={this.onClick}
-									>付费观看</Button>
+									>{Number(stream.price) ? `付费观看/¥${stream.price}` : "免费报名"}</Button>
 								</div>
 							</div>
 						}
-						{	stream.purchase && stream.stream_type === "ended" &&
-							<div className={style.streamLive}>
-								<LiveVideo
-									cover_url={stream.cover_data.size_700}
-									play_url={stream.pull_url_http}
-								/>
-							</div>
-						}
-						{	stream.purchase && stream.stream_type === "not_begin" &&
-							<div className={style.streamLive}>
-							</div>
-						}
-						{	stream.purchase && stream.stream_type === "ad" &&
-							<div className={style.streamLive}>
+						{
+							stream.stream_type === "ended" &&
+							<div className={style.streamVideo}>
+								<img src={stream.cover_data.size_700} alt="img" />
+								<div className={style.btnWrap}>
+									<Button
+										className={style.payBtn}
+										disabled
+										style={{color:"#666"}}
+										size="small"
+										type="primary"
+										inline
+									>直播结束</Button>
+								</div>
 							</div>
 						}
 						{	stream.purchase && stream.stream_type === "live" &&
-							<div className={style.streamEnded}>
+							<div className={style.streamVideo}>
+								<LiveVideo cover_url={stream.cover_data.size_700} play_url={stream.pull_url_http}/>
+							</div>
+						}
+						{	stream.purchase && stream.stream_type === "ad" &&
+							<div className={style.streamVideo}>
+								<LiveVideo cover_url={stream.cover_data.size_700} play_url={stream.ad_url}/>
+							</div>
+						}
+						{	stream.purchase && stream.stream_type === "not_begin" &&
+							<div className={style.streamVideo}>
 								<img src={stream.cover_data.size_700} alt="img" />
-								<div className={style.btnWrap}>
-									{
-										!stream.recording_id ?
-										<Button
-											className={style.payBtn}
-											size="small"
-											type="primary"
-											inline
-											onClick={()=>{hashHistory.push('/RecordDetail/' + stream.recording_id)}}
-										>观看录播</Button>
-										:
-										<Button
-											className={style.payBtn}
-											disabled
-											style={{color:"#666"}}
-											size="small"
-											type="primary"
-											inline
-										>直播结束</Button>
-									}
-								</div>
 							</div>
 						}
 						{
@@ -119,7 +152,7 @@ class StreamDetail extends Component {
 							</Tabs>
 						}
 						{
-							stream.stream_type === "not_begin" &&
+							(stream.stream_type === "not_begin" || stream.stream_type === "ad" )&&
 							<Tabs pageSize={4} swipeable={false} defaultActiveKey="1" className={style.tabWrap}>
 								<TabPane tab="直播简介" key="1" className={style.tabItemWrap}>
 									<StreamInfo {...stream}/>
@@ -179,8 +212,11 @@ export default connect (
 			userInfo:state.userInfo
 		}
 	},
-	()=>{
+	(dispatch)=>{
 		return {
+			ordersAction:(data)=>{
+   				dispatch(ordersAction(data))
+   			}
 		}
 	}
 )(StreamDetail);

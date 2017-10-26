@@ -4,26 +4,26 @@
 }
 
 .title {
-	composes: clearfix from 'src/index.css';
-	padding:20px 0;
-	font-size: 24px;
+  composes: clearfix from 'src/index.css';
+  padding: 20px 0;
+  font-size: 24px;
 }
 
-.title span{
-	float: left;
+.title span {
+  float: left;
 }
-.title i{
-	float: right;
-	font-style:normal;
-	color: #33a9fc;
+.title i {
+  float: right;
+  font-style: normal;
+  color: #33a9fc;
 }
-.phone{
-	font-size: 24px;
-	line-height: 100px;
-	text-align: center;
+.phone {
+  font-size: 24px;
+  line-height: 100px;
+  text-align: center;
 }
-.phone a{
-	color: #33a9fc;
+.phone a {
+  color: #33a9fc;
 }
 
 .text input {

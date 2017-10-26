@@ -41,8 +41,8 @@
   font-size: 26px;
 }
 
-.itemTop span:nth-of-type(1){
-    width: 65%;
+.itemTop span:nth-of-type(1) {
+  width: 65%;
 }
 
 .itemTop span:nth-of-type(2) {
@@ -50,14 +50,13 @@
   text-align: right;
 }
 
-
 .itemBody {
   padding: 20px;
   background: #fff;
   composes: clearfix from 'src/index.css';
 }
 
-.itemBody .left{
+.itemBody .left {
   float: left;
   width: 100px;
   height: 100px;
@@ -71,11 +70,11 @@
   border-radius: 50% 50%;
   overflow: hidden;
 }
-.itemBody .right{
+.itemBody .right {
   float: left;
-  width: calc( 100% - 100px );
+  width: calc(100% - 100px);
 }
-.itemBody .right p:nth-of-type(1){
+.itemBody .right p:nth-of-type(1) {
   font-weight: bold;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -83,7 +82,7 @@
   font-size: 30px;
   line-height: 50px;
 }
-.itemBody .right p:nth-of-type(2){
+.itemBody .right p:nth-of-type(2) {
   font-size: 24px;
   color: #555;
   font-weight: normal;
@@ -93,18 +92,9 @@
   white-space: nowrap;
 }
 
-.fontRed{
+.fontRed {
   color: #ff2654;
 }
-.fontBlue{
+.fontBlue {
   color: #33a9fc;
 }
-
-
-
-
-
-
-
-
-

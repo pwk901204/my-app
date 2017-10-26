@@ -30,12 +30,12 @@
   height: 30px;
   margin-left: 15px;
 }
-.List{
+.List {
   composes: clearfix from 'src/index.css';
   background: #fff;
   padding-top: 80px;
 }
-.List li{
+.List li {
   float: left;
   width: 50%;
   padding: 20px;

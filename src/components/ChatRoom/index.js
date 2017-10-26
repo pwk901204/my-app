@@ -4,9 +4,9 @@ import { WhiteSpace, List, Button, Toast, Popup} from 'antd-mobile';
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 import {connect} from "react-redux";
-import Reward from "components/Reward";
+import {Reward} from "components/Pay";
 import PropTypes from 'prop-types';
-
+import {ordersAction} from "reduxs/orders.js";
 class ChatRoom extends Component {
 	static propTypes = {
 		id:PropTypes.oneOfType([
@@ -35,7 +35,7 @@ class ChatRoom extends Component {
 	constructor(props) {
 		super(props)
 		if(window.location.host === "localhost:3000"){
-			this.ws = new WebSocket('ws://192.168.0.101:3000/cable');
+			this.ws = new WebSocket('ws://192.168.0.104:3000/cable');
 			//this.ws = new WebSocket('ws://rqiang.mynatapp.cc/cable');
 		}else if(window.location.host === "localhost:4000"){
 			this.ws = new WebSocket('ws://' + window.location.host + '/cable');
@@ -57,7 +57,7 @@ class ChatRoom extends Component {
 
 		this.ws.onmessage = (evt)=>{
 			let obj_msg = JSON.parse(evt.data);
-			console.log(obj_msg)
+			//console.log(obj_msg)
 			if(obj_msg.message){
 				if(obj_msg.message.data){
 					let arr = this.state.chatList;
@@ -104,7 +104,12 @@ class ChatRoom extends Component {
 		})
 	}
 	onReward = () => {
-		Popup.show(<Reward id={this.props.id} />, { animationType: 'slide-up', onTouchStart: e => e.preventDefault() });
+		Popup.show(<Reward
+			id={this.props.id}
+			type="bounty"
+			topic={"打赏"}
+			ordersAction={this.props.ordersAction}
+		/>, { animationType: 'slide-up', onTouchStart: e => e.preventDefault() });
 	};
 	render() {
 		return (
@@ -152,8 +157,11 @@ export default connect (
 			userInfo:state.userInfo
 		}
 	},
-	()=>{
+	(dispatch)=>{
 		return {
+			ordersAction:(data)=>{
+   				dispatch(ordersAction(data))
+   			}
 		}
 	}
 )(ChatRoom);

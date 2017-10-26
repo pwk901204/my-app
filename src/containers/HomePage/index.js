@@ -15,6 +15,7 @@ import url from "api_url/index.js";
 import {connect} from "react-redux";
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
+
 class HomePage extends Component {
 	state = {
 		loading:false,

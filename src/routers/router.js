@@ -127,11 +127,11 @@ const ComingSoonPage = (location, cb) => {
     cb(null, require('containers/ComingSoonPage/index').default);
   });
 };
-
-
-
-
-
+const PayPage = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/PayPage/index').default);
+  });
+};
 
 
 
@@ -194,11 +194,7 @@ class Routers extends Component {
           getComponent={SeriesDetail}
           onEnter={requireAuth}
         />
-        <Route
-          path="/Meet"
-          getComponent={Meet}
-          onEnter={requireAuth}
-        />
+        <Route path="/Meet" getComponent={Meet} onEnter={requireAuth} />
         <Route
           path="/MeetOffLineList"
           getComponent={MeetOffLineList}
@@ -237,6 +233,11 @@ class Routers extends Component {
         <Route
           path="/ComingSoonPage"
           getComponent={ComingSoonPage}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/PayPage"
+          getComponent={PayPage}
           onEnter={requireAuth}
         />
       </Router>
