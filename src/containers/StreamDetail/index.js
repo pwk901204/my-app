@@ -30,6 +30,9 @@ class StreamDetail extends Component {
 			this.getFresh();
 		},3000)
 	}
+	componentWillUnmount(){
+		clearInterval(this.timer);
+	}
 	getDetail = ()=>{
 		this.setState({
 			loading:true
@@ -65,7 +68,6 @@ class StreamDetail extends Component {
 	}
 	onClick = () => {
 		let stream =this.state.stream;
-		let _this = this;
 		if(Number(stream.price)>0){
 			//付费报名
 			Popup.show(<Pay

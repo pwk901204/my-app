@@ -6,10 +6,14 @@ import {Button , Radio, WingBlank, WhiteSpace,} from 'antd-mobile';
 import {hashHistory} from "react-router";
 
 class PayPage extends Component {
-	componentDidMount(){
-		console.log(this.props)
+	state={
+		locationState:this.props.location.state
 	}
 	onOk = ()=>{
+		let locationState = this.state.locationState;
+		if(locationState.pay_url){
+			window.location.href=locationState.pay_url
+		}
 	}
 	// onBridgeReady = ()=>{
 	//    	window.WeixinJSBridge.invoke(
@@ -39,26 +43,33 @@ class PayPage extends Component {
 		}
 	}
 	render() {
+		let locationState = this.state.locationState;
+		console.log(locationState)
 		return (
 			<div>
-				<h6 className={style.title}>
-					<span>订单详情</span>
-					<span>{this.props.topic}</span>
-				</h6>
-				<div className={style.content}>
-					<p>{this.props.amount}元</p>
-					<span>所需费用</span>
-				</div>
-				<WhiteSpace size='md' />
-				<WingBlank size="md">
-					<Button
-						type="primary"
-						activeStyle={{backgroundColor:"#ff5566"}}
-						style={{backgroundColor:"#ff6666",border:"none"}}
-						onClick={this.onOk}
-					>确认支付
-					</Button></WingBlank>
-				<WhiteSpace size='md' />
+				{
+					locationState &&
+					<div>
+						<h6 className={style.title}>
+							<span>订单详情</span>
+							<span>{locationState.topic}</span>
+						</h6>
+						<div className={style.content}>
+							<p>{locationState.amount}元</p>
+							<span>所需费用</span>
+						</div>
+						<WhiteSpace size='md' />
+						<WingBlank size="md">
+							<Button
+								type="primary"
+								activeStyle={{backgroundColor:"#ff5566"}}
+								style={{backgroundColor:"#ff6666",border:"none"}}
+								onClick={this.onOk}
+							>确认支付
+							</Button></WingBlank>
+						<WhiteSpace size='md' />
+					</div>
+				}
 			</div>
 		);
 	}

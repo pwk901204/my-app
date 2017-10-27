@@ -3,7 +3,9 @@ import style from './index.css';
 import { WhiteSpace, Tag} from 'antd-mobile';
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
+import {Link} from "react-router";
 import moment from 'moment';
+
 moment.lang('zh-cn');
 
 export default class SeriesDetailList extends Component {
@@ -21,7 +23,7 @@ export default class SeriesDetailList extends Component {
 
 								if(item.video_type === "stream"){
 									return (
-										<div className={style.item} key={item.id}>
+										<Link to={`/StreamDetail/${item.id}`} className={style.item} key={item.id}>
 											<WhiteSpace size="xs" />
 											<div className={style.itemTop}>
 												<span>
@@ -35,11 +37,11 @@ export default class SeriesDetailList extends Component {
 												<p>{item.topic}</p>
 												<Tag selected>{item.status}</Tag>
 											</div>
-										</div>
+										</Link>
 									)
 								}else{
 									return (
-										<div className={style.item} key={item.id}>
+										<Link to={`/RecordDetail/${item.id}`} className={style.item} key={item.id}>
 											<WhiteSpace size="xs" />
 											<div className={style.itemTop}>
 												<span>
@@ -53,7 +55,7 @@ export default class SeriesDetailList extends Component {
 												<p>{item.topic}</p>
 												<Tag selected>{item.status}</Tag>
 											</div>
-										</div>
+										</Link>
 									)
 								}
 							})

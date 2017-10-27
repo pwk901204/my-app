@@ -20,7 +20,9 @@
   float: left;
   margin-right: 10px;
 }
-
+.item{
+  display: block;
+}
 .itemTop {
   composes: clearfix from 'src/index.css';
   background: #fff;

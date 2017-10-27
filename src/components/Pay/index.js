@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import {Button ,List, Radio, WingBlank, WhiteSpace, Icon} from 'antd-mobile';
+import {Button ,List, Radio, WingBlank, WhiteSpace, Icon,Popup} from 'antd-mobile';
 import wx from "svg/wx.svg";
 import zfb from "svg/zfb.svg";
 import PropTypes from 'prop-types';
@@ -46,13 +46,15 @@ export class Pay extends Component {
 			callBack:(data)=>{
 				hashHistory.push({
 			        pathname: '/PayPage',
-			        query: {
+			        state: {
 						topic:this.props.topic,
+						amount:this.props.amount,
 						...data
 			        },
 			    })
 			}
 		})
+		Popup.hide();
 	}
 	render() {
 		const { pay_way} = this.state;
@@ -127,8 +129,9 @@ export class Reward extends Component {
 			callBack:(data)=>{
 				hashHistory.push({
 			        pathname: '/PayPage',
-			        query: {
+			        state: {
 						topic:this.props.topic,
+						amount:this.state.amount,
 						...data
 			        },
 			    })

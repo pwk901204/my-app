@@ -91,5 +91,9 @@ url.orders = __host__ + '/api/doctor/mobile/orders';
 //直播轮训接口
 url.streams_check_status = __host__ + '/api/doctor/streams/check_status';
 
+//线下会议 需要填写的信息
+url.attendees_new = __host__ + '/api/doctor/attendees/new';
+//线下会议 提交填写的信息
+url.attendees = __host__ + '/api/doctor/attendees';
 
 module.exports = url;

@@ -6,7 +6,7 @@
   position: relative;
 }
 
-.streamVideo{
+.streamVideo {
   position: relative;
   width: 100%;
   height: calc(100vw / 7 * 4);

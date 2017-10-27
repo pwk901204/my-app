@@ -1,5 +1,7 @@
+.meetOffLineEnrollWrap{
+   height: 100%;
+}
 .meetOffLineEnroll {
-  height: 100%;
   background-color: #fff;
 }
 
@@ -31,5 +33,5 @@
 }
 
 .listItem > div:nth-of-type(1) > div:nth-of-type(2) {
-  flex-basis: 76%;
+  flex-basis: 50%;
 }

@@ -6,6 +6,7 @@ import iScroll from "iscroll/build/iscroll-probe.js";
 import moment from 'moment';
 import clock from "svg/clock.svg";
 import PropTypes from 'prop-types';
+import {Link} from "react-router";
 moment.lang('zh-cn');
 
 export default class MeetRecordPlan extends Component {
@@ -27,7 +28,7 @@ export default class MeetRecordPlan extends Component {
 						<h5 className={style.title}><span></span>会议共有{this.props.recordings_count}节</h5>
 						{
 							this.props.videos.map((item,index)=>{
-								return <div key={index}>
+								return <Link to={`/RecordDetail/${item.id}`}  key={item.id} className={style.item}>
 									<div className={style.itemTop}>
 										<span>
 											<Icon type={clock} className={style.clock} />
@@ -51,7 +52,7 @@ export default class MeetRecordPlan extends Component {
 										</div>
 									</div>
 									<WhiteSpace size="xs" />
-								</div>
+								</Link>
 							})
 						}
 					</div>

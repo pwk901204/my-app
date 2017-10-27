@@ -133,8 +133,6 @@ const PayPage = (location, cb) => {
   });
 };
 
-
-
 const requireAuth = () => {
   setTimeout(() => {
     if (!localStorage['reduxPersist:userInfo']) {
@@ -216,7 +214,7 @@ class Routers extends Component {
           onEnter={requireAuth}
         />
         <Route
-          path="/MeetOffLineEnroll"
+          path="/MeetOffLineEnroll/:id"
           getComponent={MeetOffLineEnroll}
           onEnter={requireAuth}
         />
@@ -235,11 +233,7 @@ class Routers extends Component {
           getComponent={ComingSoonPage}
           onEnter={requireAuth}
         />
-        <Route
-          path="/PayPage"
-          getComponent={PayPage}
-          onEnter={requireAuth}
-        />
+        <Route path="/PayPage" getComponent={PayPage} onEnter={requireAuth} />
       </Router>
     );
   }

@@ -40,14 +40,9 @@ class SeriesDetail extends Component {
 				{
 					series &&
 					<div className={style.seriesDetail}>
-						{ !series.purchase &&
-							<div className={style.seriesEnded}>
-								<img src={series.cover_data.size_700} alt="img" />
-								<div className={style.btnWrap}>
-									<Button className={style.btn} size="small" type="primary" inline >付费观看</Button>
-								</div>
-							</div>
-						}
+						<div className={style.seriesEnded}>
+							<img src={series.cover_data.size_700} alt="img" />
+						</div>
 						<Tabs swipeable={false} defaultActiveKey="1" className={style.tabWrap}>
 							<TabPane tab="课程目录" key="1" className={style.tabItemWrap}>
 								<SeriesDetailList {...series}/>

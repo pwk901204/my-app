@@ -29,7 +29,7 @@ export default class MeetInfo extends Component {
 						</List.Item>
 						<List.Item >
 							<span className={style.listTitle}>费用</span>
-							<span className={style.listContent}>{Number(this.props.price)?this.props.price:"免费"}</span>
+							<span className={style.listContent}>{Number(this.props.price)? "¥"+this.props.price:"免费"}</span>
 						</List.Item>
 						<List.Item >
 							<span className={style.listTitle}>地址</span>

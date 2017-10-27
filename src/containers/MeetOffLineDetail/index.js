@@ -25,8 +25,13 @@ class MeetOffLineDetail extends Component {
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({
-				meeting:data.meeting
+				meeting:data.meeting,
 			})
+		})
+	}
+	onClick = ()=>{
+		hashHistory.push({
+			pathname:"/MeetOffLineEnroll/"+this.props.routeParams.id
 		})
 	}
 	render() {
@@ -40,56 +45,65 @@ class MeetOffLineDetail extends Component {
 						{
 							meeting.attendee_status === 'attendee' &&
 							<div className={style.btnWrap}>
-								<Button
-									className={style.payBtn}
-									size="small"
-									type="primary"
-									inline
-								>{Number(meeting.price) ?`会议报名／¥${meeting.price}` : '会议报名／免费'}</Button>
-								<p>报名截止时间</p>
-								<h5>{moment(meeting.last_enter_time).format('MM月DD日 HH:mm')}</h5>
+								<div className={style.btnWrapPosition}>
+									<Button
+										className={style.payBtn}
+										size="small"
+										type="primary"
+										inline
+										onClick={this.onClick}
+									>{Number(meeting.price) ?`会议报名／¥${meeting.price}` : '会议报名／免费'}</Button>
+									<p>报名截止时间</p>
+									<h5>{moment(meeting.last_enter_time).format('MM月DD日 HH:mm')}</h5>
+								</div>
 							</div>
 						}
 						{
 							meeting.attendee_status === 'purchase' &&
 							<div className={style.btnWrap}>
-								<Button
-									className={style.payBtn}
-									size="small"
-									type="primary"
-									inline
-									disabled
-									style={{color:"#666"}}
-								>订单号:{meeting.meeting_order_no}</Button>
-								<h5>报名成功!</h5>
+								<div className={style.btnWrapPosition}>
+									<Button
+										className={style.payBtn}
+										size="small"
+										type="primary"
+										inline
+										disabled
+										style={{color:"#666"}}
+									>订单号:{meeting.meeting_order_no}</Button>
+									<h5>报名成功!</h5>
+								</div>
 							</div>
 						}
 						{
 							meeting.attendee_status === 'outnumber' &&
 							<div className={style.btnWrap}>
-								<Button
-									className={style.payBtn}
-									size="small"
-									type="primary"
-									inline
-									disabled
-									style={{color:"#666"}}
-								>名额已满</Button>
-								<h5>已截止报名</h5>
+								<div className={style.btnWrapPosition}>
+									<Button
+										className={style.payBtn}
+										size="small"
+										type="primary"
+										inline
+										disabled
+										style={{color:"#666"}}
+									>名额已满</Button>
+									<h5>已截止报名</h5>
+								</div>
 							</div>
 						}
 						{
 							meeting.attendee_status == 'outtime' &&
 							<div className={style.btnWrap}>
-								<Button
-									className={style.payBtn}
-									size="small"
-									type="primary"
-									inline
-									disabled
-									style={{color:"#666"}}
-								>报名结束</Button>
-								<h5>已截止报名</h5>
+								<div className={style.btnWrapPosition}>
+									<Button
+										className={style.payBtn}
+										size="small"
+										type="primary"
+										inline
+										disabled
+										style={{color:"#666"}}
+									>报名结束</Button>
+									<h5>已截止报名</h5>
+								</div>
 							</div>
 						}
 					</div>
