@@ -1,0 +1,52 @@
+.testItem{
+	composes: clearfix from 'src/index.css';
+	padding:20px;
+	background: #fff;
+	border-bottom: 1px solid #ddd;
+}
+.left{
+	float: left;
+	width: 170px;
+	height: 100px;
+	position: relative;
+}
+.left img{
+	display: block;
+	height: 100%;
+	width: 100%;
+}
+.left span{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	font-size: 24px;
+	background: #33a9fc;
+	color: #fff;
+	text-align: center;
+	line-height: 35px;
+	opacity: 0.8;
+}
+.right{
+	float: right;
+	width: calc( 100% - 190px );
+}
+.right h5{
+	font-size: 30px;
+	line-height: 30px;
+}
+.right p{
+	line-height: 44px;
+	font-size: 24px;
+	color: #33a9fc;
+}
+.right p i{
+	font-style: normal;
+	color: #666;
+}
+.right span{
+	display: block;
+	line-height: 30px;
+	font-size: 24px;
+	color: #666;
+}

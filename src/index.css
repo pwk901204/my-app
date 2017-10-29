@@ -19,6 +19,12 @@
 }
 :global(.my-error-display img) {
 }
+:global(.fontBlue) {
+  color:#33a9fc !important;
+}
+:global(.fontOrange) {
+  color:#fe8f06 !important;
+}
 
 .clearfix:after {
   content: '';

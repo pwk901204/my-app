@@ -1,0 +1,47 @@
+.testDetailListWrap{
+	height: 100%
+}
+.testDetailList{
+
+}
+.testDetailList .title{
+	font-size: 26px;
+	color: #999;
+	padding: 0 20px;
+	line-height: 50px;
+}
+.testDetailList ul li{
+	background: #fff;
+	padding: 20px 30px;
+	border-bottom: 1px solid #ddd;
+}
+.testDetailList ul li h6{
+	float: left;
+	font-size: 30px;
+	width: 120px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.testDetailList ul li p{
+	float: left;
+	font-size: 30px;
+	width: calc( 100% - 300px );
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #999;
+}
+.testDetailList ul li span{
+	float: left;
+	font-size: 30px;
+	width: 180px;
+	text-align: right;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #999;
+}
+.testDetailList ul li span i{
+	font-style: normal;
+}

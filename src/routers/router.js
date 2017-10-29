@@ -132,6 +132,21 @@ const PayPage = (location, cb) => {
     cb(null, require('containers/PayPage/index').default);
   });
 };
+const TestList = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/TestList/index').default);
+  });
+};
+
+const TestDetail = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/TestDetail/index').default);
+  });
+};
+
+
+
+
 
 const requireAuth = () => {
   setTimeout(() => {
@@ -234,6 +249,8 @@ class Routers extends Component {
           onEnter={requireAuth}
         />
         <Route path="/PayPage" getComponent={PayPage} onEnter={requireAuth} />
+        <Route path="/TestList" getComponent={TestList} onEnter={requireAuth} />
+        <Route path="/TestDetail" getComponent={TestDetail} onEnter={requireAuth} />
       </Router>
     );
   }
