@@ -8,6 +8,8 @@ import StreamInfo from "components/StreamInfo";
 import DoctorInfo from "components/DoctorInfo";
 import {ordersAction} from "reduxs/orders.js";
 import TestDetailList from "components/Test/TestDetailList";
+import TestDetailInfo from "components/Test/TestDetailInfo";
+
 
 const TabPane = Tabs.TabPane;
 
@@ -29,7 +31,7 @@ class TestDetail extends Component {
 							<TestDetailList/>
 						</TabPane>
 						<TabPane tab="内容简介" key="2" className={style.tabItemWrap}>
-							123
+							<TestDetailInfo />
 						</TabPane>
 						<TabPane tab="医生详情" key="3" className={style.tabItemWrap}>
 							<DoctorInfo/>

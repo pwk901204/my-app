@@ -1,0 +1,88 @@
+.testQuestionDetailWrap{
+	height: 100%;
+}
+.head{
+	composes: clearfix from 'src/index.css';
+	padding: 20px 0;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+}
+.head span{
+	float: left;
+	font-size: 24px;
+	width: 120px;
+	line-height: 60px;
+	background: #fff;
+	margin: 0 20px;
+	text-align: center;
+	border-radius: 30px 30px;
+	color: #999;
+}
+.head span.active{
+	color: #33a9fc;
+}
+.head div{
+	float: left;
+	font-size: 24px;
+	width: calc( 100% - 320px );
+	text-align: center;
+	line-height: 60px;
+	background: #fff;
+	border-radius: 30px 30px;
+}
+.head div i{
+	font-style: normal;
+	color: #33a9fc;
+}
+
+.contentWrap{
+	padding: 100px 0;
+	height: 100%;
+	box-sizing: border-box;
+}
+.content{
+	padding: 0 20px;
+}
+.content h4{
+	text-align: center;
+	color: #fc7277;
+}
+.content h5{
+	line-height: 60px;
+}
+.content h5 i{
+	font-style: normal;
+	color:#33a9fc;
+}
+.content .questionContent{
+	padding:20px;
+	background: #fff;
+	border-radius: 10px 10px;
+}
+
+.content .myAnswer{
+	padding:20px;
+	background: #fff;
+	border-radius: 10px 10px;
+}
+
+.foot{
+	width: 100%;
+	padding: 20px;
+	background: #fff;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	box-sizing: border-box;
+}
+.foot .button{
+	width: 100%;
+	height: 60px;
+	text-align: center;
+	line-height: 60px;
+	background: #33a9fc;
+	color: #fff;
+	border-radius: 30px 30px;
+}

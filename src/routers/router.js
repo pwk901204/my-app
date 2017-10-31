@@ -144,6 +144,17 @@ const TestDetail = (location, cb) => {
   });
 };
 
+const TestRanking = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/TestRanking/index').default);
+  });
+};
+
+const TestQuestionDetail = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/TestQuestionDetail/index').default);
+  });
+};
 
 
 
@@ -251,6 +262,8 @@ class Routers extends Component {
         <Route path="/PayPage" getComponent={PayPage} onEnter={requireAuth} />
         <Route path="/TestList" getComponent={TestList} onEnter={requireAuth} />
         <Route path="/TestDetail" getComponent={TestDetail} onEnter={requireAuth} />
+        <Route path="/TestRanking" getComponent={TestRanking} onEnter={requireAuth} />
+        <Route path="/TestQuestionDetail" getComponent={TestQuestionDetail} onEnter={requireAuth} />
       </Router>
     );
   }
