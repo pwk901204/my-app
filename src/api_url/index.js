@@ -93,7 +93,39 @@ url.streams_check_status = __host__ + '/api/doctor/streams/check_status';
 
 //线下会议 需要填写的信息
 url.attendees_new = __host__ + '/api/doctor/attendees/new';
+
 //线下会议 提交填写的信息
 url.attendees = __host__ + '/api/doctor/attendees';
 
+//试题列表
+url.courses_exams = __host__ + '/api/doctor/courses/exams';
+
+//试题详情
+url.courses = __host__ + '/api/doctor/courses';
+
+//试题答题详情
+url.topics = __host__ + '/api/doctor/topics';
+
+
+
 module.exports = url;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

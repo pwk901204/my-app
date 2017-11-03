@@ -156,9 +156,6 @@ const TestQuestionDetail = (location, cb) => {
   });
 };
 
-
-
-
 const requireAuth = () => {
   setTimeout(() => {
     if (!localStorage['reduxPersist:userInfo']) {
@@ -261,9 +258,21 @@ class Routers extends Component {
         />
         <Route path="/PayPage" getComponent={PayPage} onEnter={requireAuth} />
         <Route path="/TestList" getComponent={TestList} onEnter={requireAuth} />
-        <Route path="/TestDetail" getComponent={TestDetail} onEnter={requireAuth} />
-        <Route path="/TestRanking" getComponent={TestRanking} onEnter={requireAuth} />
-        <Route path="/TestQuestionDetail" getComponent={TestQuestionDetail} onEnter={requireAuth} />
+        <Route
+          path="/TestDetail/:id"
+          getComponent={TestDetail}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/TestRanking/:id"
+          getComponent={TestRanking}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/TestQuestionDetail/:id"
+          getComponent={TestQuestionDetail}
+          onEnter={requireAuth}
+        />
       </Router>
     );
   }

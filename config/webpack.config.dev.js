@@ -138,6 +138,7 @@ module.exports = {
           require.resolve('antd-mobile').replace(/warn\.js$/, ''),  // antd-mobile使用的svg目录
           //paths.appSrc,
           path.resolve(__dirname, '../src/svg'),  // 个人的svg文件目录，如果自己有svg需要在这里配置
+          //path.resolve('react-photoswipe').replace(/warn\.js$/, '')
         ]
       },
       {
@@ -181,6 +182,14 @@ module.exports = {
               name: 'static/media/[name].[hash:8].[ext]',
             },
           },
+
+          {
+            test: /\.(svg)$/i,
+            loader: require.resolve('url-loader'),
+            include: [
+              path.resolve('node_modules/react-photoswipe').replace(/warn\.js$/, '')
+            ]
+          },
           // Process JS with Babel.
           {
             test: /\.(js|jsx)$/,
@@ -208,6 +217,9 @@ module.exports = {
           // in development "style" loader enables hot editing of CSS.
           {
             test: /\.css$/,
+            exclude: [
+              path.resolve('node_modules/react-photoswipe').replace(/warn\.js$/, '')
+            ],
             use: [
               require.resolve('style-loader'),
               {
@@ -217,6 +229,39 @@ module.exports = {
                   modules:true,
                   localIdentName:'[path][name]---[local]---[hash:base64:5]'
                 },
+              },
+              {
+                loader: require.resolve('postcss-loader'),
+                options: {
+                  // Necessary for external CSS imports to work
+                  // https://github.com/facebookincubator/create-react-app/issues/2677
+                  ident: 'postcss',
+                  plugins: () => [
+                    require('postcss-flexbugs-fixes'),
+                    autoprefixer({
+                      browsers: [
+                        '>1%',
+                        'last 4 versions',
+                        'Firefox ESR',
+                        'not ie < 9', // React doesn't support IE8 anyway
+                      ],
+                      flexbox: 'no-2009',
+                    }),
+                    pxtorem({ rootValue: 100, propWhiteList: [] }) //新增
+                  ],
+                },
+              },
+            ],
+          },
+          {
+            test: /\.css$/,
+            include: [
+              path.resolve('node_modules/react-photoswipe').replace(/warn\.js$/, '')
+            ],
+            use: [
+              require.resolve('style-loader'),
+              {
+                loader: require.resolve('css-loader'),
               },
               {
                 loader: require.resolve('postcss-loader'),

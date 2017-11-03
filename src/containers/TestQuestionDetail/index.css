@@ -1,88 +1,143 @@
-.testQuestionDetailWrap{
-	height: 100%;
+.testQuestionDetailWrap {
+  height: 100%;
 }
-.head{
-	composes: clearfix from 'src/index.css';
-	padding: 20px 0;
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100%;
+.head {
+  composes: clearfix from 'src/index.css';
+  padding: 20px 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  background: #f5f5f9;
 }
-.head span{
-	float: left;
-	font-size: 24px;
-	width: 120px;
-	line-height: 60px;
-	background: #fff;
-	margin: 0 20px;
-	text-align: center;
-	border-radius: 30px 30px;
-	color: #999;
+.head span {
+  float: left;
+  font-size: 24px;
+  width: 120px;
+  line-height: 60px;
+  background: #fff;
+  margin: 0 20px;
+  text-align: center;
+  border-radius: 30px 30px;
+  color: #999;
 }
-.head span.active{
-	color: #33a9fc;
+.head span.active {
+  color: #33a9fc;
 }
-.head div{
-	float: left;
-	font-size: 24px;
-	width: calc( 100% - 320px );
-	text-align: center;
-	line-height: 60px;
-	background: #fff;
-	border-radius: 30px 30px;
+.head div {
+  float: left;
+  font-size: 24px;
+  width: calc(100% - 320px);
+  text-align: center;
+  line-height: 60px;
+  background: #fff;
+  border-radius: 30px 30px;
 }
-.head div i{
+.head div i {
+  font-style: normal;
+  color: #33a9fc;
+}
+
+.contentWrap {
+  height: 100%;
+  box-sizing: border-box;
+  display: none;
+}
+.contentWrap.active{
+  display: block;
+}
+
+.content {
+  padding: 100px 20px;
+}
+.content h4 {
+  text-align: center;
+  color: #fc7277;
+}
+.content h5 {
+  line-height: 60px;
+}
+.content h5 i {
+  font-style: normal;
+  color: #33a9fc;
+}
+.content .questionContent {
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px 10px;
+}
+.content .questionContent img{
+  width: 100%;
+}
+.content .myAnswer {
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px 10px;
+}
+
+.single_selection label{
+  display: block;
+  font-size: 30px;
+  padding:20px 0;
+}
+.single_selection .radio{
+  float: left;
+  margin: 10px 20px 0;
+}
+.single_selection label p{
+  float: left;
+  width: calc( 100% - 60px );
+  line-height: 40px;
+}
+
+.content .myAnswer p {
 	font-style: normal;
-	color: #33a9fc;
+	font-weight: bold;
+  text-align: center;
+  font-size: 26px;
+}
+.content .myAnswer textarea{
+  outline: none;
+  border:1px solid #ddd;
+  border-radius: 10px 10px;
+  padding:10px;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  font-size: 26px;
 }
 
-.contentWrap{
-	padding: 100px 0;
-	height: 100%;
-	box-sizing: border-box;
-}
-.content{
-	padding: 0 20px;
-}
-.content h4{
-	text-align: center;
-	color: #fc7277;
-}
-.content h5{
-	line-height: 60px;
-}
-.content h5 i{
-	font-style: normal;
-	color:#33a9fc;
-}
-.content .questionContent{
-	padding:20px;
-	background: #fff;
-	border-radius: 10px 10px;
-}
-
-.content .myAnswer{
-	padding:20px;
-	background: #fff;
-	border-radius: 10px 10px;
-}
-
-.foot{
-	width: 100%;
+.content .score{
 	padding: 20px;
 	background: #fff;
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	box-sizing: border-box;
+	border-radius: 10px 10px;
 }
-.foot .button{
-	width: 100%;
-	height: 60px;
+.content .score p{
 	text-align: center;
-	line-height: 60px;
-	background: #33a9fc;
-	color: #fff;
-	border-radius: 30px 30px;
+	font-size: 26px;
+}
+.content .score p i{
+	font-style: normal;
+	font-weight: bold;
+}
+
+.foot {
+  width: 100%;
+  padding: 20px;
+  background: #fff;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  z-index: 1;
+}
+.foot .button {
+  width: 100%;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  background: #33a9fc;
+  color: #fff;
+  border-radius: 30px 30px;
 }

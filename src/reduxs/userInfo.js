@@ -11,7 +11,7 @@ export const reducer = handleActions(
     userInfo: (state, action) => ({
       ...state,
       ...action.payload,
-      token:encodeURIComponent(action.payload.token)
+      token: encodeURIComponent(action.payload.token)
     })
   },
   defaultState

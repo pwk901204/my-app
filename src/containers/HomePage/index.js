@@ -85,9 +85,9 @@ class HomePage extends Component {
 							<a href="http://www.baidu.com" >
 								图文课程
 							</a>
-							<a href="http://www.baidu.com" >
+							<Link to="/TestList" >
 								系列试题
-							</a>
+							</Link>
 							<a href="http://www.baidu.com" >
 								交流园地
 							</a>

@@ -1,22 +1,82 @@
-
 import React, { Component } from 'react';
 import style from './index.css';
-import {ActivityIndicator,WhiteSpace} from 'antd-mobile';
-
+import {ActivityIndicator,WhiteSpace,Toast} from 'antd-mobile';
+import {connect} from "react-redux";
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 import TestItem from "components/Test/TestItem";
-
+import url from "api_url/index.js";
 
 class TestList extends Component {
 	state={
-		loading:false
+		loading:false,
+		selectUser:"",
+		doctors:null,
+		exams:null,
+		page:1,
+		total_pages:10
 	}
 	componentDidMount(){
-		console.log(this.refs.tabBarWrap.style);
-		this.refs.tabBarWrap.style.width=`${6*1.7}rem`;
+		this.setState({
+			loading:true
+		})
+		let p1 = this.getDetail();
+		Promise.all([p1]).then(()=>{
+			this.setState({
+				loading:false
+			})
+		})
+		this.getDetail();
+	}
+	getDetail=()=>{
+		this.setState({
+			loading:true
+		})
+		return fetch(url.courses_exams + "?token=" + this.props.userInfo.token + "&page=" + this.state.page + "&per_page=30&user_id=" + this.state.selectUser)
+		.then((response)=>response.json())
+		.then((data)=>{
+			this.setState({
+				loading:false
+			})
+			if(data.msg.status === "success"){
+
+				let doctors = data.doctors;
+				doctors.unshift({value:"",label:"全部"});
+
+				this.refs.tabBarWrap.style.width=`${doctors.length*1.7}rem`;
+				this.setState({
+					doctors:doctors,
+					exams:data.exams,
+					meta:data.meta,
+					total_pages:data.meta.total_pages
+				})
+			}else{
+				Toast.info(data.msg.message);
+			}
+		})
+	}
+	scrollEnd = (iScrollInstance) =>{
+		if(Math.abs(iScrollInstance.scrollerHeight)>iScrollInstance.wrapperHeight &&
+		iScrollInstance.maxScrollY === iScrollInstance.y &&
+		this.state.page < this.state.total_pages
+		){
+			console.log("最底部了");
+			this.setState({
+				page:this.state.page+1
+			},()=>{
+				this.getDetail()
+			})
+		}
+	}
+	handleTabBar = (item)=>{
+		this.setState({
+			selectUser:item.value
+		},()=>{
+			this.getDetail();
+		})
 	}
 	render() {
+		let {doctors,exams,selectUser} = this.state;
 		return (
 			<div className={style.testList}>
 				<div className={style.tabBarWrap}>
@@ -26,14 +86,18 @@ class TestList extends Component {
 							scrollX: true,
 							scrollY: false
 						}}
+						onScrollEnd={this.scrollEnd}
 					>
 						<div className={style.tabBar} ref="tabBarWrap">
-							<div className={style.active}>全部</div>
-							<div>朱天刚</div>
-							<div>朱天刚</div>
-							<div>朱天刚</div>
-							<div>朱天刚</div>
-							<div>朱天刚</div>
+							{
+								doctors && doctors.map((item,index)=>{
+									return <div
+										key={index}
+										className={selectUser === item.value ? style.active : ""}
+										onClick={()=>{this.handleTabBar(item)}}
+									>{item.label}</div>
+								})
+							}
 						</div>
 					</ReactIScroll>
 				</div>
@@ -43,15 +107,11 @@ class TestList extends Component {
 						iScroll={iScroll}
 					>
 						<div className={style.list}>
-							<TestItem />
-							<TestItem />
-							<TestItem />
-							<TestItem />
-							<TestItem />
-							<TestItem />
-							<TestItem />
-							<TestItem />
-							<TestItem />
+							{
+								exams && exams.map((item,index)=>{
+									return <TestItem key={item.id} {...item}/>
+								})
+							}
 						</div>
 					</ReactIScroll>
 				</div>
@@ -60,7 +120,18 @@ class TestList extends Component {
 		);
 	}
 }
-export default TestList;
+
+export default connect (
+	(state)=>{
+		return {
+			userInfo:state.userInfo
+		}
+	},
+	()=>{
+		return {
+		}
+	}
+)(TestList);
 
 
 

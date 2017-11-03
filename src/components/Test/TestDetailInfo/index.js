@@ -17,22 +17,24 @@ export default class TestDetailInfo extends Component {
 						<WhiteSpace size="xs" />
 						<List.Item >
 							<span className={style.listTitle}>试题名称</span>
-							<span className={style.listContent}>国际心血管病的撒点</span>
+							<span className={style.listContent}>{this.props.topic}</span>
 						</List.Item>
 						<List.Item >
 							<span className={style.listTitle}>出题专家</span>
-							<span className={style.listContent}>出题专家</span>
+							<span className={style.listContent}>{this.props.doctor.doctor_name}</span>
 						</List.Item>
 						<List.Item >
 							<span className={style.listTitle}>试题简介</span>
-							<div className={style.listKeyWordsContent}>
-								试题简介试题简介试题简介试题简介试题简介试题简介试题简介试题简介试题简介试题简介试题简介试题简介试题简介试题简介试题简介试题简介试题简介试题简介试题简介试题简介试题简介试题简介
-							</div>
+							<div className={style.listKeyWordsContent}>{this.props.introduction}</div>
 						</List.Item>
 						<List.Item >
 							<span className={style.listTitle}>相关科室</span>
 							<div className={style.listKeyWordsContent}>
-								 <Tag selected className={style.listKeyWordsItem}>全科医疗科</Tag>
+								{
+									this.props.departments.map((item,index)=>{
+										return <Tag selected key={index} className={style.listKeyWordsItem}>{item}</Tag>
+									})
+								}
 							</div>
 						</List.Item>
 					</List>

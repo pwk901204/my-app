@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import style from './index.css';
-
+import {Link} from "react-router";
 class TestItem extends Component {
 	render() {
 		return (
-			<div className={style.testItem}>
+			<Link to={"TestDetail/" + this.props.id} className={style.testItem}>
 				<div className={style.left}>
-					<img src="http://image.beekka.com/blog/2015/bg2015033101.png" alt="img"/>
-					<span>更新至第12期</span>
+					<img src={this.props.cover_data.size_300} alt="img"/>
+					<span>更新至第{this.props.exams_count}期</span>
 				</div>
 				<div className={style.right}>
-					<h5>国际心血管病学会每周试题</h5>
-					<p><i>出题人：</i>严干新教授</p>
-					<span>北京大学人民医院</span>
+					<h5>{this.props.topic}</h5>
+					<p><i>出题人：</i>{this.props.doctor_name}</p>
+					<span>{this.props.department_name}</span>
 				</div>
-			</div>
+			</Link>
 		);
 	}
 }
