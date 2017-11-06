@@ -1,0 +1,39 @@
+.introduction{
+
+}
+
+.title {
+  display: block;
+  height: 80px;
+  font-size: 30px;
+  line-height: 30px;
+  padding: 25px 20px;
+  box-sizing: border-box;
+  composes: clearfix from 'src/index.css';
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+}
+.title i {
+  float: left;
+  width: 4px;
+  height: 30px;
+  background-color: #33a9fc;
+  margin-right: 20px;
+}
+.title p {
+  float: left;
+  color: #222;
+}
+.content{
+	padding: 20px;
+	background: #fff;
+}
+.content textarea{
+	display: block;
+	width: 100%;
+	background: #eee;
+	border:1px solid #eee;
+	border-radius: 10px 10px;
+	padding: 10px;
+	box-sizing: border-box;
+}

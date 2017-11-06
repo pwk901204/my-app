@@ -186,6 +186,42 @@ const ModifyInfo = (location, cb) => {
   });
 };
 
+const Introduction = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/Introduction').default);
+  });
+};
+const Setting = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/Setting').default);
+  });
+};
+const Accounts = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/Setting/Accounts').default);
+  });
+};
+
+const BindPhone = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/Setting/BindPhone').default);
+  });
+};
+
+const ChangePassword = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/Setting/ChangePassword').default);
+  });
+};
+
+const AboutMds = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/Setting/AboutMds').default);
+  });
+};
+
+
+
 
 
 
@@ -331,6 +367,39 @@ class Routers extends Component {
           getComponent={ModifyInfo}
           onEnter={requireAuth}
         />
+        <Route
+          path="/Introduction"
+          getComponent={Introduction}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/Setting"
+          getComponent={Setting}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/Accounts"
+          getComponent={Accounts}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/BindPhone"
+          getComponent={BindPhone}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/ChangePassword"
+          getComponent={ChangePassword}
+          onEnter={requireAuth}
+        />
+        
+        <Route
+          path="/AboutMds"
+          getComponent={AboutMds}
+          onEnter={requireAuth}
+        />
+        
+
       </Router>
     );
   }

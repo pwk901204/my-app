@@ -1,0 +1,19 @@
+.changePassword{
+	height: 100%;
+	position: relative;
+}
+
+.text input {
+  text-align: right;
+}
+
+.listItem > div:nth-of-type(1) > div:nth-of-type(2) {
+  flex-basis: 76%;
+}
+
+.btn{
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+}

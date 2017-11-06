@@ -82,7 +82,7 @@ const data1=[
 
 	{
 		icon:<Icon type={shezhi} />,
-		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>设置</p>
+		text:<p data-link="/Setting" style={{color:"#6f6f6f",fontWeight:'bold'}}>设置</p>
 	},
 	{
 		icon:<Icon type={bangzhuyufankui} />,
@@ -92,6 +92,11 @@ const data1=[
 		icon:<Icon type={wodewenzhang} />,
 		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的文章</p>
 	},
+	{
+		icon:<Icon type={wodewenzhang} />,
+		text:<p data-link="/Introduction" style={{color:"#6f6f6f",fontWeight:'bold'}}>擅长简介</p>
+	},
+
 
 ]
 
