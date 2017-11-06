@@ -44,7 +44,7 @@
   box-sizing: border-box;
   display: none;
 }
-.contentWrap.active{
+.contentWrap.active {
   display: block;
 }
 
@@ -67,7 +67,7 @@
   background: #fff;
   border-radius: 10px 10px;
 }
-.content .questionContent img{
+.content .questionContent img {
   width: 100%;
 }
 .content .myAnswer {
@@ -76,50 +76,50 @@
   border-radius: 10px 10px;
 }
 
-.single_selection label{
+.single_selection label {
   display: block;
   font-size: 30px;
-  padding:20px 0;
+  padding: 20px 0;
 }
-.single_selection .radio{
+.single_selection .radio {
   float: left;
   margin: 10px 20px 0;
 }
-.single_selection label p{
+.single_selection label p {
   float: left;
-  width: calc( 100% - 60px );
+  width: calc(100% - 60px);
   line-height: 40px;
 }
 
 .content .myAnswer p {
-	font-style: normal;
-	font-weight: bold;
+  font-style: normal;
+  font-weight: bold;
   text-align: center;
   font-size: 26px;
 }
-.content .myAnswer textarea{
+.content .myAnswer textarea {
   outline: none;
-  border:1px solid #ddd;
+  border: 1px solid #ddd;
   border-radius: 10px 10px;
-  padding:10px;
+  padding: 10px;
   box-sizing: border-box;
   display: block;
   width: 100%;
   font-size: 26px;
 }
 
-.content .score{
-	padding: 20px;
-	background: #fff;
-	border-radius: 10px 10px;
+.content .score {
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px 10px;
 }
-.content .score p{
-	text-align: center;
-	font-size: 26px;
+.content .score p {
+  text-align: center;
+  font-size: 26px;
 }
-.content .score p i{
-	font-style: normal;
-	font-weight: bold;
+.content .score p i {
+  font-style: normal;
+  font-weight: bold;
 }
 
 .foot {

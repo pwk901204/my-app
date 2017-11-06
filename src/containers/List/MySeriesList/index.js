@@ -4,16 +4,16 @@ import {ActivityIndicator, Tabs,} from 'antd-mobile';
 import {connect} from "react-redux";
 import url from "api_url/index.js";
 import {hashHistory} from "react-router";
-import {StreamReleaseItem,StreamItem,StreamPurchaseItem} from "components/StreamItem";
+import {SeriesReleaseItem,SeriesPurchaseItem} from "components/SeriesItem";
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 
 const TabPane = Tabs.TabPane;
 
-class MyStreamList extends Component {
+class MySeriesList extends Component {
 	state = {
 		loading:false,
-		streams:[],
+		courses:[],
 		type:"created",
 		page:1
 	}
@@ -24,12 +24,12 @@ class MyStreamList extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(url.doctors_streams + "?token=" + this.props.userInfo.token + "&type="+ this.state.type +"&page="+ this.state.page + "&per_page=10")
+		fetch(url.doctors_courses + "?token=" + this.props.userInfo.token + "&type="+ this.state.type +"&page="+ this.state.page + "&per_page=10")
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({
 				loading:false,
-				streams:this.state.streams.concat(data.streams),
+				courses:this.state.courses.concat(data.courses),
 				total_pages:data.meta.total_pages
 			})
 		})
@@ -49,14 +49,14 @@ class MyStreamList extends Component {
 		}
 	}
 	render() {
-		let {streams} = this.state;
+		let {courses} = this.state;
 		return (
-			<div className={style.myStreamList}>
+			<div className={style.mySeriesList}>
 				<Tabs swipeable={false} defaultActiveKey="created" onTabClick={(key)=>{
 						this.setState({
 							type:key,
 							page:1,
-							streams:[]
+							courses:[]
 						},()=>{
 							this.getList();
 						})
@@ -68,8 +68,8 @@ class MyStreamList extends Component {
 						>
 							<div>
 								{
-									streams.length>0 && streams.map((item,index)=>{
-										return <StreamReleaseItem key={item.id} {...item} />
+									courses.length>0 && courses.map((item,index)=>{
+										return <SeriesReleaseItem key={item.id} {...item} />
 									})
 								}
 							</div>
@@ -81,26 +81,12 @@ class MyStreamList extends Component {
 							onScrollEnd={this.scrollEnd}
 						>
 							<div>
-							{
-								streams.length>0 && streams.map((item,index)=>{
-									return <StreamPurchaseItem key={item.id} {...item} />
-								})
-							}
-						</div>
-						</ReactIScroll>
-					</TabPane>
-					<TabPane tab="已预约" key="reservation" className={style.tabItemWrap} >
-						<ReactIScroll
-							iScroll={iScroll}
-							onScrollEnd={this.scrollEnd}
-						>
-							<div>
-							{
-								streams.length>0 && streams.map((item,index)=>{
-									return <StreamItem key={item.id} {...item} />
-								})
-							}
-						</div>
+								{
+									courses.length>0 && courses.map((item,index)=>{
+										return <SeriesPurchaseItem key={item.id} {...item} />
+									})
+								}
+							</div>
 						</ReactIScroll>
 					</TabPane>
 				</Tabs>
@@ -120,7 +106,7 @@ export default connect (
 		return {
 		}
 	}
-)(MyStreamList);
+)(MySeriesList);
 
 
 

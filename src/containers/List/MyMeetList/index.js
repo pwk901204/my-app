@@ -3,18 +3,17 @@ import style from './index.css';
 import {ActivityIndicator, Tabs,} from 'antd-mobile';
 import {connect} from "react-redux";
 import url from "api_url/index.js";
-import {hashHistory} from "react-router";
-import {StreamReleaseItem,StreamItem,StreamPurchaseItem} from "components/StreamItem";
+import { MyMeetStreamItem , MyMeetOffLineItem } from "components/MeetItem";
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 
 const TabPane = Tabs.TabPane;
 
-class MyStreamList extends Component {
+class MyMeetList extends Component {
 	state = {
 		loading:false,
-		streams:[],
-		type:"created",
+		meetings:[],
+		type:"live",
 		page:1
 	}
 	componentDidMount(){
@@ -24,12 +23,12 @@ class MyStreamList extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(url.doctors_streams + "?token=" + this.props.userInfo.token + "&type="+ this.state.type +"&page="+ this.state.page + "&per_page=10")
+		fetch(url.doctors_meetings + "?token=" + this.props.userInfo.token + "&type="+ this.state.type +"&page="+ this.state.page + "&per_page=10")
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({
 				loading:false,
-				streams:this.state.streams.concat(data.streams),
+				meetings:this.state.meetings.concat(data.meetings),
 				total_pages:data.meta.total_pages
 			})
 		})
@@ -49,58 +48,44 @@ class MyStreamList extends Component {
 		}
 	}
 	render() {
-		let {streams} = this.state;
+		let {meetings} = this.state;
 		return (
-			<div className={style.myStreamList}>
+			<div className={style.myMeetList}>
 				<Tabs swipeable={false} defaultActiveKey="created" onTabClick={(key)=>{
 						this.setState({
 							type:key,
 							page:1,
-							streams:[]
+							meetings:[]
 						},()=>{
 							this.getList();
 						})
 					}}>
-					<TabPane tab="已发起" key="created" className={style.tabItemWrap}  >
+					<TabPane tab="直播会议" key="live" className={style.tabItemWrap}  >
 						<ReactIScroll
 							iScroll={iScroll}
 							onScrollEnd={this.scrollEnd}
 						>
-							<div>
+							<ul className={style.List}>
 								{
-									streams.length>0 && streams.map((item,index)=>{
-										return <StreamReleaseItem key={item.id} {...item} />
+									meetings.length>0 && meetings.map((item,index)=>{
+										return <li key={item.id}><MyMeetStreamItem key={item.id} {...item} /></li>
 									})
 								}
-							</div>
+							</ul>
 						</ReactIScroll>
 					</TabPane>
-					<TabPane tab="已购买" key="bought" className={style.tabItemWrap} >
+					<TabPane tab="线下会议" key="offline" className={style.tabItemWrap} >
 						<ReactIScroll
 							iScroll={iScroll}
 							onScrollEnd={this.scrollEnd}
 						>
-							<div>
-							{
-								streams.length>0 && streams.map((item,index)=>{
-									return <StreamPurchaseItem key={item.id} {...item} />
-								})
-							}
-						</div>
-						</ReactIScroll>
-					</TabPane>
-					<TabPane tab="已预约" key="reservation" className={style.tabItemWrap} >
-						<ReactIScroll
-							iScroll={iScroll}
-							onScrollEnd={this.scrollEnd}
-						>
-							<div>
-							{
-								streams.length>0 && streams.map((item,index)=>{
-									return <StreamItem key={item.id} {...item} />
-								})
-							}
-						</div>
+							<ul className={style.List}>
+								{
+									meetings.length>0 && meetings.map((item,index)=>{
+										return <li key={item.id}><MyMeetOffLineItem key={item.id} {...item} /></li>
+									})
+								}
+							</ul>
 						</ReactIScroll>
 					</TabPane>
 				</Tabs>
@@ -120,7 +105,7 @@ export default connect (
 		return {
 		}
 	}
-)(MyStreamList);
+)(MyMeetList);
 
 
 

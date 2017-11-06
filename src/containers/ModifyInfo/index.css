@@ -1,0 +1,17 @@
+.modifyInfo{
+	position: relative;
+	height: 100%;
+}
+.modifyListWrap{
+	height: calc( 100% - 94px );
+}
+
+.btn{
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+}
+.text input {
+  text-align: right;
+}

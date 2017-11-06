@@ -4,9 +4,9 @@ import { WhiteSpace, ActivityIndicator} from 'antd-mobile';
 import { connect } from "react-redux";
 import {Link} from 'react-router';
 import url from "api_url/index.js";
-import StreamItem from "components/StreamItem/index.js";
-import RecordItem from "components/RecordItem/index.js";
-import SeriesItem from "components/SeriesItem/index.js";
+import {StreamItem} from "components/StreamItem/index.js";
+import {RecordItem} from "components/RecordItem";
+import {SeriesItem} from "components/SeriesItem";
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 class VideoCollege extends Component {

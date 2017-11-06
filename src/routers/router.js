@@ -156,6 +156,39 @@ const TestQuestionDetail = (location, cb) => {
   });
 };
 
+const MyStreamList = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/List/MyStreamList/index').default);
+  });
+};
+
+const MyRecordList = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/List/MyRecordList/index').default);
+  });
+};
+
+const MySeriesList = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/List/MySeriesList/index').default);
+  });
+};
+
+const MyMeetList = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/List/MyMeetList/index').default);
+  });
+};
+
+const ModifyInfo = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/ModifyInfo').default);
+  });
+};
+
+
+
+
 const requireAuth = () => {
   setTimeout(() => {
     if (!localStorage['reduxPersist:userInfo']) {
@@ -271,6 +304,31 @@ class Routers extends Component {
         <Route
           path="/TestQuestionDetail/:id"
           getComponent={TestQuestionDetail}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/MyStreamList"
+          getComponent={MyStreamList}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/MyRecordList"
+          getComponent={MyRecordList}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/MySeriesList"
+          getComponent={MySeriesList}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/MyMeetList"
+          getComponent={MyMeetList}
+          onEnter={requireAuth}
+        />
+        <Route
+          path="/ModifyInfo"
+          getComponent={ModifyInfo}
           onEnter={requireAuth}
         />
       </Router>

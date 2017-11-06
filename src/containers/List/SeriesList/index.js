@@ -3,7 +3,7 @@ import style from './index.css';
 import {Icon, ActivityIndicator, Picker} from 'antd-mobile';
 import {connect} from "react-redux";
 import url from "api_url/index.js";
-import SeriesItem from "components/SeriesItem/index.js";
+import {SeriesItem} from "components/SeriesItem";
 import xialajiantou from "svg/xialajiantou.svg";
 
 import ReactIScroll from "react-iscroll";

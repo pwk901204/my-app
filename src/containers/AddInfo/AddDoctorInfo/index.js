@@ -58,7 +58,7 @@ class AddDoctorInfoForm extends Component {
 	}
 
 	getRegions = () =>{
-		fetch(url.regions)
+		return fetch(url.regions)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data)
@@ -69,7 +69,7 @@ class AddDoctorInfoForm extends Component {
 	}
 
 	getDepartments = () =>{
-		fetch(url.departments)
+		return fetch(url.departments)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data)

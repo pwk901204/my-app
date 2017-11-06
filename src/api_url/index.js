@@ -6,7 +6,8 @@ switch (window.location.host) {
   case 'localhost:3000':
     // __host__ = "https://doctor.mdsonline.cn";
     //__host__ = 'http://rqiang.mynatapp.cc';
-    __host__ = 'http://api.xiayuanyin.cn';
+    __host__ = 'http://192.168.0.105:3000'
+    //__host__ = 'http://api.xiayuanyin.cn';
     //__host__ = "http://192.168.0.104:3002";
     break;
   case '192.168.0.121:3000':
@@ -106,9 +107,23 @@ url.courses = __host__ + '/api/doctor/courses';
 //试题答题详情
 url.topics = __host__ + '/api/doctor/topics';
 
+//我的 直播列表
+url.doctors_streams = __host__ + '/api/doctor/doctors/streams';
 
+//我的 录播列表
+url.doctors_recordings= __host__ + '/api/doctor/doctors/recordings';
+
+//我的 系列列表
+url.doctors_courses= __host__ + '/api/doctor/doctors/courses';
+
+//我的 系列列表
+url.doctors_meetings= __host__ + '/api/doctor/doctors/meetings';
+
+//我的 用户信息
+url.userinfos_detail= __host__ + '/api/doctor/userinfos/detail';
 
 module.exports = url;
+
 
 
 

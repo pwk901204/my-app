@@ -8,6 +8,7 @@ import wodezhibo  from "svg/wodezhibo.svg";
 import wodelubo  from "svg/wodelubo.svg";
 import wodekecheng  from "svg/wodekecheng.svg";
 import wodewenzhang  from "svg/wodewenzhang.svg";
+import wodehuiyi  from "svg/wodehuiyi.svg";
 
 import wodefuwu  from "svg/wodefuwu.svg";
 import shimingrenzheng  from "svg/shimingrenzheng.svg";
@@ -26,20 +27,21 @@ import iScroll from "iscroll/build/iscroll-probe.js";
 const data=[
 	{
 		icon:<Icon type={wodezhibo} />,
-		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的直播</p>
+		text:<p data-link="/MyStreamList" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的直播</p>
 	},
 	{
 		icon:<Icon type={wodelubo} />,
-		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的录播</p>
+		text:<p data-link="/MyRecordList" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的录播</p>
 	},
 	{
 		icon:<Icon type={wodekecheng} />,
-		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的课程</p>
+		text:<p data-link="/MySeriesList" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的课程</p>
 	},
 	{
-		icon:<Icon type={wodewenzhang} />,
-		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的文章</p>
+		icon:<Icon type={wodehuiyi} />,
+		text:<p data-link="/MyMeetList" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的会议</p>
 	},
+	
 ]
 const data1=[
 	{
@@ -71,7 +73,7 @@ const data1=[
 
 	{
 		icon:<Icon type={xiugaiziliao} />,
-		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>修改资料</p>
+		text:<p data-link="/ModifyInfo" style={{color:"#6f6f6f",fontWeight:'bold'}}>修改资料</p>
 	},
 	{
 		icon:<Icon type={wodeqianbao} />,
@@ -85,6 +87,10 @@ const data1=[
 	{
 		icon:<Icon type={bangzhuyufankui} />,
 		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>帮助与反馈</p>
+	},
+	{
+		icon:<Icon type={wodewenzhang} />,
+		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的文章</p>
 	},
 
 ]
@@ -108,6 +114,9 @@ class Mine extends Component {
 								data={data}
 								columnNum={4}
 								hasLine={false}
+								onClick={(el)=>{
+									if(el.text.props["data-link"])hashHistory.push(el.text.props["data-link"]);
+								}}
 							/>
 						</WingBlank>
 					</div>

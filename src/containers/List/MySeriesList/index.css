@@ -1,6 +1,6 @@
-.myStreamList{
+.mySeriesList{
 	height: 100%;
 }
-.myStreamList .tabItemWrap{
+.mySeriesList .tabItemWrap{
 	height: calc( 100vh - 87px );
 }

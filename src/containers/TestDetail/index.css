@@ -23,37 +23,36 @@
 .tabItemWrap {
   height: calc(100vh - 87px - (400vw / 7));
 }
-.nav{
+.nav {
   position: fixed;
   right: 0;
   bottom: 100px;
 }
-.nav>div{
+.nav > div {
   width: 100px;
   height: 100px;
   padding: 20px;
   box-sizing: border-box;
 }
 
-.rule{
-
+.rule {
 }
-.rule .ruleTitle{
+.rule .ruleTitle {
   height: 80px;
   font-weight: bold;
   font-size: 30px;
   text-align: center;
   line-height: 80px;
 }
-.rule .contentWrap{
+.rule .contentWrap {
   height: 500px;
   overflow: hidden;
 }
-.rule .contentWrap .content{
-  padding:20px;
+.rule .contentWrap .content {
+  padding: 20px;
   padding-top: 0;
 }
-.rule .contentWrap .content p{
+.rule .contentWrap .content p {
   font-size: 26px;
   line-height: 36px;
 }

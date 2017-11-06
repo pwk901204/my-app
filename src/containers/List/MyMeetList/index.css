@@ -1,0 +1,16 @@
+.myMeetList{
+	height: 100%;
+}
+.myMeetList .tabItemWrap{
+	height: calc( 100vh - 87px );
+}
+.List {
+  composes: clearfix from 'src/index.css';
+  background: #fff;
+}
+.List li {
+  float: left;
+  width: 50%;
+  padding: 20px;
+  box-sizing: border-box;
+}
