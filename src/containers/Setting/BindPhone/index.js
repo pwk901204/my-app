@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import {List, Icon, Button, InputItem, Toast, WingBlank, SegmentedControl, ActivityIndicator} from 'antd-mobile';
+import {List, Icon, Button, InputItem, Toast, ActivityIndicator} from 'antd-mobile';
 import {connect} from "react-redux";
-import {hashHistory} from "react-router";
 import { createForm } from 'rc-form';
-import mima from "svg/mima.svg";
 import shouji from "svg/shouji.svg";
+import {hashHistory} from "react-router";
 
 import yanzhengma from "svg/yanzhengma.svg";
 import url from "api_url/index.js";
-import {registerInfo} from "reduxs/registerInfo";
+import {userInfo} from "reduxs/userInfo";
 
 class BindPhone extends Component {
 	state = {
@@ -21,11 +20,97 @@ class BindPhone extends Component {
 	componentWillUnmount() {
 		clearInterval(this.state.timer);
 	}
+	getUser= ()=>{
+		return fetch(url.current_user + "?token=" + this.props.userInfo.token )
+		.then((response)=>response.json())
+		.then((data)=>{
+			this.props.userInfoAction(data.user);
+		})
+	}
 	handleClick = ()=>{
-		console.log(11)
+		let _this = this;
+		this.props.form.validateFields((err, values)=>{
+			if(err){
+				for(var name in err){
+					Toast.info(err[name].errors[0].message);
+					break;
+				}
+			}else{
+				console.log(values)
+				_this.setState({
+					loading:true
+				})
+
+				let data = {};
+				data.token = this.props.userInfo.token;
+				data.mobile =  values.mobile.replace(/\s+/g, '');
+				data.code = values.sendCodeing;
+				data.type = "mobile";
+
+				fetch(url.userinfos_change_user_info,{
+					method:"POST",
+					headers:{
+						"Content-Type":"application/json"
+					},
+					body:JSON.stringify(data)
+				})
+				.then((response)=>response.json())
+				.then((data)=>{
+					_this.setState({
+						loading:false
+					})
+					if(data.message==="ok"){
+						Toast.info("修改成功",1.5);
+						this.getUser();
+					}else{
+						Toast.info(data.message,1.5);
+					}
+				})
+			}
+		})
 	}
 	handleExtraClick = ()=>{
-		console.log(22)
+		this.props.form.validateFields((err, values)=>{
+			let _this = this;
+			if(err && err.mobile){
+				Toast.info(err.mobile.errors[0].message);
+			}else{
+				if ( !_this.state.sendCodeing ){
+					_this.setState({
+						loading:true
+					})
+					fetch(url.sendCode + "?mobile=" + values.mobile.replace(/\s+/g, '') + "&type=change_new_mobile")
+					.then((response)=>response.json())
+					.then((data)=>{
+						console.log(data)
+						_this.setState({
+							loading:false
+						})
+						let second = 30;
+						Toast.info(data.msg.message);
+						if(data.msg.status === "success"){
+							_this.setState({
+								sendCodeing:true
+							})
+							clearInterval(_this.state.timer);
+							_this.state.timer=setInterval(()=>{
+								second--;
+								if(second <= 1 ){
+									clearInterval(_this.state.timer)
+									_this.setState({
+										sendCodeing:false,
+										second:0
+									})
+								}
+								_this.setState({
+									second
+								})
+							},1000)
+						}
+					})
+				}
+			}
+		})
 	}
 	render() {
 		const { getFieldProps } = this.props.form;
@@ -47,7 +132,7 @@ class BindPhone extends Component {
 						<Icon type={shouji} className={style.formIcon}/>
 					</InputItem>
 					<InputItem
-						{...getFieldProps('code',{
+						{...getFieldProps('sendCodeing',{
 							rules: [
 								{ required: true, message: '请输入验证码'}
 							]
@@ -72,11 +157,14 @@ class BindPhone extends Component {
 export default connect (
 	(state)=>{
 		return {
-			registerInfo:state.registerInfo
+			userInfo:state.userInfo
 		}
 	},
 	(dispatch)=>{
 		return {
+			userInfoAction:(data)=>{
+				dispatch(userInfo(data))
+			}
 		}
 	}
 )(createForm()(BindPhone));

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import {ActivityIndicator,List} from 'antd-mobile';
+import {List} from 'antd-mobile';
 import {hashHistory} from "react-router";
+import {connect} from "react-redux";
 const Item = List.Item;
-const Brief = Item.Brief;
 
 class Accounts extends Component {
 	state={
@@ -13,7 +13,7 @@ class Accounts extends Component {
 		return (
 			<div className={style.introduction}>
 				<List>
-			        <Item extra="158****0067" arrow="horizontal" onClick={() => {
+			        <Item extra={this.props.userInfo.mobile} arrow="horizontal" onClick={() => {
 			        	hashHistory.push("/BindPhone")
 			        }}>绑定手机号</Item>
        			</List>
@@ -26,5 +26,14 @@ class Accounts extends Component {
 		);
 	}
 }
-export default Accounts;
-
+export default connect (
+	(state)=>{
+		return {
+			userInfo:state.userInfo
+		}
+	},
+	(dispatch)=>{
+		return {
+		}
+	}
+)(Accounts);

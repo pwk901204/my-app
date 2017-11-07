@@ -22,7 +22,7 @@ export const ordersAction = data => (dispatch, getState) => {
   })
     .then(response => response.json())
     .then(ordersData => {
-      if (ordersData.status == 'success') {
+      if (ordersData.status === 'success') {
         data.callBack(ordersData.data);
       }
     });

@@ -12,6 +12,7 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
+const pxtorem = require('postcss-pxtorem');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -94,6 +95,13 @@ module.exports = {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
+      'containers':path.resolve(__dirname, '../src/containers'),
+      'src':path.resolve(__dirname, '../src/'),
+      'images':path.resolve(__dirname, '../src/images'),
+      'svg':path.resolve(__dirname, '../src/svg'),
+      'api_url':path.resolve(__dirname, '../src/api_url'),
+      'reduxs':path.resolve(__dirname, '../src/reduxs'),
+      'components':path.resolve(__dirname, '../src/components'),
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -129,6 +137,41 @@ module.exports = {
         include: paths.appSrc,
       },
       {
+        test: /\.(svg)$/i,
+        loader: 'svg-sprite-loader',
+        include: [
+          require.resolve('antd-mobile').replace(/warn\.js$/, ''),  // antd-mobile使用的svg目录
+          //paths.appSrc,
+          path.resolve(__dirname, '../src/svg'),  // 个人的svg文件目录，如果自己有svg需要在这里配置
+          //path.resolve('react-photoswipe').replace(/warn\.js$/, '')
+        ]
+      },
+      {
+        test: /\.less$/,
+        use: [
+          require.resolve('style-loader'),
+          require.resolve('css-loader'),
+          {
+            loader: require.resolve('postcss-loader'),
+            options: {
+              ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
+              plugins: () => [
+                autoprefixer({
+                  browsers: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8', 'iOS >= 8', 'Android >= 4'],
+                }),
+                pxtorem({ rootValue: 100, propWhiteList: [] })
+              ],
+            },
+          },
+          {
+            loader: require.resolve('less-loader'),
+            options: {
+              modifyVars: { "@primary-color": "#1DA57A" },
+            },
+          },
+        ],
+      },
+      {
         // "oneOf" will traverse all following loaders until one will
         // match the requirements. When no loader matches it will fall
         // back to the "file" loader at the end of the loader list.
@@ -143,13 +186,27 @@ module.exports = {
               name: 'static/media/[name].[hash:8].[ext]',
             },
           },
+          {
+            test: /\.(svg)$/i,
+            loader: require.resolve('url-loader'),
+            include: [
+              path.resolve('node_modules/react-photoswipe').replace(/warn\.js$/, '')
+            ]
+          },
           // Process JS with Babel.
           {
             test: /\.(js|jsx)$/,
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
-              
+              // This is a feature of `babel-loader` for webpack (not Babel itself).
+              // It enables caching results in ./node_modules/.cache/babel-loader/
+              // directory for faster rebuilds.
+              cacheDirectory: true,
+              plugins: [["import", {
+                libraryName: "antd-mobile",
+                style: true,
+              }]],
               compact: true,
             },
           },
@@ -167,6 +224,9 @@ module.exports = {
           // in the main CSS file.
           {
             test: /\.css$/,
+            include: [
+              path.resolve('node_modules/react-photoswipe').replace(/warn\.js$/, '')
+            ],
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
@@ -197,6 +257,7 @@ module.exports = {
                             ],
                             flexbox: 'no-2009',
                           }),
+                          pxtorem({ rootValue: 100, propWhiteList: [] }) //新增
                         ],
                       },
                     },
@@ -217,7 +278,7 @@ module.exports = {
             // it's runtime that would otherwise processed through "file" loader.
             // Also exclude `html` and `json` extensions so they get processed
             // by webpacks internal loaders.
-            exclude: [/\.js$/, /\.html$/, /\.json$/],
+            exclude: [/\.js$/, /\.html$/, /\.json$/,/\.less$/,/\.svg$/],
             options: {
               name: 'static/media/[name].[hash:8].[ext]',
             },

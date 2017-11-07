@@ -39,7 +39,7 @@ class AboutMds extends Component {
        				<Item arrow="horizontal" onClick={() => {}}>免责声明</Item>
        			</List>
        			<List>
-       				<Item extra={'400-807-2700'} onLongPress={this.handleLongPress}>联系客服</Item>
+       				<Item extra={'400-807-2700'}  className={style.listItem} onLongPress={this.handleLongPress}>联系客服</Item>
        			</List>
 			</div>
 		);

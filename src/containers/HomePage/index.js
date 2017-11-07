@@ -15,6 +15,7 @@ import url from "api_url/index.js";
 import {connect} from "react-redux";
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
+import {userInfo} from "reduxs/userInfo";
 
 class HomePage extends Component {
 	state = {
@@ -23,6 +24,14 @@ class HomePage extends Component {
 	}
 	componentDidMount(){
 		this.getCarousels();
+		this.getUser();
+	}
+	getUser= ()=>{
+		return fetch(url.current_user + "?token=" + this.props.userInfo.token )
+		.then((response)=>response.json())
+		.then((data)=>{
+			this.props.userInfoAction(data.user);
+		})
 	}
 	getCarousels = () =>{
 		this.setState({
@@ -136,8 +145,11 @@ export default connect (
 			userInfo:state.userInfo
 		}
 	},
-	()=>{
+	(dispatch)=>{
 		return {
+			userInfoAction:(data)=>{
+				dispatch(userInfo(data))
+			}
 		}
 	}
 )(HomePage);

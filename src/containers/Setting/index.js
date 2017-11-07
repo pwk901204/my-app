@@ -17,10 +17,9 @@ class Setting extends Component {
        				}}>帐号与安全</Item>
        			</List>
        			<List>
-       				<Item arrow="horizontal" onClick={() => {}}>快速回复</Item>
-       			</List>
-       			<List>
-       				<Item arrow="horizontal" onClick={() => {}}>关于麦迪森</Item>
+       				<Item arrow="horizontal" onClick={() => {
+       					hashHistory.push("/AboutMds")
+       				}}>关于麦迪森</Item>
        			</List>
 				<ActivityIndicator toast  animating={this.state.loading}/>
 			</div>

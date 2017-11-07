@@ -1,5 +1,6 @@
 .introduction{
-
+  height:100%;
+  position: relative;
 }
 
 .title {
@@ -36,4 +37,10 @@
 	border-radius: 10px 10px;
 	padding: 10px;
 	box-sizing: border-box;
+}
+.btn{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }

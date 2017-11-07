@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import {List, Button, InputItem, Toast, WingBlank ,Picker, ActivityIndicator} from 'antd-mobile';
+import {List, Button, InputItem, Toast ,Picker, ActivityIndicator} from 'antd-mobile';
 import {connect} from "react-redux";
 import url from "api_url/index.js";
 import { createForm } from 'rc-form';
-import ReactIScroll from "react-iscroll";
-import iScroll from "iscroll/build/iscroll-probe.js";
+import {userInfo} from "reduxs/userInfo";
 
 class ModifyInfo extends Component {
 	state={
@@ -21,11 +20,11 @@ class ModifyInfo extends Component {
 		gender:[
 			{
 			  label: '男',
-			  value: "0",
+			  value: 0,
 			},
 			{
 			  label: '女',
-			  value: "1",
+			  value: 1,
 			},
 		],
 		titles:[
@@ -56,41 +55,39 @@ class ModifyInfo extends Component {
 		this.setState({
 			loading:true
 		})
+		this.setState({
+			user:this.props.userInfo
+		})
 		let p1 = this.getRegions();
 		let p2 = this.getDepartments();
-		let p3 = this.getUser();
-		Promise.all([p1,p2,p3]).then(()=>{
+		Promise.all([p1,p2]).then(()=>{
 			this.setState({
 				loading:false
+			},()=>{
+				this.areaOk([this.state.user.province_id,this.state.user.city_id])
 			})
 		})
 	}
 	getUser= ()=>{
-		return fetch(url.userinfos_detail + "?token=" + this.props.userInfo.token )
+		return fetch(url.current_user + "?token=" + this.props.userInfo.token )
 		.then((response)=>response.json())
 		.then((data)=>{
-			console.log(data)
-			this.setState({
-				user:data.user
-			})
+			this.props.userInfoAction(data.user);
 		})
 	}
 	getRegions = () =>{
 		return fetch(url.regions)
 		.then((response)=>response.json())
 		.then((data)=>{
-			console.log(data)
 			this.setState({
 				regions:data.regions
 			})
 		})
 	}
-
 	getDepartments = () =>{
 		return fetch(url.departments)
 		.then((response)=>response.json())
 		.then((data)=>{
-			console.log(data)
 			this.setState({
 				departments:data.departments
 			})
@@ -116,41 +113,38 @@ class ModifyInfo extends Component {
 		let _this = this;
 		this.props.form.validateFields((err, values)=>{
 			console.log(values)
-		// 	if(err){
-		// 		for(var name in err){
-		// 			Toast.info(err[name].errors[0].message);
-		// 			break;
-		// 		}
-		// 	}else{
-		// 		console.log(values)
-		// 		_this.setState({
-		// 			loading:true
-		// 		})
-		// 		let data = {user:{}}
-		// 		data.user.type = this.props.registerInfo.identity;
-		// 		data.user.password = this.props.registerInfo.password;
-		// 		data.user.mobile = this.props.registerInfo.mobile;
-		// 		data.user.name = values.name;
-		// 		data.user.hospital = values.hospital[0];
-		// 		data.user.region = values.region[1];
-		// 		data.user.department = values.department[1];
-		// 		data.user.title = values.title[0];
-		// 		fetch(url.sign_up,{
-		// 			method:"POST",
-		// 			headers:{
-		// 				"Content-Type":"application/json"
-		// 			},
-		// 			body:JSON.stringify(data)
-		// 		})
-		// 		.then((response)=>response.json())
-		// 		.then((data)=>{
-		// 			_this.setState({
-		// 				loading:false
-		// 			})
-		// 			this.props.userInfoAction(data.user);
-		// 			hashHistory.push("/HomePage");
-		// 		})
-		// 	}
+			_this.setState({
+				loading:true
+			})
+			let data = {};
+			data.token = this.props.userInfo.token;
+			data.name = values.name;
+			data.gender = values.gender[0];
+
+			data.hospital_id = values.hospital[0];
+			data.region_id = values.region[1];
+			data.departmet_id = values.department[1];
+			data.title = values.title[0];
+
+			fetch(url.userinfos_update_user_info,{
+				method:"POST",
+				headers:{
+					"Content-Type":"application/json"
+				},
+				body:JSON.stringify(data)
+			})
+			.then((response)=>response.json())
+			.then((data)=>{
+				_this.setState({
+					loading:false
+				})
+				if(data.message==="ok"){
+					Toast.info("修改成功",1);
+					this.getUser();
+				}else{
+					Toast.info(data.message,1);
+				}
+			})
 		})
 	}
 	render() {
@@ -159,87 +153,88 @@ class ModifyInfo extends Component {
 		return (
 			<div className={style.modifyInfo}>
 				<div className={style.modifyListWrap}>
-					<ReactIScroll
-						iScroll={iScroll}
-					>
-						{
-							user && <List className={style.list}>
-								<InputItem
-									 {...getFieldProps('name',{
-									 	initialValue: user.name,
-									 	rules: [{ required: true, message: '请输入姓名！' }]
-									 })}
-									type="text"
-									placeholder="填写姓名"
-									labelNumber={2}
-									clear={true}
-									className={style.text}
-								>
-									姓名
-								</InputItem>
-								<Picker
-									data={this.state.gender}
-									title="性别"
-									cascade={true}
-									cols={1}
-									{...getFieldProps('gender', {
-										initialValue: "0",
-										rules: [{ required: true, message: '请选择性别' }],
-									})}
-								>
-									<List.Item arrow="horizontal" className={style.listItem} >性别</List.Item>
-								</Picker>
+					{
+						user && <List>
+							<InputItem
+								 {...getFieldProps('name',{
+								 	initialValue: user.name,
+								 	rules: [{ required: true, message: '请输入姓名！' }]
+								 })}
+								type="text"
+								placeholder="填写姓名"
+								labelNumber={2}
+								clear={true}
+								className={style.text}
+							>
+								姓名
+							</InputItem>
+							<Picker
+								data={this.state.gender}
+								title="性别"
+								cascade={true}
+								cols={1}
+								{...getFieldProps('gender', {
+									initialValue: [this.state.user.gender],
+									rules: [{ required: true, message: '请选择性别' }],
+								})}
+							>
+								<List.Item arrow="horizontal" className={style.listItem} >性别</List.Item>
+							</Picker>
 
-								<Picker
-									data={this.state.regions}
-									title="地区"
-									cascade={true}
-									cols={2}
-									{...getFieldProps('region', {
-										initialValue:[1,2],
-										rules: [{ required: true, message: '请选择地区' }],
-									})}
-									onOk = {this.areaOk}
-								>
-									<List.Item arrow="horizontal" className={style.listItem} >地区</List.Item>
-								</Picker>
+							<Picker
+								data={this.state.regions}
+								title="地区"
+								cascade={true}
+								cols={2}
+								{...getFieldProps('region', {
+									initialValue:[this.state.user.province_id,this.state.user.city_id],
+									rules: [{ required: true, message: '请选择地区' }],
+								})}
+								onOk = {this.areaOk}
+							>
+								<List.Item arrow="horizontal" className={style.listItem} >地区</List.Item>
+							</Picker>
 
-								<Picker
-									data={this.state.hospitals}
-									title="医院"
-									cols={1}
-									{...getFieldProps('hospital', {
-										rules: [{ required: true, message: '请选择医院' }],
-									})}
-								>
-									<List.Item arrow="horizontal" className={style.listItem} >医院</List.Item>
-								</Picker>
+							<Picker
+								data={this.state.hospitals}
+								title="医院"
+								cols={1}
+								{...getFieldProps('hospital', {
+									initialValue:[this.state.user.hospital_id],
+									rules: [{ required: true, message: '请选择医院' }],
+								})}
+							>
+								<List.Item arrow="horizontal" className={style.listItem} >医院</List.Item>
+							</Picker>
+							{
+								console.log(this.state.hospitals, this.state.user.hospital_id)
+							}
+							<Picker
+								data={this.state.departments}
+								title="科室"
+								cascade={true}
+								cols={2}
+								{...getFieldProps('department', {
+									initialValue: [user.first_department_id,user.department_id],
+									rules: [{ required: true, message: '请选择科室' }],
+								})}
+							>
+								<List.Item arrow="horizontal" className={style.listItem} >科室</List.Item>
+							</Picker>
 
-								<Picker
-									data={this.state.departments}
-									title="科室"
-									cascade={true}
-									cols={2}
-									{...getFieldProps('department', {
-										rules: [{ required: true, message: '请选择科室' }],
-									})}
-								>
-									<List.Item arrow="horizontal" className={style.listItem} >科室</List.Item>
-								</Picker>
-
-								<Picker
-									data={this.state.titles}
-									title="职称"
-									cols={1}
-									{...getFieldProps('title', {
-										rules: [{ required: true, message: '请选择职称' }],
-									})}
-								>
-									<List.Item arrow="horizontal" className={style.listItem} >职称</List.Item>
-								</Picker>
-							</List>
-						}
-					</ReactIScroll>
+							<Picker
+								data={this.state.titles}
+								title="职称"
+								cols={1}
+								{...getFieldProps('title', {
+									initialValue: [user.title],
+									rules: [{ required: true, message: '请选择职称' }],
+								})}
+							>
+								<List.Item arrow="horizontal" className={style.listItem} >职称</List.Item>
+							</Picker>
+						</List>
+					}
 				</div>
 				<Button className={style.btn} type="primary" onClick={this.fnSubmit} >立即体验</Button>
 				<ActivityIndicator toast animating={this.state.loading} />
@@ -256,6 +251,9 @@ export default connect (
 	},
 	(dispatch)=>{
 		return {
+			userInfoAction:(data)=>{
+				dispatch(userInfo(data))
+			}
 		}
 	}
 )(createForm()(ModifyInfo));
