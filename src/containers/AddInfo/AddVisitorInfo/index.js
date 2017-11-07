@@ -3,7 +3,7 @@ import style from './index.css';
 import {List, Button, InputItem, Toast, WingBlank, ActivityIndicator} from 'antd-mobile';
 import { createForm } from 'rc-form';
 import {connect} from "react-redux";
-import url from "api_url/index.js";
+
 import {userInfo} from "reduxs/userInfo.js";
 import {hashHistory} from "react-router";
 
@@ -29,7 +29,7 @@ class AddVisitorInfoForm extends Component {
 				data.user.password = this.props.registerInfo.password;
 				data.user.mobile = this.props.registerInfo.mobile;
 				data.user.name = values.name;
-				fetch(url.sign_up,{
+				fetch(global.url.sign_up,{
 					method:"POST",
 					headers:{
 						"Content-Type":"application/json"

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import style from './index.css';
 import {Icon, ActivityIndicator, Picker} from 'antd-mobile';
 import {connect} from "react-redux";
-import url from "api_url/index.js";
+
 import {SeriesItem} from "components/SeriesItem";
 import xialajiantou from "svg/xialajiantou.svg";
 
@@ -32,7 +32,7 @@ class SeriesList extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(url.departments)
+		fetch(global.url.departments)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data)
@@ -77,7 +77,7 @@ class SeriesList extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(url.videos + "?department_id="+this.state.selectDepartment.value+"&page="+this.state.page+"&per_page=20")
+		fetch(global.url.videos + "?department_id="+this.state.selectDepartment.value+"&page="+this.state.page+"&per_page=20")
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data)

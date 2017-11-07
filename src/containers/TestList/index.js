@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 import TestItem from "components/Test/TestItem";
-import url from "api_url/index.js";
+
 
 class TestList extends Component {
 	state={
@@ -32,7 +32,7 @@ class TestList extends Component {
 		this.setState({
 			loading:true
 		})
-		return fetch(url.courses_exams + "?token=" + this.props.userInfo.token + "&page=" + this.state.page + "&per_page=30&user_id=" + this.state.selectUser)
+		return fetch(global.url.courses_exams + "?token=" + this.props.userInfo.token + "&page=" + this.state.page + "&per_page=30&user_id=" + this.state.selectUser)
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({

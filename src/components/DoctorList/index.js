@@ -3,7 +3,7 @@ import style from './index.css';
 import { WhiteSpace, ActivityIndicator} from 'antd-mobile';
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
-import url from "api_url/index.js";
+
 import PropTypes from 'prop-types'
 export default class DoctorList extends Component {
 	static propTypes = {

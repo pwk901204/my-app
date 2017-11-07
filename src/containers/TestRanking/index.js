@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import style from './index.css';
 import {Icon, ActivityIndicator, Toast} from 'antd-mobile';
 import {connect} from "react-redux";
-import url from "api_url/index.js";
+
 import number1 from "svg/number1.svg";
 import number2 from "svg/number2.svg";
 import number3 from "svg/number3.svg";
@@ -21,7 +21,7 @@ class TestRanking extends Component {
 		this.setState({
 			loading:true
 		})
-		return fetch(url.topics + "/" + this.props.params.id + "/my_rank" + "?token=" + this.props.userInfo.token)
+		return fetch(global.url.topics + "/" + this.props.params.id + "/my_rank" + "?token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({

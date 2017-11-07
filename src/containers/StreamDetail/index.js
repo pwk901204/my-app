@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import style from './index.css';
 import {Icon, ActivityIndicator, List, Tag,  Tabs, Badge, WhiteSpace, Button, Popup} from 'antd-mobile';
 import {connect} from "react-redux";
-import url from "api_url/index.js";
+
 import {hashHistory} from "react-router";
 import StreamInfo from "components/StreamInfo";
 import DoctorInfo from "components/DoctorInfo";
@@ -37,7 +37,7 @@ class StreamDetail extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(url.streams + "/"+ this.props.routeParams.id + "?token=" + this.props.userInfo.token)
+		fetch(global.url.streams + "/"+ this.props.routeParams.id + "?token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data);
@@ -58,7 +58,7 @@ class StreamDetail extends Component {
 		})
 	}
 	getFresh = ()=>{
-		fetch(url.streams_check_status + "?token=" + this.props.userInfo.token + "&id=" + this.props.routeParams.id)
+		fetch(global.url.streams_check_status + "?token=" + this.props.userInfo.token + "&id=" + this.props.routeParams.id)
 		.then((response)=>response.json())
 		.then((data)=>{
 			if(this.state.stream.stream_type !== data.status){

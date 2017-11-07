@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import style from './index.css';
 import {ActivityIndicator, Tabs,} from 'antd-mobile';
 import {connect} from "react-redux";
-import url from "api_url/index.js";
+
 import {hashHistory} from "react-router";
 import {StreamReleaseItem,StreamItem,StreamPurchaseItem} from "components/StreamItem";
 import ReactIScroll from "react-iscroll";
@@ -24,7 +24,7 @@ class MyStreamList extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(url.doctors_streams + "?token=" + this.props.userInfo.token + "&type="+ this.state.type +"&page="+ this.state.page + "&per_page=10")
+		fetch(global.url.doctors_streams + "?token=" + this.props.userInfo.token + "&type="+ this.state.type +"&page="+ this.state.page + "&per_page=10")
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({

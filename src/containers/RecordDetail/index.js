@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import style from './index.css';
 import {ActivityIndicator, Tabs, Badge, Button,Popup} from 'antd-mobile';
 import {connect} from "react-redux";
-import url from "api_url/index.js";
+
 import RecordInfo from "components/RecordInfo";
 import DoctorInfo from "components/DoctorInfo";
 import LiveVideo from "components/LiveVideo";
@@ -26,7 +26,7 @@ class RecordDetail extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(url.recordings + "/"+ this.props.routeParams.id + "?token=" + this.props.userInfo.token)
+		fetch(global.url.recordings + "/"+ this.props.routeParams.id + "?token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data);

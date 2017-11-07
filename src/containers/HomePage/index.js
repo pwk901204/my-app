@@ -11,12 +11,10 @@ import zhuanjiatuandui from 'svg/zhuanjiatuandui.svg';
 import yishengxiezuo from 'svg/yishengxiezuo.svg';
 import guojiyixuelianmeng from 'svg/guojiyixuelianmeng.svg';
 import ketiyanjiu from 'svg/ketiyanjiu.svg';
-import url from "api_url/index.js";
 import {connect} from "react-redux";
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 import {userInfo} from "reduxs/userInfo";
-
 class HomePage extends Component {
 	state = {
 		loading:false,
@@ -27,7 +25,7 @@ class HomePage extends Component {
 		this.getUser();
 	}
 	getUser= ()=>{
-		return fetch(url.current_user + "?token=" + this.props.userInfo.token )
+		return fetch(global.url.current_user + "?token=" + this.props.userInfo.token )
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.props.userInfoAction(data.user);
@@ -37,7 +35,7 @@ class HomePage extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(url.carousels + "?token=" + this.props.userInfo.token)
+		fetch(global.url.carousels + "?token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data);

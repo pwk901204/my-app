@@ -4,7 +4,7 @@ import { WhiteSpace, List, Button,Toast} from 'antd-mobile';
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 import {connect} from "react-redux";
-import url from "api_url/index.js";
+
 
 import moment from 'moment';
 moment.lang('zh-cn');
@@ -24,7 +24,7 @@ class Comment extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(url.commentsDetail + "?token=" + this.props.userInfo.token + "&target_type="+ this.props.target_type +"&target_id="+ this.props.id +"&page="+this.state.page+"&per_page=10")
+		fetch(global.url.commentsDetail + "?token=" + this.props.userInfo.token + "&target_type="+ this.props.target_type +"&target_id="+ this.props.id +"&page="+this.state.page+"&per_page=10")
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data);
@@ -42,7 +42,7 @@ class Comment extends Component {
 		data.subject_id=  this.props.id;
 		data.body =  this.state.body;
 		if(data.body){
-			fetch(url.comments ,{
+			fetch(global.url.comments ,{
 				method:"POST",
 				headers:{
 					"Content-Type":"application/json"
@@ -92,7 +92,7 @@ class Comment extends Component {
 		data.action_type= "star";
 		data.target_type=  "comment";
 		data.id = id;
-		fetch(url.actionStores,{
+		fetch(global.url.actionStores,{
 			method:"POST",
 			headers:{
 				"Content-Type":"application/json"

@@ -3,7 +3,7 @@ import style from './index.css';
 import {List, Button, InputItem, Toast, WingBlank ,Picker, ActivityIndicator, WhiteSpace} from 'antd-mobile';
 import { createForm } from 'rc-form';
 import {connect} from "react-redux";
-import url from "api_url/index.js";
+
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 import {hashHistory} from "react-router";
@@ -20,7 +20,7 @@ class MeetOffLineEnroll extends Component {
 		this.getDetail();
 	}
 	getDetail = () =>{
-		return fetch(url.attendees_new +'?meeting_id=' + this.props.routeParams.id +"&token=" + this.props.userInfo.token)
+		return fetch(global.url.attendees_new +'?meeting_id=' + this.props.routeParams.id +"&token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data)
@@ -30,7 +30,7 @@ class MeetOffLineEnroll extends Component {
 		})
 	}
 	postDetail= () =>{
-		return fetch(url.attendees_new +'?meeting_id=' + this.props.routeParams.id +"&token=" + this.props.userInfo.token)
+		return fetch(global.url.attendees_new +'?meeting_id=' + this.props.routeParams.id +"&token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data)
@@ -81,7 +81,7 @@ class MeetOffLineEnroll extends Component {
 				}
 
 
-				fetch(url.attendees,{
+				fetch(global.url.attendees,{
 					method:"POST",
 					headers:{
 					},

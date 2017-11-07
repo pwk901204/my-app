@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import style from './index.css';
 import {Icon, ActivityIndicator, Picker} from 'antd-mobile';
 import {connect} from "react-redux";
-import url from "api_url/index.js";
+
 
 import xialajiantou from "svg/xialajiantou.svg";
 
@@ -55,7 +55,7 @@ class MeetStreamList extends Component {
 		});
 	}
 	getDetail = () =>{
-		return fetch(url.meetings + "?flag=live&page=" + this.state.page + "&per_page=8&status="+ this.state.selectState.value +"&department_id=&sort=&price_sort=asc")
+		return fetch(global.url.meetings + "?flag=live&page=" + this.state.page + "&per_page=8&status="+ this.state.selectState.value +"&department_id=&sort=&price_sort=asc")
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data)

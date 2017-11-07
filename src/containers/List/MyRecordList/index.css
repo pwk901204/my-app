@@ -1,6 +1,6 @@
-.myRecordList{
-	height: 100%;
+.myRecordList {
+  height: 100%;
 }
-.myRecordList .tabItemWrap{
-	height: calc( 100vh - 87px );
+.myRecordList .tabItemWrap {
+  height: calc(100vh - 87px);
 }

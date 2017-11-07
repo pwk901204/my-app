@@ -3,7 +3,7 @@ import style from './index.css';
 import {List, Button, InputItem, Toast, WingBlank ,Picker, ActivityIndicator} from 'antd-mobile';
 import { createForm } from 'rc-form';
 import {connect} from "react-redux";
-import url from "api_url/index.js";
+
 import {hashHistory} from "react-router";
 
 import {userInfo} from "reduxs/userInfo.js";
@@ -58,7 +58,7 @@ class AddDoctorInfoForm extends Component {
 	}
 
 	getRegions = () =>{
-		return fetch(url.regions)
+		return fetch(global.url.regions)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data)
@@ -69,7 +69,7 @@ class AddDoctorInfoForm extends Component {
 	}
 
 	getDepartments = () =>{
-		return fetch(url.departments)
+		return fetch(global.url.departments)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data)
@@ -82,7 +82,7 @@ class AddDoctorInfoForm extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(url.hospitals + "?region=" + value[1])
+		fetch(global.url.hospitals + "?region=" + value[1])
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({
@@ -117,7 +117,7 @@ class AddDoctorInfoForm extends Component {
 				data.user.region = values.region[1];
 				data.user.department = values.department[1];
 				data.user.title = values.title[0];
-				fetch(url.sign_up,{
+				fetch(global.url.sign_up,{
 					method:"POST",
 					headers:{
 						"Content-Type":"application/json"

@@ -120,6 +120,7 @@
     "less-loader": "^4.0.5",
     "postcss-pxtorem": "^4.0.1",
     "redux-logger": "^3.0.6",
-    "svg-sprite-loader": "^0.3.1"
+    "svg-sprite-loader": "^0.3.1",
+    "vconsole": "^3.0.0"
   }
 }

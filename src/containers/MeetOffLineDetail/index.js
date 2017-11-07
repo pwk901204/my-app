@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import style from './index.css';
 import {hashHistory} from 'react-router';
 import {Icon, WhiteSpace, Carousel, ActivityIndicator ,Button, Tabs} from 'antd-mobile';
-import url from "api_url/index.js";
+
 import {connect} from "react-redux";
 import MeetInfo from "components/MeetDetailItem/MeetInfo";
 import MeetPlan from "components/MeetDetailItem/MeetPlan";
@@ -21,7 +21,7 @@ class MeetOffLineDetail extends Component {
 		this.getDetail();
 	}
 	getDetail = () =>{
-		return fetch(url.meetings +'/' + this.props.routeParams.id +"?token=" + this.props.userInfo.token)
+		return fetch(global.url.meetings +'/' + this.props.routeParams.id +"?token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({

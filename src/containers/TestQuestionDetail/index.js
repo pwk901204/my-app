@@ -4,7 +4,7 @@ import {ActivityIndicator,WhiteSpace,Toast,Icon,Modal} from 'antd-mobile';
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 import TestItem from "components/Test/TestItem";
-import url from "api_url/index.js";
+
 import {connect} from "react-redux";
 import MyRadio from "components/MyRadio";
 import moment from 'moment';
@@ -43,7 +43,7 @@ class TestQuestionDetail extends Component {
 		this.setState({
 			loading:true
 		})
-		return fetch(url.topics + "/" + this.props.params.id + "/edit_answer?token=" + this.props.userInfo.token)
+		return fetch(global.url.topics + "/" + this.props.params.id + "/edit_answer?token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({
@@ -89,7 +89,7 @@ class TestQuestionDetail extends Component {
 				answer:this.state.subjects[i].answer?this.state.subjects[i].answer:""
 			})
 		}
-		return fetch(url.topics + "/" + this.props.params.id + "/answers_save",{
+		return fetch(global.url.topics + "/" + this.props.params.id + "/answers_save",{
 			method:"POST",
 			headers:{
 				"Content-Type":"application/json"

@@ -3,7 +3,7 @@ import style from './index.css';
 import {List, Button, InputItem, Toast, ActivityIndicator} from 'antd-mobile';
 import {connect} from "react-redux";
 import { createForm } from 'rc-form';
-import url from "api_url/index.js";
+
 import {userInfo} from "reduxs/userInfo";
 
 class ChangePassword extends Component {
@@ -11,7 +11,7 @@ class ChangePassword extends Component {
 		loading:false,
 	}
 	getUser= ()=>{
-		return fetch(url.current_user + "?token=" + this.props.userInfo.token )
+		return fetch(global.url.current_user + "?token=" + this.props.userInfo.token )
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.props.userInfoAction(data.user);
@@ -30,7 +30,7 @@ class ChangePassword extends Component {
 			data.password = values.password;
 			data.type = "password";
 
-			fetch(url.userinfos_change_user_info,{
+			fetch(global.url.userinfos_change_user_info,{
 				method:"POST",
 				headers:{
 					"Content-Type":"application/json"

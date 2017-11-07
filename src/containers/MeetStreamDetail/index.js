@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import style from './index.css';
 import {Button, Tabs} from 'antd-mobile';
-import url from "api_url/index.js";
+
 import {connect} from "react-redux";
 import ChatRoom from "components/ChatRoom";
 import RewardList from "components/RewardList";
@@ -22,7 +22,7 @@ class MeetStreamDetail extends Component {
 		this.getMeetDetail();
 	}
 	getMeetDetail = ()=>{
-		fetch(url.meetings + "/"+ this.props.routeParams.id + "?token=" + this.props.userInfo.token)
+		fetch(global.url.meetings + "/"+ this.props.routeParams.id + "?token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data);

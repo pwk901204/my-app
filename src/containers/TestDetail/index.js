@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import style from './index.css';
 import { ActivityIndicator, Tabs,Toast, Popup,Icon} from 'antd-mobile';
 import {connect} from "react-redux";
-import url from "api_url/index.js";
+
 import {hashHistory} from "react-router";
 import guize from "svg/guize.svg";
 import jiangbei from "svg/jiangbei.svg";
@@ -28,7 +28,7 @@ class TestDetail extends Component {
 		this.setState({
 			loading:true
 		})
-		return fetch(url.courses + "/" + this.props.params.id + "?token=" + this.props.userInfo.token)
+		return fetch(global.url.courses + "/" + this.props.params.id + "?token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({

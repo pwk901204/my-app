@@ -220,11 +220,6 @@ const AboutMds = (location, cb) => {
   });
 };
 
-
-
-
-
-
 const requireAuth = () => {
   setTimeout(() => {
     if (!localStorage['reduxPersist:userInfo']) {
@@ -372,16 +367,8 @@ class Routers extends Component {
           getComponent={Introduction}
           onEnter={requireAuth}
         />
-        <Route
-          path="/Setting"
-          getComponent={Setting}
-          onEnter={requireAuth}
-        />
-        <Route
-          path="/Accounts"
-          getComponent={Accounts}
-          onEnter={requireAuth}
-        />
+        <Route path="/Setting" getComponent={Setting} onEnter={requireAuth} />
+        <Route path="/Accounts" getComponent={Accounts} onEnter={requireAuth} />
         <Route
           path="/BindPhone"
           getComponent={BindPhone}
@@ -392,14 +379,8 @@ class Routers extends Component {
           getComponent={ChangePassword}
           onEnter={requireAuth}
         />
-        
-        <Route
-          path="/AboutMds"
-          getComponent={AboutMds}
-          onEnter={requireAuth}
-        />
-        
 
+        <Route path="/AboutMds" getComponent={AboutMds} onEnter={requireAuth} />
       </Router>
     );
   }

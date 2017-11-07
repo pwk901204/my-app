@@ -6,18 +6,16 @@ import {createStore,applyMiddleware,compose} from 'redux';
 import thunk from 'redux-thunk';
 import {createLogger} from 'redux-logger';
 import registerServiceWorker from './registerServiceWorker';
-import FastClick from 'fastclick';
 import Routers from './routers/router';
 import reducers from './reduxs/index';
-
 import {persistStore, autoRehydrate} from 'redux-persist';
-
-console.log(reducers)
-
+import "common/global.js";
+import VConsole from "vconsole";
 const middleWares = [thunk];
 
 let autoRehydrateLog = false;
 if (process.env.NODE_ENV === "development") {
+	new VConsole();
 	const logger = createLogger();
 	middleWares.push(logger)
 	autoRehydrateLog = true;
@@ -33,27 +31,6 @@ const store = createStore(
 	    })
 	  )
 );
-
-function isPassive() {
-    var supportsPassiveOption = false;
-    try {
-        window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
-            get: function () {
-                supportsPassiveOption = true;
-            }
-        }));
-    } catch(e) {}
-    return supportsPassiveOption;
-}
-
-window.addEventListener("load", ()=>{
-	FastClick.attach(document.body);
-})
-
-document.addEventListener('touchmove', function (e) { e.preventDefault(); }, isPassive() ? {
-	capture: false,
-	passive: false
-} : false);
 
 persistStore(store, {
 	whitelist: ['userInfo']

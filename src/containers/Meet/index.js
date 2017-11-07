@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import style from './index.css';
 import {Link} from 'react-router';
 import {Icon, WhiteSpace, Carousel, ActivityIndicator} from 'antd-mobile';
-import url from "api_url/index.js";
+
 import {connect} from "react-redux";
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
@@ -27,7 +27,7 @@ class Meet extends Component {
 		})
 	}
 	getCarousels = ()=>{
-		return fetch(url.carousels + "?type=meeting")
+		return fetch(global.url.carousels + "?type=meeting")
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data);
@@ -39,7 +39,7 @@ class Meet extends Component {
 		})
 	}
 	getDetail=()=>{
-		return fetch(url.coursesMeetings + "?offline_limit=2&stream_limit=2&recording_limit=2")
+		return fetch(global.url.coursesMeetings + "?offline_limit=2&stream_limit=2&recording_limit=2")
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data);

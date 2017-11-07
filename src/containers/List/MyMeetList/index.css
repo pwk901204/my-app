@@ -1,8 +1,8 @@
-.myMeetList{
-	height: 100%;
+.myMeetList {
+  height: 100%;
 }
-.myMeetList .tabItemWrap{
-	height: calc( 100vh - 87px );
+.myMeetList .tabItemWrap {
+  height: calc(100vh - 87px);
 }
 .List {
   composes: clearfix from 'src/index.css';

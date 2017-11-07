@@ -1,5 +1,5 @@
-.introduction{
-  height:100%;
+.introduction {
+  height: 100%;
   position: relative;
 }
 
@@ -25,20 +25,20 @@
   float: left;
   color: #222;
 }
-.content{
-	padding: 20px;
-	background: #fff;
+.content {
+  padding: 20px;
+  background: #fff;
 }
-.content textarea{
-	display: block;
-	width: 100%;
-	background: #eee;
-	border:1px solid #eee;
-	border-radius: 10px 10px;
-	padding: 10px;
-	box-sizing: border-box;
+.content textarea {
+  display: block;
+  width: 100%;
+  background: #eee;
+  border: 1px solid #eee;
+  border-radius: 10px 10px;
+  padding: 10px;
+  box-sizing: border-box;
 }
-.btn{
+.btn {
   position: absolute;
   left: 0;
   bottom: 0;

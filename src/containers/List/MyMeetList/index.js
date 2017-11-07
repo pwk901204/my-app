@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import style from './index.css';
 import {ActivityIndicator, Tabs,} from 'antd-mobile';
 import {connect} from "react-redux";
-import url from "api_url/index.js";
+
 import { MyMeetStreamItem , MyMeetOffLineItem } from "components/MeetItem";
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
@@ -23,7 +23,7 @@ class MyMeetList extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(url.doctors_meetings + "?token=" + this.props.userInfo.token + "&type="+ this.state.type +"&page="+ this.state.page + "&per_page=10")
+		fetch(global.url.doctors_meetings + "?token=" + this.props.userInfo.token + "&type="+ this.state.type +"&page="+ this.state.page + "&per_page=10")
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({

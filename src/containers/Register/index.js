@@ -8,7 +8,7 @@ import mima from "svg/mima.svg";
 import shouji from "svg/shouji.svg";
 
 import yanzhengma from "svg/yanzhengma.svg";
-import url from "api_url/index.js";
+
 import {registerInfo} from "reduxs/registerInfo";
 
 
@@ -60,7 +60,7 @@ class DoctorForm extends Component {
 				_this.setState({
 					loading:true
 				})
-				fetch(url.sendCodeValid + "?mobile=" + values.mobile.replace(/\s+/g, '') + "&code=" + values.code)
+				fetch(global.url.sendCodeValid + "?mobile=" + values.mobile.replace(/\s+/g, '') + "&code=" + values.code)
 					.then((response)=>response.json())
 					.then((data)=>{
 						_this.setState({
@@ -90,7 +90,7 @@ class DoctorForm extends Component {
 					_this.setState({
 						loading:true
 					})
-					fetch(url.sendCode + "?mobile=" + values.mobile.replace(/\s+/g, '') + "&type=sign_in")
+					fetch(global.url.sendCode + "?mobile=" + values.mobile.replace(/\s+/g, '') + "&type=sign_in")
 					.then((response)=>response.json())
 					.then((data)=>{
 						console.log(data)

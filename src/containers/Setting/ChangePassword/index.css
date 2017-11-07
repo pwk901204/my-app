@@ -1,6 +1,6 @@
-.changePassword{
-	height: 100%;
-	position: relative;
+.changePassword {
+  height: 100%;
+  position: relative;
 }
 
 .text input {
@@ -11,9 +11,9 @@
   flex-basis: 76%;
 }
 
-.btn{
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	width: 100%;
+.btn {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }

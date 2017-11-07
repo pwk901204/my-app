@@ -1,22 +1,21 @@
-.modifyInfo{
-	position: relative;
-	height: 100%;
+.modifyInfo {
+  position: relative;
+  height: 100%;
 }
-.modifyListWrap{
-	height: calc( 100% - 94px );
+.modifyListWrap {
+  height: calc(100% - 94px);
 }
 
-.btn{
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	width: 100%;
+.btn {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 .text input {
   text-align: right;
 }
 
-
-.listItem>div:nth-of-type(1)>div:nth-of-type(2){
-	flex:50%;
+.listItem > div:nth-of-type(1) > div:nth-of-type(2) {
+  flex: 50%;
 }

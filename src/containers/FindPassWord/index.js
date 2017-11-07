@@ -6,7 +6,7 @@ import { createForm } from 'rc-form';
 import mima from "svg/mima.svg";
 import shouji from "svg/shouji.svg";
 import yanzhengma from "svg/yanzhengma.svg";
-import url from "api_url/index.js";
+
 
 
 class FindPassWordForm extends Component {
@@ -37,7 +37,7 @@ class FindPassWordForm extends Component {
 				data.mobile = values.mobile.replace(/\s+/g, '');
 				data.code = values.code;
 				data.password = values.password;
-				fetch(url.update_password,{
+				fetch(global.url.update_password,{
 					method:"POST",
 					headers:{
 						"Content-Type":"application/json"
@@ -69,7 +69,7 @@ class FindPassWordForm extends Component {
 					_this.setState({
 						loading:true
 					})
-					fetch(url.sendCode + "?mobile=" + values.mobile.replace(/\s+/g, '') + "&type=change_password")
+					fetch(global.url.sendCode + "?mobile=" + values.mobile.replace(/\s+/g, '') + "&type=change_password")
 					.then((response)=>response.json())
 					.then((data)=>{
 						console.log(data)

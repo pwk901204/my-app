@@ -7,7 +7,7 @@ import shouji from "svg/shouji.svg";
 import {hashHistory} from "react-router";
 
 import yanzhengma from "svg/yanzhengma.svg";
-import url from "api_url/index.js";
+
 import {userInfo} from "reduxs/userInfo";
 
 class BindPhone extends Component {
@@ -21,7 +21,7 @@ class BindPhone extends Component {
 		clearInterval(this.state.timer);
 	}
 	getUser= ()=>{
-		return fetch(url.current_user + "?token=" + this.props.userInfo.token )
+		return fetch(global.url.current_user + "?token=" + this.props.userInfo.token )
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.props.userInfoAction(data.user);
@@ -47,7 +47,7 @@ class BindPhone extends Component {
 				data.code = values.sendCodeing;
 				data.type = "mobile";
 
-				fetch(url.userinfos_change_user_info,{
+				fetch(global.url.userinfos_change_user_info,{
 					method:"POST",
 					headers:{
 						"Content-Type":"application/json"
@@ -79,7 +79,7 @@ class BindPhone extends Component {
 					_this.setState({
 						loading:true
 					})
-					fetch(url.sendCode + "?mobile=" + values.mobile.replace(/\s+/g, '') + "&type=change_new_mobile")
+					fetch(global.url.sendCode + "?mobile=" + values.mobile.replace(/\s+/g, '') + "&type=change_new_mobile")
 					.then((response)=>response.json())
 					.then((data)=>{
 						console.log(data)

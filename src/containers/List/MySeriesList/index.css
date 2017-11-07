@@ -1,6 +1,6 @@
-.mySeriesList{
-	height: 100%;
+.mySeriesList {
+  height: 100%;
 }
-.mySeriesList .tabItemWrap{
-	height: calc( 100vh - 87px );
+.mySeriesList .tabItemWrap {
+  height: calc(100vh - 87px);
 }

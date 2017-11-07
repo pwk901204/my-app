@@ -1,12 +1,12 @@
-.BindPhone{
-	height: 100%;
-	position: relative;
+.BindPhone {
+  height: 100%;
+  position: relative;
 }
-.btn{
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	width: 100%;
+.btn {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 .yanzhengmaExtra {
   background-color: #e6eff5;

@@ -3,7 +3,7 @@ import style from './index.css';
 import { WhiteSpace, ActivityIndicator} from 'antd-mobile';
 import { connect } from "react-redux";
 import {Link} from 'react-router';
-import url from "api_url/index.js";
+
 import {StreamItem} from "components/StreamItem/index.js";
 import {RecordItem} from "components/RecordItem";
 import {SeriesItem} from "components/SeriesItem";
@@ -21,7 +21,7 @@ class VideoCollege extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(url.courses_streams + "?token=" + this.props.userInfo.token + "&stream_limit=2&recording_limit=2&course_limit=2")
+		fetch(global.url.courses_streams + "?token=" + this.props.userInfo.token + "&stream_limit=2&recording_limit=2&course_limit=2")
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data);

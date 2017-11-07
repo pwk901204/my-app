@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import style from './index.css';
 import {List, Button, InputItem, Toast ,Picker, ActivityIndicator} from 'antd-mobile';
 import {connect} from "react-redux";
-import url from "api_url/index.js";
+
 import { createForm } from 'rc-form';
 import {userInfo} from "reduxs/userInfo";
 
@@ -69,14 +69,14 @@ class ModifyInfo extends Component {
 		})
 	}
 	getUser= ()=>{
-		return fetch(url.current_user + "?token=" + this.props.userInfo.token )
+		return fetch(global.url.current_user + "?token=" + this.props.userInfo.token )
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.props.userInfoAction(data.user);
 		})
 	}
 	getRegions = () =>{
-		return fetch(url.regions)
+		return fetch(global.url.regions)
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({
@@ -85,7 +85,7 @@ class ModifyInfo extends Component {
 		})
 	}
 	getDepartments = () =>{
-		return fetch(url.departments)
+		return fetch(global.url.departments)
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({
@@ -97,7 +97,7 @@ class ModifyInfo extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(url.hospitals + "?region=" + value[1])
+		fetch(global.url.hospitals + "?region=" + value[1])
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({
@@ -126,7 +126,7 @@ class ModifyInfo extends Component {
 			data.departmet_id = values.department[1];
 			data.title = values.title[0];
 
-			fetch(url.userinfos_update_user_info,{
+			fetch(global.url.userinfos_update_user_info,{
 				method:"POST",
 				headers:{
 					"Content-Type":"application/json"
@@ -206,9 +206,6 @@ class ModifyInfo extends Component {
 							>
 								<List.Item arrow="horizontal" className={style.listItem} >医院</List.Item>
 							</Picker>
-							{
-								console.log(this.state.hospitals, this.state.user.hospital_id)
-							}
 							<Picker
 								data={this.state.departments}
 								title="科室"

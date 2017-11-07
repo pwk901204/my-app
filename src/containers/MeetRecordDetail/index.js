@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import style from './index.css';
 import {ActivityIndicator, Tabs, Badge, Button} from 'antd-mobile';
 import {connect} from "react-redux";
-import url from "api_url/index.js";
+
 
 import MeetStreamInfo from "components/MeetDetailItem/MeetStreamInfo";
 import DoctorList from "components/DoctorList";
@@ -21,7 +21,7 @@ class MeetRecordDetail extends Component {
 		this.getMeetDetail();
 	}
 	getMeetDetail = ()=>{
-		fetch(url.meetings + "/"+ this.props.routeParams.id + "?token=" + this.props.userInfo.token)
+		fetch(global.url.meetings + "/"+ this.props.routeParams.id + "?token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data);

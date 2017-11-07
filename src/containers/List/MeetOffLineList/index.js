@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import style from './index.css';
 import {Icon, ActivityIndicator, Picker} from 'antd-mobile';
 import {connect} from "react-redux";
-import url from "api_url/index.js";
+
 
 import xialajiantou from "svg/xialajiantou.svg";
 
@@ -38,7 +38,7 @@ class MeetOffLineList extends Component {
 		})
 	}
 	getCities = () =>{
-		return fetch(url.cities)
+		return fetch(global.url.cities)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data)
@@ -68,7 +68,7 @@ class MeetOffLineList extends Component {
 		});
 	}
 	getDetail = () =>{
-		return fetch(url.meetings + "?flag=offline&page=" + this.state.page + "&per_page=8&city="+this.state.selectCity.value)
+		return fetch(global.url.meetings + "?flag=offline&page=" + this.state.page + "&per_page=8&city="+this.state.selectCity.value)
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({

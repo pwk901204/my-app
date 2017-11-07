@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import style from './index.css';
 import {ActivityIndicator,Button} from 'antd-mobile';
-import url from "api_url/index.js";
+
 import {connect} from "react-redux";
 import {userInfo} from "reduxs/userInfo";
 
@@ -19,7 +19,7 @@ class Introduction extends Component {
 		})
 	}
 	getUser= ()=>{
-		return fetch(url.current_user + "?token=" + this.props.userInfo.token )
+		return fetch(global.url.current_user + "?token=" + this.props.userInfo.token )
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.props.userInfoAction(data.user);
@@ -34,7 +34,7 @@ class Introduction extends Component {
 		data.good_at = this.state.good_at;
 		data.introduction = this.state.introduction;
 
-		fetch(url.userinfos_update_user_info,{
+		fetch(global.url.userinfos_update_user_info,{
 			method:"POST",
 			headers:{
 				"Content-Type":"application/json"

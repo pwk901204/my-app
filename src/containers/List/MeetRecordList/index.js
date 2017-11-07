@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import style from './index.css';
 import {Icon, ActivityIndicator, Picker} from 'antd-mobile';
 import {connect} from "react-redux";
-import url from "api_url/index.js";
+
 
 import {MeetRecordItem} from "components/MeetItem";
 
@@ -39,7 +39,7 @@ class MeetRecordList extends Component {
 		})
 	}
 	getDepartments = () =>{
-		return fetch(url.departments)
+		return fetch(global.url.departments)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data)
@@ -80,7 +80,7 @@ class MeetRecordList extends Component {
 		});
 	}
 	getDetail = () =>{
-		return fetch(url.meetings + "?flag=video&page="+this.state.page+"&per_page=8&department_id="+this.state.selectDepartment.value+"&sort=&price_sort=asc")
+		return fetch(global.url.meetings + "?flag=video&page="+this.state.page+"&per_page=8&department_id="+this.state.selectDepartment.value+"&sort=&price_sort=asc")
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data)
