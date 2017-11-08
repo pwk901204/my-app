@@ -39,8 +39,7 @@ class ChatRoom extends Component {
 			//this.ws = new WebSocket('ws://rqiang.mynatapp.cc/cable');
 		}else if(window.location.host === "localhost:4000"){
 			this.ws = new WebSocket('ws://' + window.location.host + '/cable');
-		}
-		else{
+		}else{
 			this.ws = new WebSocket('wss://' + window.location.host + '/cable');
 		}
 	}
