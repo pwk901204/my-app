@@ -17,6 +17,8 @@ export default class Pwk extends Component {
 				<div data-depth="0.40"><img src="images/layer4.png"></div>
 				<div data-depth="0.20"><img src="images/layer5.png"></div>
 				<div data-depth="0.00"><img src="images/layer6.png"></div>
+
+				
 			</div>
 		);
 	}

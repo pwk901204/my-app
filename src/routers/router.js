@@ -226,7 +226,6 @@ const Pwk = (location, cb) => {
   });
 };
 
-
 const requireAuth = () => {
   setTimeout(() => {
     if (!localStorage['reduxPersist:userInfo']) {
@@ -389,8 +388,6 @@ class Routers extends Component {
         <Route path="/AboutMds" getComponent={AboutMds} onEnter={requireAuth} />
 
         <Route path="/Pwk" getComponent={Pwk} />
-
-
       </Router>
     );
   }
