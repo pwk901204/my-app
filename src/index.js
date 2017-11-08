@@ -9,7 +9,7 @@ import registerServiceWorker from './registerServiceWorker';
 import Routers from './routers/router';
 import reducers from './reduxs/index';
 import {persistStore, autoRehydrate} from 'redux-persist';
-import "common/global.js";
+import "./common/global.js";
 import VConsole from "vconsole";
 const middleWares = [thunk];
 

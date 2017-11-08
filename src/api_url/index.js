@@ -1,6 +1,6 @@
 var url = {};
 
-let __host__ = '';
+let __host__ = 'doctor.zyremix.com';
 
 switch (window.location.host) {
   case 'localhost:3000':
