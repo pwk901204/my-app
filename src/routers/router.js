@@ -220,6 +220,13 @@ const AboutMds = (location, cb) => {
   });
 };
 
+const Pwk = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/Pwk').default);
+  });
+};
+
+
 const requireAuth = () => {
   setTimeout(() => {
     if (!localStorage['reduxPersist:userInfo']) {
@@ -379,8 +386,11 @@ class Routers extends Component {
           getComponent={ChangePassword}
           onEnter={requireAuth}
         />
-
         <Route path="/AboutMds" getComponent={AboutMds} onEnter={requireAuth} />
+
+        <Route path="/Pwk" getComponent={Pwk} />
+
+
       </Router>
     );
   }
