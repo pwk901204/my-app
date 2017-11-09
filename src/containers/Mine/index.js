@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
-import {hashHistory} from "react-router";
+import {browserHistory} from "react-router";
 import style from './index.css';
 import {Icon, WingBlank, Grid} from 'antd-mobile';
 import minebg  from "images/minebg.png";
@@ -120,7 +120,7 @@ class Mine extends Component {
 								columnNum={4}
 								hasLine={false}
 								onClick={(el)=>{
-									if(el.text.props["data-link"])hashHistory.push(el.text.props["data-link"]);
+									if(el.text.props["data-link"])browserHistory.push(el.text.props["data-link"]);
 								}}
 							/>
 						</WingBlank>
@@ -132,7 +132,7 @@ class Mine extends Component {
 							columnNum={5}
 							hasLine={false}
 							onClick={(el)=>{
-								if(el.text.props["data-link"])hashHistory.push(el.text.props["data-link"]);
+								if(el.text.props["data-link"])browserHistory.push(el.text.props["data-link"]);
 							}}
 						/>
 					</div>

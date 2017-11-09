@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
-import {hashHistory} from "react-router";
+import {browserHistory} from "react-router";
 
 class MeetOffLineEnroll extends Component {
 	state={

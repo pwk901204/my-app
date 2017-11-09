@@ -4,7 +4,7 @@ import {Button ,List, Radio, WingBlank, WhiteSpace, Icon,Popup} from 'antd-mobil
 import wx from "svg/wx.svg";
 import zfb from "svg/zfb.svg";
 import PropTypes from 'prop-types';
-import {hashHistory} from "react-router";
+import {browserHistory} from "react-router";
 const RadioItem = Radio.RadioItem;
 
 export class Pay extends Component {
@@ -44,7 +44,7 @@ export class Pay extends Component {
 			amount:this.props.amount,
 			pay_way:this.state.pay_way,
 			callBack:(data)=>{
-				hashHistory.push({
+				browserHistory.push({
 			        pathname: '/PayPage',
 			        state: {
 						topic:this.props.topic,
@@ -127,7 +127,7 @@ export class Reward extends Component {
 			amount:this.state.amount,
 			pay_way:this.state.pay_way,
 			callBack:(data)=>{
-				hashHistory.push({
+				browserHistory.push({
 			        pathname: '/PayPage',
 			        state: {
 						topic:this.props.topic,

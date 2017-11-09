@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import style from './index.css';
 import {List} from 'antd-mobile';
-import {hashHistory} from "react-router";
+import {browserHistory} from "react-router";
 import {connect} from "react-redux";
 const Item = List.Item;
 
@@ -14,12 +14,12 @@ class Accounts extends Component {
 			<div className={style.introduction}>
 				<List>
 			        <Item extra={this.props.userInfo.mobile} arrow="horizontal" onClick={() => {
-			        	hashHistory.push("/BindPhone")
+			        	browserHistory.push("/BindPhone")
 			        }}>绑定手机号</Item>
        			</List>
        			<List>
        				<Item arrow="horizontal" onClick={() => {
-       					hashHistory.push("/ChangePassword")
+       					browserHistory.push("/ChangePassword")
        				}}>修改密码</Item>
        			</List>
 			</div>

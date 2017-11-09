@@ -4,7 +4,7 @@ import {List, Icon, Button, InputItem, Toast, ActivityIndicator} from 'antd-mobi
 import {connect} from "react-redux";
 import { createForm } from 'rc-form';
 import shouji from "svg/shouji.svg";
-import {hashHistory} from "react-router";
+import {browserHistory} from "react-router";
 
 import yanzhengma from "svg/yanzhengma.svg";
 

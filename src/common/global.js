@@ -1,11 +1,15 @@
 import FastClick from 'fastclick';
 import url from 'api_url/index.js';
+import wxShare from "./wxShare";
 
 //全局变量
 Object.defineProperties(global, {
   url: { value: url },
   wx: { value: window.wx }
 });
+
+//微信分享
+wxShare();
 
 function isPassive() {
   var supportsPassiveOption = false;

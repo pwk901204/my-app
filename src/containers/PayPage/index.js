@@ -3,7 +3,7 @@ import style from './index.css';
 import {connect} from "react-redux";
 import {Button , Radio, WingBlank, WhiteSpace,} from 'antd-mobile';
 
-import {hashHistory} from "react-router";
+import {browserHistory} from "react-router";
 
 class PayPage extends Component {
 	state={

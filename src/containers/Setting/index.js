@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import style from './index.css';
 import {ActivityIndicator,List} from 'antd-mobile';
-import {hashHistory} from "react-router";
+import {browserHistory} from "react-router";
 const Item = List.Item;
 
 class Setting extends Component {
@@ -13,12 +13,12 @@ class Setting extends Component {
 			<div className={style.introduction}>
 				<List>
        				<Item arrow="horizontal" onClick={() => {
-       					hashHistory.push("/Accounts")
+       					browserHistory.push("/Accounts")
        				}}>帐号与安全</Item>
        			</List>
        			<List>
        				<Item arrow="horizontal" onClick={() => {
-       					hashHistory.push("/AboutMds")
+       					browserHistory.push("/AboutMds")
        				}}>关于麦迪森</Item>
        			</List>
 				<ActivityIndicator toast  animating={this.state.loading}/>

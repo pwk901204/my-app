@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import style from './index.css';
 import {List, Icon, Button,InputItem, Toast, WingBlank, ActivityIndicator} from 'antd-mobile';
-import {hashHistory} from "react-router";
+import {browserHistory} from "react-router";
 import { createForm } from 'rc-form';
 import mima from "svg/mima.svg";
 import shouji from "svg/shouji.svg";
@@ -51,7 +51,7 @@ class FindPassWordForm extends Component {
 						})
 						if(data.msg.status === 'success'){
 							Toast.info(data.msg.message);
-							hashHistory.push("/Login");
+							browserHistory.push("/Login");
 						}else{
 							Toast.info(data.msg.message);
 						}

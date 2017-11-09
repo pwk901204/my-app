@@ -3,7 +3,7 @@ import style from './index.css';
 import { ActivityIndicator, Tabs,Toast, Popup,Icon} from 'antd-mobile';
 import {connect} from "react-redux";
 
-import {hashHistory} from "react-router";
+import {browserHistory} from "react-router";
 import guize from "svg/guize.svg";
 import jiangbei from "svg/jiangbei.svg";
 import DoctorInfo from "components/DoctorInfo";
@@ -35,6 +35,7 @@ class TestDetail extends Component {
 				loading:false
 			})
 			if(data.msg.status === "success"){
+				document.title=data.course.topic;
 				this.setState({
 					course:data.course
 				})
@@ -87,7 +88,7 @@ class TestDetail extends Component {
 							</TabPane>
 						</Tabs>
 						<div className={style.nav}>
-							<div onClick={()=>{hashHistory.push("/TestRanking/" + this.props.params.id)}}>
+							<div onClick={()=>{browserHistory.push("/TestRanking/" + this.props.params.id)}}>
 								<Icon style={{width:"100%",height:"100%"}}  type={jiangbei} />
 							</div>
 							<div onClick={this.handleRule}>

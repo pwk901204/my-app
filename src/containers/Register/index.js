@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import style from './index.css';
 import {List, Icon, Button, InputItem, Toast, WingBlank, SegmentedControl, ActivityIndicator} from 'antd-mobile';
 import {connect} from "react-redux";
-import {hashHistory} from "react-router";
+import {browserHistory} from "react-router";
 import { createForm } from 'rc-form';
 import mima from "svg/mima.svg";
 import shouji from "svg/shouji.svg";
@@ -72,7 +72,7 @@ class DoctorForm extends Component {
 								mobile:values.mobile.replace(/\s+/g, ''),
 								password:values.password
 							});
-							hashHistory.push("/Add" + this.state.identity + "Info");
+							browserHistory.push("/Add" + this.state.identity + "Info");
 						}else{
 							Toast.info(data.msg.message);
 						}

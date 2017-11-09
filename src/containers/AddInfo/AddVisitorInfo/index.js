@@ -5,7 +5,7 @@ import { createForm } from 'rc-form';
 import {connect} from "react-redux";
 
 import {userInfo} from "reduxs/userInfo.js";
-import {hashHistory} from "react-router";
+import {browserHistory} from "react-router";
 
 class AddVisitorInfoForm extends Component {
 	state={
@@ -42,7 +42,7 @@ class AddVisitorInfoForm extends Component {
 						loading:false
 					})
 					this.props.userInfoAction(data.user);
-					hashHistory.push("/HomePage");
+					browserHistory.push("/HomePage");
 				})
 			}
 		})

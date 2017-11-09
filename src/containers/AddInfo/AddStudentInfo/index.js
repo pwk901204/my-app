@@ -4,7 +4,7 @@ import {List, Button, InputItem, Toast, WingBlank, Picker, ActivityIndicator} fr
 import { createForm } from 'rc-form';
 import {connect} from "react-redux";
 
-import {hashHistory} from "react-router";
+import {browserHistory} from "react-router";
 
 import {userInfo} from "reduxs/userInfo.js";
 
@@ -120,7 +120,7 @@ class AddStudentInfoForm extends Component {
 						loading:false
 					})
 					this.props.userInfoAction(data.user);
-					hashHistory.push("/HomePage");
+					browserHistory.push("/HomePage");
 				})
 			}
 		})

@@ -3,7 +3,7 @@ import style from './index.css';
 import {Icon, ActivityIndicator, List, Tag,  Tabs, Badge, WhiteSpace, Button, Popup} from 'antd-mobile';
 import {connect} from "react-redux";
 
-import {hashHistory} from "react-router";
+import {browserHistory} from "react-router";
 import StreamInfo from "components/StreamInfo";
 import DoctorInfo from "components/DoctorInfo";
 import LiveVideo from "components/LiveVideo";

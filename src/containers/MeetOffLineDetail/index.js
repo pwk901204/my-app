@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import {hashHistory} from 'react-router';
+import {browserHistory} from 'react-router';
 import {Icon, WhiteSpace, Carousel, ActivityIndicator ,Button, Tabs} from 'antd-mobile';
 
 import {connect} from "react-redux";
@@ -30,7 +30,7 @@ class MeetOffLineDetail extends Component {
 		})
 	}
 	onClick = ()=>{
-		hashHistory.push({
+		browserHistory.push({
 			pathname:"/MeetOffLineEnroll/"+this.props.routeParams.id
 		})
 	}
