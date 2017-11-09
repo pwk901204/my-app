@@ -45,7 +45,7 @@ persistStore(store, {
 })
 
 
-registerServiceWorker();
+if (process.env.NODE_ENV === "development")  registerServiceWorker();
 
 
 

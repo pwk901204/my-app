@@ -1,6 +1,6 @@
 import FastClick from 'fastclick';
 import url from 'api_url/index.js';
-import wxShare from "./wxShare";
+//import wxShare from "./wxShare";
 
 //全局变量
 Object.defineProperties(global, {
@@ -9,7 +9,7 @@ Object.defineProperties(global, {
 });
 
 //微信分享
-wxShare();
+//wxShare();
 
 function isPassive() {
   var supportsPassiveOption = false;
