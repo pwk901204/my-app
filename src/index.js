@@ -14,8 +14,10 @@ import VConsole from "vconsole";
 const middleWares = [thunk];
 
 let autoRehydrateLog = false;
+
+new VConsole();
+
 if (process.env.NODE_ENV === "development") {
-	//new VConsole();
 	const logger = createLogger();
 	middleWares.push(logger)
 	autoRehydrateLog = true;

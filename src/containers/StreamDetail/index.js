@@ -28,7 +28,7 @@ class StreamDetail extends Component {
 		clearInterval(this.timer);
 		this.timer=setInterval(()=>{
 			this.getFresh();
-		},3000)
+		},30000)
 	}
 	componentWillUnmount(){
 		clearInterval(this.timer);

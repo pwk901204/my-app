@@ -114,6 +114,7 @@ class MeetOffLineEnroll extends Component {
 			<div className={style.meetOffLineEnrollWrap}>
 				<ReactIScroll
 					iScroll={iScroll}
+					options={{click: true}}
 				>
 					<div className={style.meetOffLineEnroll}>
 						<WingBlank >

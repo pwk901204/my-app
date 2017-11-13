@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import style from './index.css';
 import {Link} from 'react-router';
 import {Icon, WhiteSpace, Carousel, ActivityIndicator} from 'antd-mobile';
-
 import shipingxueyuan from 'svg/shipingxueyuan.svg';
 import yixuehuiyi from 'svg/yixuehuiyi.svg';
-
 import wodezhengsuo from 'svg/wodezhengsuo.svg';
 import zhuanjiatuandui from 'svg/zhuanjiatuandui.svg';
 import yishengxiezuo from 'svg/yishengxiezuo.svg';
@@ -15,6 +13,7 @@ import {connect} from "react-redux";
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 import {userInfo} from "reduxs/userInfo";
+
 class HomePage extends Component {
 	state = {
 		loading:false,
@@ -50,6 +49,7 @@ class HomePage extends Component {
 			<div className={style.homePageWrap}>
 				<ReactIScroll
 					iScroll={iScroll}
+					options={{click: true}}
 				>
 					<div className={style.homePage}>
 						<h4 className={style.title}>{this.props.userInfo.name}医生</h4>

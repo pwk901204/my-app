@@ -10,6 +10,7 @@ export default class Enlist extends Component {
 			<div className={style.enlist}>
 				<ReactIScroll
 					iScroll={iScroll}
+					options={{click: true}}
 				>
 					<div>
 						<WhiteSpace size="xs" />

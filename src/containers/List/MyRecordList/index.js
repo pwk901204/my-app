@@ -64,6 +64,7 @@ class MyRecordList extends Component {
 					<TabPane tab="已发起" key="created" className={style.tabItemWrap}  >
 						<ReactIScroll
 							iScroll={iScroll}
+							options={{click: true}}
 							onScrollEnd={this.scrollEnd}
 						>
 							<div>
@@ -78,6 +79,7 @@ class MyRecordList extends Component {
 					<TabPane tab="已购买" key="bought" className={style.tabItemWrap} >
 						<ReactIScroll
 							iScroll={iScroll}
+							options={{click: true}}
 							onScrollEnd={this.scrollEnd}
 						>
 							<div>

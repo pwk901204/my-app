@@ -10,7 +10,7 @@ export default class LiveVideo extends Component {
 	};
 	static propTypes = {
 		anchor : PropTypes.bool,
-		cover_url : PropTypes.string.isRequired,
+		cover_url : PropTypes.string,
 		play_url : PropTypes.string.isRequired,
 	};
 	constructor(props){

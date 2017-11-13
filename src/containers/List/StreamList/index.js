@@ -122,6 +122,7 @@ class StreamList extends Component {
 
 				<ReactIScroll
 					iScroll={iScroll}
+					options={{click: true}}
 					onScrollEnd={this.scrollEnd}
 				>
 					<div className={style.stream}>

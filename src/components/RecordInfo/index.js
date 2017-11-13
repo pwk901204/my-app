@@ -12,6 +12,7 @@ export default class RecordInfo extends Component {
 			<div className={style.streamInfo}>
 				<ReactIScroll
 					iScroll={iScroll}
+					options={{click: true}}
 				>
 					<List>
 						<WhiteSpace size="xs" />

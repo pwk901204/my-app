@@ -119,6 +119,7 @@ class ChatRoom extends Component {
 					<span className={style.chatIcon2}>{this.props.bounty_count}人共打赏了{this.props.payment_count}元</span>
 					<ReactIScroll
 						iScroll={iScroll}
+						options={{click: true}}
 					>
 						<div>
 							<WhiteSpace size="xs" />

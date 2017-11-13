@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Router, Route, IndexRoute ,browserHistory} from 'react-router';
+import wxShare from "common/wxShare";
 // containers
 const Login = (location, cb) => {
   require.ensure([], require => {
@@ -222,6 +223,7 @@ const AboutMds = (location, cb) => {
 
 
 const requireAuth = ({title="麦迪森在线",needLogin=true}={})=>{
+  //微信分享
   return ()=> {
     document.title=title;
     if(needLogin){
@@ -231,6 +233,7 @@ const requireAuth = ({title="麦迪森在线",needLogin=true}={})=>{
         }
       }, 1000);
     }
+    wxShare();
   };
 }
 
@@ -239,6 +242,11 @@ class Routers extends Component {
   render() {
     return (
       <Router history={browserHistory} key={Math.random()}>
+        <Route
+          path="/"
+          getComponent={TabBar}
+          onEnter={requireAuth()}
+        />
         <Route
           path="/HomePage(/:index)"
           getComponent={TabBar}

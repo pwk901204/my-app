@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import style from './index.css';
 import {connect} from "react-redux";
-import {Button , Radio, WingBlank, WhiteSpace,} from 'antd-mobile';
-
+import {Button , WingBlank, WhiteSpace,} from 'antd-mobile';
 import {browserHistory} from "react-router";
 
 class PayPage extends Component {
@@ -12,26 +11,32 @@ class PayPage extends Component {
 	onOk = ()=>{
 		let locationState = this.state.locationState;
 		if(locationState.pay_url){
-			window.location.href=locationState.pay_url
+			//支付宝
+			//window.location.href=locationState.pay_url
+		}else{
+			this.onBridgeReady();
 		}
 	}
-	// onBridgeReady = ()=>{
-	//    	window.WeixinJSBridge.invoke(
-	//        'getBrandWCPayRequest', {
-	//            "appId":"wx2421b1c4370ec43b",     //公众号名称，由商户传入
-	//            "timeStamp":"1395712654",         //时间戳，自1970年以来的秒数
-	//            "nonceStr":"e61463f8efa94090b1f366cccfbbb444", //随机串
-	//            "package":"prepay_id=u802345jgfjsdfgsdg888",
-	//            "signType":"MD5",         //微信签名方式：
-	//            "paySign":"70EA570631E4BB79628FBCA90534C63FF7FADD89" //微信签名
-	//        },
-	//        (res)=>{
-	//            if(res.err_msg == "get_brand_wcpay_request:ok" ) {}     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
-	//        }
-	//    )
-	// }
+	onBridgeReady = ()=>{
+		let {locationState} = this.state
+	   	window.WeixinJSBridge.invoke(
+	       'getBrandWCPayRequest', {
+	           "appId":locationState.app_id,     //公众号名称，由商户传入
+	           "timeStamp":locationState.timestamp,         //时间戳，自1970年以来的秒数
+	           "nonceStr":locationState.nonce_str, //随机串
+	           "package":locationState.package,
+	           "signType":"MD5",         //微信签名方式：
+	           "paySign":locationState.sign //微信签名
+	       },(res)=>{
+	       		console.log(res)
+	           if(res.err_msg === "get_brand_wcpay_request:ok" ) {
+	           		browserHistory.push("")
+	           }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
+	       }
+	   )
+	}
 	wxPay = ()=>{
-		if (typeof WeixinJSBridge == "undefined"){
+		if (typeof WeixinJSBridge === "undefined"){
 		   if( document.addEventListener ){
 		       document.addEventListener('WeixinJSBridgeReady', this.onBridgeReady, false);
 		   }else if (document.attachEvent){

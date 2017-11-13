@@ -3,7 +3,7 @@ import style from './index.css';
 import { WhiteSpace, ActivityIndicator} from 'antd-mobile';
 import { connect } from "react-redux";
 import {Link} from 'react-router';
-
+import LiveVideo from "components/LiveVideo";
 import {StreamItem} from "components/StreamItem/index.js";
 import {RecordItem} from "components/RecordItem";
 import {SeriesItem} from "components/SeriesItem";
@@ -41,17 +41,14 @@ class VideoCollege extends Component {
 			<div className={style.videoCollege}>
 				<ReactIScroll
 					iScroll={iScroll}
+					options={{click: true}}
 				>
 					<div>
 						{
 							advertisement &&
-							<video
-								className={style.video}
-								autoPlay
-								loop
-								src={advertisement.url}
-							>您的浏览器不支持 video 标签
-							</video>
+							<div className={style.videoWrap}>
+								<LiveVideo play_url={advertisement.url}/>
+							</div>
 						}
 						<WhiteSpace size="md" />
 

@@ -12,6 +12,7 @@ export default class MeetInfo extends Component {
 			<div className={style.meetInfo}>
 				<ReactIScroll
 					iScroll={iScroll}
+					options={{click: true}}
 				>
 					<List>
 						<WhiteSpace size="xs" />

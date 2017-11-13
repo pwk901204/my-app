@@ -12,6 +12,7 @@ export default class TestDetailInfo extends Component {
 			<div className={style.testDetailInfo}>
 				<ReactIScroll
 					iScroll={iScroll}
+					options={{click: true}}
 				>
 					<List>
 						<WhiteSpace size="xs" />

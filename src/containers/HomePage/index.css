@@ -14,16 +14,16 @@
   background: #fff;
 }
 .myCarousel {
-  height: 320px !important;
+  height: calc( 100vw/7*4 ) !important;
 }
 
 .myCarousel > div > ul {
-  height: 320px !important;
+  height: calc( 100vw/7*4 )  !important;
 }
 
 .myCarousel a {
   display: block;
-  height: 320px;
+  height: calc( 100vw/7*4 ) ;
 }
 .myCarousel a img {
   width: 100%;

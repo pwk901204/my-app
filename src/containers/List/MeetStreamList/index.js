@@ -96,6 +96,7 @@ class MeetStreamList extends Component {
 
 				<ReactIScroll
 					iScroll={iScroll}
+					options={{click: true}}
 					onScrollEnd={this.scrollEnd}
 				>
 					<ul className={style.List}>

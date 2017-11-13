@@ -13,6 +13,7 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
 const pxtorem = require('postcss-pxtorem');
+const SshWebpackPlugin = require('ssh-webpack-plugin');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -91,7 +92,6 @@ module.exports = {
     // for React Native Web.
     extensions: ['.web.js', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
-      
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
@@ -102,6 +102,7 @@ module.exports = {
       'api_url':path.resolve(__dirname, '../src/api_url'),
       'reduxs':path.resolve(__dirname, '../src/reduxs'),
       'components':path.resolve(__dirname, '../src/components'),
+      'common':path.resolve(__dirname, '../src/common'),
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -129,7 +130,6 @@ module.exports = {
             options: {
               formatter: eslintFormatter,
               eslintPath: require.resolve('eslint'),
-              
             },
             loader: require.resolve('eslint-loader'),
           },
@@ -421,6 +421,15 @@ module.exports = {
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new SshWebpackPlugin({
+      host: 'doctor.mdsonline.cn',
+      port: '22',
+      username: 'root',
+      //password: 'Remote password',//or use privateKey login(privateKey: require('fs').readFileSync('/path/to/private/key')).
+      privateKey: require('fs').readFileSync('/Users/Kkk/.ssh/id_rsa'),
+      // from: 'Deploy Local path',
+      to: '/var/www/build',//important: If the 'cover' of value is false,All files in this folder will be cleared before starting deployment.
+    })
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

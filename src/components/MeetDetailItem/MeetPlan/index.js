@@ -12,6 +12,7 @@ export default class MeetPlan extends Component {
 			<div className={style.meetPlan}>
 				<ReactIScroll
 					iScroll={iScroll}
+					options={{click: true}}
 				>
 					<div>
 						{

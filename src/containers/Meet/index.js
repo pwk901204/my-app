@@ -55,6 +55,7 @@ class Meet extends Component {
 		return (
 			<ReactIScroll
 				iScroll={iScroll}
+				options={{click: true}}
 			>
 				<div className={style.meet}>
 					{

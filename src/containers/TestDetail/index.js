@@ -50,6 +50,7 @@ class TestDetail extends Component {
 			<div className={style.contentWrap}>
 				<ReactIScroll
 					iScroll={iScroll}
+					options={{click: true}}
 				>
 					<div className={style.content}>
 						<p>①每周为一个积分单位。</p>

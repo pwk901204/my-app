@@ -14,6 +14,7 @@ export default class DoctorList extends Component {
 			<div className={style.doctorList}>
 				<ReactIScroll
 					iScroll={iScroll}
+					options={{click: true}}
 				>
 					<div>
 						<WhiteSpace size="xs" />
