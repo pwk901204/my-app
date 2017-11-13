@@ -3,3 +3,4 @@
 2.H5 图片浏览 ： http://photoswipe.com/documentation/getting-started.html
 3.H5 滚动： http://iscrolljs.com/   及其  react-scroll
 4.redux-actions
+5.https://zhuanlan.zhihu.com/FrontendMagazine/20397902
