@@ -81,7 +81,7 @@ class HomePage extends Component {
 						<div className={style.topModule}>
 							<Link to="/VideoCollege">
 								<Icon type={shipingxueyuan}  className={style.shipingxueyuan} />
-								<h6>视屏学院</h6>
+								<h6>视频学院</h6>
 								<p>可收看精彩直播、课程</p>
 							</Link>
 							<Link to="/Meet">

@@ -38,7 +38,7 @@ export default class DoctorInfo extends Component {
 								<span></span>
 								擅长
 							</h6>
-							<div>{this.props.good_at ? this.props.introduction: "暂无信息～"}</div>
+							<div>{this.props.good_at ? this.props.good_at: "暂无信息～"}</div>
 						</div>
 					</div>
 				</ReactIScroll>

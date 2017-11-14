@@ -89,7 +89,7 @@ class Comment extends Component {
 	onStar=(id,index)=>{
 		let data = {}
 		data.token= this.props.userInfo.token;
-		data.action_type= "star";
+		data.action_type= "like";
 		data.target_type=  "comment";
 		data.id = id;
 		fetch(global.url.actionStores,{

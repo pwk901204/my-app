@@ -11,13 +11,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
-  font-size: 24px;
+  font-size: 30px;
 }
 
 .listIntroduction {
   display: block;
   white-space: normal;
-  font-size: 24px;
+  font-size: 30px;
 }
 .fontRed {
   color: #ff2654;

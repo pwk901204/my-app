@@ -95,7 +95,7 @@ class RecordDetail extends Component {
 							<TabPane tab="医生详情" key="2" className={style.tabItemWrap}>
 								<DoctorInfo {...recording.doctor}/>
 							</TabPane>
-							<TabPane tab={<Badge text={recording.comments_count}>评论</Badge>} key="3" className={style.tabItemWrap}>
+							<TabPane tab={`评论(${recording.comments_count})`} key="3" className={style.tabItemWrap}>
 								<Comment id={recording.id} target_type="recording"/>
 							</TabPane>
 						</Tabs>

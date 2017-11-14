@@ -24,6 +24,7 @@ export default class LiveVideo extends Component {
 			inactivityTimeout:30000,
 			"preload": "auto",
 			controls:true,
+			"loop": true, //是否循环播放
 			poster : this.props.cover_url, //视频播放前显示的图片
 			controlBar:{
 				'currentTimeDisplay':true,
@@ -33,6 +34,7 @@ export default class LiveVideo extends Component {
 				playToggle: true,
 				progressControl:true
 			},
+			"techOrder":["html5","flash"],
 			errorDisplay:false,
 			loadingSpinner:true,
 			"x-webkit-airplay":"allow",
@@ -47,7 +49,7 @@ export default class LiveVideo extends Component {
 				{type: "video/mp4", src: play_url},
 				{type: "video/x-flv", src: play_url}
 			]
-			this.myPlayer.setDataSource(dataOption)
+			this.myPlayer.setDataSource(dataOption);
 			//添加组件到 this.myPlayer.corePlayer根节点
 
 			this.myPlayer.corePlayer.addChild(errorComponent, {})

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import { ActivityIndicator, Tabs, Badge, Button, Popup} from 'antd-mobile';
+import { ActivityIndicator, Tabs, Button, Popup} from 'antd-mobile';
 import {connect} from "react-redux";
 
 import StreamInfo from "components/StreamInfo";
@@ -146,7 +146,7 @@ class StreamDetail extends Component {
 								<TabPane tab="医生详情" key="2" className={style.tabItemWrap}>
 									<DoctorInfo {...stream.doctor}/>
 								</TabPane>
-								<TabPane tab={<Badge text={stream.comments_count}>评论</Badge>} key="3" className={style.tabItemWrap}>
+								<TabPane tab={`评论(${stream.comments_count})`} key="3" className={style.tabItemWrap}>
 									<Comment id={stream.id} target_type="stream"/>
 								</TabPane>
 							</Tabs>
@@ -160,10 +160,10 @@ class StreamDetail extends Component {
 								<TabPane tab="医生详情" key="2" className={style.tabItemWrap}>
 									<DoctorInfo {...stream.doctor}/>
 								</TabPane>
-								<TabPane tab={<Badge text={stream.comments_count}>评论</Badge>} key="3" className={style.tabItemWrap}>
+								<TabPane tab={`评论(${stream.comments_count})`} key="3" className={style.tabItemWrap}>
 									<Comment id={stream.id} target_type="stream"/>
 								</TabPane>
-								<TabPane tab={"报名人数"} key="4" className={style.tabItemWrap}>
+								<TabPane tab={"报名列表"} key="4" className={style.tabItemWrap}>
 									<Enlist {...stream}/>
 								</TabPane>
 							</Tabs>
@@ -172,7 +172,7 @@ class StreamDetail extends Component {
 							stream.stream_type === "live" &&
 							<Tabs pageSize={4} swipeable={false} defaultActiveKey="1" className={style.tabWrap}>
 								<TabPane tab={"聊天室"} key="1" className={style.tabItemWrap}>
-									<ChatRoom 
+									<ChatRoom
 										id={stream.id}
 										users_count={stream.stream_users_count}
 										bounty_count={stream.stream_bounty_count}
@@ -192,7 +192,7 @@ class StreamDetail extends Component {
 										payment_count={stream.stream_payment_count}
 									/>
 								</TabPane>
-								<TabPane tab={"报名人数"} key="5" className={style.tabItemWrap}>
+								<TabPane tab={"报名列表"} key="5" className={style.tabItemWrap}>
 									<Enlist  {...stream}/>
 								</TabPane>
 							</Tabs>

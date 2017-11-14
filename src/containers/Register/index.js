@@ -6,12 +6,8 @@ import {browserHistory} from "react-router";
 import { createForm } from 'rc-form';
 import mima from "svg/mima.svg";
 import shouji from "svg/shouji.svg";
-
 import yanzhengma from "svg/yanzhengma.svg";
-
 import {registerInfo} from "reduxs/registerInfo";
-
-
 
 class DoctorForm extends Component {
 	state = {
@@ -131,6 +127,7 @@ class DoctorForm extends Component {
 					selectedIndex={this.state.identityIndex}
 					values={["医生","学生","访客"]}
 					onChange={this.handleChange}
+					style={{ height: '0.8rem'}}
 				/>
 				<List className={style.list}>
 					<InputItem

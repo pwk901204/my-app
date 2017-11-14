@@ -4,6 +4,8 @@ import style from './index.css';
 import { WhiteSpace, Tag, List} from 'antd-mobile';
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
+import moment from 'moment';
+moment.lang('zh-cn');
 
 export default class StreamInfo extends Component {
 	render() {
@@ -22,7 +24,7 @@ export default class StreamInfo extends Component {
 						</List.Item>
 						<List.Item >
 							<span className={style.listTitle}>开讲</span>
-							<span className={style.listContent}>{stream.start_time}</span>
+							<span className={style.listContent}>{moment(stream.start_time).format('YYYY-MM-DD HH:mm')}</span>
 						</List.Item>
 						<List.Item >
 							<span className={style.listTitle}>时长</span>
@@ -30,7 +32,7 @@ export default class StreamInfo extends Component {
 						</List.Item>
 						<List.Item >
 							<span className={style.listTitle}>费用</span>
-							<span className={style.listContent}>{stream.price}</span>
+							<span className={`${style.listContent} fontBlue`}>{Number(stream.price)?stream.price:"免费"}</span>
 						</List.Item>
 						<List.Item >
 							<span className={style.listTitle}>涉及科室</span>
