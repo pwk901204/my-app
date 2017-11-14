@@ -7,7 +7,6 @@ import RecordInfo from "components/RecordInfo";
 import DoctorInfo from "components/DoctorInfo";
 import LiveVideo from "components/LiveVideo";
 import Comment from "components/Comment";
-import MiniNav from "components/MiniNav";
 import {Pay} from "components/Pay";
 import {ordersAction} from "reduxs/orders.js";
 
@@ -45,7 +44,6 @@ class RecordDetail extends Component {
 	}
 	onClick = () => {
 		let recording =this.state.recording;
-		let _this = this;
 		if(Number(recording.price)>0){
 			//付费报名
 			Popup.show(<Pay
@@ -102,7 +100,6 @@ class RecordDetail extends Component {
 							</TabPane>
 						</Tabs>
 						<ActivityIndicator toast  animating={this.state.loading}/>
-						<MiniNav/>
 					</div>
 				}
 			</div>

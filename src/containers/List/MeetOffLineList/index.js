@@ -109,7 +109,7 @@ class MeetOffLineList extends Component {
 
 				<ReactIScroll
 					iScroll={iScroll}
-					options={{click: true}}
+					options={{...global.iscrollOptions}}
 					onScrollEnd={this.scrollEnd}
 				>
 					<ul className={style.List}>

@@ -22,7 +22,7 @@ export default class MeetStreamPlan extends Component {
 			<div className={style.meetStreamPlan}>
 				<ReactIScroll
 					iScroll={iScroll}
-					options={{click: true}}
+					options={{...global.iscrollOptions}}
 				>
 					<div>
 						<WhiteSpace size="xs" />

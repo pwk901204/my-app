@@ -121,7 +121,7 @@ class SeriesList extends Component {
 
 				<ReactIScroll
 					iScroll={iScroll}
-					options={{click: true}}
+					options={{...global.iscrollOptions}}
 					onScrollEnd={this.scrollEnd}
 				>
 					<div className={style.series}>

@@ -45,14 +45,17 @@ class HomePage extends Component {
 		})
 	}
 	render() {
+		let userInfo = this.props.userInfo;
 		return (
 			<div className={style.homePageWrap}>
 				<ReactIScroll
 					iScroll={iScroll}
-					options={{click: true}}
+					options={{...global.iscrollOptions}}
 				>
 					<div className={style.homePage}>
-						<h4 className={style.title}>{this.props.userInfo.name}医生</h4>
+						{userInfo.type === "Doctor" && <h4 className={style.title}>{userInfo.name}({userInfo.title})</h4>}
+						{userInfo.type === "Student" && <h4 className={style.title}>{userInfo.name}(学生)</h4>}
+						{userInfo.type === "Visitor" && <h4 className={style.title}>{userInfo.name}(访客)</h4>}
 						{
 							this.state.getCarouselsData && 
 							<Carousel

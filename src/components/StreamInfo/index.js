@@ -12,7 +12,7 @@ export default class StreamInfo extends Component {
 			<div className={style.streamInfo}>
 				<ReactIScroll
 					iScroll={iScroll}
-					options={{click: true}}
+					options={{...global.iscrollOptions}}
 				>
 					<List>
 						<WhiteSpace size="xs" />

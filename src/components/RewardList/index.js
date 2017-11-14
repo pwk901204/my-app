@@ -41,7 +41,7 @@ export default class RewardList extends Component {
 			<div className={style.rewardlist}>
 				<ReactIScroll
 					iScroll={iScroll}
-					options={{click: true}}
+					options={{...global.iscrollOptions}}
 				>
 					<div>
 						<WhiteSpace size="xs" />

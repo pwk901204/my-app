@@ -2,13 +2,9 @@ import React, { Component } from 'react';
 import style from './index.css';
 import {ActivityIndicator, Tabs, Badge, Button} from 'antd-mobile';
 import {connect} from "react-redux";
-
-
 import MeetStreamInfo from "components/MeetDetailItem/MeetStreamInfo";
 import DoctorList from "components/DoctorList";
 import MeetRecordPlan from "components/MeetDetailItem/MeetRecordPlan";
-
-import MiniNav from "components/MiniNav";
 
 const TabPane = Tabs.TabPane;
 
@@ -56,7 +52,6 @@ class MeetRecordDetail extends Component {
 							</TabPane>
 						</Tabs>
 						<ActivityIndicator toast  animating={this.state.loading}/>
-						<MiniNav/>
 					</div>
 				}
 			</div>

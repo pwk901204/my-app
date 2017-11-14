@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import { WhiteSpace, List, Button, Toast, Popup} from 'antd-mobile';
+import { WhiteSpace, Button, Toast, Popup, Icon} from 'antd-mobile';
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 import {connect} from "react-redux";
 import {Reward} from "components/Pay";
 import PropTypes from 'prop-types';
 import {ordersAction} from "reduxs/orders.js";
+import ren from "svg/ren.svg";
 class ChatRoom extends Component {
 	static propTypes = {
 		id:PropTypes.oneOfType([
@@ -115,11 +116,11 @@ class ChatRoom extends Component {
 		return (
 			<div className={style.chatRoom}>
 				<div className={style.chatRoomContent}>
-					<span className={style.chatIcon1}>共{this.props.users_count}人报名</span>
-					<span className={style.chatIcon2}>{this.props.bounty_count}人共打赏了{this.props.payment_count}元</span>
+					<span className={style.chatIcon1}><i className={style.dashangIcon}>赏</i>共{this.props.users_count}人报名</span>
+					<span className={style.chatIcon2}><Icon type={ren} className={style.renIcons} />{this.props.bounty_count}人共打赏了{this.props.payment_count}元</span>
 					<ReactIScroll
 						iScroll={iScroll}
-						options={{click: true}}
+						options={{...global.iscrollOptions}}
 					>
 						<div>
 							<WhiteSpace size="xs" />

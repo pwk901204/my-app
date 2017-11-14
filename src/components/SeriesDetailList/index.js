@@ -14,7 +14,7 @@ export default class SeriesDetailList extends Component {
 			<div className={style.seriesList}>
 				<ReactIScroll
 					iScroll={iScroll}
-					options={{click: true}}
+					options={{...global.iscrollOptions}}
 				>
 					<div>
 						<WhiteSpace size="xs" />

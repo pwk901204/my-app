@@ -114,7 +114,7 @@ class Comment extends Component {
 				<div className={style.commentList}>
 					<ReactIScroll
 						iScroll={iScroll}
-						options={{click: true}}
+						options={{...global.iscrollOptions}}
 						onScrollEnd={this.scrollEnd}
 					>
 						<div>

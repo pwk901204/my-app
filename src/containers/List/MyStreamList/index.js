@@ -64,7 +64,7 @@ class MyStreamList extends Component {
 					<TabPane tab="已发起" key="created" className={style.tabItemWrap}  >
 						<ReactIScroll
 							iScroll={iScroll}
-							options={{click: true}}
+							options={{...global.iscrollOptions}}
 							onScrollEnd={this.scrollEnd}
 						>
 							<div>
@@ -79,7 +79,7 @@ class MyStreamList extends Component {
 					<TabPane tab="已购买" key="bought" className={style.tabItemWrap} >
 						<ReactIScroll
 							iScroll={iScroll}
-							options={{click: true}}
+							options={{...global.iscrollOptions}}
 							onScrollEnd={this.scrollEnd}
 						>
 							<div>
@@ -94,7 +94,7 @@ class MyStreamList extends Component {
 					<TabPane tab="已预约" key="reservation" className={style.tabItemWrap} >
 						<ReactIScroll
 							iScroll={iScroll}
-							options={{click: true}}
+							options={{...global.iscrollOptions}}
 							onScrollEnd={this.scrollEnd}
 						>
 							<div>

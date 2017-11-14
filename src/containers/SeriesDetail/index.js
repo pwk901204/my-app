@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import {ActivityIndicator, Tabs, Badge, Button} from 'antd-mobile';
+import {ActivityIndicator, Tabs} from 'antd-mobile';
 import {connect} from "react-redux";
 
 
 import DoctorInfo from "components/DoctorInfo";
 import SeriesDetailList from "components/SeriesDetailList";
 import SeriesInfo from "components/SeriesInfo";
-
-import LiveVideo from "components/LiveVideo";
-import Comment from "components/Comment";
-import MiniNav from "components/MiniNav";
 
 const TabPane = Tabs.TabPane;
 
@@ -55,7 +51,6 @@ class SeriesDetail extends Component {
 							</TabPane>
 						</Tabs>
 						<ActivityIndicator toast  animating={this.state.loading}/>
-						<MiniNav/>
 					</div>
 				}
 			</div>

@@ -4,9 +4,11 @@ import url from 'api_url/index.js';
 //全局变量
 Object.defineProperties(global, {
   url: { value: url },
-  wx: { value: window.wx }
+  wx: { value: window.wx },
+  iscrollOptions:{
+    value : { preventDefault:false }
+  }
 });
-
 
 function isPassive() {
   var supportsPassiveOption = false;
@@ -37,6 +39,8 @@ document.addEventListener(
     : false
 );
 
-window.addEventListener('load', () => {
-  FastClick.attach(document.body);
-});
+if ('addEventListener' in document) {
+  document.addEventListener('DOMContentLoaded', function() {
+    FastClick.attach(document.body);
+  }, false);
+}

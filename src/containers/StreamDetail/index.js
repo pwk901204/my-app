@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import {Icon, ActivityIndicator, List, Tag,  Tabs, Badge, WhiteSpace, Button, Popup} from 'antd-mobile';
+import { ActivityIndicator, Tabs, Badge, Button, Popup} from 'antd-mobile';
 import {connect} from "react-redux";
 
-import {browserHistory} from "react-router";
 import StreamInfo from "components/StreamInfo";
 import DoctorInfo from "components/DoctorInfo";
 import LiveVideo from "components/LiveVideo";
@@ -11,7 +10,6 @@ import Comment from "components/Comment";
 import Enlist from "components/Enlist";
 import RewardList from "components/RewardList";
 import ChatRoom from "components/ChatRoom";
-import MiniNav from "components/MiniNav";
 import {Pay} from "components/Pay";
 import {ordersAction} from "reduxs/orders.js";
 
@@ -200,7 +198,6 @@ class StreamDetail extends Component {
 							</Tabs>
 						}
 						<ActivityIndicator toast  animating={this.state.loading}/>
-						<MiniNav/>
 					</div>
 				}
 			</div>

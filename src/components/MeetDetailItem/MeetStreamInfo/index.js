@@ -12,7 +12,7 @@ export default class MeetStreamInfo extends Component {
 			<div className={style.meetInfo}>
 				<ReactIScroll
 					iScroll={iScroll}
-					options={{click: true}}
+					options={{...global.iscrollOptions}}
 				>
 					<List>
 						<WhiteSpace size="xs" />

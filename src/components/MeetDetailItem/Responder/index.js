@@ -142,7 +142,7 @@ class Responder extends Component {
 				<div className={style.responderWrap}>
 					<ReactIScroll
 						iScroll={iScroll}
-						options={{click: true}}
+						options={{...global.iscrollOptions}}
 					>
 						<div>
 							<WhiteSpace size="xs" />

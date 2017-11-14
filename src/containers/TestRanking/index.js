@@ -45,7 +45,7 @@ class TestRanking extends Component {
 				{
 					scores &&<ReactIScroll
 						iScroll={iScroll}
-						options={{click: true}}
+						options={{...global.iscrollOptions}}
 					>
 					 <div className={style.testRanking}>
 							<h6 className={style.title}>我的排名</h6>

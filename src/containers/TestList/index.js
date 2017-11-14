@@ -82,7 +82,7 @@ class TestList extends Component {
 				<div className={style.tabBarWrap}>
 					<ReactIScroll
 						iScroll={iScroll}
-						options={{click: true}}
+						options={{...global.iscrollOptions}}
 						options={{
 							scrollX: true,
 							scrollY: false
@@ -106,7 +106,7 @@ class TestList extends Component {
 				<div className={style.listWrap}>
 					<ReactIScroll
 						iScroll={iScroll}
-						options={{click: true}}
+						options={{...global.iscrollOptions}}
 					>
 						<div className={style.list}>
 							{

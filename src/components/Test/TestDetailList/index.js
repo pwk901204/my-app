@@ -12,7 +12,7 @@ class TestDetailList extends Component {
 			<div className={style.testDetailListWrap}>
 				<ReactIScroll
 					iScroll={iScroll}
-					options={{click: true}}
+					options={{...global.iscrollOptions}}
 				>
 					<div className={style.testDetailList}>
 						<h5 className={style.title}>已更新至第{data.length}期</h5>

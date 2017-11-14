@@ -168,7 +168,7 @@ class TestQuestionDetail extends Component {
 							return <div className={`${style.contentWrap} ${indexSubjects  === index ? style.active : "" }`} key={index}>
 								<ReactIScroll
 									iScroll={iScroll}
-									options={{click: true}}
+									options={{...global.iscrollOptions}}
 								>
 									<div className={style.content}>
 										<WhiteSpace size="sm" />
@@ -227,7 +227,7 @@ class TestQuestionDetail extends Component {
 							return <div className={`${style.contentWrap} ${indexSubjects  === index ? style.active : "" }`} key={index}>
 								<ReactIScroll
 									iScroll={iScroll}
-									options={{click: true}}
+									options={{...global.iscrollOptions}}
 								>
 									<div className={style.content}>
 										<WhiteSpace size="sm" />

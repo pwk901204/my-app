@@ -106,7 +106,7 @@ class Mine extends Component {
     	<div className={style.mineWrap}>
     		<ReactIScroll
 				iScroll={iScroll}
-				options={{click: true}}
+				options={{...global.iscrollOptions}}
 			>
 				<div className={style.mine}>
 					<div className={style.head}>

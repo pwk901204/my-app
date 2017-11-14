@@ -22,7 +22,7 @@ export default class MeetRecordPlan extends Component {
 			<div className={style.meetRecordPlan}>
 				<ReactIScroll
 					iScroll={iScroll}
-					options={{click: true}}
+					options={{...global.iscrollOptions}}
 				>
 					<div>
 						<WhiteSpace size="xs" />

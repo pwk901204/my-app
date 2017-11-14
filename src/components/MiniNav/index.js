@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import style from './index.css';
 import {browserHistory} from "react-router";
 import { Modal, Icon} from 'antd-mobile';
+import caidan from "svg/caidan.svg";
 const operation = Modal.operation;
 export default class MiniNav extends Component {
 	render() {
@@ -14,7 +15,7 @@ export default class MiniNav extends Component {
 						{ text: '联系客服', onPress: () => console.log('置顶聊天被点击了') },
 					])}
 				>
-					<Icon type={"check-circle"} />
+					<Icon type={caidan} className={style.caidan}/>
 				</div>
 		);
 	}

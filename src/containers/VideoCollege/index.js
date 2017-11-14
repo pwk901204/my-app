@@ -41,13 +41,15 @@ class VideoCollege extends Component {
 			<div className={style.videoCollege}>
 				<ReactIScroll
 					iScroll={iScroll}
-					options={{click: true}}
+					options={{...global.iscrollOptions}}
 				>
 					<div>
 						{
 							advertisement &&
 							<div className={style.videoWrap}>
-								<LiveVideo play_url={advertisement.url}/>
+								<LiveVideo
+									play_url={advertisement.url}
+								/>
 							</div>
 						}
 						<WhiteSpace size="md" />

@@ -6,10 +6,10 @@ import PropTypes from 'prop-types';
 export default class LiveVideo extends Component {
 
 	static defaultProps = {
-		anchor: false
+		autoplay: false
 	};
 	static propTypes = {
-		anchor : PropTypes.bool,
+		autoplay : PropTypes.bool,
 		cover_url : PropTypes.string,
 		play_url : PropTypes.string.isRequired,
 	};
@@ -20,7 +20,7 @@ export default class LiveVideo extends Component {
 	componentDidMount() {
 		console.log(this.props)
 		let option = {
-			autoplay:!this.props.anchor,
+			autoplay:this.props.autoplay,
 			inactivityTimeout:30000,
 			"preload": "auto",
 			controls:true,
@@ -53,7 +53,7 @@ export default class LiveVideo extends Component {
 			this.myPlayer.corePlayer.addChild(errorComponent, {})
 			this.myPlayer.onError(function(){
 				console.log("出错了～～～", errorElement)
-				let text = _this.props.anchor ? '直播推流失败，请检查推流设备' : '主播讲课有点累了，稍等一会就可以继续观看哦~点我刷新';
+				let text = '主播讲课有点累了，稍等一会就可以继续观看哦~点我刷新';
 				errorElement.innerHTML = `<p>${text}</p>`; //<img class="shuaxinBtn" src=""></img>
 				errorElement.onclick = function(){
 					_this.myPlayer.refresh()

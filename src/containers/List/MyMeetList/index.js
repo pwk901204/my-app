@@ -63,7 +63,7 @@ class MyMeetList extends Component {
 					<TabPane tab="直播会议" key="live" className={style.tabItemWrap}  >
 						<ReactIScroll
 							iScroll={iScroll}
-							options={{click: true}}
+							options={{...global.iscrollOptions}}
 							onScrollEnd={this.scrollEnd}
 						>
 							<ul className={style.List}>
@@ -78,7 +78,7 @@ class MyMeetList extends Component {
 					<TabPane tab="线下会议" key="offline" className={style.tabItemWrap} >
 						<ReactIScroll
 							iScroll={iScroll}
-							options={{click: true}}
+							options={{...global.iscrollOptions}}
 							onScrollEnd={this.scrollEnd}
 						>
 							<ul className={style.List}>

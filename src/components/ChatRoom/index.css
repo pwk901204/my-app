@@ -33,6 +33,27 @@
   font-size: 26px;
 }
 
+.renIcons{
+  width: 26px;
+  height: 26px;
+  vertical-align: -3px;
+  margin-right: 5px;
+}
+.dashangIcon{
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  font-size: 22px;
+  vertical-align: 1px;
+  border-radius: 50% 50%;
+  line-height: 30px;
+  text-align: center;
+  font-style: normal;
+  background: #ff8c00;
+  color: #fff;
+  margin-right:5px;
+}
+
 .message {
   composes: clearfix from 'src/index.css';
 }
