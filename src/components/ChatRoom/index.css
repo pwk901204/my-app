@@ -33,13 +33,13 @@
   font-size: 26px;
 }
 
-.renIcons{
+.renIcons {
   width: 26px;
   height: 26px;
   vertical-align: -3px;
   margin-right: 5px;
 }
-.dashangIcon{
+.dashangIcon {
   display: inline-block;
   width: 30px;
   height: 30px;
@@ -51,7 +51,7 @@
   font-style: normal;
   background: #ff8c00;
   color: #fff;
-  margin-right:5px;
+  margin-right: 5px;
 }
 
 .message {

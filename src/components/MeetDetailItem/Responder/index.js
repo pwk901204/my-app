@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import { WhiteSpace, Flex, WingBlank, Button,Toast} from 'antd-mobile';
+import { WhiteSpace, WingBlank, Button,Toast} from 'antd-mobile';
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 
@@ -23,17 +23,8 @@ class Responder extends Component {
 		count_down: ""
 	}
 	constructor(props) {
-		super(props)
-		if(window.location.host === "localhost:3000"){
-			//this.ws = new WebSocket('ws://192.168.0.111:3002/cable');
-			//this.ws = new WebSocket('ws://rqiang.mynatapp.cc/cable');
-			this.ws = new WebSocket('ws://192.168.0.101:3000/cable');
-		}else if(window.location.host === "localhost:4000"){
-			this.ws = new WebSocket('ws://' + window.location.host + '/cable');
-		}
-		else{
-			this.ws = new WebSocket('wss://' + window.location.host + '/cable');
-		}
+		super(props);
+		this.ws = new WebSocket(global.webSocketUrl);
 	}
 	componentDidMount() {
 		this.getInit();

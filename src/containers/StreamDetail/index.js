@@ -124,7 +124,7 @@ class StreamDetail extends Component {
 						}
 						{	stream.purchase && stream.stream_type === "live" &&
 							<div className={style.streamVideo}>
-								<LiveVideo cover_url={stream.cover_data.size_700} play_url={stream.pull_url_http}/>
+								<LiveVideo cover_url={stream.cover_data.size_700} play_url={stream.play_urls}/>
 							</div>
 						}
 						{	stream.purchase && stream.stream_type === "ad" &&

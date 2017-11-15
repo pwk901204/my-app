@@ -35,15 +35,7 @@ class ChatRoom extends Component {
 	}
 	constructor(props) {
 		super(props)
-		if(window.location.host === "localhost:3000"){
-			this.ws = new WebSocket('ws://192.168.0.104:3000/cable');
-			//this.ws = new WebSocket('ws://rqiang.mynatapp.cc/cable');
-		}else if(window.location.host === "localhost:4000"){
-			this.ws = new WebSocket('ws://' + window.location.host + '/cable');
-		}
-		else{
-			this.ws = new WebSocket('wss://' + window.location.host + '/cable');
-		}
+		this.ws = new WebSocket(global.webSocketUrl);
 	}
 	componentDidMount() {
 		this.ws.onopen = ()=>{
@@ -58,7 +50,7 @@ class ChatRoom extends Component {
 
 		this.ws.onmessage = (evt)=>{
 			let obj_msg = JSON.parse(evt.data);
-			//console.log(obj_msg)
+			console.log(obj_msg)
 			if(obj_msg.message){
 				if(obj_msg.message.data){
 					let arr = this.state.chatList;
@@ -79,6 +71,7 @@ class ChatRoom extends Component {
 		let inputValue = this.state.inputValue;
 		if(this.props.userInfo.token){
 			if(inputValue !== ""){
+				console.log(123)
 				this.ws.send(JSON.stringify({
 					"command": "message",
 					"identifier": JSON.stringify({

@@ -11,7 +11,7 @@ export default class LiveVideo extends Component {
 	static propTypes = {
 		autoplay : PropTypes.bool,
 		cover_url : PropTypes.string,
-		play_url : PropTypes.string.isRequired,
+		play_url : PropTypes.oneOfType([PropTypes.string,PropTypes.object]).isRequired,
 	};
 	constructor(props){
 		super(props);
@@ -34,7 +34,6 @@ export default class LiveVideo extends Component {
 				playToggle: true,
 				progressControl:true
 			},
-			"techOrder":["html5","flash"],
 			errorDisplay:false,
 			loadingSpinner:true,
 			"x-webkit-airplay":"allow",
@@ -44,11 +43,19 @@ export default class LiveVideo extends Component {
 		this.myPlayer = window.neplayer("my-video", option, ()=> {
 			console.log('播放器初始化完成');
 			//设置数据源
-			let play_url = _this.props.play_url;
-			let dataOption = [
-				{type: "video/mp4", src: play_url},
-				{type: "video/x-flv", src: play_url}
-			]
+			var play_url = _this.props.play_url;
+			var dataOption = null;
+			if( typeof play_url ===  "string" ){
+				dataOption = [
+					{type: "video/mp4", src: play_url}
+				]
+			}else if(typeof play_url ===  "object" ){
+				dataOption = [
+					{type: "application/x-mpegURL",src: play_url.hls},
+					{type: "video/x-flv",src: play_url.flv}
+				]
+			}
+
 			this.myPlayer.setDataSource(dataOption);
 			//添加组件到 this.myPlayer.corePlayer根节点
 

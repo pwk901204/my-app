@@ -41,7 +41,6 @@ const data=[
 		icon:<Icon type={wodehuiyi} />,
 		text:<p data-link="/MyMeetList" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的会议</p>
 	},
-	
 ]
 const data1=[
 	{
@@ -110,6 +109,7 @@ class Mine extends Component {
 			>
 				<div className={style.mine}>
 					<div className={style.head}>
+						<i>会员号:{this.props.userInfo.user_no}</i>
 						<img src={minebg} alt="头像" />
 						<h6>{this.props.userInfo.name}<span>({this.props.userInfo.title})</span></h6>
 						<p>{this.props.userInfo.hospital}&nbsp;<span>{this.props.userInfo.department}</span></p>
@@ -140,7 +140,6 @@ class Mine extends Component {
 				</div>
 			</ReactIScroll>
     	</div>
-		
     );
   }
 }
