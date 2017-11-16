@@ -19,7 +19,6 @@ class StreamDetail extends Component {
 	state = {
 		loading:false,
 		stream:null,
-		selectedTab:"streamInfo"
 	}
 	componentDidMount(){
 		this.getDetail();

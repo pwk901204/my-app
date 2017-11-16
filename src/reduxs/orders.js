@@ -22,6 +22,7 @@ export const ordersAction = data => (dispatch, getState) => {
   })
     .then(response => response.json())
     .then(ordersData => {
+      console.log(ordersData,"ordersData")
       if (ordersData.status === 'success') {
         data.callBack(ordersData.data);
       }

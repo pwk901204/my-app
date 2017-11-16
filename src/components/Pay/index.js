@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import {Button ,List, Radio, WingBlank, WhiteSpace, Icon,Popup} from 'antd-mobile';
+import {Button ,List, Radio, WingBlank, WhiteSpace, Icon,Popup, Toast} from 'antd-mobile';
 import wx from "svg/wx.svg";
 import zfb from "svg/zfb.svg";
 import PropTypes from 'prop-types';
@@ -127,14 +127,20 @@ export class Reward extends Component {
 			amount:this.state.amount,
 			pay_way:this.state.pay_way,
 			callBack:(data)=>{
-				browserHistory.push({
-			        pathname: '/PayPage',
-			        state: {
-						topic:this.props.topic,
-						amount:this.state.amount,
-						...data
-			        },
-			    })
+				console.log(1231)
+				if(/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(this.state.amount) && this.state.amount > 0 ){
+					browserHistory.push({
+				        pathname: '/PayPage',
+				        state: {
+							topic:this.props.topic,
+							amount:this.state.amount,
+							...data
+				        },
+				    })
+				    Popup.hide();
+				}else{
+					Toast.info('请输入正确的金额', 0.7);
+				}
 			}
 		})
 	}
@@ -169,8 +175,7 @@ export class Reward extends Component {
 								this.setState({selectIndex:5,amount:0});
 								e.target.focus();
 							}}
-							onInput={(e)=>{
-								e.target.value = e.target.value.replace(/\D/g,'')
+							onInput = {(e)=>{
 								this.setState({amount:e.target.value});
 							}}
 							type="text"

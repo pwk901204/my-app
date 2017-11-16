@@ -14,6 +14,9 @@ class LoginForm extends Component {
 	state={
 		loading:false,
 	}
+	componentDidMount(){
+		localStorage.removeItem("reduxPersist:userInfo")
+	}
 	handleSubmit = ()=>{
 		console.log(this.props.form)
 		this.props.form.validateFields((err, values)=>{

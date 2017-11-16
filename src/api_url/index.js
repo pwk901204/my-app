@@ -14,7 +14,7 @@ switch (window.location.host) {
     break;
   case '192.168.0.129:3000':
     // __host__ = "https://doctor.mdsonline.cn";
-    __host__ = 'http://192.168.0.103:3000';
+    __host__ = 'http://api.mdslife.com';
 
     //__host__ = 'http://api.xiayuanyin.cn';
     //__host__ = "http://192.168.0.109:3001";
@@ -72,6 +72,9 @@ url.comments = __host__ + '/api/doctor/comments';
 
 // 收藏点赞
 url.actionStores = __host__ + '/api/doctor/action_stores';
+
+// 取消收藏 点赞
+url.actionStoresCancel = __host__ + '/api/doctor/action_stores/cancel';
 
 //录播列表
 url.recordings = __host__ + '/api/doctor/recordings';

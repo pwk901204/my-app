@@ -233,7 +233,7 @@ const Pwk = (location, cb) => {
   });
 };
 
-const requireAuth = ({ title = '麦迪森在线', needLogin = true } = {}) => {
+const requireAuth = ({ title = '麦迪森在线', needLogin = true , needShare = true } = {}) => {
   //微信分享
   return () => {
     document.title = title;
@@ -244,7 +244,7 @@ const requireAuth = ({ title = '麦迪森在线', needLogin = true } = {}) => {
         }
       }, 1000);
     }
-    wxShare();
+    needShare && wxShare();
   };
 };
 
@@ -375,7 +375,7 @@ class Routers extends Component {
           <Route
             path="/PayPage"
             getComponent={PayPage}
-            onEnter={requireAuth({ title: '支付页面' })}
+            onEnter={requireAuth({ title: '支付页面' , needShare : false})}
           />
           <Route
             path="/TestList"
