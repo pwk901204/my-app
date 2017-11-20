@@ -169,7 +169,15 @@ class StreamDetail extends Component {
 						}
 						{
 							stream.stream_type === "live" &&
-							<Tabs pageSize={4} swipeable={false} defaultActiveKey="1" className={style.tabWrap}>
+							<Tabs pageSize={4} swipeable={false} defaultActiveKey="1" className={style.tabWrap}
+								onChange={(index) => {
+									if(index == 4){
+										this.setState({
+											Date:new Date()
+										})
+									}
+								}}
+							>
 								<TabPane tab={"聊天室"} key="1" className={style.tabItemWrap}>
 									<ChatRoom
 										id={stream.id}
@@ -186,6 +194,7 @@ class StreamDetail extends Component {
 								</TabPane>
 								<TabPane tab={"打赏排行榜"} key="4" className={style.tabItemWrap}>
 									<RewardList
+										key={this.state.Date}
 										id={stream.id}
 										bounty_count={stream.stream_bounty_count}
 										payment_count={stream.stream_payment_count}
