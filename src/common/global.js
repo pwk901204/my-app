@@ -2,15 +2,15 @@ import FastClick from 'fastclick';
 import url from 'api_url/index.js';
 
 //WebSocket connect url
-let webSocketUrl = "";
-if(window.location.host === "localhost:3000"){
+let webSocketUrl = '';
+if (window.location.host === 'localhost:3000') {
   webSocketUrl = 'ws://192.168.0.104:3000/cable';
-}else if(window.location.host === "localhost:4000"){
+} else if (window.location.host === 'localhost:4000') {
   webSocketUrl = 'ws://' + window.location.host + '/cable';
-}else{
+} else {
   webSocketUrl = 'wss://' + window.location.host + '/cable';
 }
-webSocketUrl = "wss://doctor.mdsonline.cn/cable"
+webSocketUrl = 'wss://doctor.mdsonline.cn/cable';
 
 //全局变量
 Object.defineProperties(global, {
@@ -19,8 +19,8 @@ Object.defineProperties(global, {
   iscrollOptions: {
     value: { preventDefault: false }
   },
-  webSocketUrl:{
-    value : webSocketUrl
+  webSocketUrl: {
+    value: webSocketUrl
   }
 });
 

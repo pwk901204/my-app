@@ -8,15 +8,15 @@
 .commentListWrap {
   height: 100%;
 }
-.commentList{
+.commentList {
   min-height: 100%;
   position: relative;
 }
-.blank{
+.blank {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
 .commentItem {
   composes: clearfix from 'src/index.css';
@@ -62,18 +62,18 @@
   width: 50%;
   float: left;
 }
-.dianzan{
-  height:26px;
+.dianzan {
+  height: 26px;
   vertical-align: -4px;
-  fill:#666;
+  fill: #666;
 }
-.dianzan.active{
-  fill:#33a9fc;
+.dianzan.active {
+  fill: #33a9fc;
 }
-.xinxi{
-  height:26px;
+.xinxi {
+  height: 26px;
   vertical-align: -4px;
-  fill:#666;
+  fill: #666;
 }
 
 .commentInput {

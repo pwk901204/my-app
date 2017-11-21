@@ -15,6 +15,7 @@ import shimingrenzheng  from "svg/shimingrenzheng.svg";
 import huanzhepingjia  from "svg/huanzhepingjia.svg";
 import xiaoxizhongxin  from "svg/xiaoxizhongxin.svg";
 import kaitongzhibo  from "svg/kaitongzhibo.svg";
+import shanchang  from "svg/shanchang.svg";
 
 import xingyibaozhang  from "svg/xingyibaozhang.svg";
 import xiugaiziliao  from "svg/xiugaiziliao.svg";
@@ -92,7 +93,7 @@ const data1=[
 		text:<p data-link="/ComingSoonPage" style={{color:"#6f6f6f",fontWeight:'bold'}}>我的文章</p>
 	},
 	{
-		icon:<Icon type={wodewenzhang} />,
+		icon:<Icon type={shanchang} />,
 		text:<p data-link="/Introduction" style={{color:"#6f6f6f",fontWeight:'bold'}}>擅长简介</p>
 	},
 

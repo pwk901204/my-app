@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'react-photoswipe/dist/photoswipe.css';
+
 import './index.css';
 import {Provider} from 'react-redux';
 import {createStore,applyMiddleware,compose} from 'redux';
@@ -15,7 +17,7 @@ const middleWares = [thunk];
 
 let autoRehydrateLog = false;
 
-//new VConsole();
+new VConsole();
 
 if (process.env.NODE_ENV === "development") {
 	const logger = createLogger();

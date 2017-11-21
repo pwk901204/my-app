@@ -25,13 +25,13 @@
 }
 .nav {
   position: fixed;
-  right: 0;
-  bottom: 100px;
+  right: 20px;
+  bottom: 190px;
 }
 .nav > div {
-  width: 100px;
-  height: 100px;
-  padding: 20px;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
   box-sizing: border-box;
 }
 

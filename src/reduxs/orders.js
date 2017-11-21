@@ -6,7 +6,6 @@ export const { orders } = createActions('orders');
 
 export const ordersAction = data => (dispatch, getState) => {
   let allState = getState();
-  console.log(data, allState);
   let PostData = {};
   PostData.token = allState.userInfo.token;
   PostData.type = data.type; //{ bounty: "打赏", live: "购买直播", video: "购买录播", course: "购买课程", "meeting": "购买会议" }
@@ -22,7 +21,7 @@ export const ordersAction = data => (dispatch, getState) => {
   })
     .then(response => response.json())
     .then(ordersData => {
-      console.log(ordersData,"ordersData")
+      console.log(ordersData, 'ordersData');
       if (ordersData.status === 'success') {
         data.callBack(ordersData.data);
       }

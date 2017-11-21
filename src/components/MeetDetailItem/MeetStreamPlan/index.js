@@ -17,7 +17,6 @@ export default class MeetStreamPlan extends Component {
 		schedules:PropTypes.array.isRequired,
 	};
 	render() {
-		console.log(this.props.schedules)
 		return (
 			<div className={style.meetStreamPlan}>
 				<ReactIScroll

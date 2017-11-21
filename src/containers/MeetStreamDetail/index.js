@@ -28,7 +28,7 @@ class MeetStreamDetail extends Component {
 		clearInterval(this.timer);
 		this.timer=setInterval(()=>{
 			this.getFresh();
-		},30000)
+		},10000)
 	}
 	componentWillUnmount(){
 		clearInterval(this.timer);
@@ -81,13 +81,17 @@ class MeetStreamDetail extends Component {
 			if(data.data.stream_status === 'ended'){
 				clearInterval(_this.timer)
 			}
-			if(_this.state.stream.stream_type !== data.data.stream_status || _.find(_this.state.schedules,{status:"live"}).id != data.data.schedules.live_schedule_id ){
+			if(_this.state.stream.stream_type !== data.data.stream_status){
+				_this.getMeetDetail();
+			}
+			if( data.data.schedules.live_schedule_id && _.result(_.find(_this.state.schedules,{status:"live"}), 'id') !== data.data.schedules.live_schedule_id){
 				_this.getMeetDetail();
 			}
 		})
 	}
 	onClick = () => {
-		let {stream,meeting} =this.state.stream;
+		let {stream,meeting} =this.state;
+		let _this = this;
 		if(Number(stream.price)>0){
 			//付费报名
 			Popup.show(<Pay
@@ -99,10 +103,12 @@ class MeetStreamDetail extends Component {
 			/>, { animationType: 'slide-up', onTouchStart: e => e.preventDefault() });
 		}else{
 			//免费报名
-			this.props.ordersAction({
+			_this.props.ordersAction({
 				type:"meeting",
 				id:meeting.id,
-				callBack:this.getDetail
+				callBack:()=>{
+					_this.getMeetDetail();
+				}
 			})
 		}
 	};
@@ -114,7 +120,7 @@ class MeetStreamDetail extends Component {
 					meeting&& stream &&
 					<div className={style.meetStreamDetail}>
 						<div className={style.meetstreamVideo}>
-							{(stream.stream_type !== "live" && stream.stream_type !== "ad") && <img src="https://ss3.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=24e2f44e43ed2e73e3e9802cb703a16d/6a63f6246b600c3395dcc502134c510fd8f9a156.jpg" alt="img" />}
+							{(!stream.purchase || (stream.purchase && stream.stream_type !== "live" && stream.stream_type !== "ad") ) && <img src={stream.cover_data.size_700} alt="img" />}
 							{
 								stream.purchase && stream.stream_type === "live" &&
 								<LiveVideo cover_url={stream.cover_data.size_700} play_url={stream.play_urls} autoplay={true}/>

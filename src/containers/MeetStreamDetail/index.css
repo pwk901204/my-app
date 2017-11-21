@@ -31,14 +31,14 @@
   top: 50%;
   transform: translate(-50%, -50%);
 }
-.yuyueText{
+.yuyueText {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   color: #fff;
 }
-.yuyueText p{
+.yuyueText p {
   line-height: 50px;
   text-align: center;
   white-space: nowrap;

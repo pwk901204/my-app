@@ -8,7 +8,7 @@ switch (window.location.host) {
     //__host__ = 'http://rqiang.mynatapp.cc';
     //__host__ = 'http://api.mdslife.com';
     //__host__ = 'doctor.zyremix.com';
-    __host__ = 'http://192.168.0.104:3000'
+    __host__ = 'http://192.168.0.104:3000';
     //__host__ = 'http://api.xiayuanyin.cn';
     //__host__ = "http://192.168.0.104:3002";
     break;
@@ -128,10 +128,12 @@ url.doctors_courses = __host__ + '/api/doctor/doctors/courses';
 url.doctors_meetings = __host__ + '/api/doctor/doctors/meetings';
 
 //修改资料
-url.userinfos_update_user_info = __host__ + '/api/doctor/userinfos/update_user_info';
+url.userinfos_update_user_info =
+  __host__ + '/api/doctor/userinfos/update_user_info';
 
 //修改手机号  密码 ...
-url.userinfos_change_user_info = __host__ + '/api/doctor/userinfos/change_user_info';
+url.userinfos_change_user_info =
+  __host__ + '/api/doctor/userinfos/change_user_info';
 
 // 获取微信分享 的配置
 url.wechats_share = __host__ + '/api/doctor/mobile/wechats/share';

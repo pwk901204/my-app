@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import style from './index.css';
 import {List, Button, InputItem, Toast, ActivityIndicator} from 'antd-mobile';
+import { browserHistory } from 'react-router';
 import {connect} from "react-redux";
 import { createForm } from 'rc-form';
 
@@ -15,6 +16,7 @@ class ChangePassword extends Component {
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.props.userInfoAction(data.user);
+			browserHistory.push('/HomePage/3');
 		})
 	}
 	fnSubmit = ()=>{
@@ -62,7 +64,7 @@ class ChangePassword extends Component {
 						 	rules: [{ required: true, message: '请输入新密码！' }]
 						 })}
 						type="password"
-						placeholder="请输入新密码"
+						placeholder="请输入原密码"
 						labelNumber={3}
 						clear={true}
 						className={style.text}

@@ -8,6 +8,7 @@ import number2 from "svg/number2.svg";
 import number3 from "svg/number3.svg";
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
+import Blank from "components/Blank";
 
 class TestRanking extends Component {
 	state = {
@@ -43,46 +44,49 @@ class TestRanking extends Component {
 		return (
 			<div className={style.testRankingWrap}>
 				{
-					scores &&<ReactIScroll
+					scores && scores.length>0 ? <ReactIScroll
 						iScroll={iScroll}
 						options={{...global.iscrollOptions}}
 					>
 					 <div className={style.testRanking}>
-							<h6 className={style.title}>我的排名</h6>
+						<h6 className={style.title}>我的排名</h6>
 
-							<div className={style.item}>
-								<div className={style.number}>
-									<span>{my_score.ranking}</span>
-								</div>
-								<div className={style.icon}>
-									<img src={my_score.headimgurl}/>
-								</div>
-								<div className={style.name}>{this.props.userInfo.name}</div>
-								<div className={`${style.score} fontOrange`}>{my_score.total_score}<span>积分</span></div>
-
+						<div className={style.item}>
+							<div className={style.number}>
+								<span>{my_score.ranking}</span>
 							</div>
+							<div className={style.icon}>
+								<img src={my_score.headimgurl}/>
+							</div>
+							<div className={style.name}>{this.props.userInfo.name}</div>
+							<div className={`${style.score} fontOrange`}>{my_score.total_score}<span>积分</span></div>
 
-							<h6 className={style.title}>排名TOP10</h6>
-							{
-								scores.map((item,index)=>{
-									return <div className={style.item} key={index}>
-										<div className={style.number}>
-											{item.ranking == 1 && <Icon type={number1} className={style.numberIcon}/>}
-											{item.ranking == 2 && <Icon type={number2} className={style.numberIcon}/>}
-											{item.ranking == 3 && <Icon type={number3} className={style.numberIcon}/>}
-											{item.ranking > 3 && <span>{item.ranking}</span>}
-										</div>
-										<div className={style.icon}>
-											<img src={item.headimgurl}/>
-										</div>
-										<div className={style.name}>{item.user_name}</div>
-										<div className={`${style.score} fontOrange`}>{item.total_score}<span>积分</span></div>
+						</div>
 
+						<h6 className={style.title}>排名TOP10</h6>
+						{
+							scores.map((item,index)=>{
+								return <div className={style.item} key={index}>
+									<div className={style.number}>
+										{item.ranking == 1 && <Icon type={number1} className={style.numberIcon}/>}
+										{item.ranking == 2 && <Icon type={number2} className={style.numberIcon}/>}
+										{item.ranking == 3 && <Icon type={number3} className={style.numberIcon}/>}
+										{item.ranking > 3 && <span>{item.ranking}</span>}
 									</div>
-								})
-							}
+									<div className={style.icon}>
+										<img src={item.headimgurl}/>
+									</div>
+									<div className={style.name}>{item.user_name}</div>
+									<div className={`${style.score} fontOrange`}>{item.total_score}<span>积分</span></div>
+								</div>
+							})
+						}
 						</div>
 					</ReactIScroll>
+					:
+					<div className={style.blank}>
+						<Blank text="暂无排名" />
+					</div>
 				}
 				<ActivityIndicator toast  animating={this.state.loading}/>
 			</div>

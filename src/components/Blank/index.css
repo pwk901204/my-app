@@ -1,13 +1,13 @@
-.BlankIcon{
-	width: 100px;
-	height: 100px;
-	display: block;
-	margin: 0 auto;
-	fill: #999;
+.BlankIcon {
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin: 0 auto;
+  fill: #999;
 }
-.Blank{
-	color: #999;
-	text-align: center;
-	line-height: 50px;
-	font-size: 30px;
+.Blank {
+  color: #999;
+  text-align: center;
+  line-height: 50px;
+  font-size: 30px;
 }

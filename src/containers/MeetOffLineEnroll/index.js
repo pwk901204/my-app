@@ -70,7 +70,7 @@ class MeetOffLineEnroll extends Component {
 				values.ticket_header && data.append("ticket_header", values.ticket_header);
 
 				var meeting_option_ids_arr = [];
-				for(var  name in values){
+				for(var name in values){
 					if(name.indexOf("meeting_option_ids") >= 0 && values[name] !== 0){
 						meeting_option_ids_arr.push(values[name])
 					}
@@ -93,6 +93,10 @@ class MeetOffLineEnroll extends Component {
 					_this.setState({
 						loading:false
 					})
+					if(data.status === "success"){
+						Toast.info("报名成功",1);
+						browserHistory.push('/MeetOffLineDetail/' +  this.props.routeParams.id);
+					}
 				})
 			}
 		})

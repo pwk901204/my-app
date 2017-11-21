@@ -10,7 +10,7 @@ import MyRadio from "components/MyRadio";
 import moment from 'moment';
 import {browserHistory} from "react-router";
 import {PhotoSwipe} from 'react-photoswipe';
-import 'react-photoswipe/lib/photoswipe.css';
+//import 'react-photoswipe/lib/photoswipe.css';
 moment.lang('zh-cn');
 
 class TestQuestionDetail extends Component {
@@ -25,8 +25,8 @@ class TestQuestionDetail extends Component {
 		photoSwipeItems: [
 		{
 			src: '',
-			w: 1200,
-			h: 900,
+			w: 900,
+			h: 1200,
 			title: ''
 		}]
 	}
@@ -117,9 +117,8 @@ class TestQuestionDetail extends Component {
 			isOpen: true,
 			photoSwipeItems:[{
 				src: e.target.src,
-				w: 1200,
-				h: 900,
-				title: 'Image 1'
+				w: 500,
+				h: 600,
 			}]
 		})
 	}
@@ -176,7 +175,7 @@ class TestQuestionDetail extends Component {
 										<h5><i>第{item.index}题</i>-选择题</h5>
 										<div className={style.questionContent}>
 											{item.content}
-											{item.avatar_data && <img src={item.avatar_data.big} onClick={this.handleImg} alt="img"/>}
+											{item.avatar_data && <img src={item.avatar_data.original} onClick={this.handleImg} alt="img"/>}
 										</div>
 										<h5>我的答案</h5>
 										<div className={style.myAnswer}>
@@ -236,7 +235,7 @@ class TestQuestionDetail extends Component {
 										<div className={style.questionContent}>
 											{item.content}
 											{
-												item.avatar_data && <img src={item.avatar_data.big} onClick={this.handleImg} alt="img"/>
+												item.avatar_data && <img src={item.avatar_data.original} onClick={this.handleImg} alt="img"/>
 											}
 										</div>
 										<h5>我的答案</h5>

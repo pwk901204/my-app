@@ -233,7 +233,9 @@ const Pwk = (location, cb) => {
   });
 };
 
-const requireAuth = ({ title = '麦迪森在线', needLogin = true , needShare = true } = {}) => {
+const requireAuth = (
+  { title = '麦迪森在线', needLogin = true, needShare = true } = {}
+) => {
   //微信分享
   return () => {
     document.title = title;
@@ -247,7 +249,6 @@ const requireAuth = ({ title = '麦迪森在线', needLogin = true , needShare =
     needShare && wxShare();
   };
 };
-
 
 class Routers extends Component {
   render() {
@@ -290,7 +291,7 @@ class Routers extends Component {
           onEnter={requireAuth({ needLogin: false, title: '填写资料' })}
         />
 
-        <Route getComponent={MiniNav} >
+        <Route getComponent={MiniNav}>
           <Route
             path="/VideoCollege"
             getComponent={VideoCollege}
@@ -375,7 +376,7 @@ class Routers extends Component {
           <Route
             path="/PayPage"
             getComponent={PayPage}
-            onEnter={requireAuth({ title: '支付页面' , needShare : false})}
+            onEnter={requireAuth({ title: '支付页面', needShare: false })}
           />
           <Route
             path="/TestList"
@@ -457,7 +458,7 @@ class Routers extends Component {
             getComponent={Pwk}
             onEnter={requireAuth({ title: '关于我们' })}
           />
-       </Route>
+        </Route>
       </Router>
     );
   }
