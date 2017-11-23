@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import { WhiteSpace} from 'antd-mobile';
+import { WhiteSpace , Icon} from 'antd-mobile';
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
-
+import number1 from "svg/number1.svg";
+import number2 from "svg/number2.svg";
+import number3 from "svg/number3.svg";
 import PropTypes from 'prop-types';
 
 export default class RewardList extends Component {
@@ -11,15 +13,7 @@ export default class RewardList extends Component {
 		id:PropTypes.oneOfType([
 			PropTypes.string,
 			PropTypes.number
-		]).isRequired,
-		bounty_count:PropTypes.oneOfType([
-			PropTypes.string,
-			PropTypes.number
-		]).isRequired,  //打赏人数
-		payment_count:PropTypes.oneOfType([
-			PropTypes.string,
-			PropTypes.number
-		]).isRequired,  //打赏金额
+		]).isRequired
 	};
 	state = {
 		bounty_ranking:null
@@ -29,7 +23,9 @@ export default class RewardList extends Component {
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({
-				bounty_ranking:data.bounty_ranking
+				bounty_ranking:data.bounty_ranking,
+				bounty_count:data.bounty_count,
+				payment_count:data.payment_count
 			})
 		})
 		.catch((err)=>{
@@ -37,6 +33,7 @@ export default class RewardList extends Component {
 		})
 	}
 	render() {
+		let { bounty_ranking, bounty_count, payment_count } = this.state;
 		return (
 			<div className={style.rewardlist}>
 				<ReactIScroll
@@ -47,16 +44,19 @@ export default class RewardList extends Component {
 						<WhiteSpace size="xs" />
 						<h5 className={style.title}>
 							<span></span>
-							<p>共{this.props.bounty_count}人打赏</p>
-							<p>共{this.props.payment_count}元</p>
+							{ bounty_count && <p>共{bounty_count}人打赏</p> }
+							{ payment_count && <p>共{payment_count}元</p>}
 						</h5>
 						<WhiteSpace size="xs" />
 						{
-							this.state.bounty_ranking ?
-								this.state.bounty_ranking.map((item,index)=>{
+							bounty_ranking ?
+								bounty_ranking.map((item,index)=>{
 									return (
 										<div className={style.item} key={index}>
-											<i>{index+1}</i>
+											{index+1 === 1 && <i><Icon type={number1} className={style.number} /></i>}
+											{index+1 === 2 && <i><Icon type={number2} className={style.number} /></i>}
+											{index+1 === 3 && <i><Icon type={number3} className={style.number} /></i>}
+											{index+1 > 3 && <i>{index+1}</i>}
 											<p>{item.name}</p>
 											<span>{item.amount}元</span>
 										</div>

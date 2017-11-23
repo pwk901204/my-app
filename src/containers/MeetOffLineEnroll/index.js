@@ -80,7 +80,6 @@ class MeetOffLineEnroll extends Component {
 					data.append("meeting_option_ids", meeting_option_ids_arr.join(','));
 				}
 
-
 				fetch(global.url.attendees,{
 					method:"POST",
 					headers:{

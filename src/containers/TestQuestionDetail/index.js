@@ -113,12 +113,13 @@ class TestQuestionDetail extends Component {
 		})
 	}
 	handleImg=(e)=>{
+		console.log(e.target)
 		this.setState({
 			isOpen: true,
 			photoSwipeItems:[{
 				src: e.target.src,
-				w: 500,
-				h: 600,
+				w: e.target.width*2,
+				h: e.target.height*2,
 			}]
 		})
 	}
@@ -281,7 +282,18 @@ class TestQuestionDetail extends Component {
 						}
 					})
 				}
-				<PhotoSwipe isOpen={isOpen} items={photoSwipeItems} onClose={() => { this.setState({isOpen: false})} }/>
+				<PhotoSwipe 
+					isOpen={isOpen} 
+					items={photoSwipeItems} 
+					onClose={() => { this.setState({isOpen: false})} }
+						options={{
+							shareEl: false,
+							tapToClose: true,
+							closeEl:false,
+							captionEl: false,
+							fullscreenEl: false,
+						}}
+				/>
 				{
 					topic && topic.topic_status === "starting" &&
 					<div className={style.foot}>

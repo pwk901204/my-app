@@ -73,6 +73,7 @@ class StreamDetail extends Component {
 				topic={stream.topic}
 				amount={stream.price}
 				ordersAction={this.props.ordersAction}
+				href={window.location.href}
 			/>, { animationType: 'slide-up', onTouchStart: e => e.preventDefault() });
 		}else{
 			//免费报名
@@ -123,12 +124,12 @@ class StreamDetail extends Component {
 						}
 						{	stream.purchase && stream.stream_type === "live" &&
 							<div className={style.streamVideo}>
-								<LiveVideo cover_url={stream.cover_data.size_700} play_url={stream.play_urls}/>
+								<LiveVideo cover_url={stream.cover_data.size_700} play_url={stream.play_urls} autoplay={true}/>
 							</div>
 						}
 						{	stream.purchase && stream.stream_type === "ad" &&
 							<div className={style.streamVideo}>
-								<LiveVideo cover_url={stream.cover_data.size_700} play_url={stream.ad_url}/>
+								<LiveVideo cover_url={stream.cover_data.size_700} play_url={stream.ad_url} autoplay={true}/>
 							</div>
 						}
 						{	stream.purchase && stream.stream_type === "not_begin" &&
@@ -196,8 +197,6 @@ class StreamDetail extends Component {
 									<RewardList
 										key={this.state.Date}
 										id={stream.id}
-										bounty_count={stream.stream_bounty_count}
-										payment_count={stream.stream_payment_count}
 									/>
 								</TabPane>
 								<TabPane tab={"报名列表"} key="5" className={style.tabItemWrap}>

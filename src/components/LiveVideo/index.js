@@ -46,14 +46,21 @@ export default class LiveVideo extends Component {
 			var play_url = _this.props.play_url;
 			var dataOption = null;
 			if( typeof play_url ===  "string" ){
+				console.log(play_url,'111111')
 				dataOption = [
 					{type: "video/mp4", src: play_url}
 				]
 			}else if(typeof play_url ===  "object" ){
-				dataOption = [
-					{type: "application/x-mpegURL",src: play_url.hls},
-					{type: "video/x-flv",src: play_url.flv}
-				]
+				dataOption = [];
+				if(play_url.mp4){
+					dataOption.push({type: "video/mp4", src: play_url.mp4})
+				}
+				if(play_url.hls){
+					dataOption.push({type: "application/x-mpegURL", src: play_url.hls})
+				}
+				if(play_url.flv){
+					dataOption.push({type: "video/x-flv", src: play_url.flv})
+				}
 			}
 
 			this.myPlayer.setDataSource(dataOption);

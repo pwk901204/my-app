@@ -33,6 +33,7 @@
   height: 80px;
   margin-bottom: 20px;
   box-sizing: border-box;
+  opacity: 0.6;
 }
 
 .rule {

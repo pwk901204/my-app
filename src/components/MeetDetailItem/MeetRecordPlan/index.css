@@ -60,7 +60,13 @@
   background: #fff;
   composes: clearfix from 'src/index.css';
 }
-
+.xiaoren{
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  margin-right: 5px;
+  vertical-align: -4px;
+}
 .itemBody .left {
   float: left;
   width: 100px;

@@ -52,6 +52,7 @@ class RecordDetail extends Component {
 				topic={recording.topic}
 				amount={recording.price}
 				ordersAction={this.props.ordersAction}
+				href={window.location.href}
 			/>, { animationType: 'slide-up', onTouchStart: e => e.preventDefault() });
 		}else{
 			//免费报名
@@ -85,7 +86,7 @@ class RecordDetail extends Component {
 						}
 						{	recording.purchase &&
 							<div className={style.recordingVideo}>
-								<LiveVideo cover_url={recording.cover_data.size_700} play_url={recording.pull_url_http}/>
+								<LiveVideo cover_url={recording.cover_data.size_700} play_url={recording.play_urls} autoplay={true}/>
 							</div>
 						}
 						<Tabs swipeable={false} defaultActiveKey="1" className={style.tabWrap}>
@@ -93,7 +94,12 @@ class RecordDetail extends Component {
 								<RecordInfo {...recording}/>
 							</TabPane>
 							<TabPane tab="医生详情" key="2" className={style.tabItemWrap}>
-								<DoctorInfo {...recording.doctor}/>
+								{
+									recording.recording_type === "Meeting" ?
+									<DoctorInfo {...recording.speaker}/>
+									:
+									<DoctorInfo {...recording.doctor}/>
+								}
 							</TabPane>
 							<TabPane tab={`评论(${recording.comments_count})`} key="3" className={style.tabItemWrap}>
 								<Comment id={recording.id} target_type="recording"/>

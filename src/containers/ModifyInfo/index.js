@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import style from './index.css';
 import {List, Button, InputItem, Toast ,Picker, ActivityIndicator} from 'antd-mobile';
 import {connect} from "react-redux";
-
+import {browserHistory} from "react-router";
 import { createForm } from 'rc-form';
 import {userInfo} from "reduxs/userInfo";
 
@@ -73,6 +73,7 @@ class ModifyInfo extends Component {
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.props.userInfoAction(data.user);
+			browserHistory.push('/HomePage/3');
 		})
 	}
 	getRegions = () =>{
@@ -123,7 +124,7 @@ class ModifyInfo extends Component {
 
 			data.hospital_id = values.hospital[0];
 			data.region_id = values.region[1];
-			data.departmet_id = values.department[1];
+			data.department_id = values.department[1];
 			data.title = values.title[0];
 
 			fetch(global.url.userinfos_update_user_info,{

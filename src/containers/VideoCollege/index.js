@@ -49,6 +49,7 @@ class VideoCollege extends Component {
 							<div className={style.videoWrap}>
 								<LiveVideo
 									play_url={advertisement.url}
+									autoplay={true}
 								/>
 							</div>
 						}

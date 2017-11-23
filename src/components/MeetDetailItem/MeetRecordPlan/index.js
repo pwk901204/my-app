@@ -7,6 +7,7 @@ import moment from 'moment';
 import clock from "svg/clock.svg";
 import PropTypes from 'prop-types';
 import {Link} from "react-router";
+import xiaoren from "svg/xiaoren.svg";
 moment.lang('zh-cn');
 
 export default class MeetRecordPlan extends Component {
@@ -33,7 +34,7 @@ export default class MeetRecordPlan extends Component {
 									<div className={style.itemTop}>
 										<span>
 											<Icon type={clock} className={style.clock} />
-											<i className={style.fontBlue}>录播时长</i> {item.duration}分钟
+											<i className={style.fontBlue}>录播时长</i> {item.duration}
 										</span>
 										<span className={style.fontRed}>
 											¥{item.price}
@@ -46,7 +47,7 @@ export default class MeetRecordPlan extends Component {
 										<div className={style.right}>
 											<p>{item.topic}</p>
 											<p>
-												<span>{item.name}</span>
+												<span><Icon type={xiaoren} className={style.xiaoren} />{item.name}</span>
 												<span>{item.title}</span>
 												<span>{item.hospital}</span>
 											</p>

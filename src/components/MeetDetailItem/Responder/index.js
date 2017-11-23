@@ -40,10 +40,10 @@ class Responder extends Component {
 
 		this.ws.onmessage = (evt)=>{
 			let obj_msg = JSON.parse(evt.data);
-			console.log(obj_msg)
 			if(obj_msg.type !== "ping" && obj_msg.message){
 				let data = obj_msg.message
 				this.setState({
+					selectOption:"",
 					id: data.id, // # 试题id
 					title: data.title, //# 题目
 					options_count: data.options_count,    //# 选项数量

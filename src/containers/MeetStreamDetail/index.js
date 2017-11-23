@@ -100,6 +100,7 @@ class MeetStreamDetail extends Component {
 				topic={stream.topic}
 				amount={stream.price}
 				ordersAction={this.props.ordersAction}
+				href={window.location.href}
 			/>, { animationType: 'slide-up', onTouchStart: e => e.preventDefault() });
 		}else{
 			//免费报名
@@ -127,7 +128,7 @@ class MeetStreamDetail extends Component {
 							}
 							{
 								stream.purchase && stream.stream_type === "ad" &&
-								<LiveVideo cover_url={stream.cover_data.size_700} play_url={stream.play_urls} autoplay={true}/>
+								<LiveVideo cover_url={stream.cover_data.size_700} play_url={stream.ad_url} autoplay={true}/>
 							}
 							{
 								stream.stream_type === "not_begin" && stream.purchase === true &&
@@ -182,8 +183,6 @@ class MeetStreamDetail extends Component {
 								<RewardList
 									key={this.state.Date}
 									id={this.props.routeParams.stream_id}
-									bounty_count={stream.stream_bounty_count}
-									payment_count={stream.stream_payment_count}
 								/>
 							</TabPane>
 							<TabPane tab="会议日程" key="3" className={style.tabItemWrap}>

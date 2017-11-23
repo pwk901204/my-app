@@ -6,9 +6,9 @@ switch (window.location.host) {
   case 'localhost:3000':
     // __host__ = "https://doctor.mdsonline.cn";
     //__host__ = 'http://rqiang.mynatapp.cc';
-    //__host__ = 'http://api.mdslife.com';
+    __host__ = 'http://api.mdslife.com';
     //__host__ = 'doctor.zyremix.com';
-    __host__ = 'http://192.168.0.104:3000';
+    //__host__ = 'http://192.168.0.104:3000';
     //__host__ = 'http://api.xiayuanyin.cn';
     //__host__ = "http://192.168.0.104:3002";
     break;
@@ -137,5 +137,6 @@ url.userinfos_change_user_info =
 
 // 获取微信分享 的配置
 url.wechats_share = __host__ + '/api/doctor/mobile/wechats/share';
+
 
 module.exports = url;

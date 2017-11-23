@@ -26,10 +26,16 @@ export class Pay extends Component {
 		ordersAction:PropTypes.oneOfType([
 			PropTypes.func
 		]).isRequired,
+		href:PropTypes.oneOfType([
+			PropTypes.string
+		]).isRequired
 	};
 	state = {
     	pay_way: "wechat_pay"
     }
+    componentDidMount(){
+		alert(window.location.href)
+	}
 	onChange = (value) => {
 		console.log(value)
 		this.setState({
@@ -49,6 +55,7 @@ export class Pay extends Component {
 			        state: {
 						topic:this.props.topic,
 						amount:this.props.amount,
+						href:this.props.href,
 						...data
 			        },
 			    })
@@ -108,6 +115,9 @@ export class Reward extends Component {
 		ordersAction:PropTypes.oneOfType([
 			PropTypes.func
 		]).isRequired,
+		href:PropTypes.oneOfType([
+			PropTypes.string
+		]).isRequired
 	};
 	state = {
     	pay_way: "wechat_pay",
@@ -134,6 +144,7 @@ export class Reward extends Component {
 				        state: {
 							topic:this.props.topic,
 							amount:this.state.amount,
+							href:this.props.href,
 							...data
 				        },
 				    })

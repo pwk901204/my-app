@@ -8,6 +8,7 @@ import {Reward} from "components/Pay";
 import PropTypes from 'prop-types';
 import {ordersAction} from "reduxs/orders.js";
 import ren from "svg/ren.svg";
+import laba from "svg/laba.svg";
 class ChatRoom extends Component {
 	static propTypes = {
 		id:PropTypes.oneOfType([
@@ -31,13 +32,21 @@ class ChatRoom extends Component {
 	state = {
 		loading:false,
 		chatList:[],
-		inputValue:""
+		inputValue:"",
+		bounty_count:0,
+		payment_count:0,
+		users_count:0
 	}
 	constructor(props) {
 		super(props)
 		this.ws = new WebSocket(global.webSocketUrl);
 	}
 	componentDidMount() {
+		this.setState({
+			bounty_count:this.props.bounty_count,
+			payment_count:this.props.payment_count,
+			users_count:this.props.users_count
+		})
 		this.ws.onopen = ()=>{
 			this.ws.send(JSON.stringify({
 				"command": "subscribe",
@@ -50,15 +59,19 @@ class ChatRoom extends Component {
 
 		this.ws.onmessage = (evt)=>{
 			let obj_msg = JSON.parse(evt.data);
-			console.log(obj_msg)
-			if(obj_msg.message){
-				if(obj_msg.message.data){
-					let arr = this.state.chatList;
-					arr.push(obj_msg.message.data);
+			console.log(obj_msg,'~~~~~~~~~~')
+			if(obj_msg.message && obj_msg.message.data){
+				let arr = this.state.chatList;
+				arr.push(obj_msg.message.data);
+				this.setState({
+					chatList:arr,
+					inputValue:"",
+					loading:false,
+				})
+				if(obj_msg.message.data.type === "payment"){
 					this.setState({
-						chatList:arr,
-						inputValue:"",
-						loading:false,
+						bounty_count:obj_msg.message.data.user_count,
+						payment_count:obj_msg.message.data.stream_payment_count,
 					})
 				}
 			}
@@ -71,7 +84,6 @@ class ChatRoom extends Component {
 		let inputValue = this.state.inputValue;
 		if(this.props.userInfo.token){
 			if(inputValue !== ""){
-				console.log(123)
 				this.ws.send(JSON.stringify({
 					"command": "message",
 					"identifier": JSON.stringify({
@@ -103,14 +115,15 @@ class ChatRoom extends Component {
 			type="bounty"
 			topic={"打赏"}
 			ordersAction={this.props.ordersAction}
+			href={window.location.href}
 		/>, { animationType: 'slide-up', onTouchStart: e => e.preventDefault() });
 	};
 	render() {
 		return (
 			<div className={style.chatRoom}>
 				<div className={style.chatRoomContent}>
-					<span className={style.chatIcon1}><i className={style.dashangIcon}>赏</i>共{this.props.users_count}人报名</span>
-					<span className={style.chatIcon2}><Icon type={ren} className={style.renIcons} />{this.props.bounty_count}人共打赏了{this.props.payment_count}元</span>
+					<span className={style.chatIcon1}><Icon type={ren} className={style.renIcons} />共{this.state.users_count}人报名</span>
+					<span className={style.chatIcon2}><i className={style.dashangIcon}>赏</i>{this.state.bounty_count}人共打赏了{this.state.payment_count}元</span>
 					<ReactIScroll
 						iScroll={iScroll}
 						options={{...global.iscrollOptions}}
@@ -119,18 +132,29 @@ class ChatRoom extends Component {
 							<WhiteSpace size="xs" />
 							{
 								this.state.chatList.map((item,index)=>{
-									return (
-										<div className={style.message} key={index+""}>
-											<div className={style.icon}>
-												<img src={item.user_image_url} alt="img" />
-												<p>{item.user_name}</p>
+									if(item.type === "payment"){
+										return (
+											<div className={style.message} key={index+""}>
+												<div className={style.paymentContent}>
+													<Icon type={laba} className={style.laba}/>
+													<span>{item.user_name}打赏了主播{item.content}元</span>
+												</div>
 											</div>
-											<div className={style.content}>
-												<span></span>
-												{item.content}
+										)
+									}else{
+										return (
+											<div className={style.message} key={index+""}>
+												<div className={style.icon}>
+													<img src={item.user_image_url} alt="img" />
+													<p>{item.user_name}</p>
+												</div>
+												<div className={style.content}>
+													<span></span>
+													{item.content}
+												</div>
 											</div>
-										</div>
-									)
+										)
+									}
 								})
 							}
 						</div>

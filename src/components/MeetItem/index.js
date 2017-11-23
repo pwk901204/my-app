@@ -67,7 +67,7 @@ export class MeetRecordItem extends Component {
 			<Link to={"/MeetRecordDetail/"+this.props.id} className={style.MeetItem}>
 				<div className={style.title}>
 					<img src={this.props.cover_data.size_300} alt="img"/>
-					<p><span style={{width:"100%",textAlign:"center"}}>共18节</span></p>
+					<p><span style={{width:"100%",textAlign:"center"}}>共{this.props.recordings_count}节</span></p>
 				</div>
 				<h5>{this.props.topic}</h5>
 				<div className={style.content}>
