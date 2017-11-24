@@ -23,7 +23,7 @@ class MyMeetList extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(global.url.doctors_meetings + "?token=" + this.props.userInfo.token + "&type="+ this.state.type +"&page="+ this.state.page + "&per_page=10")
+		window.HOCFetch({ needToken:true })(global.url.doctors_meetings + "?token=" + this.props.userInfo.token + "&type="+ this.state.type +"&page="+ this.state.page + "&per_page=10")
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({

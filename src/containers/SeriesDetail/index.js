@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import style from './index.css';
 import {ActivityIndicator, Tabs} from 'antd-mobile';
 import {connect} from "react-redux";
-
-
 import DoctorInfo from "components/DoctorInfo";
 import SeriesDetailList from "components/SeriesDetailList";
 import SeriesInfo from "components/SeriesInfo";
+import wxShare from 'common/wxShare';
 
 const TabPane = Tabs.TabPane;
 
@@ -19,7 +18,7 @@ class SeriesDetail extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(global.url.videos + "/"+ this.props.routeParams.id + "?token=" + this.props.userInfo.token)
+		window.HOCFetch({ needToken:false })(global.url.videos + "/"+ this.props.routeParams.id + "?token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data);
@@ -27,6 +26,11 @@ class SeriesDetail extends Component {
 				loading:false,
 				series:data.course
 			})
+			wxShare({
+				title:data.course.topic,
+				desc:data.course.introduction,
+				imgUrl:data.course.cover_data.thumb
+			});
 		})
 	}
 	render() {

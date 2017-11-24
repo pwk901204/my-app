@@ -12,7 +12,7 @@ import RewardList from "components/RewardList";
 import ChatRoom from "components/ChatRoom";
 import {Pay} from "components/Pay";
 import {ordersAction} from "reduxs/orders.js";
-
+import wxShare from 'common/wxShare';
 const TabPane = Tabs.TabPane;
 
 class StreamDetail extends Component {
@@ -21,7 +21,14 @@ class StreamDetail extends Component {
 		stream:null,
 	}
 	componentDidMount(){
-		this.getDetail();
+		let p1 = this.getDetail();
+		Promise.all([p1]).then(()=>{
+			wxShare({
+				title:this.state.stream.topic,
+				desc:this.state.stream.introduction,
+				imgUrl:this.state.stream.cover_data.thumb
+			});
+		})
 		clearInterval(this.timer);
 		this.timer=setInterval(()=>{
 			this.getFresh();
@@ -34,7 +41,7 @@ class StreamDetail extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(global.url.streams + "/"+ this.props.routeParams.id + "?token=" + this.props.userInfo.token)
+		return window.HOCFetch({ needToken:false })(global.url.streams + "/"+ this.props.routeParams.id + "?token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data);
@@ -55,7 +62,7 @@ class StreamDetail extends Component {
 		})
 	}
 	getFresh = ()=>{
-		fetch(global.url.streams_check_status + "?token=" + this.props.userInfo.token + "&id=" + this.props.routeParams.id)
+		window.HOCFetch({ needToken:false })(global.url.streams_check_status + "?id=" + this.props.routeParams.id)
 		.then((response)=>response.json())
 		.then((data)=>{
 			if(this.state.stream.stream_type !== data.status){

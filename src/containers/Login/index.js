@@ -7,7 +7,6 @@ import { createForm } from 'rc-form';
 import mima from "svg/mima.svg";
 import shouji from "svg/shouji.svg";
 import logo from "svg/logo.svg";
-
 import {userInfo} from "reduxs/userInfo";
 
 class LoginForm extends Component {
@@ -18,7 +17,6 @@ class LoginForm extends Component {
 		localStorage.removeItem("reduxPersist:userInfo")
 	}
 	handleSubmit = ()=>{
-		console.log(this.props.form)
 		this.props.form.validateFields((err, values)=>{
 			if(err){
 				for(var name in err){
@@ -29,7 +27,7 @@ class LoginForm extends Component {
 				this.setState({
 					loading:true
 				})
-				fetch(global.url.login + "?mobile=" + values.mobile.replace(/\s+/g, '') + "&password=" + values.password)
+				window.HOCFetch({ needToken:false })(global.url.login + "?mobile=" + values.mobile.replace(/\s+/g, '') + "&password=" + values.password)
 				.then((response)=>response.json())
 				.then((data)=>{
 					console.log(data);
@@ -38,7 +36,7 @@ class LoginForm extends Component {
 					})
 					Toast.info(data.msg.message);
 					if(data.msg.status === "success"){
-						fetch(global.url.current_user + "?token=" + encodeURIComponent(data.user.token) )
+						window.HOCFetch({ needToken:false })(global.url.current_user + "?token=" + encodeURIComponent(data.user.token) )
 						.then((response)=>response.json())
 						.then((data)=>{
 							this.props.userInfoAction(data.user);

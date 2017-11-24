@@ -20,23 +20,14 @@ class MeetOffLineEnroll extends Component {
 		this.getDetail();
 	}
 	getDetail = () =>{
-		return fetch(global.url.attendees_new +'?meeting_id=' + this.props.routeParams.id +"&token=" + this.props.userInfo.token)
+		return window.HOCFetch({ needToken:true })(global.url.attendees_new +'?meeting_id=' + this.props.routeParams.id +"&token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
-			console.log(data)
 			this.setState({
 				options:data.meeting
 			})
 		})
 	}
-	postDetail= () =>{
-		return fetch(global.url.attendees_new +'?meeting_id=' + this.props.routeParams.id +"&token=" + this.props.userInfo.token)
-		.then((response)=>response.json())
-		.then((data)=>{
-			console.log(data)
-		})
-	}
-
 	fnSubmit = ()=>{
 		console.log(this.props.form)
 		let _this = this;
@@ -80,7 +71,7 @@ class MeetOffLineEnroll extends Component {
 					data.append("meeting_option_ids", meeting_option_ids_arr.join(','));
 				}
 
-				fetch(global.url.attendees,{
+				window.HOCFetch({ needToken:true })(global.url.attendees,{
 					method:"POST",
 					headers:{
 					},

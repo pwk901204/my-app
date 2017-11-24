@@ -22,7 +22,7 @@ class TestRanking extends Component {
 		this.setState({
 			loading:true
 		})
-		return fetch(global.url.topics + "/" + this.props.params.id + "/my_rank" + "?token=" + this.props.userInfo.token)
+		return window.HOCFetch({ needToken:true })(global.url.topics + "/" + this.props.params.id + "/my_rank" + "?token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({

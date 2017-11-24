@@ -1,6 +1,8 @@
 import FastClick from 'fastclick';
 import url from 'api_url/index.js';
 
+import HOCFetch from "common/HOCFetch";
+
 //WebSocket connect url
 let webSocketUrl = '';
 if (window.location.host === 'localhost:3000') {
@@ -21,6 +23,9 @@ Object.defineProperties(global, {
   },
   webSocketUrl: {
     value: webSocketUrl
+  },
+  HOCFetch:{
+    value:HOCFetch
   }
 });
 

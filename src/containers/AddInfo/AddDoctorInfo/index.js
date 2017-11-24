@@ -58,7 +58,7 @@ class AddDoctorInfoForm extends Component {
 	}
 
 	getRegions = () =>{
-		return fetch(global.url.regions)
+		return window.HOCFetch({ needToken:false })(global.url.regions)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data)
@@ -69,7 +69,7 @@ class AddDoctorInfoForm extends Component {
 	}
 
 	getDepartments = () =>{
-		return fetch(global.url.departments)
+		return window.HOCFetch({ needToken:false })(global.url.departments)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data)
@@ -82,7 +82,7 @@ class AddDoctorInfoForm extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(global.url.hospitals + "?region=" + value[1])
+		window.HOCFetch({ needToken:false })(global.url.hospitals + "?region=" + value[1])
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({
@@ -117,7 +117,7 @@ class AddDoctorInfoForm extends Component {
 				data.user.region = values.region[1];
 				data.user.department = values.department[1];
 				data.user.title = values.title[0];
-				fetch(global.url.sign_up,{
+				window.HOCFetch({ needToken:false })(global.url.sign_up,{
 					method:"POST",
 					headers:{
 						"Content-Type":"application/json"

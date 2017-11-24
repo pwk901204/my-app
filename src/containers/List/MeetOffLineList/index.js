@@ -38,7 +38,7 @@ class MeetOffLineList extends Component {
 		})
 	}
 	getCities = () =>{
-		return fetch(global.url.cities)
+		return window.HOCFetch({ needToken:false })(global.url.cities)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data)
@@ -68,7 +68,7 @@ class MeetOffLineList extends Component {
 		});
 	}
 	getDetail = () =>{
-		return fetch(global.url.meetings + "?flag=offline&page=" + this.state.page + "&per_page=8&city="+this.state.selectCity.value)
+		return window.HOCFetch({ needToken:false })(global.url.meetings + "?flag=offline&page=" + this.state.page + "&per_page=8&city="+this.state.selectCity.value)
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({

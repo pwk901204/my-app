@@ -29,7 +29,7 @@ class AddVisitorInfoForm extends Component {
 				data.user.password = this.props.registerInfo.password;
 				data.user.mobile = this.props.registerInfo.mobile;
 				data.user.name = values.name;
-				fetch(global.url.sign_up,{
+				window.HOCFetch({ needToken:false })(global.url.sign_up,{
 					method:"POST",
 					headers:{
 						"Content-Type":"application/json"

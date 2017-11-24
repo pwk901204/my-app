@@ -39,7 +39,7 @@ class MeetRecordList extends Component {
 		})
 	}
 	getDepartments = () =>{
-		return fetch(global.url.departments)
+		return window.HOCFetch({ needToken:false })(global.url.departments)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data)
@@ -80,7 +80,7 @@ class MeetRecordList extends Component {
 		});
 	}
 	getDetail = () =>{
-		return fetch(global.url.meetings + "?flag=video&page="+this.state.page+"&per_page=8&department_id="+this.state.selectDepartment.value+"&sort=&price_sort=asc")
+		return window.HOCFetch({ needToken:false })(global.url.meetings + "?flag=video&page="+this.state.page+"&per_page=8&department_id="+this.state.selectDepartment.value+"&sort=&price_sort=asc")
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data)

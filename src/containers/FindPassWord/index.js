@@ -37,7 +37,7 @@ class FindPassWordForm extends Component {
 				data.mobile = values.mobile.replace(/\s+/g, '');
 				data.code = values.code;
 				data.password = values.password;
-				fetch(global.url.update_password,{
+				window.HOCFetch({ needToken:false })(global.url.update_password,{
 					method:"POST",
 					headers:{
 						"Content-Type":"application/json"
@@ -69,7 +69,7 @@ class FindPassWordForm extends Component {
 					_this.setState({
 						loading:true
 					})
-					fetch(global.url.sendCode + "?mobile=" + values.mobile.replace(/\s+/g, '') + "&type=change_password")
+					window.HOCFetch({ needToken:false })(global.url.sendCode + "?mobile=" + values.mobile.replace(/\s+/g, '') + "&type=change_password")
 					.then((response)=>response.json())
 					.then((data)=>{
 						console.log(data)

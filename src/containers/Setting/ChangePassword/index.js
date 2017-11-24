@@ -11,8 +11,11 @@ class ChangePassword extends Component {
 	state = {
 		loading:false,
 	}
+	componentWillUnmount() {
+		this.getUser();
+	}
 	getUser= ()=>{
-		return fetch(global.url.current_user + "?token=" + this.props.userInfo.token )
+		return window.HOCFetch({ needToken:true })(global.url.current_user + "?token=" + this.props.userInfo.token )
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.props.userInfoAction(data.user);
@@ -32,7 +35,7 @@ class ChangePassword extends Component {
 			data.password = values.password;
 			data.type = "password";
 
-			fetch(global.url.userinfos_change_user_info,{
+			window.HOCFetch({ needToken:true })(global.url.userinfos_change_user_info,{
 				method:"POST",
 				headers:{
 					"Content-Type":"application/json"
@@ -47,6 +50,7 @@ class ChangePassword extends Component {
 				if(data.message==="ok"){
 					Toast.info("修改成功",1.5);
 					this.getUser();
+					browserHistory.push('/HomePage/3');
 				}else{
 					Toast.info(data.message,1.5);
 				}

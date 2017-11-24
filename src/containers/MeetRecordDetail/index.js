@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import MeetStreamInfo from "components/MeetDetailItem/MeetStreamInfo";
 import DoctorList from "components/DoctorList";
 import MeetRecordPlan from "components/MeetDetailItem/MeetRecordPlan";
-
+import wxShare from 'common/wxShare';
 const TabPane = Tabs.TabPane;
 
 class MeetRecordDetail extends Component {
@@ -14,10 +14,17 @@ class MeetRecordDetail extends Component {
 		meeting:null
 	}
 	componentDidMount(){
-		this.getMeetDetail();
+		let p1 = this.getMeetDetail();
+		Promise.all([p1]).then(()=>{
+			wxShare({
+				title:this.state.meeting.title,
+				desc:this.state.meeting.introduction,
+				imgUrl:this.state.meeting.cover_data.thumb
+			});
+		});
 	}
 	getMeetDetail = ()=>{
-		fetch(global.url.meetings + "/"+ this.props.routeParams.id + "?token=" + this.props.userInfo.token)
+		return window.HOCFetch({ needToken:false })(global.url.meetings + "/"+ this.props.routeParams.id + "?token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data);

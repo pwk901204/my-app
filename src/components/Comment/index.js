@@ -25,10 +25,9 @@ class Comment extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(global.url.commentsDetail + "?token=" + this.props.userInfo.token + "&target_type="+ this.props.target_type +"&target_id="+ this.props.id +"&page="+this.state.page+"&per_page=10")
+		window.HOCFetch({ needToken:false })(global.url.commentsDetail + "?target_type="+ this.props.target_type +"&target_id="+ this.props.id +"&page="+this.state.page+"&per_page=10")
 		.then((response)=>response.json())
 		.then((data)=>{
-			console.log(data,"~~~~~~~~~~");
 			this.setState({
 				loading:false,
 				comments:this.state.comments.concat(data.comments),
@@ -43,7 +42,7 @@ class Comment extends Component {
 		data.subject_id=  this.props.id;
 		data.body =  this.state.body;
 		if(data.body){
-			fetch(global.url.comments ,{
+			window.HOCFetch({ needToken:true })(global.url.comments ,{
 				method:"POST",
 				headers:{
 					"Content-Type":"application/json"
@@ -98,7 +97,7 @@ class Comment extends Component {
 
 		if(comments[index].like){
 			//取消赞
-			fetch(global.url.actionStoresCancel,{
+			window.HOCFetch({ needToken:true })(global.url.actionStoresCancel,{
 				method:"POST",
 				headers:{
 					"Content-Type":"application/json"
@@ -119,7 +118,7 @@ class Comment extends Component {
 
 		}else{
 			//点赞
-			fetch(global.url.actionStores,{
+			window.HOCFetch({ needToken:true })(global.url.actionStores,{
 				method:"POST",
 				headers:{
 					"Content-Type":"application/json"

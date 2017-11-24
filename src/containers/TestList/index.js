@@ -32,7 +32,7 @@ class TestList extends Component {
 		this.setState({
 			loading:true
 		})
-		return fetch(global.url.courses_exams + "?token=" + this.props.userInfo.token + "&page=" + this.state.page + "&per_page=30&user_id=" + this.state.selectUser)
+		return window.HOCFetch({ needToken:false })(global.url.courses_exams + "?page=" + this.state.page + "&per_page=30&user_id=" + this.state.selectUser)
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({

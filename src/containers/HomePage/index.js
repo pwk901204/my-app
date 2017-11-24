@@ -13,7 +13,6 @@ import {connect} from "react-redux";
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 import {userInfo} from "reduxs/userInfo";
-
 class HomePage extends Component {
 	state = {
 		loading:false,
@@ -21,20 +20,13 @@ class HomePage extends Component {
 	}
 	componentDidMount(){
 		this.getCarousels();
-		this.getUser();
-	}
-	getUser= ()=>{
-		return fetch(global.url.current_user + "?token=" + this.props.userInfo.token )
-		.then((response)=>response.json())
-		.then((data)=>{
-			this.props.userInfoAction(data.user);
-		})
 	}
 	getCarousels = () =>{
 		this.setState({
 			loading:true
 		})
-		fetch(global.url.carousels + "?token=" + this.props.userInfo.token)
+
+		window.HOCFetch({ needToken:false })(global.url.carousels)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data);

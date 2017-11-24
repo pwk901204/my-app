@@ -43,7 +43,7 @@ class TestQuestionDetail extends Component {
 		this.setState({
 			loading:true
 		})
-		return fetch(global.url.topics + "/" + this.props.params.id + "/edit_answer?token=" + this.props.userInfo.token)
+		return window.HOCFetch({ needToken:true })(global.url.topics + "/" + this.props.params.id + "/edit_answer?token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({
@@ -90,7 +90,7 @@ class TestQuestionDetail extends Component {
 				answer:this.state.subjects[i].answer?this.state.subjects[i].answer:""
 			})
 		}
-		return fetch(global.url.topics + "/" + this.props.params.id + "/answers_save",{
+		return window.HOCFetch({ needToken:true })(global.url.topics + "/" + this.props.params.id + "/answers_save",{
 			method:"POST",
 			headers:{
 				"Content-Type":"application/json"

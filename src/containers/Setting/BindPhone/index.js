@@ -19,9 +19,10 @@ class BindPhone extends Component {
 	}
 	componentWillUnmount() {
 		clearInterval(this.state.timer);
+		this.getUser();
 	}
 	getUser= ()=>{
-		return fetch(global.url.current_user + "?token=" + this.props.userInfo.token )
+		return window.HOCFetch({ needToken:true })(global.url.current_user + "?token=" + this.props.userInfo.token )
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.props.userInfoAction(data.user);
@@ -47,7 +48,7 @@ class BindPhone extends Component {
 				data.code = values.sendCodeing;
 				data.type = "mobile";
 
-				fetch(global.url.userinfos_change_user_info,{
+				window.HOCFetch({ needToken:true })(global.url.userinfos_change_user_info,{
 					method:"POST",
 					headers:{
 						"Content-Type":"application/json"
@@ -62,6 +63,7 @@ class BindPhone extends Component {
 					if(data.message==="ok"){
 						Toast.info("修改成功",1.5);
 						this.getUser();
+						browserHistory.push('/HomePage/3');
 					}else{
 						Toast.info(data.message,1.5);
 					}
@@ -79,7 +81,7 @@ class BindPhone extends Component {
 					_this.setState({
 						loading:true
 					})
-					fetch(global.url.sendCode + "?mobile=" + values.mobile.replace(/\s+/g, '') + "&type=change_new_mobile")
+					window.HOCFetch({ needToken:true })(global.url.sendCode + "?mobile=" + values.mobile.replace(/\s+/g, '') + "&type=change_new_mobile")
 					.then((response)=>response.json())
 					.then((data)=>{
 						console.log(data)

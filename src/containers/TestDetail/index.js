@@ -12,6 +12,7 @@ import TestDetailList from "components/Test/TestDetailList";
 import TestDetailInfo from "components/Test/TestDetailInfo";
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
+import wxShare from 'common/wxShare';
 
 const TabPane = Tabs.TabPane;
 
@@ -21,14 +22,20 @@ class TestDetail extends Component {
 		course:null
 	}
 	componentDidMount(){
-		console.log(this.props)
-		this.getDetail();
+		let p1 = this.getDetail();
+		Promise.all([p1]).then(()=>{
+			wxShare({
+				title:this.state.course.topic,
+				desc:this.state.course.introduction,
+				imgUrl:this.state.course.cover_data.thumb
+			});
+		});
 	}
 	getDetail=()=>{
 		this.setState({
 			loading:true
 		})
-		return fetch(global.url.courses + "/" + this.props.params.id + "?token=" + this.props.userInfo.token)
+		return window.HOCFetch({ needToken:false })(global.url.courses + "/" + this.props.params.id + "?token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({

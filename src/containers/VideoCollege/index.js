@@ -21,7 +21,7 @@ class VideoCollege extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(global.url.courses_streams + "?token=" + this.props.userInfo.token + "&stream_limit=2&recording_limit=2&course_limit=2")
+		window.HOCFetch({ needToken:false })(global.url.courses_streams + "?stream_limit=2&recording_limit=2&course_limit=2")
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data);

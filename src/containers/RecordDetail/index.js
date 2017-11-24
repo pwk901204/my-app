@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import {ActivityIndicator, Tabs, Badge, Button,Popup} from 'antd-mobile';
+import {ActivityIndicator, Tabs, Button,Popup} from 'antd-mobile';
 import {connect} from "react-redux";
 
 import RecordInfo from "components/RecordInfo";
@@ -9,6 +9,7 @@ import LiveVideo from "components/LiveVideo";
 import Comment from "components/Comment";
 import {Pay} from "components/Pay";
 import {ordersAction} from "reduxs/orders.js";
+import wxShare from 'common/wxShare';
 
 const TabPane = Tabs.TabPane;
 
@@ -19,13 +20,20 @@ class RecordDetail extends Component {
 		selectedTab:"streamInfo"
 	}
 	componentDidMount(){
-		this.getDetail();
+		let p1 = this.getDetail();
+		Promise.all([p1]).then(()=>{
+			wxShare({
+				title:this.state.recording.topic,
+				desc:this.state.recording.introduction,
+				imgUrl:this.state.recording.cover_data.thumb
+			});
+		})
 	}
 	getDetail= ()=>{
 		this.setState({
 			loading:true
 		})
-		fetch(global.url.recordings + "/"+ this.props.routeParams.id + "?token=" + this.props.userInfo.token)
+		return window.HOCFetch({ needToken:false })(global.url.recordings + "/"+ this.props.routeParams.id + "?token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data);

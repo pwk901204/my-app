@@ -239,14 +239,16 @@ const requireAuth = (
   //微信分享
   return () => {
     document.title = title;
-    if (needLogin) {
-      setTimeout(() => {
-        if (!localStorage['reduxPersist:userInfo']) {
-          browserHistory.push('/Login');
-        }
-      }, 1000);
-    }
-    needShare && wxShare();
+    // if (needLogin) {
+    //   setTimeout(() => {
+    //     if (!localStorage['reduxPersist:userInfo']) {
+    //       browserHistory.push('/Login');
+    //     }
+    //   }, 1000);
+    // }
+    needShare && setTimeout(()=>{
+      wxShare();
+    })
   };
 };
 
@@ -254,7 +256,11 @@ class Routers extends Component {
   render() {
     return (
       <Router history={browserHistory} key={Math.random()}>
-        <Route path="/" getComponent={TabBar} onEnter={requireAuth()} />
+        <Route
+          path="/"
+          getComponent={TabBar}
+          onEnter={requireAuth()}
+        />
         <Route
           path="/HomePage(/:index)"
           getComponent={TabBar}
@@ -263,32 +269,32 @@ class Routers extends Component {
         <Route
           path="/Login"
           getComponent={Login}
-          onEnter={requireAuth({ needLogin: false, title: '登录' })}
+          onEnter={requireAuth({ title: '登录' })}
         />
         <Route
           path="/FindPassWord"
           getComponent={FindPassWord}
-          onEnter={requireAuth({ needLogin: false, title: '找回密码' })}
+          onEnter={requireAuth({ title: '找回密码' })}
         />
         <Route
           path="/Register"
           getComponent={Register}
-          onEnter={requireAuth({ needLogin: false, title: '注册' })}
+          onEnter={requireAuth({ title: '注册' })}
         />
         <Route
           path="/AddDoctorInfo"
           getComponent={AddDoctorInfo}
-          onEnter={requireAuth({ needLogin: false, title: '填写资料' })}
+          onEnter={requireAuth({ title: '填写资料' })}
         />
         <Route
           path="/AddStudentInfo"
           getComponent={AddStudentInfo}
-          onEnter={requireAuth({ needLogin: false, title: '填写资料' })}
+          onEnter={requireAuth({ title: '填写资料' })}
         />
         <Route
           path="/AddVisitorInfo"
           getComponent={AddVisitorInfo}
-          onEnter={requireAuth({ needLogin: false, title: '填写资料' })}
+          onEnter={requireAuth({ title: '填写资料' })}
         />
 
         <Route getComponent={MiniNav}>
@@ -315,18 +321,18 @@ class Routers extends Component {
           <Route
             path="/StreamDetail/:id"
             getComponent={StreamDetail}
-            onEnter={requireAuth({ title: '详情' })}
+            onEnter={requireAuth({ title: '详情' , needShare: false })}
           />
 
           <Route
             path="/RecordDetail/:id"
             getComponent={RecordDetail}
-            onEnter={requireAuth({ title: '详情' })}
+            onEnter={requireAuth({ title: '详情' , needShare: false })}
           />
           <Route
             path="/SeriesDetail/:id"
             getComponent={SeriesDetail}
-            onEnter={requireAuth({ title: '详情' })}
+            onEnter={requireAuth({ title: '详情' , needShare: false })}
           />
           <Route
             path="/Meet"
@@ -351,7 +357,7 @@ class Routers extends Component {
           <Route
             path="/MeetOffLineDetail/:id"
             getComponent={MeetOffLineDetail}
-            onEnter={requireAuth({ title: '详情' })}
+            onEnter={requireAuth({ title: '详情' , needShare: false })}
           />
           <Route
             path="/MeetOffLineEnroll/:id"
@@ -361,12 +367,12 @@ class Routers extends Component {
           <Route
             path="/MeetStreamDetail/:id/:stream_id"
             getComponent={MeetStreamDetail}
-            onEnter={requireAuth({ title: '详情' })}
+            onEnter={requireAuth({ title: '详情' , needShare: false })}
           />
           <Route
             path="/MeetRecordDetail/:id"
             getComponent={MeetRecordDetail}
-            onEnter={requireAuth({ title: '详情' })}
+            onEnter={requireAuth({ title: '详情' , needShare: false})}
           />
           <Route
             path="/ComingSoonPage"
@@ -386,7 +392,7 @@ class Routers extends Component {
           <Route
             path="/TestDetail/:id"
             getComponent={TestDetail}
-            onEnter={requireAuth({ title: '详情' })}
+            onEnter={requireAuth({ title: '详情' , needShare: false  })}
           />
           <Route
             path="/TestRanking/:id"

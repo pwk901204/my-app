@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import style from './index.css';
 import {browserHistory} from 'react-router';
-import {Icon, WhiteSpace, Carousel, ActivityIndicator ,Button, Tabs} from 'antd-mobile';
+import {Button, Tabs} from 'antd-mobile';
 
 import {connect} from "react-redux";
 import MeetInfo from "components/MeetDetailItem/MeetInfo";
@@ -9,6 +9,7 @@ import MeetPlan from "components/MeetDetailItem/MeetPlan";
 import Responder from "components/MeetDetailItem/Responder";
 import DoctorList from "components/DoctorList";
 import moment from 'moment';
+import wxShare from 'common/wxShare';
 moment.lang('zh-cn');
 const TabPane = Tabs.TabPane;
 
@@ -18,10 +19,17 @@ class MeetOffLineDetail extends Component {
 		meeting:null
 	}
 	componentDidMount(){
-		this.getDetail();
+		let p1 = this.getDetail();
+		Promise.all([p1]).then(()=>{
+			wxShare({
+				title:this.state.meeting.title,
+				desc:this.state.meeting.introduction,
+				imgUrl:this.state.meeting.cover_data.thumb
+			});
+		});
 	}
 	getDetail = () =>{
-		return fetch(global.url.meetings +'/' + this.props.routeParams.id +"?token=" + this.props.userInfo.token)
+		return window.HOCFetch({ needToken:false })(global.url.meetings +'/' + this.props.routeParams.id +"?token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({

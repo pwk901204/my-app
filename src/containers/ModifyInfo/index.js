@@ -60,7 +60,8 @@ class ModifyInfo extends Component {
 		})
 		let p1 = this.getRegions();
 		let p2 = this.getDepartments();
-		Promise.all([p1,p2]).then(()=>{
+		let p3= this.getUser();
+		Promise.all([p1,p2,p3]).then(()=>{
 			this.setState({
 				loading:false
 			},()=>{
@@ -69,15 +70,14 @@ class ModifyInfo extends Component {
 		})
 	}
 	getUser= ()=>{
-		return fetch(global.url.current_user + "?token=" + this.props.userInfo.token )
+		return window.HOCFetch({ needToken:true })(global.url.current_user + "?token=" + this.props.userInfo.token )
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.props.userInfoAction(data.user);
-			browserHistory.push('/HomePage/3');
 		})
 	}
 	getRegions = () =>{
-		return fetch(global.url.regions)
+		return window.HOCFetch({ needToken:false })(global.url.regions)
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({
@@ -86,7 +86,7 @@ class ModifyInfo extends Component {
 		})
 	}
 	getDepartments = () =>{
-		return fetch(global.url.departments)
+		return window.HOCFetch({ needToken:false })(global.url.departments)
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({
@@ -98,7 +98,7 @@ class ModifyInfo extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(global.url.hospitals + "?region=" + value[1])
+		window.HOCFetch({ needToken:false })(global.url.hospitals + "?region=" + value[1])
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({
@@ -127,7 +127,7 @@ class ModifyInfo extends Component {
 			data.department_id = values.department[1];
 			data.title = values.title[0];
 
-			fetch(global.url.userinfos_update_user_info,{
+			window.HOCFetch({ needToken:true })(global.url.userinfos_update_user_info,{
 				method:"POST",
 				headers:{
 					"Content-Type":"application/json"
@@ -142,6 +142,7 @@ class ModifyInfo extends Component {
 				if(data.message==="ok"){
 					Toast.info("修改成功",1);
 					this.getUser();
+					browserHistory.push('/HomePage/3');
 				}else{
 					Toast.info(data.message,1);
 				}

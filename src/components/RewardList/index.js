@@ -19,7 +19,7 @@ export default class RewardList extends Component {
 		bounty_ranking:null
 	}
 	componentDidMount(){
-		fetch(global.url.bounty_ranking + "?id=" + this.props.id)
+		window.HOCFetch({ needToken:false })(global.url.bounty_ranking + "?id=" + this.props.id)
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({

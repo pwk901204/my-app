@@ -27,7 +27,7 @@ class Meet extends Component {
 		})
 	}
 	getCarousels = ()=>{
-		return fetch(global.url.carousels + "?type=meeting")
+		return window.HOCFetch({ needToken:false })(global.url.carousels + "?type=meeting")
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data);
@@ -39,7 +39,7 @@ class Meet extends Component {
 		})
 	}
 	getDetail=()=>{
-		return fetch(global.url.coursesMeetings + "?offline_limit=2&stream_limit=2&recording_limit=2")
+		return window.HOCFetch({ needToken:false })(global.url.coursesMeetings + "?offline_limit=2&stream_limit=2&recording_limit=2")
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data);

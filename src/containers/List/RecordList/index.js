@@ -32,7 +32,7 @@ class RecordList extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(global.url.departments)
+		window.HOCFetch({ needToken:false })(global.url.departments)
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data)
@@ -74,11 +74,10 @@ class RecordList extends Component {
 		});
 	}
 	getDetail = () =>{
-		let _this = this;
 		this.setState({
 			loading:true
 		})
-		fetch(global.url.recordings + "?department_id="+this.state.selectDepartment.value+"&page="+this.state.page+"&per_page=20")
+		window.HOCFetch({ needToken:false })(global.url.recordings + "?department_id="+this.state.selectDepartment.value+"&page="+this.state.page+"&per_page=20")
 		.then((response)=>response.json())
 		.then((data)=>{
 			console.log(data)

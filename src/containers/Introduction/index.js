@@ -12,18 +12,17 @@ class Introduction extends Component {
 		good_at:""
 	}
 	componentDidMount(){
-		//this.getUser();
 		this.setState({
 			introduction:this.props.userInfo.introduction,
 			good_at:this.props.userInfo.good_at
 		})
+		this.getUser();
 	}
 	getUser= ()=>{
-		return fetch(global.url.current_user + "?token=" + this.props.userInfo.token )
+		return window.HOCFetch({ needToken:true })(global.url.current_user + "?token=" + this.props.userInfo.token )
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.props.userInfoAction(data.user);
-			browserHistory.push('/HomePage/3');
 		})
 	}
 	fnSubmit = ()=>{
@@ -35,7 +34,7 @@ class Introduction extends Component {
 		data.good_at = this.state.good_at;
 		data.introduction = this.state.introduction;
 
-		fetch(global.url.userinfos_update_user_info,{
+		window.HOCFetch({ needToken:true })(global.url.userinfos_update_user_info,{
 			method:"POST",
 			headers:{
 				"Content-Type":"application/json"
@@ -47,6 +46,7 @@ class Introduction extends Component {
 			if(data.message === "ok"){
 				this.getUser();
 				Toast.info("修改成功",1.5);
+				browserHistory.push('/HomePage/3');
 			}else{
 				Toast.info(data.message,1.5);
 			}

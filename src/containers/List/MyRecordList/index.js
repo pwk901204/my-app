@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import style from './index.css';
 import {ActivityIndicator, Tabs,} from 'antd-mobile';
 import {connect} from "react-redux";
-
-import {browserHistory} from "react-router";
 import {RecordReleaseItem,RecordPurchaseItem} from "components/RecordItem";
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
@@ -24,7 +22,7 @@ class MyRecordList extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(global.url.doctors_recordings + "?token=" + this.props.userInfo.token + "&type="+ this.state.type +"&page="+ this.state.page + "&per_page=10")
+		window.HOCFetch({ needToken:true })(global.url.doctors_recordings + "?token=" + this.props.userInfo.token + "&type="+ this.state.type +"&page="+ this.state.page + "&per_page=10")
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({

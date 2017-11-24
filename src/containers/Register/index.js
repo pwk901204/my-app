@@ -56,7 +56,7 @@ class DoctorForm extends Component {
 				_this.setState({
 					loading:true
 				})
-				fetch(global.url.sendCodeValid + "?mobile=" + values.mobile.replace(/\s+/g, '') + "&code=" + values.code)
+				window.HOCFetch({ needToken:false })(global.url.sendCodeValid + "?mobile=" + values.mobile.replace(/\s+/g, '') + "&code=" + values.code)
 					.then((response)=>response.json())
 					.then((data)=>{
 						_this.setState({
@@ -86,7 +86,7 @@ class DoctorForm extends Component {
 					_this.setState({
 						loading:true
 					})
-					fetch(global.url.sendCode + "?mobile=" + values.mobile.replace(/\s+/g, '') + "&type=sign_in")
+					window.HOCFetch({ needToken:false })(global.url.sendCode + "?mobile=" + values.mobile.replace(/\s+/g, '') + "&type=sign_in")
 					.then((response)=>response.json())
 					.then((data)=>{
 						console.log(data)

@@ -61,7 +61,7 @@ class Responder extends Component {
 		this.ws.close();
 	}
 	getInit=()=>{
-		fetch(global.url.posts + "?meeting_id="+this.props.id+"&token=" + this.props.userInfo.token)
+		window.HOCFetch({ needToken:true })(global.url.posts + "?meeting_id="+this.props.id+"&token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({
@@ -101,7 +101,7 @@ class Responder extends Component {
 		data.answer= this.state.selectOption;
 		data.post_id=  this.state.id;
 		if(data.answer){
-			fetch(global.url.meetings+"/"+this.props.id+"/post_answer" ,{
+			window.HOCFetch({ needToken:true })(global.url.meetings+"/"+this.props.id+"/post_answer" ,{
 				method:"POST",
 				headers:{
 					"Content-Type":"application/json"

@@ -13,6 +13,7 @@ import {Pay} from "components/Pay";
 import {ordersAction} from "reduxs/orders.js";
 import moment from 'moment';
 import _ from "lodash";
+import wxShare from 'common/wxShare';
 moment.lang('zh-cn');
 const TabPane = Tabs.TabPane;
 
@@ -24,7 +25,15 @@ class MeetStreamDetail extends Component {
 		schedules:null
 	}
 	componentDidMount(){
-		this.getMeetDetail();
+		let p1 = this.getMeetDetail();
+		Promise.all([p1]).then(()=>{
+			wxShare({
+				title:this.state.meeting.title,
+				desc:this.state.meeting.introduction,
+				imgUrl:this.state.meeting.cover_data.thumb
+			});
+		});
+
 		clearInterval(this.timer);
 		this.timer=setInterval(()=>{
 			this.getFresh();
@@ -37,7 +46,7 @@ class MeetStreamDetail extends Component {
 		this.setState({
 			loading:true
 		})
-		fetch(global.url.meetings + "/"+ this.props.routeParams.id + "?token=" + this.props.userInfo.token)
+		return window.HOCFetch({ needToken:false })(global.url.meetings + "/"+ this.props.routeParams.id + "?token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			let schedules=[];
@@ -53,7 +62,7 @@ class MeetStreamDetail extends Component {
 	}
 	getStreamDetail = ()=>{
 		//streams
-		fetch(global.url.streams + "/"+ this.props.routeParams.stream_id + "?token=" + this.props.userInfo.token)
+		window.HOCFetch({ needToken:false })(global.url.streams + "/"+ this.props.routeParams.stream_id + "?token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.setState({
@@ -75,7 +84,7 @@ class MeetStreamDetail extends Component {
 	}
 	getFresh = ()=>{
 		let _this = this;
-		fetch(global.url.meetings + "/" + this.props.routeParams.id + "/check_live")
+		window.HOCFetch({ needToken:false })(global.url.meetings + "/" + this.props.routeParams.id + "/check_live")
 		.then((response)=>response.json())
 		.then((data)=>{
 			if(data.data.stream_status === 'ended'){
