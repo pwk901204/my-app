@@ -67,16 +67,14 @@ export class MeetRecordItem extends Component {
 			<Link to={"/MeetRecordDetail/"+this.props.id} className={style.MeetItem}>
 				<div className={style.title}>
 					<img src={this.props.cover_data.size_300} alt="img"/>
-					<p><span style={{width:"100%",textAlign:"center"}}>共{this.props.recordings_count}节</span></p>
+					<p>
+						<span>共{this.props.recordings_count}节</span>
+						<span>{this.props.stars_count}人收藏</span>
+					</p>
 				</div>
 				<h5>{this.props.topic}</h5>
 				<div className={style.content}>
-					<span>
-						<Icon type={renshu} className={style.icon}  />{this.props.meeting_attendees_count}
-					</span>
-					<span className={Number(this.props.price) ? style.fontRed : style.fontBlue}>
-						<Icon type={jinbi} className={style.icon}  />{ Number(this.props.price) ? "¥"+this.props.price : "免费"}
-					</span>
+					<span style={{width:"100%"}}>{this.props.departments.join(",")}</span>
 				</div>
 			</Link>
 		);

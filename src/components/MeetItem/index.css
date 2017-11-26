@@ -60,6 +60,10 @@
   width: 50%;
   font-size: 24px;
   line-height: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #999;
 }
 .content span:nth-of-type(2) {
   text-align: right;
@@ -70,8 +74,8 @@
 }
 
 .fontRed {
-  color: #ff2654;
+  color: #ff2654 !important;
 }
 .fontBlue {
-  color: #33a9fc;
+  color: #33a9fc !important;
 }

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import {List, Button, InputItem, Toast, WingBlank ,Picker, ActivityIndicator, WhiteSpace} from 'antd-mobile';
+import {List, Button, InputItem, Toast, WingBlank ,Picker, ActivityIndicator, WhiteSpace, Popup} from 'antd-mobile';
 import { createForm } from 'rc-form';
 import {connect} from "react-redux";
 
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 import {browserHistory} from "react-router";
+import {Pay} from "components/Pay";
 
 class MeetOffLineEnroll extends Component {
 	state={
@@ -84,8 +85,16 @@ class MeetOffLineEnroll extends Component {
 						loading:false
 					})
 					if(data.status === "success"){
-						Toast.info("报名成功",1);
-						browserHistory.push('/MeetOffLineDetail/' +  this.props.routeParams.id);
+						// Popup.show(<Pay
+						// 	id={this.props.routeParams.id}
+						// 	type="meeting"
+						// 	topic={stream.topic}
+						// 	amount={stream.price}
+						// 	ordersAction={this.props.ordersAction}
+						// 	href={window.location.href}
+						// />, { animationType: 'slide-up', onTouchStart: e => e.preventDefault() });
+						//Toast.info("报名成功",1);
+						//browserHistory.push('/MeetOffLineDetail/' +  this.props.routeParams.id);
 					}
 				})
 			}

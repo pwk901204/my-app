@@ -33,11 +33,7 @@ export class Pay extends Component {
 	state = {
     	pay_way: "wechat_pay"
     }
-    componentDidMount(){
-		alert(window.location.href)
-	}
 	onChange = (value) => {
-		console.log(value)
 		this.setState({
 			pay_way:value,
 		});
@@ -75,14 +71,15 @@ export class Pay extends Component {
 					<p>{this.props.amount}元</p>
 					<span>所需费用</span>
 				</div>
-
 				<List renderHeader={() => '支付方式'}>
 					<RadioItem checked={pay_way === "wechat_pay" } onChange={() => this.onChange("wechat_pay")}>
 						<Icon type={wx} className={style.icon}  />微信
 					</RadioItem>
-					<RadioItem checked={pay_way === "alipay_wap" } onChange={() => this.onChange("alipay_wap")}>
-						<Icon type={zfb} className={style.icon}  />支付宝
-					</RadioItem>
+					{
+						// <RadioItem checked={pay_way === "alipay_wap" } onChange={() => this.onChange("alipay_wap")}>
+						// 	<Icon type={zfb} className={style.icon}  />支付宝
+						// </RadioItem>
+					}
 				</List>
 				<WhiteSpace size='md' />
 				<WingBlank size="md">
