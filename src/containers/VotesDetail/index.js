@@ -1,11 +1,30 @@
 import React, { Component } from 'react';
 import style from './index.css';
+import Countdown from 'react-countdown-now';
+import moment from 'moment';
 
 export default class VotesDetail extends Component {
 	render() {
+		let date = moment().set({'year': 2017, 'month': 10, 'date': 29, 'hour': 16, 'minute': 57, 'second': 0, 'millisecond': 0});
+		date = date.toDate();
 		return (
 			<div className={style.vote_detail}>
-				<div className={style.time}>投票倒计时：6天23小时26分</div>
+				<div className={style.time}>
+					<Countdown
+						renderer={({ total, days, hours, minutes, seconds, milliseconds, completed }) => {
+							if(completed){
+								return (<span>投票已截止</span>)
+							} else {
+								if (days > 0) {
+									return (<span>投票倒计时：{days}天{hours}小时{minutes}分钟</span>)
+								} else {
+									return (<span>投票倒计时：{hours}小时{minutes}分钟{seconds}秒</span>)
+								}
+							}
+						}}
+						date={date}>
+					</Countdown>
+				</div>
 				<div className={style.box}>
 					<div className={style.head}>
 						<div className={style.img}></div>
@@ -17,7 +36,7 @@ export default class VotesDetail extends Component {
 					<div className={style.body}>
 						<p>排名 12</p>
 						<i>2361</i>
-						<span>已获得票数</span>	
+						<span>已获得票数</span>
 					</div>
 				</div>
 				<div className={style.bottom}>
