@@ -7,7 +7,10 @@ export default (
     imgUrl = window.location.origin + WechatShare //据对路径地址
   } = {}
 ) => {
-    window.HOCFetch({ needToken:false })(global.url.wechats_share + '?url=' + global.location.href)
+  window
+    .HOCFetch({ needToken: false })(
+      global.url.wechats_share + '?url=' + global.location.href
+    )
     .then(response => response.json())
     .then(data => {
       global.wx.config({

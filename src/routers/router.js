@@ -246,21 +246,40 @@ const requireAuth = (
     //     }
     //   }, 1000);
     // }
-    needShare && setTimeout(()=>{
-      wxShare();
-    })
+    needShare &&
+      setTimeout(() => {
+        wxShare();
+      });
   };
+};
+
+//双鹤杯
+const DoubleCrane = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/DoubleCrane').default);
+  });
+};
+const Votes = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/Votes').default);
+  });
+};
+const VotesDetail = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/VotesDetail').default);
+  });
+};
+const VotesRank = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/VotesRank').default);
+  });
 };
 
 class Routers extends Component {
   render() {
     return (
       <Router history={browserHistory} key={Math.random()}>
-        <Route
-          path="/"
-          getComponent={TabBar}
-          onEnter={requireAuth()}
-        />
+        <Route path="/" getComponent={TabBar} onEnter={requireAuth()} />
         <Route
           path="/HomePage(/:index)"
           getComponent={TabBar}
@@ -321,18 +340,18 @@ class Routers extends Component {
           <Route
             path="/StreamDetail/:id"
             getComponent={StreamDetail}
-            onEnter={requireAuth({ title: '详情' , needShare: false })}
+            onEnter={requireAuth({ title: '详情', needShare: false })}
           />
 
           <Route
             path="/RecordDetail/:id"
             getComponent={RecordDetail}
-            onEnter={requireAuth({ title: '详情' , needShare: false })}
+            onEnter={requireAuth({ title: '详情', needShare: false })}
           />
           <Route
             path="/SeriesDetail/:id"
             getComponent={SeriesDetail}
-            onEnter={requireAuth({ title: '详情' , needShare: false })}
+            onEnter={requireAuth({ title: '详情', needShare: false })}
           />
           <Route
             path="/Meet"
@@ -357,7 +376,7 @@ class Routers extends Component {
           <Route
             path="/MeetOffLineDetail/:id"
             getComponent={MeetOffLineDetail}
-            onEnter={requireAuth({ title: '详情' , needShare: false })}
+            onEnter={requireAuth({ title: '详情', needShare: false })}
           />
           <Route
             path="/MeetOffLineEnroll/:id"
@@ -367,12 +386,12 @@ class Routers extends Component {
           <Route
             path="/MeetStreamDetail/:id/:stream_id"
             getComponent={MeetStreamDetail}
-            onEnter={requireAuth({ title: '详情' , needShare: false })}
+            onEnter={requireAuth({ title: '详情', needShare: false })}
           />
           <Route
             path="/MeetRecordDetail/:id"
             getComponent={MeetRecordDetail}
-            onEnter={requireAuth({ title: '详情' , needShare: false})}
+            onEnter={requireAuth({ title: '详情', needShare: false })}
           />
           <Route
             path="/ComingSoonPage"
@@ -392,7 +411,7 @@ class Routers extends Component {
           <Route
             path="/TestDetail/:id"
             getComponent={TestDetail}
-            onEnter={requireAuth({ title: '详情' , needShare: false  })}
+            onEnter={requireAuth({ title: '详情', needShare: false })}
           />
           <Route
             path="/TestRanking/:id"
@@ -464,7 +483,27 @@ class Routers extends Component {
             getComponent={Pwk}
             onEnter={requireAuth({ title: '关于我们' })}
           />
+          <Route
+            path="/DoubleCrane"
+            getComponent={DoubleCrane}
+            onEnter={requireAuth({ title: '华润双鹤杯' })}
+          />
         </Route>
+        <Route
+          path="/Votes"
+          getComponent={Votes}
+          onEnter={requireAuth({ title: '投票拼人气' })}
+        />
+        <Route
+          path="/Votes/:id"
+          getComponent={VotesDetail}
+          onEnter={requireAuth({ title: '投票详情' })}
+        />
+        <Route
+          path="/VotesRank"
+          getComponent={VotesRank}
+          onEnter={requireAuth({ title: '投票排行榜' })}
+        />
       </Router>
     );
   }
