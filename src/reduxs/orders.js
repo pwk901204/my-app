@@ -12,14 +12,13 @@ export const ordersAction = data => (dispatch, getState) => {
   PostData.id = data.id;
   PostData.pay_way = data.pay_way ? data.pay_way : ''; //支付方式 {wechat_qr_pay: "微信扫码支付", wechat_pay: "微信公众号支付", alipay: "支付宝网站支付", alipay_wap: "支付宝手机支付" }
   PostData.amount = data.amount ? data.amount : '';
-  window
-    .HOCFetch({ needToken: true })(url.orders, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(PostData)
-    })
+  window.HOCFetch({ needToken: true })(url.orders, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(PostData)
+  })
     .then(response => response.json())
     .then(ordersData => {
       console.log(ordersData, 'ordersData');
