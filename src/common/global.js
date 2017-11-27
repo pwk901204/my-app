@@ -1,7 +1,7 @@
 import FastClick from 'fastclick';
 import url from 'api_url/index.js';
 
-import HOCFetch from "common/HOCFetch";
+import HOCFetch from 'common/HOCFetch';
 
 //WebSocket connect url
 let webSocketUrl = '';
@@ -24,8 +24,8 @@ Object.defineProperties(global, {
   webSocketUrl: {
     value: webSocketUrl
   },
-  HOCFetch:{
-    value:HOCFetch
+  HOCFetch: {
+    value: HOCFetch
   }
 });
 

@@ -28,7 +28,12 @@
 :global(.fontRed) {
   color: #ff2654 !important;
 }
-
+:global(.votes .am-search) {
+  background: #fff;
+}
+:global(.votes .am-search-input) {
+  background: #eee;
+}
 .clearfix:after {
   content: '';
   display: block;

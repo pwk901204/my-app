@@ -13,6 +13,9 @@ import {connect} from "react-redux";
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 import {userInfo} from "reduxs/userInfo";
+import EnterBtn from 'components/EnterBtn'
+import enter from 'images/enter1.png';
+
 class HomePage extends Component {
 	state = {
 		loading:false,
@@ -40,6 +43,7 @@ class HomePage extends Component {
 		let userInfo = this.props.userInfo;
 		return (
 			<div className={style.homePageWrap}>
+				<EnterBtn src={enter} title='华润双鹤杯' linkTo='/DoubleCrane' color='#F4A11A'/>
 				<ReactIScroll
 					iScroll={iScroll}
 					options={{...global.iscrollOptions}}

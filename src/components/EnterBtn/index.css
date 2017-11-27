@@ -1,0 +1,16 @@
+.enter {
+  position: fixed;
+  z-index: 1000;
+  right: 10px;
+  bottom: 300px;
+  text-align: center;
+  opacity: 0.9;
+}
+.enter img {
+  width: 100px;
+}
+.enter p {
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 2;
+}
