@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from "react-redux";
 import {browserHistory} from "react-router";
 import style from './index.css';
-import {Icon, WingBlank, Grid} from 'antd-mobile';
+import {Icon, WingBlank, Grid , Button} from 'antd-mobile';
 import minebg  from "images/minebg.png";
 import wodezhibo  from "svg/wodezhibo.svg";
 import wodelubo  from "svg/wodelubo.svg";
@@ -24,6 +24,7 @@ import shezhi  from "svg/shezhi.svg";
 import bangzhuyufankui  from "svg/bangzhuyufankui.svg";
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
+import defaulttouxiang from "svg/defaulttouxiang.svg";
 
 const data=[
 	{
@@ -109,12 +110,23 @@ class Mine extends Component {
 				options={{...global.iscrollOptions}}
 			>
 				<div className={style.mine}>
-					<div className={style.head}>
-						<i>会员号:{this.props.userInfo.user_no}</i>
-						<img src={this.props.userInfo.headimgurl} alt="头像" />
-						<h6>{this.props.userInfo.name}<span>({this.props.userInfo.title})</span></h6>
-						<p>{this.props.userInfo.hospital}&nbsp;<span>{this.props.userInfo.department}</span></p>
-					</div>
+					{
+						this.props.userInfo.token ?
+						<div className={style.head}>
+							<i>会员号:{this.props.userInfo.user_no}</i>
+							<img src={this.props.userInfo.headimgurl} alt="头像" />
+							<h6>{this.props.userInfo.name}<span>({this.props.userInfo.title})</span></h6>
+							<p>{this.props.userInfo.hospital}&nbsp;<span>{this.props.userInfo.department}</span></p>
+						</div>
+						:
+						<div className={style.headNoLogin}>
+							<Icon type={defaulttouxiang} className={style.headSvg} />
+							<div className={style.loginBtnWrap}>
+								<Button type="primary" size="small" inline className={style.btn} onClick={()=>{browserHistory.push("/Login")}} >登录</Button>
+								<Button type="primary" size="small" inline className={style.btn} onClick={()=>{browserHistory.push("/Register")}}>注册</Button>
+							</div>
+						</div>
+					}
 					<div className={style.nav}>
 						<WingBlank size="lg" className={style.navBlank}>
 							<Grid

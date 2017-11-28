@@ -6,7 +6,7 @@
   position: relative;
 }
 
-.head {
+.head ,.headNoLogin{
   height: 342px;
   background: url('images/minebg.png') 0 0;
   background-size: 100% 100%;
@@ -43,6 +43,20 @@
   font-size: 22px;
   color: #fff;
   text-align: center;
+}
+
+.headSvg{
+  display: block;
+  border-radius: 50% 50%;
+  margin: 30px auto;
+  width: 130px;
+  height: 130px;
+}
+.loginBtnWrap{
+  text-align: center;
+}
+.btn{
+  margin: 0 20px;
 }
 
 .nav {

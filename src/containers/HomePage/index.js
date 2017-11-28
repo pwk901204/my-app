@@ -15,6 +15,7 @@ import iScroll from "iscroll/build/iscroll-probe.js";
 import {userInfo} from "reduxs/userInfo";
 import EnterBtn from 'components/EnterBtn'
 import enter from 'images/enter1.png';
+import {browserHistory} from "react-router";
 
 class HomePage extends Component {
 	state = {
@@ -52,6 +53,7 @@ class HomePage extends Component {
 						{userInfo.type === "Doctor" && <h4 className={style.title}>{userInfo.name}({userInfo.title})</h4>}
 						{userInfo.type === "Student" && <h4 className={style.title}>{userInfo.name}(学生)</h4>}
 						{userInfo.type === "Visitor" && <h4 className={style.title}>{userInfo.name}(访客)</h4>}
+						{ !userInfo.token && <h4 className={style.title} onClick={()=>{browserHistory.push("/Login")}}>未登录</h4>}
 						{
 							this.state.getCarouselsData && 
 							<Carousel

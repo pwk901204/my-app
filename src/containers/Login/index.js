@@ -34,7 +34,7 @@ class LoginForm extends Component {
 					this.setState({
 						loading:false
 					})
-					Toast.info(data.msg.message);
+					Toast.info(data.msg.message,1.5);
 					if(data.msg.status === "success"){
 						window.HOCFetch({ needToken:false })(global.url.current_user + "?token=" + encodeURIComponent(data.user.token) )
 						.then((response)=>response.json())

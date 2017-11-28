@@ -58,14 +58,16 @@ class ModifyInfo extends Component {
 		this.setState({
 			user:this.props.userInfo
 		})
-		let p1 = this.getRegions();
+		let p1= this.getUser();
+		let p3 = this.getRegions();
 		let p2 = this.getDepartments();
-		let p3= this.getUser();
-		Promise.all([p1,p2,p3]).then(()=>{
-			this.setState({
-				loading:false
-			},()=>{
-				this.areaOk([this.state.user.province_id,this.state.user.city_id])
+		Promise.all([p1]).then(()=>{
+			Promise.all([p2,p3]).then(()=>{
+				this.setState({
+					loading:false
+				},()=>{
+					this.areaOk([this.state.user.province_id,this.state.user.city_id])
+				})
 			})
 		})
 	}
