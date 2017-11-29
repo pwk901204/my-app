@@ -32,7 +32,6 @@ class VotesRank extends Component {
       )
       .then(response => response.json())
       .then(data => {
-        console.log(data, '~~~~~~~~~~~~~~~~~~~');
         if (data.vote_end_at) {
           this.setState({
             listData: data.vote_users,
@@ -137,8 +136,5 @@ export default connect(
     return {
       userInfo: state.userInfo
     };
-  },
-  dispatch => {
-    return {};
   }
 )(VotesRank);

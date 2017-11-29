@@ -113,6 +113,7 @@
     "postcss-loader": "2.0.6",
     "postcss-pxtorem": "^4.0.1",
     "prettier": "^1.7.0",
+    "qrcode.react": "^0.7.2",
     "react-countdown-now": "^1.2.0",
     "redux-logger": "^3.0.6",
     "ssh-webpack-plugin": "^0.1.7",

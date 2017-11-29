@@ -4,6 +4,7 @@ import style from './index.css';
 import Countdown from 'react-countdown-now';
 import moment from 'moment';
 import { Toast, ActivityIndicator } from 'antd-mobile';
+import QRCode from 'qrcode.react';
 
 class VotesDetail extends Component {
   constructor(props){
@@ -13,10 +14,13 @@ class VotesDetail extends Component {
       endTime: '',
       loading: false,
       modal: false,
-      complete: false
+      complete: false,
+      QRCodeImg: ''
     };
     this.onVote = this.onVote.bind(this);
     this.getVoteDetail = this.getVoteDetail.bind(this);
+    this.converQRCanvasToImage = this.converQRCanvasToImage.bind(this);
+    //this.QRref = this.QRref.bind(this);
   }
   onVote(){
     if(this.state.complete) return;
@@ -53,7 +57,6 @@ class VotesDetail extends Component {
       .HOCFetch({ needToken: false })(url)
       .then(response => response.json())
       .then(data => {
-        console.log(data, '!!!!!!!!!!!!!!!!')
         if (data.vote_end_at){
           this.setState({
             userData: data.vote_user,
@@ -64,8 +67,14 @@ class VotesDetail extends Component {
         }
       });
   }
+  converQRCanvasToImage(canvas){
+    this.setState({
+      QRCodeImg: canvas.toDataURL("image/png")
+    });
+  }
   componentDidMount(){
     this.getVoteDetail();
+    this.converQRCanvasToImage(this.instance._canvas);
   }
   render() {
     let date = moment(this.state.endTime).toDate();
@@ -147,10 +156,10 @@ class VotesDetail extends Component {
           <h4>请点击右上角邀请好友投票哦~</h4>
           <div className={style._modal_img}>
             <p>或长按下方二维码保存，发送给好友，邀请好友扫码，给你投票吧！</p>
-            <img
-              src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1351925244,655071204&fm=27&gp=0.jpg"
-              alt=""
-            />
+            <div className={style.QRCode}>
+              <QRCode size={400} ref={(instance) => this.instance = instance} value={window.location.href} />
+              <img src={this.state.QRCodeImg} alt="QRCode" />
+            </div>
           </div>
         </div>
         <ActivityIndicator toast animating={this.state.loading} />
