@@ -61,11 +61,12 @@
 }
 .bg {
   position: relative;
+  display: block;
   width: 344px;
   height: 344px;
   overflow: hidden;
 }
-.bg img{
+.bg img {
   width: 100%;
   height: 100%;
 }
@@ -107,4 +108,14 @@
   height: 52px;
   border-radius: 26px;
   line-height: 52px;
+}
+.btn span.complete{
+  background: #999;
+}
+.list_loading{
+  padding-bottom: 15px;
+  font-size: 30px;
+  line-height: 50px;
+  text-align: center;
+  color: #666;
 }

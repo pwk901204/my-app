@@ -1,76 +1,149 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import style from './index.css';
 import Countdown from 'react-countdown-now';
 import moment from 'moment';
+import { Toast, ActivityIndicator } from 'antd-mobile';
 
-export default class VotesDetail extends Component {
+class VotesDetail extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      userData: null,
+      endTime: '',
+      loading: false,
+      modal: false,
+      complete: false
+    };
+    this.onVote = this.onVote.bind(this);
+    this.getVoteDetail = this.getVoteDetail.bind(this);
+  }
+  onVote(){
+    if(this.state.complete) return;
+    let url = global.url.writeVote;
+    let data = {
+      token: this.props.userInfo.token,
+      vote_user_id: this.state.userData.id,
+    };
+    data = JSON.stringify(data);
+    this.setState({ loading: true });
+    window
+      .HOCFetch({ needToken: true })(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: data
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'ok') {
+          this.getVoteDetail();
+          this.setState({ loading: false });
+          Toast.info('您已成功为 ' + this.state.userData.id + '号 ' + this.state.userData.user_name + ' 投票！');
+        } else {
+          this.setState({ loading: false });
+          Toast.info(data.msg);
+        }
+      });
+  }
+  getVoteDetail(){
+    let url = global.url.readVote + '/' + this.props.params.id + '?course_id=' + '37';
+    window
+      .HOCFetch({ needToken: false })(url)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data, '!!!!!!!!!!!!!!!!')
+        if (data.vote_end_at){
+          this.setState({
+            userData: data.vote_user,
+            endTime: data.vote_end_at
+          });
+        } else {
+          Toast.info('网络错误');
+        }
+      });
+  }
+  componentDidMount(){
+    this.getVoteDetail();
+  }
   render() {
-    let date = moment().set({
-      year: 2017,
-      month: 10,
-      date: 29,
-      hour: 16,
-      minute: 57,
-      second: 0,
-      millisecond: 0
-    });
-    date = date.toDate();
+    let date = moment(this.state.endTime).toDate();
+    let userData = this.state.userData;
     return (
       <div className={style.vote_detail}>
         <div className={style.time}>
-          <Countdown
-            renderer={({
-              total,
-              days,
-              hours,
-              minutes,
-              seconds,
-              milliseconds,
-              completed
-            }) => {
-              if (completed) {
-                return <span>投票已截止</span>;
-              } else {
-                if (days > 0) {
-                  return (
-                    <span>
-                      投票倒计时：{days}天{hours}小时{minutes}分钟
-                    </span>
-                  );
+          {
+            this.state.endTime &&
+            <Countdown
+              renderer={({
+                total,
+                days,
+                hours,
+                minutes,
+                seconds,
+                milliseconds,
+                completed
+              }) => {
+                if (completed) {
+                  return <span>投票已截止</span>;
                 } else {
-                  return (
-                    <span>
-                      投票倒计时：{hours}小时{minutes}分钟{seconds}秒
-                    </span>
-                  );
+                  if (days > 0) {
+                    return (
+                      <span>
+                        投票倒计时：{days}天{hours}小时{minutes}分钟
+                      </span>
+                    );
+                  } else {
+                    return (
+                      <span>
+                        投票倒计时：{hours}小时{minutes}分钟{seconds}秒
+                      </span>
+                    );
+                  }
                 }
-              }
-            }}
-            date={date}
-          />
+              }}
+              onComplete={()=>{ this.setState({ complete: true }) }}
+              date={date}
+            />
+          }
         </div>
         <div className={style.box}>
           <div className={style.head}>
-            <div className={style.img} />
+            <img
+              src={
+                userData ? userData.avator_data.middle : ''
+              }
+              className={style.img}
+              alt={userData ? userData.user_name : ''}
+            />
             <div className={style.headBox}>
               <p>
-                刘晓梅<small>（主治医生）</small>
-                <span>0001号</span>
+                {
+                  userData ? userData.user_name : ''
+                }
+                <small>{userData ? '（' + userData.title + '）' : ''}</small>
+                <span>{userData ? userData.no + '号' : ''}</span>
               </p>
-              <span className={style.des}>湖南湘雅医院 心内科</span>
+              <span className={style.des}>{userData ? userData.hospital_name + ' ' + userData.department_name : ''}</span>
             </div>
           </div>
           <div className={style.body}>
-            <p>排名 12</p>
-            <i>2361</i>
+            <p>排名 {userData ? userData.sort : ''}</p>
+            <i>{userData ? userData.votes_count : ''}</i>
             <span>已获得票数</span>
           </div>
         </div>
         <div className={style.bottom}>
-          <span className={style.share}>拉票</span>
-          <span className={style.throw}>投票</span>
+          <span
+            onClick={()=>{
+              if(this.state.complete) return;
+              this.setState({ modal: true })
+            }}
+            className={ this.state.complete ? style.share + ' ' + style.complete : style.share }>拉票</span>
+          <span onClick={this.onVote} className={ this.state.complete ? style.throw + ' ' + style.complete : style.throw}>投票</span>
         </div>
-        <div className={style._modal}>
+        <div className={this.state.modal ? style._modal : style._modal + ' none'}>
           <h4>请点击右上角邀请好友投票哦~</h4>
           <div className={style._modal_img}>
             <p>或长按下方二维码保存，发送给好友，邀请好友扫码，给你投票吧！</p>
@@ -80,7 +153,16 @@ export default class VotesDetail extends Component {
             />
           </div>
         </div>
+        <ActivityIndicator toast animating={this.state.loading} />
       </div>
     );
   }
 }
+
+export default connect(
+  state => {
+    return {
+      userInfo: state.userInfo
+    };
+  }
+)(VotesDetail);

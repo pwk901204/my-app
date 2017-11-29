@@ -34,14 +34,7 @@
 :global(.votes .am-search-input) {
   background: #eee;
 }
-:global(.list_loading){
-  padding-bottom: 15px;
-  font-size: 30px;
-  line-height: 50px;
-  text-align: center;
-  color: #666;
-}
-:global(.none){
+:global(.none) {
   display: none;
 }
 .clearfix:after {

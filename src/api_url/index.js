@@ -143,6 +143,6 @@ url.wechats_share = __host__ + '/api/doctor/mobile/wechats/share';
 url.readVote = __host__ + '/api/doctor/vote_users';
 
 //投票写入
-url.writeVote = __host__ + '/api/doctor/votes/create';
+url.writeVote = __host__ + '/api/doctor/votes';
 
 module.exports = url;

@@ -58,7 +58,7 @@
   white-space: nowrap;
   text-align: left;
   padding-left: 20px;
-  flex: 2
+  flex: 2;
 }
 
 .middle img {
@@ -68,7 +68,7 @@
   margin-right: 20px;
   vertical-align: middle;
 }
-.last{
+.last {
   flex: 1;
   text-align: right;
 }

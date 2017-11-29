@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {connect} from "react-redux";
+import { connect } from 'react-redux';
 import style from './index.css';
 import { Icon } from 'antd-mobile';
 import ReactIScroll from 'react-iscroll';
@@ -10,36 +10,38 @@ import votes_rank from 'images/votes_rank.png';
 import rank1 from 'svg/rank1.svg';
 import rank2 from 'svg/rank2.svg';
 import rank3 from 'svg/rank3.svg';
-import {Toast} from 'antd-mobile';
+import { Toast } from 'antd-mobile';
 
 class VotesRank extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       listData: [],
       endTime: ''
-    }
+    };
   }
-  componentDidMount(){
-    window.HOCFetch({ needToken: false })(
-      global.url.readVote +
-        '/ranking' +
-        '?token=' +
-        this.props.userInfo.token +
-        '&course_id=' + '37'
-    )
-    .then(response => response.json())
-    .then(data => {
-      console.log(data, '~~~~~~~~~~~~~~~~~~~');
-      if (data.vote_end_at) {
-        this.setState({
-          listData: data.vote_users,
-          endTime: data.vote_end_at
-        });
-      } else {
-        Toast.info('网络错误');
-      }
-    });
+  componentDidMount() {
+    window
+      .HOCFetch({ needToken: false })(
+        global.url.readVote +
+          '/ranking' +
+          '?token=' +
+          this.props.userInfo.token +
+          '&course_id=' +
+          '37'
+      )
+      .then(response => response.json())
+      .then(data => {
+        console.log(data, '~~~~~~~~~~~~~~~~~~~');
+        if (data.vote_end_at) {
+          this.setState({
+            listData: data.vote_users,
+            endTime: data.vote_end_at
+          });
+        } else {
+          Toast.info('网络错误');
+        }
+      });
   }
   render() {
     let date = moment(this.state.endTime).toDate();
@@ -53,8 +55,7 @@ class VotesRank extends Component {
         <ReactIScroll iScroll={iScroll} options={{ ...global.iscrollOptions }}>
           <div>
             <div className={style.time}>
-              {
-                this.state.endTime &&
+              {this.state.endTime && (
                 <Countdown
                   renderer={({
                     total,
@@ -85,7 +86,7 @@ class VotesRank extends Component {
                   }}
                   date={date}
                 />
-              }
+              )}
             </div>
             <div className={style.rank_list}>
               <div className={style.rank_title}>
@@ -98,35 +99,30 @@ class VotesRank extends Component {
                   <div className={style.border + ' ' + style.middle}>
                     参赛选手
                   </div>
-                  <div className={style.last} style={{textAlign: 'center'}}>票数</div>
+                  <div className={style.last} style={{ textAlign: 'center' }}>
+                    票数
+                  </div>
                 </li>
-                {
-                  this.state.listData.map((item, index)=>{
-                    return(
-                      <li key={index}>
-                        <div className={style.first}>
-                          {
-                            index < 3 ?
-                            rank[index]
-                            :
-                            index + 1
-                          }
-                        </div>
-                        <div className={style.middle}>
-                          <img
-                            src={item.avator_data.middle}
-                            alt={item.user_name}
-                          />
-                          <span>{item.user_name}</span>
-                        </div>
-                        <div className={style.last}>
-                          <i>{item.votes_count}</i>
-                          <span>票</span>
-                        </div>
-                      </li>
-                    )
-                  })
-                }
+                {this.state.listData.map((item, index) => {
+                  return (
+                    <li key={index}>
+                      <div className={style.first}>
+                        {index < 3 ? rank[index] : index + 1}
+                      </div>
+                      <div className={style.middle}>
+                        <img
+                          src={item.avator_data.middle}
+                          alt={item.user_name}
+                        />
+                        <span>{item.user_name}</span>
+                      </div>
+                      <div className={style.last}>
+                        <i>{item.votes_count}</i>
+                        <span>票</span>
+                      </div>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </div>
@@ -136,15 +132,13 @@ class VotesRank extends Component {
   }
 }
 
-export default connect (
-	(state)=>{
-		return {
-			userInfo:state.userInfo
-		}
-	},
-	(dispatch)=>{
-		return {
-
-		}
-	}
+export default connect(
+  state => {
+    return {
+      userInfo: state.userInfo
+    };
+  },
+  dispatch => {
+    return {};
+  }
 )(VotesRank);
