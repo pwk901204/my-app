@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Icon} from 'antd-mobile';
 import style from './index.css';
 import PropTypes from 'prop-types';
+import fresh from 'images/fresh.png';
 
 export default class LiveVideo extends Component {
 
@@ -21,7 +22,7 @@ export default class LiveVideo extends Component {
 		console.log(this.props)
 		let option = {
 			autoplay:this.props.autoplay,
-			inactivityTimeout:30000,
+			inactivityTimeout:3000,
 			"preload": "auto",
 			controls:true,
 			"loop": true, //是否循环播放
@@ -62,21 +63,50 @@ export default class LiveVideo extends Component {
 					dataOption.push({type: "video/x-flv", src: play_url.flv})
 				}
 			}
-
 			this.myPlayer.setDataSource(dataOption);
-			//添加组件到 this.myPlayer.corePlayer根节点
 
+
+			//添加组件到 this.myPlayer.corePlayer根节点
 			this.myPlayer.corePlayer.addChild(errorComponent, {})
-			this.myPlayer.onError(function(){
-				console.log("出错了～～～", errorElement)
-				let text = '主播讲课有点累了，稍等一会就可以继续观看哦~点我刷新';
-				errorElement.innerHTML = `<p>${text}</p>`; //<img class="shuaxinBtn" src=""></img>
+			this.myPlayer.onError(function(err){
+				let text = "刷新";
+				console.log(err);
+				switch(err.errCode){
+					case 1:
+						 text = '您终止了媒体的播放';
+    				break;
+    				case 2:
+						 text = '网络错误导致媒体下载失败';
+    				break;
+    				case 3:
+						 text = '您的浏览器不支持播放器的加载';
+    				break;
+    				case 4:
+						 text = '无法加载媒体，因为服务器或网络失败，或者因为格式不支持';
+    				break;
+    				case 5:
+						 text = '媒体已加密';
+    				break;
+    				case 6:
+						 text = '请勿使用推流地址拉流';
+    				break;
+    				case 7:
+						 text = '拉流超时,请刷新重试';
+    				break;
+				}
+				errorElement.innerHTML = `<p>${text}</p><img src=${fresh} />`;
 				errorElement.onclick = function(){
 					_this.myPlayer.refresh()
 				}
 			});
+			this.myPlayer.on("ended",()=>{
+				console.log("ended");
+			})
+
 		});
 
+
+		//自定义 错误组件
 		var errorElement = document.createElement("div");
 		//添加class   my-error-display
 		window.neplayer.addClass(errorElement, "my-error-display");
@@ -85,6 +115,8 @@ export default class LiveVideo extends Component {
 		var ErrorComponent = window.neplayer.extend(Component, {});
 		//在实例化组件的时候传入组件元素
 		var errorComponent = new ErrorComponent(null, {el:errorElement});
+
+
 	}
 	componentWillUnmount() {
 		//当我挂载的时候

@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {RecordReleaseItem,RecordPurchaseItem} from "components/RecordItem";
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
-
+import Blank from "components/Blank";
 const TabPane = Tabs.TabPane;
 
 class MyRecordList extends Component {
@@ -49,7 +49,7 @@ class MyRecordList extends Component {
 	render() {
 		let {recordings} = this.state;
 		return (
-			<div className={style.myStreamList}>
+			<div className={style.myRecordList}>
 				<Tabs swipeable={false} defaultActiveKey="created" onTabClick={(key)=>{
 						this.setState({
 							type:key,
@@ -60,34 +60,48 @@ class MyRecordList extends Component {
 						})
 					}}>
 					<TabPane tab="已发起" key="created" className={style.tabItemWrap}  >
-						<ReactIScroll
-							iScroll={iScroll}
-							options={{...global.iscrollOptions}}
-							onScrollEnd={this.scrollEnd}
-						>
-							<div>
-								{
-									recordings.length>0 && recordings.map((item,index)=>{
-										return <RecordReleaseItem key={item.id} {...item} />
-									})
-								}
+						{
+							recordings.length>0 ?
+							<ReactIScroll
+								iScroll={iScroll}
+								options={{...global.iscrollOptions}}
+								onScrollEnd={this.scrollEnd}
+							>
+								<div>
+									{
+										recordings.map((item,index)=>{
+											return <RecordReleaseItem key={item.id} {...item} />
+										})
+									}
+								</div>
+							</ReactIScroll>
+							:
+							<div className={style.blank}>
+								<Blank text="暂无已发起的录播"/>
 							</div>
-						</ReactIScroll>
+						}
 					</TabPane>
 					<TabPane tab="已购买" key="bought" className={style.tabItemWrap} >
-						<ReactIScroll
-							iScroll={iScroll}
-							options={{...global.iscrollOptions}}
-							onScrollEnd={this.scrollEnd}
-						>
-							<div>
-								{
-									recordings.length>0 && recordings.map((item,index)=>{
-										return <RecordPurchaseItem key={item.id} {...item} />
-									})
-								}
+						{
+							recordings.length>0 ?
+							<ReactIScroll
+								iScroll={iScroll}
+								options={{...global.iscrollOptions}}
+								onScrollEnd={this.scrollEnd}
+							>
+								<div>
+									{
+										recordings.map((item,index)=>{
+											return <RecordPurchaseItem key={item.id} {...item} />
+										})
+									}
+								</div>
+							</ReactIScroll>
+							:
+							<div className={style.blank}>
+								<Blank text="暂无已购买的录播"/>
 							</div>
-						</ReactIScroll>
+						}
 					</TabPane>
 				</Tabs>
 				<ActivityIndicator toast animating={this.state.loading} />

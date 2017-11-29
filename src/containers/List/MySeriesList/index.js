@@ -7,7 +7,7 @@ import {browserHistory} from "react-router";
 import {SeriesReleaseItem,SeriesPurchaseItem} from "components/SeriesItem";
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
-
+import Blank from "components/Blank";
 const TabPane = Tabs.TabPane;
 
 class MySeriesList extends Component {
@@ -62,34 +62,48 @@ class MySeriesList extends Component {
 						})
 					}}>
 					<TabPane tab="已发起" key="created" className={style.tabItemWrap}  >
-						<ReactIScroll
-							iScroll={iScroll}
-							options={{...global.iscrollOptions}}
-							onScrollEnd={this.scrollEnd}
-						>
-							<div>
-								{
-									courses.length>0 && courses.map((item,index)=>{
-										return <SeriesReleaseItem key={item.id} {...item} />
-									})
-								}
+						{
+							courses.length>0 ?
+							<ReactIScroll
+								iScroll={iScroll}
+								options={{...global.iscrollOptions}}
+								onScrollEnd={this.scrollEnd}
+							>
+								<div>
+									{
+										courses.map((item,index)=>{
+											return <SeriesReleaseItem key={item.id} {...item} />
+										})
+									}
+								</div>
+							</ReactIScroll>
+							:
+							<div className={style.blank}>
+								<Blank text="暂无已发起的系列"/>
 							</div>
-						</ReactIScroll>
+						}
 					</TabPane>
 					<TabPane tab="已购买" key="bought" className={style.tabItemWrap} >
-						<ReactIScroll
-							iScroll={iScroll}
-							options={{...global.iscrollOptions}}
-							onScrollEnd={this.scrollEnd}
-						>
-							<div>
-								{
-									courses.length>0 && courses.map((item,index)=>{
-										return <SeriesPurchaseItem key={item.id} {...item} />
-									})
-								}
+						{
+							courses.length>0 ?
+							<ReactIScroll
+								iScroll={iScroll}
+								options={{...global.iscrollOptions}}
+								onScrollEnd={this.scrollEnd}
+							>
+								<div>
+									{
+										courses.map((item,index)=>{
+											return <SeriesPurchaseItem key={item.id} {...item} />
+										})
+									}
+								</div>
+							</ReactIScroll>
+							:
+							<div className={style.blank}>
+								<Blank text="暂无已购买的系列"/>
 							</div>
-						</ReactIScroll>
+						}
 					</TabPane>
 				</Tabs>
 				<ActivityIndicator toast animating={this.state.loading} />
