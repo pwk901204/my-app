@@ -7,6 +7,7 @@ import {browserHistory} from "react-router";
 import {StreamReleaseItem,StreamItem,StreamPurchaseItem} from "components/StreamItem";
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
+import Blank from "components/Blank";
 
 const TabPane = Tabs.TabPane;
 
@@ -62,49 +63,70 @@ class MyStreamList extends Component {
 						})
 					}}>
 					<TabPane tab="已发起" key="created" className={style.tabItemWrap}  >
-						<ReactIScroll
-							iScroll={iScroll}
-							options={{...global.iscrollOptions}}
-							onScrollEnd={this.scrollEnd}
-						>
-							<div>
+						{
+							streams.length>0 ?
+							<ReactIScroll
+								iScroll={iScroll}
+								options={{...global.iscrollOptions}}
+								onScrollEnd={this.scrollEnd}
+							>
+								<div>
+									{
+										 streams.map((item,index)=>{
+											return <StreamReleaseItem key={item.id} {...item} />
+										})
+									}
+								</div>
+							</ReactIScroll>
+							:
+							<div className={style.blank}>
+								<Blank text="暂无已发起的直播"/>
+							</div>
+						}
+					</TabPane>
+					<TabPane tab="已购买" key="bought" className={style.tabItemWrap} >
+						{
+							streams.length>0 ?
+							<ReactIScroll
+								iScroll={iScroll}
+								options={{...global.iscrollOptions}}
+								onScrollEnd={this.scrollEnd}
+							>
+								<div>
+									{
+										streams.map((item,index)=>{
+											return <StreamPurchaseItem key={item.id} {...item} />
+										})
+									}
+								</div>
+							</ReactIScroll>
+							:
+							<div className={style.blank}>
+								<Blank text="暂无已购买的直播"/>
+							</div>
+						}
+					</TabPane>
+					<TabPane tab="已预约" key="reservation" className={style.tabItemWrap} >
+						{
+							streams.length>0 ?
+							<ReactIScroll
+								iScroll={iScroll}
+								options={{...global.iscrollOptions}}
+								onScrollEnd={this.scrollEnd}
+							>
+								<div>
 								{
-									streams.length>0 && streams.map((item,index)=>{
-										return <StreamReleaseItem key={item.id} {...item} />
+									streams.map((item,index)=>{
+										return <StreamItem key={item.id} {...item} />
 									})
 								}
 							</div>
-						</ReactIScroll>
-					</TabPane>
-					<TabPane tab="已购买" key="bought" className={style.tabItemWrap} >
-						<ReactIScroll
-							iScroll={iScroll}
-							options={{...global.iscrollOptions}}
-							onScrollEnd={this.scrollEnd}
-						>
-							<div>
-							{
-								streams.length>0 && streams.map((item,index)=>{
-									return <StreamPurchaseItem key={item.id} {...item} />
-								})
-							}
-						</div>
-						</ReactIScroll>
-					</TabPane>
-					<TabPane tab="已预约" key="reservation" className={style.tabItemWrap} >
-						<ReactIScroll
-							iScroll={iScroll}
-							options={{...global.iscrollOptions}}
-							onScrollEnd={this.scrollEnd}
-						>
-							<div>
-							{
-								streams.length>0 && streams.map((item,index)=>{
-									return <StreamItem key={item.id} {...item} />
-								})
-							}
-						</div>
-						</ReactIScroll>
+							</ReactIScroll>
+							:
+							<div className={style.blank}>
+								<Blank text="暂无已预约的直播"/>
+							</div>
+						}
 					</TabPane>
 				</Tabs>
 				<ActivityIndicator toast animating={this.state.loading} />

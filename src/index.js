@@ -19,7 +19,7 @@ const middleWares = [thunk];
 
 let autoRehydrateLog = false;
 
-//new VConsole();
+new VConsole();
 
 if (process.env.NODE_ENV === "development") {
 	const logger = createLogger();

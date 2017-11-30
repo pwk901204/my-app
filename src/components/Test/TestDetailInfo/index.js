@@ -24,10 +24,7 @@ export default class TestDetailInfo extends Component {
 							<span className={style.listTitle}>出题专家</span>
 							<span className={style.listContent}>{this.props.doctor.doctor_name}</span>
 						</List.Item>
-						<List.Item >
-							<span className={style.listTitle}>试题简介</span>
-							<div className={style.listKeyWordsContent}>{this.props.introduction}</div>
-						</List.Item>
+						
 						<List.Item >
 							<span className={style.listTitle}>相关科室</span>
 							<div className={style.listKeyWordsContent}>
@@ -37,6 +34,10 @@ export default class TestDetailInfo extends Component {
 									})
 								}
 							</div>
+						</List.Item>
+
+						<List.Item >
+							<div className={style.listIntroduction}>{this.props.introduction}</div>
 						</List.Item>
 					</List>
 				</ReactIScroll>

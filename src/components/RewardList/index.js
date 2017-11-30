@@ -44,12 +44,12 @@ export default class RewardList extends Component {
 						<WhiteSpace size="xs" />
 						<h5 className={style.title}>
 							<span></span>
-							{ bounty_count && <p>共{bounty_count}人打赏</p> }
-							{ payment_count && <p>共{payment_count}元</p>}
+							<p>共{ bounty_count ? bounty_count : 0 }人打赏</p>
+							<p>共{ payment_count ? payment_count : 0 }元</p>
 						</h5>
 						<WhiteSpace size="xs" />
 						{
-							bounty_ranking ?
+							(bounty_ranking && bounty_ranking.length>0)  ?
 								bounty_ranking.map((item,index)=>{
 									return (
 										<div className={style.item} key={index}>
