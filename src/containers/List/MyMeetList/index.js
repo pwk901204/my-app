@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import { MyMeetStreamItem , MyMeetOffLineItem } from "components/MeetItem";
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
-
+import Blank from "components/Blank";
 const TabPane = Tabs.TabPane;
 
 class MyMeetList extends Component {
@@ -61,34 +61,49 @@ class MyMeetList extends Component {
 						})
 					}}>
 					<TabPane tab="直播会议" key="live" className={style.tabItemWrap}  >
-						<ReactIScroll
-							iScroll={iScroll}
-							options={{...global.iscrollOptions}}
-							onScrollEnd={this.scrollEnd}
-						>
-							<ul className={style.List}>
-								{
-									meetings.length>0 && meetings.map((item,index)=>{
-										return <li key={item.id}><MyMeetStreamItem key={item.id} {...item} /></li>
-									})
-								}
-							</ul>
-						</ReactIScroll>
+						{
+							meetings.length>0  ?
+							<ReactIScroll
+								iScroll={iScroll}
+								options={{...global.iscrollOptions}}
+								onScrollEnd={this.scrollEnd}
+							>
+								<ul className={style.List}>
+									{
+										meetings.map((item,index)=>{
+											return <li key={item.id}><MyMeetStreamItem key={item.id} {...item} /></li>
+										})
+									}
+								</ul>
+							</ReactIScroll>
+							:
+							<div className={style.blank}>
+								<Blank text="暂无直播会议"/>
+							</div>
+						}
 					</TabPane>
 					<TabPane tab="线下会议" key="offline" className={style.tabItemWrap} >
-						<ReactIScroll
-							iScroll={iScroll}
-							options={{...global.iscrollOptions}}
-							onScrollEnd={this.scrollEnd}
-						>
-							<ul className={style.List}>
-								{
-									meetings.length>0 && meetings.map((item,index)=>{
-										return <li key={item.id}><MyMeetOffLineItem key={item.id} {...item} /></li>
-									})
-								}
-							</ul>
-						</ReactIScroll>
+						{
+							meetings.length>0 ?
+							<ReactIScroll
+								iScroll={iScroll}
+								options={{...global.iscrollOptions}}
+								onScrollEnd={this.scrollEnd}
+							>
+								<ul className={style.List}>
+									{
+										meetings.map((item,index)=>{
+											return <li key={item.id}><MyMeetOffLineItem key={item.id} {...item} /></li>
+										})
+									}
+								</ul>
+							</ReactIScroll>
+							:
+							<div className={style.blank}>
+								<Blank text="暂无线下会议"/>
+							</div>
+						}
+						
 					</TabPane>
 				</Tabs>
 				<ActivityIndicator toast animating={this.state.loading} />

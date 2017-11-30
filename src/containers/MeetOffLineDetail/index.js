@@ -38,8 +38,14 @@ class MeetOffLineDetail extends Component {
 		})
 	}
 	onClick = ()=>{
+		let {meeting} = this.state;
 		browserHistory.push({
-			pathname:"/MeetOffLineEnroll/"+this.props.routeParams.id
+			pathname:"/MeetOffLineEnroll/"+this.props.routeParams.id,
+			state: {
+				topic:meeting.title,
+				amount:meeting.price,
+				href:window.location.href
+	        },
 		})
 	}
 	render() {
@@ -51,7 +57,7 @@ class MeetOffLineDetail extends Component {
 					<div className={style.meetPoster}>
 						<img src={meeting.cover_data.size_700} alt="img" />
 						{
-							meeting.attendee_status === 'attendee' &&
+							!meeting.enable_attendee && meeting.attendee_status === 'attendee' &&
 							<div className={style.btnWrap}>
 								<div className={style.btnWrapPosition}>
 									<Button
@@ -67,7 +73,7 @@ class MeetOffLineDetail extends Component {
 							</div>
 						}
 						{
-							meeting.attendee_status === 'purchase' &&
+							!meeting.enable_attendee && meeting.attendee_status === 'purchase' &&
 							<div className={style.btnWrap}>
 								<div className={style.btnWrapPosition}>
 									<Button
@@ -83,7 +89,7 @@ class MeetOffLineDetail extends Component {
 							</div>
 						}
 						{
-							meeting.attendee_status === 'outnumber' &&
+							!meeting.enable_attendee && meeting.attendee_status === 'outnumber' &&
 							<div className={style.btnWrap}>
 								<div className={style.btnWrapPosition}>
 									<Button
@@ -99,7 +105,7 @@ class MeetOffLineDetail extends Component {
 							</div>
 						}
 						{
-							meeting.attendee_status == 'outtime' &&
+							!meeting.enable_attendee && meeting.attendee_status === 'outtime' &&
 							<div className={style.btnWrap}>
 								<div className={style.btnWrapPosition}>
 									<Button

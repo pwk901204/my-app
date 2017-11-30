@@ -3,6 +3,13 @@ import url from 'api_url/index.js';
 
 import HOCFetch from 'common/HOCFetch';
 
+import { useRouterHistory } from 'react-router'
+import { createHistory } from 'history'
+
+const customizeHistory = useRouterHistory(createHistory)({
+  basename: '/mobile'
+})
+
 //WebSocket connect url
 let webSocketUrl = '';
 if (window.location.host === 'localhost:3000') {
@@ -26,6 +33,9 @@ Object.defineProperties(global, {
   },
   HOCFetch: {
     value: HOCFetch
+  },
+  customizeHistory:{
+    value:customizeHistory
   }
 });
 

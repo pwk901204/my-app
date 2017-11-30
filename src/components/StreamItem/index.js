@@ -14,7 +14,7 @@ export class StreamItem extends Component {
 					<img src={this.props.cover_data.size_300} alt="img"/>
 					{this.props.stream_type === "已结束" && <span >{this.props.stream_type}</span>}
 					{this.props.stream_type === "直播中" && <span className={style.red}>{this.props.stream_type}</span>}
-					{this.props.stream_type === "未开始" && <span className={style.blue}>{this.props.stream_type}</span>}
+					{this.props.stream_type === "即将开始" && <span className={style.blue}>{this.props.stream_type}</span>}
 				</div>
 				<div className={style.right}>
 					<h5>{this.props.topic}</h5>
@@ -51,7 +51,7 @@ export class StreamReleaseItem extends Component {
 					<img src={this.props.cover_data.size_300} alt="img"/>
 					{this.props.stream_type === "已结束" && <span >{this.props.stream_type}</span>}
 					{this.props.stream_type === "直播中" && <span className={style.red}>{this.props.stream_type}</span>}
-					{this.props.stream_type === "未开始" && <span className={style.blue}>{this.props.stream_type}</span>}
+					{this.props.stream_type === "即将开始" && <span className={style.blue}>{this.props.stream_type}</span>}
 				</div>
 				<div className={style.right}>
 					<h5>{this.props.topic}</h5>
@@ -82,7 +82,7 @@ export class StreamPurchaseItem extends Component {
 					<img src={this.props.cover_data.size_300} alt="img"/>
 					{this.props.stream_type === "已结束" && <span >{this.props.stream_type}</span>}
 					{this.props.stream_type === "直播中" && <span className={style.red}>{this.props.stream_type}</span>}
-					{this.props.stream_type === "未开始" && <span className={style.blue}>{this.props.stream_type}</span>}
+					{this.props.stream_type === "即将开始" && <span className={style.blue}>{this.props.stream_type}</span>}
 				</div>
 				<div className={style.right}>
 					<h5>{this.props.topic}</h5>

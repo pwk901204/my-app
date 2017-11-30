@@ -85,14 +85,15 @@ class MeetOffLineEnroll extends Component {
 						loading:false
 					})
 					if(data.status === "success"){
-						// Popup.show(<Pay
-						// 	id={this.props.routeParams.id}
-						// 	type="meeting"
-						// 	topic={stream.topic}
-						// 	amount={stream.price}
-						// 	ordersAction={this.props.ordersAction}
-						// 	href={window.location.href}
-						// />, { animationType: 'slide-up', onTouchStart: e => e.preventDefault() });
+						Popup.show(<Pay
+							id={this.props.routeParams.id}
+							type="meeting"
+							topic={this.props.location.state.topic}
+							amount={this.props.location.state.amount}
+							ordersAction={this.props.ordersAction}
+							href={this.props.location.state.href}
+						/>, { animationType: 'slide-up', onTouchStart: e => e.preventDefault() });
+
 						//Toast.info("报名成功",1);
 						//browserHistory.push('/MeetOffLineDetail/' +  this.props.routeParams.id);
 					}
