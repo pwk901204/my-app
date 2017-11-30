@@ -51,7 +51,6 @@ class DoubleCrane extends Component {
     })
 		.then((response)=>response.json())
 		.then((data)=>{
-      console.log(data, '!!!!!!!!!!!!!!!')
 			if(data.status === 'error'){
 				this.setState({ loading: false });
         Toast.info(data.msg, 1);
@@ -59,14 +58,12 @@ class DoubleCrane extends Component {
         this.setState({ loading: false, modal: false });
 			}
 		})
-    //this.setState({ modal: false });
   }
   getDetail(){
     if(!this.props.userInfo.token) return;
 		window.HOCFetch({ needToken:false })(global.url.topics + "/97?course_id=37" + "&token=" + this.props.userInfo.token)
 		.then((response)=>response.json())
 		.then((data)=>{
-      console.log(data, '~~~~~~~~~~~~~~~~~~');
 			if(data.topic){
 				//document.title=data.course.topic;
 				this.setState({
