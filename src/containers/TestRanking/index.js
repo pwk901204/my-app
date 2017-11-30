@@ -49,20 +49,22 @@ class TestRanking extends Component {
 						options={{...global.iscrollOptions}}
 					>
 					 <div className={style.testRanking}>
-						<h6 className={style.title}>我的排名</h6>
+					 	{
+					 		my_score && <h6 className={style.title}>我的排名</h6>
+					 	}
+						{
+							my_score && <div className={style.item}>
+								<div className={style.number}>
+									<span>{my_score.ranking}</span>
+								</div>
+								<div className={style.icon}>
+									<img src={my_score.headimgurl}/>
+								</div>
+								<div className={style.name}>{this.props.userInfo.name}</div>
+								<div className={`${style.score} fontOrange`}>{my_score.total_score}<span>积分</span></div>
 
-						<div className={style.item}>
-							<div className={style.number}>
-								<span>{my_score.ranking}</span>
 							</div>
-							<div className={style.icon}>
-								<img src={my_score.headimgurl}/>
-							</div>
-							<div className={style.name}>{this.props.userInfo.name}</div>
-							<div className={`${style.score} fontOrange`}>{my_score.total_score}<span>积分</span></div>
-
-						</div>
-
+						}
 						<h6 className={style.title}>排名TOP10</h6>
 						{
 							scores.map((item,index)=>{

@@ -23,19 +23,48 @@ class HomePage extends Component {
 		getCarouselsData:[]
 	}
 	componentDidMount(){
-		this.getCarousels();
-	}
-	getCarousels = () =>{
-		this.setState({
-			loading:true
+		let p1 = this.getUser();
+		let p2 = this.getCarousels();
+		Promise.all([p1,p2]).then(()=>{
+			this.setState({
+				loading:false
+			})
 		})
-
-		window.HOCFetch({ needToken:false })(global.url.carousels)
+	}
+	getUser= ()=>{
+		return window.HOCFetch({ needToken:true })(global.url.current_user + "?token=" + this.props.userInfo.token )
 		.then((response)=>response.json())
 		.then((data)=>{
-			console.log(data);
+			this.props.userInfoAction(data.user);
+			this.getOpenID();
+		})
+	}
+	getOpenID = () =>{
+  		window.location.search && window.location.search.substring(1).split("&").map((item,index)=>{
+  			if(item.split("=")[0] === 'code'){
+  				let data = {}
+				data.token= this.props.userInfo.token;
+				data.code= item.split("=")[1];
+
+  				window.HOCFetch({ needToken:true })(global.url.set_access_token,{
+					method:"POST",
+					headers:{
+						"Content-Type":"application/json"
+					},
+					body:JSON.stringify(data)
+				})
+				.then((response)=>response.json())
+				.then((data)=>{
+					
+				})
+			}
+  		})
+	}
+	getCarousels = () =>{
+		return window.HOCFetch({ needToken:false })(global.url.carousels)
+		.then((response)=>response.json())
+		.then((data)=>{
 			this.setState({
-				loading:false,
 				getCarouselsData:data.recommendation
 			})
 		})

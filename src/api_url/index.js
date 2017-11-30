@@ -139,4 +139,10 @@ url.userinfos_change_user_info =
 // 获取微信分享 的配置
 url.wechats_share = __host__ + '/api/doctor/mobile/wechats/share';
 
+
+// 获取openid
+url.set_access_token = __host__ + '/api/doctor/auth/set_access_token';
+
+
+
 module.exports = url;

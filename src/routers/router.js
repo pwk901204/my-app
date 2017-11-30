@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute } from 'react-router';
 import wxShare from 'common/wxShare';
+
+console.log(global)
+
 // containers
 const MiniNav = (location, cb) => {
   require.ensure([], require => {
@@ -233,6 +236,14 @@ const Pwk = (location, cb) => {
   });
 };
 
+
+const WXLogin = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/WXLogin').default);
+  });
+};
+
+
 const requireAuth = (
   { title = '麦迪森在线', needLogin = true, needShare = true } = {}
 ) => {
@@ -278,9 +289,14 @@ const VotesRank = (location, cb) => {
 class Routers extends Component {
   render() {
     return (
-      <Router history={browserHistory} key={Math.random()}>
+      <Router history={global.customizeHistory} key={Math.random()}>
+
         <Route path="/" getComponent={TabBar} onEnter={requireAuth()} />
         <Route
+          path="/WXLogin"
+          getComponent={WXLogin}
+        />
+         <Route
           path="/HomePage(/:index)"
           getComponent={TabBar}
           onEnter={requireAuth()}
@@ -504,6 +520,7 @@ class Routers extends Component {
           getComponent={VotesRank}
           onEnter={requireAuth({ title: '投票排行榜' })}
         />
+
       </Router>
     );
   }

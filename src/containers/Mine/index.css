@@ -6,7 +6,8 @@
   position: relative;
 }
 
-.head ,.headNoLogin{
+.head,
+.headNoLogin {
   height: 342px;
   background: url('images/minebg.png') 0 0;
   background-size: 100% 100%;
@@ -45,17 +46,17 @@
   text-align: center;
 }
 
-.headSvg{
+.headSvg {
   display: block;
   border-radius: 50% 50%;
   margin: 30px auto;
   width: 130px;
   height: 130px;
 }
-.loginBtnWrap{
+.loginBtnWrap {
   text-align: center;
 }
-.btn{
+.btn {
   margin: 0 20px;
 }
 

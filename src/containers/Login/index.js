@@ -40,7 +40,7 @@ class LoginForm extends Component {
 						.then((response)=>response.json())
 						.then((data)=>{
 							this.props.userInfoAction(data.user);
-							browserHistory.push("/HomePage");
+							browserHistory.push("/WXLogin");
 						})
 					}
 				})

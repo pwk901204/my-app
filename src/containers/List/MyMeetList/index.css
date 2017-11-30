@@ -15,9 +15,9 @@
   padding: 20px;
   box-sizing: border-box;
 }
-.blank{
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%,-50%);
+.blank {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
