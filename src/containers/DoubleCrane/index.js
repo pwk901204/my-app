@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import {connect} from "react-redux";
 import style from './index.css';
-import {Link} from 'react-router';
-import {WhiteSpace, Tabs, List} from 'antd-mobile';
+import {browserHistory, Link} from 'react-router';
+import {WhiteSpace, Tabs, List, Toast, Modal, Button, InputItem, ActivityIndicator} from 'antd-mobile';
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
 import EnterBtn from 'components/EnterBtn'
@@ -9,12 +10,128 @@ import enter from 'images/enter2.png';
 const TabPane = Tabs.TabPane;
 const Item = List.Item;
 
-export default class DoubleCrane extends Component {
+class DoubleCrane extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      subjects: [],
+      topic_status: '',
+      super_watchers: [],
+      common_watchers: [],
+      judge_users: [],
+      modal: false,
+      inputValue: '',
+      loading: false
+    }
+    this.onLinkToSubject = this.onLinkToSubject.bind(this);
+    this.onChangeInput = this.onChangeInput.bind(this);
+    this.onModalSubmit = this.onModalSubmit.bind(this);
+  }
+  onChangeInput(val){
+    this.setState({
+      inputValue: val + ''
+    });
+  }
+  onModalSubmit(){
+    let data = {
+      token: this.props.userInfo.token
+    }
+    if(this.state.inputValue.length < 4){
+      data.display = 0;
+    } else {
+      data.code = this.state.inputValue;
+      this.setState({ loading: true });
+    }
+    window.HOCFetch({ needToken:true })(global.url.inviteCodeSubmit, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+		.then((response)=>response.json())
+		.then((data)=>{
+      console.log(data, '!!!!!!!!!!!!!!!')
+			if(data.status === 'error'){
+				this.setState({ loading: false });
+        Toast.info(data.msg, 1);
+			}else{
+        this.setState({ loading: false, modal: false });
+			}
+		})
+    //this.setState({ modal: false });
+  }
+  getDetail(){
+    if(!this.props.userInfo.token) return;
+		window.HOCFetch({ needToken:false })(global.url.topics + "/97?course_id=37" + "&token=" + this.props.userInfo.token)
+		.then((response)=>response.json())
+		.then((data)=>{
+      console.log(data, '~~~~~~~~~~~~~~~~~~');
+			if(data.topic){
+				//document.title=data.course.topic;
+				this.setState({
+					subjects: data.topic.children,
+          topic_status: data.topic.topic_status
+				});
+			}
+		})
+	}
+  getWatcher(){
+    if(!this.props.userInfo.token) return;
+    window.HOCFetch({ needToken:false })(global.url.topics + "/" + "97" + "/watchers" + "/?token=" + this.props.userInfo.token)
+		.then((response)=>response.json())
+		.then((data)=>{
+			if(data.super_watchers.length){
+				//document.title=data.course.topic;
+				this.setState({
+					super_watchers: data.super_watchers,
+          common_watchers: data.common_watchers,
+          judge_users: data.judge_users
+				});
+			}else{
+				Toast.info('网络错误');
+			}
+		})
+  }
+  getModalstatus(){
+    window.HOCFetch({ needToken:true })(global.url.showInviteModal + "/?token=" + this.props.userInfo.token)
+		.then((response)=>response.json())
+		.then((data)=>{
+			if(data.status === 'ok'){
+				//document.title=data.course.topic;
+				this.setState({
+			    modal: data.display
+				});
+			}else if(data.status === 'fail'){
+				Toast.info(data.message, 1);
+			}
+		})
+  }
+  onLinkToSubject(){
+    switch(this.state.topic_status){
+      case 'starting':
+        browserHistory.push({
+          pathname: '/TestQuestionDetail/' + '97',
+          state: 'game'
+        });
+        break;
+      case 'not_start':
+        Toast.info("试题暂未开始...",1);
+        break;
+      default:
+        break;
+    }
+  }
+  componentDidMount(){
+    this.getModalstatus();
+    this.getDetail();
+    this.getWatcher();
+  }
 	render() {
 		return (
 			<div className={style.DoubleCrane}>
 				<EnterBtn src={enter} title='投票' linkTo='/Votes' color='#ff6666'/>
-				<img src="https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/skin/114.jpg?2" alt="" className='banner'/>					
+				<img src="https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/skin/114.jpg?2" alt="" className='banner'/>
 				<Tabs defaultActiveKey="1">
 		      <TabPane key="1" tab='大赛信息'>
 			      <div className={style.warp}>
@@ -58,13 +175,19 @@ export default class DoubleCrane extends Component {
 								>
 									<div>
 										<WhiteSpace size='sm'/>
-										<Link to={"/TestQuestionDetail/1"}>
-						      		<List className="my-list">
-								        <Item extra='0人已作答'>第 1 题</Item>
-								        <Item arrow="horizontal">试题等待更新，请勿作答！</Item>
-								      </List>
-								      <WhiteSpace size='sm'/>
-					      		</Link>
+                    {
+                      this.state.subjects.map((item, index)=>{
+                        return(
+                          <Link key={index} onClick={this.onLinkToSubject}>
+                            <List className="my-list">
+                              <Item extra={item.topic_answers_count + '人已作答'}>第{item.topic_index}题</Item>
+                              <Item arrow="horizontal">{item.content}</Item>
+                            </List>
+                            <WhiteSpace size='sm'/>
+                          </Link>
+                        )
+                      })
+                    }
 									</div>
 			      		</ReactIScroll>
 	      		</div>
@@ -79,61 +202,83 @@ export default class DoubleCrane extends Component {
 										<WhiteSpace size='sm'/>
 										<h4><i></i>特邀裁判长</h4>
 										<ul className={style.rater_item_1}>
-				              <li>
-				                <img src="//doctor.mdshealth.cn//upload/store/921ea9916a81519a073cae9a4d8385f0.png" alt="921ea9916a81519a073cae9a4d8385f0"/>
-				                <p>严干新</p>
-				                <span>Thomas Jefferson大学医学院教授， 美国Lankenau医学中心教授，西安交通大学博士生导师；兼任Temple大学医学院、上海交通大学新华医院、郑州大学省人民医院、厦门大学医学院及湖北文理学院教授。多个国际知名医学杂志审稿和多个跨国制药集团技术顾问及美国心脏学会专业委员。他的心电生理研究成果被写入美国医科大学教材，成为心脏科医生必须掌握的知识，他被美国心脏学界称为心脏电生理领域的巨人。</span>
-				              </li>
-				              <li>
-				                <img src="//doctor.mdshealth.cn//upload/store/32395e591ce546c6763a5e5e0ca30b54.png" alt="32395e591ce546c6763a5e5e0ca30b54"/>
-				                <p>马长生</p>
-				                <span>首都医科大学附属北京安贞医院心脏内科中心主任、主任医师、教授、博士生导师，国家心血管临床医学研究中心主任、北京市心血管疾病防治办公室主任、首都医科大学心脏病学系主任、中国医师协会心内科医师分会会长、中华医学会心血管病分会副主任委员，JCE、Europace、JICE、 CMJ等国内外30余种学术期刊的编委。</span>
-				              </li>
+                      {
+                        this.state.super_watchers.map((item, index)=>{
+                          return(
+                            <li key={index}>
+      				                <img src={item.avatar_data.big} alt={item.doctor_name}/>
+      				                <p>{item.doctor_name}</p>
+      				                <span>{item.introduction}</span>
+      				              </li>
+                          )
+                        })
+                      }
 				          	</ul>
 				          	<h4><i></i>特邀裁判</h4>
 				          	<ul className={style.rater_item_2}>
-				              <li>
-				                <img src="//doctor.mdshealth.cn//upload/store/15a316a70d248da6da65c422b03ae440.jpg" alt="15a316a70d248da6da65c422b03ae440"/>
-				                <p>董建增</p>
-				                <div style={{'-webkit-box-orient':'vertical'}}>首都医科大学附属北京安贞医院首都医科大学附属北京安贞医院</div>
-				              </li>
-				              <li>
-				                <img src="//doctor.mdshealth.cn//upload/store/15a316a70d248da6da65c422b03ae440.jpg" alt="15a316a70d248da6da65c422b03ae440"/>
-				                <p>董建增</p>
-				                <div style={{'-webkit-box-orient':'vertical'}}>首都医科大学附属北京安贞医院</div>
-				              </li>
-				              <li>
-				                <img src="//doctor.mdshealth.cn//upload/store/15a316a70d248da6da65c422b03ae440.jpg" alt="15a316a70d248da6da65c422b03ae440"/>
-				                <p>董建增</p>
-				                <div style={{'-webkit-box-orient':'vertical'}}>首都医科大学附属北京安贞医院首都医科大学附属北京安贞医院</div>
-				              </li>
-				              <li>
-				                <img src="//doctor.mdshealth.cn//upload/store/15a316a70d248da6da65c422b03ae440.jpg" alt="15a316a70d248da6da65c422b03ae440"/>
-				                <p>董建增</p>
-				                <div style={{'-webkit-box-orient':'vertical'}}>首都医科大学附属北京安</div>
-				              </li>
+                      {
+                        this.state.common_watchers.map((item, index)=>{
+                          return(
+                            <li key={index}>
+      				                <img src={item.avatar_data.big} alt={item.doctor_name} />
+      				                <p>{item.doctor_name}</p>
+      				                <div style={{'-webkit-box-orient':'vertical'}}>{item.hospital_name}</div>
+      				              </li>
+                          )
+                        })
+                      }
 				          	</ul>
 				          	<h4><i></i>特邀评委</h4>
 				          	<ul className={style.rater_item_3}>
-				              <li>
-				                <p>欧加福</p>
-				                <span>圣路易斯华盛顿大学</span>
-				              </li>
-				              <li>
-				                <p>刘念</p>
-				                <span>首都医科大学附属北京安贞医院</span>
-				              </li>
-				              <li>
-				                <p>顾春英</p>
-				                <span>天津市第五中心医院</span>
-				              </li>
+                      {
+                        this.state.judge_users.map((item, index)=>{
+                          return(
+                            <li key={index}>
+      				                <p>{item.doctor_name}</p>
+      				                <span>{item.hospital_name}</span>
+      				              </li>
+                          )
+                        })
+                      }
 				          	</ul>
 									</div>
 			      		</ReactIScroll>
 	      		</div>
 		      </TabPane>
 		    </Tabs>
+        {/*modal*/}
+        <Modal
+          title="邀请码"
+          transparent
+          maskClosable={false}
+          visible={this.state.modal}
+          footer={[
+            { text: '下次再说', style: 'default', onPress: ()=>{ this.setState({ modal: false }) } },
+            { text: this.state.inputValue.length === 4 ? '提交' : '不再提示', onPress: this.onModalSubmit }
+          ]}
+        >
+          <div>
+            <InputItem
+              className={style.invite_code}
+              value={this.state.inputValue}
+              type="number"
+              placeholder="请输入邀请码"
+              clear
+              maxLength={4}
+              onChange={this.onChangeInput}
+          />
+          </div>
+        </Modal>
+        <ActivityIndicator toast animating={this.state.loading} />
 			</div>
 		);
 	}
 }
+
+export default connect (
+	(state)=>{
+		return {
+			userInfo:state.userInfo
+		}
+	}
+)(DoubleCrane);

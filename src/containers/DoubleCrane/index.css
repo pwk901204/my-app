@@ -113,3 +113,14 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.invite_code{
+  background: #eee;
+  border-radius: 5px;
+  border-bottom: none;
+}
+.invite_code > div > div > div{
+  text-align: center !important;
+}
+.invite_code input{
+  text-align: center !important;
+}

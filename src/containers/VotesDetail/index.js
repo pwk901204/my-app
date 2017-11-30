@@ -5,6 +5,7 @@ import Countdown from 'react-countdown-now';
 import moment from 'moment';
 import { Toast, ActivityIndicator } from 'antd-mobile';
 import QRCode from 'qrcode.react';
+import wxShare from 'common/wxShare';
 
 class VotesDetail extends Component {
   constructor(props){
@@ -73,7 +74,14 @@ class VotesDetail extends Component {
     });
   }
   componentDidMount(){
-    this.getVoteDetail();
+    let p1 = this.getVoteDetail();
+    Promise.all([p1]).then(()=>{
+			wxShare({
+				title:this.state.userData.user_name,
+				desc:this.state.userData.hospital_name + ' ' + this.state.userData.department_name,
+				imgUrl:this.state.userData.avator_data.thumb
+			});
+		});
     this.converQRCanvasToImage(this.instance._canvas);
   }
   render() {

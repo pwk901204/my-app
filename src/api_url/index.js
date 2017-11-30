@@ -139,10 +139,18 @@ url.userinfos_change_user_info =
 // 获取微信分享 的配置
 url.wechats_share = __host__ + '/api/doctor/mobile/wechats/share';
 
+/*双鹤接口*/
 //投票读取
 url.readVote = __host__ + '/api/doctor/vote_users';
 
 //投票写入
 url.writeVote = __host__ + '/api/doctor/votes';
+
+//是否显示邀请窗口
+url.showInviteModal = __host__ + '/api/doctor/invitations/display';
+
+//提交邀请码或不再显示
+url.inviteCodeSubmit = __host__ + '/api/doctor/invitations'
+
 
 module.exports = url;
