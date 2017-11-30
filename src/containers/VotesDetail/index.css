@@ -49,8 +49,8 @@
 .img {
   width: 120px;
   height: 120px;
+  float: left;
   border-radius: 50%;
-  background-image: url('https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1351925244,655071204&fm=27&gp=0.jpg');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -108,12 +108,20 @@
   color: #ff6666;
   float: left;
 }
+.bottom .share.complete{
+  border: 1px solid #999;
+  color: #999;
+}
 .bottom .throw {
   width: 540px;
   color: #fff;
   margin-left: 20px;
   border: 1px solid #33a9fc;
   background: #33a9fc;
+}
+.bottom .throw.complete{
+  border: 1px solid #999;
+  background: #999;
 }
 .bottom .throwActive {
   width: 540px;
@@ -130,7 +138,6 @@
   text-align: center;
   width: 100%;
   height: 100%;
-  /*display: none;*/
 }
 h4 {
   font-size: 28px;
@@ -153,4 +160,18 @@ h4 {
 ._modal_img img {
   width: 100%;
   height: 100%;
+}
+.QRCode{
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+}
+.QRCode img{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
 }

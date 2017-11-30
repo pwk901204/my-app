@@ -4,7 +4,7 @@ import {Link} from "react-router";
 class TestItem extends Component {
 	render() {
 		return (
-			<Link to={"TestDetail/" + this.props.id} className={style.testItem}>
+			<Link to={ this.props.flag === 'game' ? 'DoubleCrane/' : "TestDetail/" + this.props.id} className={style.testItem}>
 				<div className={style.left}>
 					<img src={this.props.cover_data.size_300} alt="img"/>
 					<span>更新至第{this.props.exams_count}期</span>
@@ -19,4 +19,3 @@ class TestItem extends Component {
 	}
 }
 export default TestItem;
-

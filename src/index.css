@@ -44,6 +44,9 @@
 :global(.votes .am-search-input) {
   background: #eee;
 }
+:global(.none) {
+  display: none;
+}
 .clearfix:after {
   content: '';
   display: block;
