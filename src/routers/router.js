@@ -274,6 +274,11 @@ const VotesRank = (location, cb) => {
     cb(null, require('containers/VotesRank').default);
   });
 };
+const SuZuFei = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/SuZuFei').default);
+  });
+};
 
 class Routers extends Component {
   render() {
@@ -503,6 +508,11 @@ class Routers extends Component {
           path="/VotesRank"
           getComponent={VotesRank}
           onEnter={requireAuth({ title: '投票排行榜' })}
+        />
+        <Route
+          path="/SuZuFei"
+          getComponent={SuZuFei}
+          onEnter={requireAuth({ title: '苏祖斐学院' })}
         />
       </Router>
     );
