@@ -65,9 +65,7 @@ class HomePage extends Component {
 		let userInfo = this.props.userInfo;
 		return (
 			<div className={style.homePageWrap}>
-				{
-					//<EnterBtn src={enter} title='华润双鹤杯' linkTo='/DoubleCrane' color='#F4A11A'/>
-				}
+				<EnterBtn src={enter} title='华润双鹤杯' linkTo='/DoubleCrane' color='#F4A11A'/>
 				<ReactIScroll
 					iScroll={iScroll}
 					options={{...global.iscrollOptions}}
