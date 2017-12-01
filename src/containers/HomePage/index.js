@@ -15,7 +15,6 @@ import iScroll from "iscroll/build/iscroll-probe.js";
 import {userInfo} from "reduxs/userInfo";
 import EnterBtn from 'components/EnterBtn'
 import enter from 'images/enter1.png';
-import {browserHistory} from "react-router";
 
 class HomePage extends Component {
 	state = {
@@ -23,21 +22,14 @@ class HomePage extends Component {
 		getCarouselsData:[]
 	}
 	componentDidMount(){
-		let p1 = this.getUser();
+		this.getOpenID();
 		let p2 = this.getCarousels();
-		Promise.all([p1,p2]).then(()=>{
+		Promise.all([p2]).then(()=>{
 			this.setState({
 				loading:false
 			})
 		})
-	}
-	getUser= ()=>{
-		return window.HOCFetch({ needToken:true })(global.url.current_user + "?token=" + this.props.userInfo.token )
-		.then((response)=>response.json())
-		.then((data)=>{
-			this.props.userInfoAction(data.user);
-			this.getOpenID();
-		})
+
 	}
 	getOpenID = () =>{
   		window.location.search && window.location.search.substring(1).split("&").map((item,index)=>{
@@ -55,7 +47,7 @@ class HomePage extends Component {
 				})
 				.then((response)=>response.json())
 				.then((data)=>{
-					
+					//
 				})
 			}
   		})
@@ -73,7 +65,9 @@ class HomePage extends Component {
 		let userInfo = this.props.userInfo;
 		return (
 			<div className={style.homePageWrap}>
-				<EnterBtn src={enter} title='华润双鹤杯' linkTo='/DoubleCrane' color='#F4A11A'/>
+				{
+					//<EnterBtn src={enter} title='华润双鹤杯' linkTo='/DoubleCrane' color='#F4A11A'/>
+				}
 				<ReactIScroll
 					iScroll={iScroll}
 					options={{...global.iscrollOptions}}
@@ -82,7 +76,7 @@ class HomePage extends Component {
 						{userInfo.type === "Doctor" && <h4 className={style.title}>{userInfo.name}({userInfo.title})</h4>}
 						{userInfo.type === "Student" && <h4 className={style.title}>{userInfo.name}(学生)</h4>}
 						{userInfo.type === "Visitor" && <h4 className={style.title}>{userInfo.name}(访客)</h4>}
-						{ !userInfo.token && <h4 className={style.title} onClick={()=>{browserHistory.push("/Login")}}>未登录</h4>}
+						{ !userInfo.token && <h4 className={style.title} onClick={()=>{global.customizeHistory.push("/Login")}}>未登录</h4>}
 						{
 							this.state.getCarouselsData && 
 							<Carousel

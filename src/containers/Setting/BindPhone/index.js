@@ -4,7 +4,6 @@ import {List, Icon, Button, InputItem, Toast, ActivityIndicator} from 'antd-mobi
 import {connect} from "react-redux";
 import { createForm } from 'rc-form';
 import shouji from "svg/shouji.svg";
-import {browserHistory} from "react-router";
 
 import yanzhengma from "svg/yanzhengma.svg";
 
@@ -63,7 +62,7 @@ class BindPhone extends Component {
 					if(data.message==="ok"){
 						Toast.info("修改成功",1.5);
 						this.getUser();
-						browserHistory.push('/HomePage/3');
+						global.customizeHistory.push('/HomePage/3');
 					}else{
 						Toast.info(data.message,1.5);
 					}

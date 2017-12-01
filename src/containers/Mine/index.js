@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
-import {browserHistory} from "react-router";
 import style from './index.css';
 import {Icon, WingBlank, Grid , Button} from 'antd-mobile';
 import minebg  from "images/minebg.png";
@@ -122,8 +121,8 @@ class Mine extends Component {
 						<div className={style.headNoLogin}>
 							<Icon type={defaulttouxiang} className={style.headSvg} />
 							<div className={style.loginBtnWrap}>
-								<Button type="primary" size="small" inline className={style.btn} onClick={()=>{browserHistory.push("/Login")}} >登录</Button>
-								<Button type="primary" size="small" inline className={style.btn} onClick={()=>{browserHistory.push("/Register")}}>注册</Button>
+								<Button type="primary" size="small" inline className={style.btn} onClick={()=>{global.customizeHistory.push("/Login")}} >登录</Button>
+								<Button type="primary" size="small" inline className={style.btn} onClick={()=>{global.customizeHistory.push("/Register")}}>注册</Button>
 							</div>
 						</div>
 					}
@@ -134,7 +133,7 @@ class Mine extends Component {
 								columnNum={4}
 								hasLine={false}
 								onClick={(el)=>{
-									if(el.text.props["data-link"])browserHistory.push(el.text.props["data-link"]);
+									if(el.text.props["data-link"])global.customizeHistory.push(el.text.props["data-link"]);
 								}}
 							/>
 						</WingBlank>
@@ -146,7 +145,7 @@ class Mine extends Component {
 							columnNum={5}
 							hasLine={false}
 							onClick={(el)=>{
-								if(el.text.props["data-link"])browserHistory.push(el.text.props["data-link"]);
+								if(el.text.props["data-link"])global.customizeHistory.push(el.text.props["data-link"]);
 							}}
 						/>
 					</div>

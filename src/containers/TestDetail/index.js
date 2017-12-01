@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import style from './index.css';
 import { ActivityIndicator, Tabs,Toast, Popup,Icon} from 'antd-mobile';
 import {connect} from "react-redux";
-
-import {browserHistory} from "react-router";
 import guize from "svg/guize.svg";
 import jiangbei from "svg/jiangbei.svg";
 import DoctorInfo from "components/DoctorInfo";
@@ -96,7 +94,7 @@ class TestDetail extends Component {
 							</TabPane>
 						</Tabs>
 						<div className={style.nav}>
-							<div onClick={()=>{browserHistory.push("/TestRanking/" + this.props.params.id)}}>
+							<div onClick={()=>{global.customizeHistory.push("/TestRanking/" + this.props.params.id)}}>
 								<Icon style={{width:"100%",height:"100%"}}  type={jiangbei} />
 							</div>
 							<div onClick={this.handleRule}>

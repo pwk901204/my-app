@@ -37,6 +37,7 @@
     "precommit": "prettier --single-quote --write src/**/*.{js,jsx,json,css}",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
+    "build:test": "node scripts/buildTest.js",
     "test": "node scripts/test.js --env=jsdom",
     "flow": "flow"
   },

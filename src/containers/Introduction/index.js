@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import style from './index.css';
 import {ActivityIndicator,Button,Toast} from 'antd-mobile';
-import { browserHistory } from 'react-router';
 import {connect} from "react-redux";
 import {userInfo} from "reduxs/userInfo";
 
@@ -46,7 +45,7 @@ class Introduction extends Component {
 			if(data.message === "ok"){
 				this.getUser();
 				Toast.info("修改成功",1.5);
-				browserHistory.push('/HomePage/3');
+				global.customizeHistory.push('/HomePage/3');
 			}else{
 				Toast.info(data.message,1.5);
 			}

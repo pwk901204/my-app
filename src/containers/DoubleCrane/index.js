@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import style from './index.css';
-import { browserHistory, Link } from 'react-router';
+import { Link } from 'react-router';
 import {
   WhiteSpace,
   Tabs,
@@ -137,7 +137,7 @@ class DoubleCrane extends Component {
           flag: 'game',
           index: index
         }
-        browserHistory.push({
+        global.customizeHistory.push({
           pathname: '/TestQuestionDetail/' + '97',
           state: data
         });

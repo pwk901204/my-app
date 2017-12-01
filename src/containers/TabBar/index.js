@@ -15,7 +15,6 @@ import yimaiOn from "svg/yimaiOn.svg";
 import HomePage from "containers/HomePage/index";
 import Mine from "containers/Mine/index";
 import ComingSoon from "components/ComingSoon";
-import {browserHistory} from "react-router";
 class TabBarWrap extends Component {
 	constructor(props) {
 		super(props);
@@ -42,7 +41,7 @@ class TabBarWrap extends Component {
 						this.setState({
 							selectedTab: '0',
 						});
-						browserHistory.push('/HomePage/0');
+						global.customizeHistory.push('/HomePage/0');
 					}}
 				>
 					<HomePage />
@@ -57,7 +56,7 @@ class TabBarWrap extends Component {
 						this.setState({
 							selectedTab: '1',
 						});
-						browserHistory.push('/HomePage/1');
+						global.customizeHistory.push('/HomePage/1');
 					}}
 				>
 					<div style={{height:"100vh",position:"relative"}}>
@@ -74,7 +73,7 @@ class TabBarWrap extends Component {
 						this.setState({
 							selectedTab: '2',
 						});
-						browserHistory.push('/HomePage/2');
+						global.customizeHistory.push('/HomePage/2');
 					}}
 				>
 					<div style={{height:"100vh",position:"relative"}}>
@@ -91,7 +90,7 @@ class TabBarWrap extends Component {
 						this.setState({
 							selectedTab: '3',
 						});
-						browserHistory.push('/HomePage/3');
+						global.customizeHistory.push('/HomePage/3');
 					}}
 				>
 					<Mine/>

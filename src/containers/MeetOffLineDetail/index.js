@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import style from './index.css';
-import {browserHistory} from 'react-router';
 import {Button, Tabs} from 'antd-mobile';
 
 import {connect} from "react-redux";
@@ -39,7 +38,7 @@ class MeetOffLineDetail extends Component {
 	}
 	onClick = ()=>{
 		let {meeting} = this.state;
-		browserHistory.push({
+		global.customizeHistory.push({
 			pathname:"/MeetOffLineEnroll/"+this.props.routeParams.id,
 			state: {
 				topic:meeting.title,

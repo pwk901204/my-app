@@ -1,12 +1,18 @@
 var url = {};
-
-let __host__ = 'http://api.mdslife.com';
+let __host__ = 'http://www.mdshealth.cn';
 
 switch (window.location.host) {
+  case 'doctor.mdshealth.cn':
+    __host__ = 'http://www.mdshealth.cn';
+  break;
+
+  case 'doctor.mdsonline.cn':
+    __host__ = 'http://api.mdslife.com';
+  break;
   case 'localhost:3000':
     // __host__ = "https://doctor.mdsonline.cn";
-    __host__ = 'http://rqiang.mynatapp.cc';
-    //__host__ = 'http://api.mdslife.com';
+    //__host__ = 'http://rqiang.mynatapp.cc';
+    __host__ = 'http://api.mdslife.com';
     //__host__ = 'doctor.zyremix.com';
     //__host__ = 'http://192.168.0.103:3000';
     //__host__ = 'http://192.168.0.104:3000';

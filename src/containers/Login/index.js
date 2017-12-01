@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
-import {browserHistory, Link} from "react-router";
+import {Link} from "react-router";
 import style from './index.css';
 import {List, Icon, Button, InputItem, Toast, WingBlank, ActivityIndicator} from 'antd-mobile';
 import { createForm } from 'rc-form';
@@ -40,7 +40,7 @@ class LoginForm extends Component {
 						.then((response)=>response.json())
 						.then((data)=>{
 							this.props.userInfoAction(data.user);
-							browserHistory.push("/WXLogin");
+							global.customizeHistory.push("/WXLogin");
 						})
 					}
 				})

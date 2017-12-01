@@ -4,7 +4,6 @@ import {List, Button, InputItem, Toast, WingBlank, Picker, ActivityIndicator} fr
 import { createForm } from 'rc-form';
 import {connect} from "react-redux";
 
-import {browserHistory} from "react-router";
 
 import {userInfo} from "reduxs/userInfo.js";
 
@@ -120,7 +119,7 @@ class AddStudentInfoForm extends Component {
 						loading:false
 					})
 					this.props.userInfoAction(data.user);
-					browserHistory.push("/WXLogin");
+					global.customizeHistory.push("/WXLogin");
 				})
 			}
 		})

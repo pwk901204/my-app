@@ -8,7 +8,6 @@ import TestItem from "components/Test/TestItem";
 import {connect} from "react-redux";
 import MyRadio from "components/MyRadio";
 import moment from 'moment';
-import {browserHistory} from "react-router";
 import {PhotoSwipe} from 'react-photoswipe';
 //import 'react-photoswipe/lib/photoswipe.css';
 moment.lang('zh-cn');
@@ -307,7 +306,7 @@ class TestQuestionDetail extends Component {
 					visible={this.state.modal}
 					onClose={this.onClose('modal')}
 					footer={[
-						{ text: '回到首页', onPress: () => { this.onClose('modal')(); browserHistory.push("/HomePage"); } },
+						{ text: '回到首页', onPress: () => { this.onClose('modal')(); global.customizeHistory.push("/HomePage"); } },
 						{ text: '继续答题', onPress: () => { this.onClose('modal')(); } }
 					]}
 				>
