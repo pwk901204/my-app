@@ -42,6 +42,7 @@ class ChatRoom extends Component {
 		this.ws = new WebSocket(global.webSocketUrl);
 	}
 	componentDidMount() {
+		this.getList();
 		this.setState({
 			bounty_count:this.props.bounty_count,
 			payment_count:this.props.payment_count,
@@ -59,7 +60,7 @@ class ChatRoom extends Component {
 
 		this.ws.onmessage = (evt)=>{
 			let obj_msg = JSON.parse(evt.data);
-			console.log(obj_msg,'~~~~~~~~~~')
+			let _this= this;
 			if(obj_msg.message && obj_msg.message.data){
 				let arr = this.state.chatList;
 				arr.push(obj_msg.message.data);
@@ -67,6 +68,10 @@ class ChatRoom extends Component {
 					chatList:arr,
 					inputValue:"",
 					loading:false,
+				},()=>{
+					_this.refs.iScroll.withIScroll(function(iScroll) {
+				      iScroll.scrollTo(0,iScroll.maxScrollY)
+				    })
 				})
 				if(obj_msg.message.data.type === "payment"){
 					this.setState({
@@ -76,6 +81,21 @@ class ChatRoom extends Component {
 				}
 			}
 		};
+	}
+
+	getList=()=>{
+		let _this= this;
+		return window.HOCFetch({ needToken:false })(global.url.stream_messages + "?stream_id=" + window.parseInt(this.props.id))
+		.then((response)=>response.json())
+		.then((data)=>{
+			this.setState({
+				chatList:data.stream_messages
+			},()=>{
+				_this.refs.iScroll.withIScroll(function(iScroll) {
+			      iScroll.scrollTo(0,iScroll.maxScrollY)
+			    })
+			})
+		})
 	}
 	componentWillUnmount(){
 		this.ws.close();
@@ -101,7 +121,9 @@ class ChatRoom extends Component {
 			}
 		}else{
 			//登陆去
-			//this.props.accountloginModalAction(true);
+			global.customizeHistory.push({
+				pathname: '/Login',
+			})
 		}
 	}
 	inputChange = (e) =>{
@@ -127,8 +149,9 @@ class ChatRoom extends Component {
 					<ReactIScroll
 						iScroll={iScroll}
 						options={{...global.iscrollOptions}}
+						ref="iScroll"
 					>
-						<div>
+						<div ref="iScrollContent">
 							<WhiteSpace size="xs" />
 							{
 								this.state.chatList.map((item,index)=>{

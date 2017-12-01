@@ -1,9 +1,9 @@
 var url = {};
-let __host__ = 'http://www.mdshealth.cn';
+let __host__ = 'https://www.mdshealth.cn';
 
 switch (window.location.host) {
   case 'doctor.mdshealth.cn':
-    __host__ = 'http://www.mdshealth.cn';
+    __host__ = 'https://www.mdshealth.cn';
   break;
 
   case 'doctor.mdsonline.cn':
@@ -70,6 +70,10 @@ url.streams = __host__ + '/api/doctor/streams';
 
 // 打赏排行榜
 url.bounty_ranking = __host__ + '/api/doctor/streams/bounty_ranking';
+
+
+// 聊天室记录
+url.stream_messages = __host__ + '/api/doctor/stream_messages';
 
 // 评论
 url.commentsDetail = __host__ + '/api/doctor/comments/detail';
