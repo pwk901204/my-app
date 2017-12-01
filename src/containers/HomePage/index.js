@@ -113,15 +113,15 @@ class HomePage extends Component {
 						</div>
 						<WhiteSpace size="md" />
 						<div className={style.midModule}>
-							<a href="http://www.baidu.com" >
+							<Link to="/ComingSoonPage">
 								图文课程
-							</a>
+							</Link>
 							<Link to="/TestList" >
 								系列试题
 							</Link>
-							<a href="http://www.baidu.com" >
+							<Link to="/ComingSoonPage">
 								交流园地
-							</a>
+							</Link>
 						</div>
 						<WhiteSpace size="md" />
 						<div className={style.fuwuTitle}>
@@ -129,26 +129,26 @@ class HomePage extends Component {
 							<h6>更多服务</h6>
 						</div>
 						<div className={style.botModule}>
-							<a href="http://www.baidu.com" >
+							<Link to="/ComingSoonPage">
 								<Icon type={wodezhengsuo}  className={style.botModuleIcon}/>
 								<p>我的诊所</p>
-							</a>
-							<a href="http://www.baidu.com" >
+							</Link>
+							<Link to="/ComingSoonPage">
 								<Icon type={zhuanjiatuandui}  className={style.botModuleIcon} />
 								<p>专家团队</p>
-							</a>
-							<a href="http://www.baidu.com" >
+							</Link>
+							<Link to="/ComingSoonPage">
 								<Icon type={yishengxiezuo}  className={style.botModuleIcon} />
 								<p>医生协作</p>
-							</a>
-							<a href="http://www.baidu.com" >
+							</Link>
+							<Link to="/ComingSoonPage">
 								<Icon type={guojiyixuelianmeng} className={style.botModuleIcon} />
 								<p>国际医学联盟</p>
-							</a>
-							<a href="http://www.baidu.com" >
+							</Link>
+							<Link to="/ComingSoonPage">
 								<Icon type={ketiyanjiu}  className={style.botModuleIcon}/>
 								<p>课题研究</p>
-							</a>
+							</Link>
 							<a>
 							</a>
 						</div>
