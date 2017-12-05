@@ -285,6 +285,11 @@ const VotesRank = (location, cb) => {
     cb(null, require('containers/VotesRank').default);
   });
 };
+const Partner = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/Partner').default);
+  });
+};
 const SuZuFei = (location, cb) => {
   require.ensure([], require => {
     cb(null, require('containers/SuZuFei').default);
@@ -524,6 +529,11 @@ class Routers extends Component {
           path="/VotesRank"
           getComponent={VotesRank}
           onEnter={requireAuth({ title: '投票排行榜' })}
+        />
+        <Route
+          path="/Partner"
+          getComponent={Partner}
+          onEnter={requireAuth({ title: '选择结对医师' })}
         />
         <Route
           path="/SuZuFei"

@@ -155,6 +155,9 @@ url.showInviteModal = __host__ + '/api/doctor/invitations/display';
 //提交邀请码或不再显示
 url.inviteCodeSubmit = __host__ + '/api/doctor/invitations'
 
+//搜索partner
+url.searchPartner = __host__ + '/api/doctor/users/search'
+
 
 
 module.exports = url;
