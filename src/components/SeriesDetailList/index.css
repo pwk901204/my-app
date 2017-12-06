@@ -1,0 +1,77 @@
+.seriesList {
+  height: 100%;
+}
+
+.title {
+  height: 60px;
+  padding: 10px 20px;
+  line-height: 40px;
+  font-size: 30px;
+  box-sizing: border-box;
+  background: #fff;
+  font-weight: normal;
+  border-bottom: 1px solid #ccc;
+}
+
+.title span {
+  width: 5px;
+  height: 40px;
+  background: #33a9fc;
+  float: left;
+  margin-right: 10px;
+}
+.item {
+  display: block;
+}
+
+.itemTop {
+  composes: clearfix from 'src/index.css';
+  background: #fff;
+  box-sizing: border-box;
+  padding: 0 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.itemTop span {
+  float: left;
+  height: 60px;
+
+  line-height: 60px;
+  font-size: 26px;
+}
+.itemTop span:nth-of-type(1) {
+  width: 70%;
+}
+
+.itemTop span:nth-of-type(2) {
+  width: 30%;
+  text-align: right;
+}
+
+.icon {
+  vertical-align: -14px;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.buy {
+  color: #f00;
+}
+
+.free {
+  color: #33a9fc;
+}
+
+.itemBody {
+  padding: 20px;
+  background: #fff;
+}
+
+.itemBody p {
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 100px;
+  font-size: 30px;
+}
