@@ -11,7 +11,7 @@ switch (window.location.host) {
     break;
   case 'localhost:3000':
     // __host__ = "https://doctor.mdsonline.cn";
-    // __host__ = 'http://rqiang.mynatapp.cc';
+    //__host__ = 'http://rqiang.mynatapp.cc';
     __host__ = 'http://api.mdslife.com';
     //__host__ = 'doctor.zyremix.com';
     //__host__ = 'http://192.168.0.103:3000';
@@ -161,9 +161,10 @@ url.writeVote = __host__ + '/api/doctor/votes';
 url.showInviteModal = __host__ + '/api/doctor/invitations/display';
 
 //提交邀请码或不再显示
-url.inviteCodeSubmit = __host__ + '/api/doctor/invitations';
+url.inviteCodeSubmit = __host__ + '/api/doctor/invitations'
 
 //搜索partner
-url.searchPartner = __host__ + '/api/doctor/users/search';
+url.searchPartner = __host__ + '/api/doctor/users/search'
+
 
 module.exports = url;
