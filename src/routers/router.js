@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, Route, IndexRoute ,Redirect} from 'react-router';
+import { Router, Route, IndexRoute, Redirect } from 'react-router';
 import wxShare from 'common/wxShare';
 // containers
 const MiniNav = (location, cb) => {
@@ -233,7 +233,6 @@ const Pwk = (location, cb) => {
   });
 };
 
-
 const WXLogin = (location, cb) => {
   require.ensure([], require => {
     cb(null, require('containers/WXLogin').default);
@@ -267,13 +266,16 @@ const VotesRank = (location, cb) => {
     cb(null, require('containers/VotesRank').default);
   });
 };
+const Partner = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/Partner').default);
+  });
+};
 const SuZuFei = (location, cb) => {
   require.ensure([], require => {
     cb(null, require('containers/SuZuFei').default);
   });
 };
-
-
 
 const requireAuth = (
   { title = '麦迪森在线', needLogin = true, needShare = true } = {}
@@ -299,13 +301,9 @@ class Routers extends Component {
   render() {
     return (
       <Router history={global.customizeHistory} key={Math.random()}>
-
         <Route path="/" getComponent={TabBar} onEnter={requireAuth()} />
+        <Route path="/WXLogin" getComponent={WXLogin} />
         <Route
-          path="/WXLogin"
-          getComponent={WXLogin}
-        />
-         <Route
           path="/HomePage(/:index)"
           getComponent={TabBar}
           onEnter={requireAuth()}
@@ -530,12 +528,17 @@ class Routers extends Component {
           onEnter={requireAuth({ title: '投票排行榜' })}
         />
         <Route
+          path="/Partner"
+          getComponent={Partner}
+          onEnter={requireAuth({ title: '选择结对医师' })}
+        />
+        <Route
           path="/SuZuFei"
           getComponent={SuZuFei}
           onEnter={requireAuth({ title: '苏祖斐学院' })}
         />
 
-        <Route path='*' getComponent={NotFoundPage} />
+        <Route path="*" getComponent={NotFoundPage} />
       </Router>
     );
   }

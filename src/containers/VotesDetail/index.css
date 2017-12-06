@@ -108,7 +108,7 @@
   color: #ff6666;
   float: left;
 }
-.bottom .share.complete{
+.bottom .share.complete {
   border: 1px solid #999;
   color: #999;
 }
@@ -119,7 +119,7 @@
   border: 1px solid #33a9fc;
   background: #33a9fc;
 }
-.bottom .throw.complete{
+.bottom .throw.complete {
   border: 1px solid #999;
   background: #999;
 }
@@ -161,13 +161,13 @@ h4 {
   width: 100%;
   height: 100%;
 }
-.QRCode{
+.QRCode {
   position: relative;
   width: 400px;
   height: 400px;
   margin: 0 auto;
 }
-.QRCode img{
+.QRCode img {
   position: absolute;
   left: 0;
   top: 0;

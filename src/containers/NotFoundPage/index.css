@@ -1,23 +1,23 @@
-.page404Wrap{
-	height: 100%;
-	background: url("images/bg404.png")  #fff 100% 100%;
-	position: relative;
+.page404Wrap {
+  height: 100%;
+  background: url('images/bg404.png') #fff 100% 100%;
+  position: relative;
 }
-.page404{
-	width: 100%;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%,-50%);
+.page404 {
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
-.btnWrap{
-	text-align: center;
+.btnWrap {
+  text-align: center;
 }
-.btn{
-	margin:0 20px;
+.btn {
+  margin: 0 20px;
 }
-.img404{
-	width: 400px;
-	display: block;
-	margin: 0 auto 100px;
+.img404 {
+  width: 400px;
+  display: block;
+  margin: 0 auto 100px;
 }

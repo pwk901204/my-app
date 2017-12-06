@@ -30,7 +30,11 @@ class DoubleCrane extends Component {
       judge_users: [],
       modal: false,
       inputValue: '',
-      loading: false
+      loading: false,
+      Introduction: '',
+      reward_setting: '',
+      answer_rule: '',
+      cover_img: ''
     };
     this.onLinkToSubject = this.onLinkToSubject.bind(this);
     this.onChangeInput = this.onChangeInput.bind(this);
@@ -66,6 +70,29 @@ class DoubleCrane extends Component {
           Toast.info(data.msg, 1);
         } else {
           this.setState({ loading: false, modal: false });
+        }
+      });
+  }
+  getCourseDetail(){
+    if (!this.props.userInfo.token) return;
+    window
+      .HOCFetch({ needToken: false })(
+        global.url.courses +
+          '/37' +
+          '?token=' +
+          this.props.userInfo.token
+      )
+      .then(response => response.json())
+      .then(data => {
+        if(data.msg.status === 'success'){
+          this.setState({
+            introduction: data.course.introduction,
+            reward_setting: data.course.reward_setting,
+            answer_rule: data.course.answer_rule,
+            cover_img: data.course.cover_data.size_700
+          });
+        } else {
+          Toast.info('网络错误');
         }
       });
   }
@@ -153,14 +180,19 @@ class DoubleCrane extends Component {
     this.getModalstatus();
     this.getDetail();
     this.getWatcher();
+    this.getCourseDetail();
   }
   render() {
     return (
       <div className={style.DoubleCrane}>
-        <EnterBtn src={enter} title="投票" linkTo="/Votes" color="#ff6666" />
+        {
+          true ? null
+          :
+          <EnterBtn src={enter} title="投票" linkTo="/Votes" color="#ff6666" />
+        }
         <img
-          src="https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/skin/114.jpg?2"
-          alt=""
+          src={this.state.cover_img ? this.state.cover_img : ''}
+          alt="华润双鹤杯"
           className="banner"
         />
         <Tabs defaultActiveKey="1">
@@ -174,49 +206,81 @@ class DoubleCrane extends Component {
                   <WhiteSpace size="sm" />
                   <div className={style.sessionbox}>
                     <div className={style.session}>
-                      <h2>比赛介绍</h2>
-                      <p>
-                        各位心内科，心外科，急诊科，重症医学科，老年科，麻醉科以及心电相关临床一线同道：为推动临床一线的医师学习心电图及电生理知识，提高诊断与处理各种常见及疑难临床问题的综合能力。
-                        “第一届“华润双鹤杯”网络心电图及电生理知识巅峰赛”将于12月闪亮登场！参加这次大赛，您不但可以通过努力公平地与国内最顶尖的心电及电生理专家教授PK，而且还有机会得大奖。机会难得，可不要错过哦。注意，大家都是在同一起跑线上，谁怕谁？
-                      </p>
+                      {
+                        this.state.introduction ?
+                        <div>
+                          <h2>比赛介绍</h2>
+                          <p>
+                            {this.state.introduction}
+                          </p>
+                        </div>
+                        :
+                        null
+                      }
                     </div>
                     <div className={style.session}>
-                      <h2>比赛规则</h2>
-                      <p>
-                        ①此次比赛将通过国际心血管病学会(ISCVD)和麦迪森公众号发放试题；
-                      </p>
-                      <p>
-                        ②共5道试题，为解析题；解析可以在规定的时间内修改，答题时间为1周；
-                      </p>
-                      <p>
-                        ③通过麦迪森系统答题系统答题，所以参赛人员请务必提前注册；
-                      </p>
-                      <p>
-                        ④试题公布后，参赛人员可以翻书，查阅资料、文献等；并鼓励参赛人员与心电专业医生结对答题，
-                        也可请教国内国际心电和电生理专家；
-                      </p>
-                      <p>
-                        ⑤得奖的解析将公示，以求透明和公平。每个参赛人员的解析都会经过二级评审（评委，裁判）。当有不分上下的解析，
-                        将根据最后提交时间评判。
-                      </p>
+                      {
+                        this.state.answer_rule ?
+                        <div>
+                          <h2>比赛规则</h2>
+                          {this.state.answer_rule}
+                        </div>
+                        :
+                        null
+                      }
+                      {/*
+                        <div>
+                          <h2>比赛规则</h2>
+                          <p>
+                            ①此次比赛将通过国际心血管病学会(ISCVD)和麦迪森公众号发放试题；
+                          </p>
+                          <p>
+                            ②共5道试题，为解析题；解析可以在规定的时间内修改，答题时间为1周；
+                          </p>
+                          <p>
+                            ③通过麦迪森系统答题系统答题，所以参赛人员请务必提前注册；
+                          </p>
+                          <p>
+                            ④试题公布后，参赛人员可以翻书，查阅资料、文献等；并鼓励参赛人员与心电专业医生结对答题，
+                            也可请教国内国际心电和电生理专家；
+                          </p>
+                          <p>
+                            ⑤得奖的解析将公示，以求透明和公平。每个参赛人员的解析都会经过二级评审（评委，裁判）。当有不分上下的解析，
+                            将根据最后提交时间评判。
+                          </p>
+                        </div>
+                      */}
                     </div>
                     <div className={style.session}>
-                      <h2>奖项设置</h2>
-                      <p>回答正确并附有精彩解析的将获重奖:</p>
-                      <p>一等奖一名，奖金1万元（人民币）；</p>
-                      <p>二等奖两名，奖金各5千元；</p>
-                      <p>三等奖三名，奖金各3千元。</p>
-                      <p>
-                        同时比赛还设20个鼓励奖（500元），主要奖励副主任医师以下参赛人员。不参赛者，也会有若干名抽奖机会奥。礼品<span
-                          role="img"
-                          aria-label="1"
-                        >
-                          🎁🎁
-                        </span>{' '}
-                        多多，就等你拿哈！<span role="img" aria-label="1">
-                          🎉🎉🎉
-                        </span>
-                      </p>
+                      {
+                        this.state.reward_setting ?
+                        <div>
+                          <h2>奖项设置</h2>
+                          {this.state.reward_setting}
+                        </div>
+                        :
+                        null
+                      }
+                      {/*
+                        <div>
+                          <h2>奖项设置</h2>
+                          <p>回答正确并附有精彩解析的将获重奖:</p>
+                          <p>一等奖一名，奖金1万元（人民币）；</p>
+                          <p>二等奖两名，奖金各5千元；</p>
+                          <p>三等奖三名，奖金各3千元。</p>
+                          <p>
+                            同时比赛还设20个鼓励奖（500元），主要奖励副主任医师以下参赛人员。不参赛者，也会有若干名抽奖机会奥。礼品<span
+                              role="img"
+                              aria-label="1"
+                            >
+                              🎁🎁
+                            </span>{' '}
+                            多多，就等你拿哈！<span role="img" aria-label="1">
+                              🎉🎉🎉
+                            </span>
+                          </p>
+                        </div>
+                      */}
                     </div>
                   </div>
                 </div>
