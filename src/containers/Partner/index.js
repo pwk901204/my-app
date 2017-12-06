@@ -61,11 +61,8 @@ class PopupContent extends Component{
   }
   onChange(val){
     let value = val.replace(/\s/g, '');
-    if(value){
-      this.setState({cancel_text: '搜索'});
-    } else {
-      this.setState({cancel_text: '取消'});
-    }
+    let txt = value ? '搜索' : '取消';
+    this.setState({cancel_text: txt});
   }
   onSubmit(val){
     let value = val.replace(/\s/g, '');

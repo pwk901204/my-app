@@ -185,7 +185,11 @@ class DoubleCrane extends Component {
   render() {
     return (
       <div className={style.DoubleCrane}>
-        <EnterBtn src={enter} title="投票" linkTo="/Votes" color="#ff6666" />
+        {
+          true ? null
+          :
+          <EnterBtn src={enter} title="投票" linkTo="/Votes" color="#ff6666" />
+        }
         <img
           src={this.state.cover_img ? this.state.cover_img : ''}
           alt="华润双鹤杯"
@@ -222,6 +226,9 @@ class DoubleCrane extends Component {
                           {this.state.answer_rule}
                         </div>
                         :
+                        null
+                      }
+                      {/*
                         <div>
                           <h2>比赛规则</h2>
                           <p>
@@ -242,7 +249,7 @@ class DoubleCrane extends Component {
                             将根据最后提交时间评判。
                           </p>
                         </div>
-                      }
+                      */}
                     </div>
                     <div className={style.session}>
                       {
@@ -252,6 +259,9 @@ class DoubleCrane extends Component {
                           {this.state.reward_setting}
                         </div>
                         :
+                        null
+                      }
+                      {/*
                         <div>
                           <h2>奖项设置</h2>
                           <p>回答正确并附有精彩解析的将获重奖:</p>
@@ -270,7 +280,7 @@ class DoubleCrane extends Component {
                             </span>
                           </p>
                         </div>
-                      }
+                      */}
                     </div>
                   </div>
                 </div>
