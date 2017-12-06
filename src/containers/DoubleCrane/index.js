@@ -117,6 +117,7 @@ class DoubleCrane extends Component {
             current_time:data.topic.current_time,
             start_at:data.topic.start_at,
             end_at:data.topic.end_at,
+            display_content:data.topic.display_content,
           });
         }
       });
@@ -189,7 +190,7 @@ class DoubleCrane extends Component {
     this.getCourseDetail();
   }
   render() {
-    const { start_at,current_time,topic_status,end_at} = this.state
+    const { start_at,current_time,topic_status,end_at,display_content} = this.state
     return (
       <div className={style.DoubleCrane}>
         {/*
@@ -301,7 +302,7 @@ class DoubleCrane extends Component {
                 <div>
                   <WhiteSpace size="sm" />
                   {
-                    topic_status === 'not_start'
+                    display_content == 'true'
                     ?                    
                       <div className={style.timeout}>
                         <h1>试题公布倒计时</h1>
@@ -347,7 +348,7 @@ class DoubleCrane extends Component {
                               </ul>
                             }
                           }
-                          onComplete={()=>{ this.setState({topic_status:'started'})}}
+                          onComplete={()=>{ this.setState({display_content:false})}}
                           date={ moment(start_at).toDate() }
                           now = {()=> new Date().getTime() + (new Date(current_time).getTime() - this.state.beginTime)}
                         />
