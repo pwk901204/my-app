@@ -48,6 +48,12 @@
   text-align: right;
 }
 
+.icon{
+  vertical-align: -14px;
+  display: inline-block;
+  margin-right: 8px;
+}
+
 .buy {
   color: #f00;
 }
