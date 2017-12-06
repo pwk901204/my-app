@@ -124,3 +124,35 @@
 .invite_code input {
   text-align: center !important;
 }
+.timeout{
+  text-align: center;
+  padding-top: 60px;
+}
+.timeout ul{
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  display: -webkit-flex;
+  -webkit-justify-content: center;
+  margin-bottom: 60px;
+}
+.timeout li{
+  float: left;
+  margin:0 5px;
+}
+.timeout li p{
+  color: #888;
+  margin-top: 10px;
+}
+.timeout li span{
+  font-size: 48px;
+  color: #ff6666;
+  background: #fff;
+  padding: 10px 20px;
+  display: inline-block;
+  margin: 0 2px;
+}
+.meetingTime{
+  font-size: 28px;
+  color: #588fff;
+}
