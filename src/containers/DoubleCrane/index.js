@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import style from './index.css';
 import { Link } from 'react-router';
+import Countdown from 'react-countdown-now';
+import moment from 'moment';
 import {
   WhiteSpace,
   Tabs,
@@ -34,7 +36,8 @@ class DoubleCrane extends Component {
       Introduction: '',
       reward_setting: '',
       answer_rule: '',
-      cover_img: ''
+      cover_img: '',
+      beginTime:new Date().getTime()
     };
     this.onLinkToSubject = this.onLinkToSubject.bind(this);
     this.onChangeInput = this.onChangeInput.bind(this);
@@ -110,7 +113,10 @@ class DoubleCrane extends Component {
         if (data.topic) {
           this.setState({
             subjects: data.topic.children,
-            topic_status: data.topic.topic_status
+            topic_status: data.topic.topic_status,
+            current_time:data.topic.current_time,
+            start_at:data.topic.start_at,
+            end_at:data.topic.end_at,
           });
         }
       });
@@ -128,7 +134,7 @@ class DoubleCrane extends Component {
       )
       .then(response => response.json())
       .then(data => {
-        if (data.super_watchers.length) {
+        if (data.super_watchers && data.super_watchers.length>0) {
           //document.title=data.course.topic;
           this.setState({
             super_watchers: data.super_watchers,
@@ -165,7 +171,7 @@ class DoubleCrane extends Component {
           index: index
         }
         global.customizeHistory.push({
-          pathname: '/TestQuestionDetail/' + '97',
+          pathname: '/TestQuestionDetail/97',
           state: data
         });
         break;
@@ -183,13 +189,12 @@ class DoubleCrane extends Component {
     this.getCourseDetail();
   }
   render() {
+    const { start_at,current_time,topic_status,end_at} = this.state
     return (
       <div className={style.DoubleCrane}>
-        {
-          true ? null
-          :
+        {/*
           <EnterBtn src={enter} title="投票" linkTo="/Votes" color="#ff6666" />
-        }
+        */}
         <img
           src={this.state.cover_img ? this.state.cover_img : ''}
           alt="华润双鹤杯"
@@ -295,21 +300,77 @@ class DoubleCrane extends Component {
               >
                 <div>
                   <WhiteSpace size="sm" />
-                  {this.state.subjects.map((item, index) => {
-                    return (
-                      <Link key={index} onClick={()=>{
-                        this.onLinkToSubject(item.topic_index);
-                      }}>
-                        <List className="my-list">
-                          <Item extra={item.topic_answers_count + '人已作答'}>
-                            第{item.topic_index}题
-                          </Item>
-                          <Item arrow="horizontal">{item.content}</Item>
-                        </List>
-                        <WhiteSpace size="sm" />
-                      </Link>
-                    );
-                  })}
+                  {
+                    topic_status === 'not_start'
+                    ?                    
+                      <div className={style.timeout}>
+                        <h1>试题公布倒计时</h1>
+                        <Countdown
+                          renderer={({
+                            total,
+                            days,
+                            hours,
+                            minutes,
+                            seconds,
+                            milliseconds,
+                            completed
+                          }) => {
+                              return <ul>
+                                <li>
+                                  <div>
+                                    <span>{String(days).length == 2 ? String(days)[0] : 0}</span>
+                                    <span>{String(days).length == 1 ? days : String(days)[1]}</span>
+                                  </div>
+                                  <p>天</p>
+                                </li>
+                                <li>
+                                  <div>
+                                    <span>{String(hours).length == 2 ? String(hours)[0] : 0}</span>
+                                    <span>{String(hours).length == 1 ? hours : String(hours)[1]}</span>
+                                  </div>
+                                  <p>时</p>
+                                </li>
+                                <li>
+                                  <div>
+                                    <span>{String(minutes).length == 2 ? String(minutes)[0] : 0}</span>
+                                    <span>{String(minutes).length == 1 ? minutes : String(minutes)[1]}</span>
+                                  </div>
+                                  <p>分</p>
+                                </li>
+                                <li>
+                                  <div>
+                                    <span>{String(seconds).length == 2 ? String(seconds)[0] : 0}</span>
+                                    <span>{String(seconds).length == 1 ? seconds : String(seconds)[1]}</span>
+                                  </div>
+                                  <p>秒</p>
+                                </li>
+                              </ul>
+                            }
+                          }
+                          onComplete={()=>{ this.setState({topic_status:'started'})}}
+                          date={ moment(start_at).toDate() }
+                          now = {()=> new Date().getTime() + (new Date(current_time).getTime() - this.state.beginTime)}
+                        />
+                        <div className={style.meetingTime}>
+                          答题时间：{start_at && (start_at.split('T')[0]+' '+start_at.split('T')[1].slice(0,5))}至{end_at && (end_at.split('T')[0]+' '+end_at.split('T')[1].slice(0,5))}
+                        </div>
+                      </div>
+                    : this.state.subjects.map((item, index) => {
+                        return (
+                          <Link key={index} onClick={()=>{
+                            this.onLinkToSubject(item.topic_index);
+                          }}>
+                            <List className="my-list">
+                              <Item extra={item.topic_answers_count + '人已作答'}>
+                                第{item.topic_index}题
+                              </Item>
+                              <Item arrow="horizontal">{item.content}</Item>
+                            </List>
+                            <WhiteSpace size="sm" />
+                          </Link>
+                        );
+                      })
+                  }
                 </div>
               </ReactIScroll>
             </div>
