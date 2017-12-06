@@ -124,11 +124,11 @@
 .invite_code input {
   text-align: center !important;
 }
-.timeout{
+.timeout {
   text-align: center;
   padding-top: 60px;
 }
-.timeout ul{
+.timeout ul {
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -136,15 +136,15 @@
   -webkit-justify-content: center;
   margin-bottom: 60px;
 }
-.timeout li{
+.timeout li {
   float: left;
-  margin:0 5px;
+  margin: 0 5px;
 }
-.timeout li p{
+.timeout li p {
   color: #888;
   margin-top: 10px;
 }
-.timeout li span{
+.timeout li span {
   font-size: 48px;
   color: #ff6666;
   background: #fff;
@@ -152,7 +152,7 @@
   display: inline-block;
   margin: 0 2px;
 }
-.meetingTime{
+.meetingTime {
   font-size: 28px;
   color: #588fff;
 }
