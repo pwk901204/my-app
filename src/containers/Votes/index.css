@@ -109,10 +109,10 @@
   border-radius: 26px;
   line-height: 52px;
 }
-.btn span.complete{
+.btn span.complete {
   background: #999;
 }
-.list_loading{
+.list_loading {
   padding-bottom: 15px;
   font-size: 30px;
   line-height: 50px;

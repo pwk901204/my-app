@@ -6,7 +6,6 @@ import {connect} from "react-redux";
 
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";
-import {browserHistory} from "react-router";
 import {Pay} from "components/Pay";
 
 class MeetOffLineEnroll extends Component {
@@ -95,7 +94,7 @@ class MeetOffLineEnroll extends Component {
 						/>, { animationType: 'slide-up', onTouchStart: e => e.preventDefault() });
 
 						//Toast.info("报名成功",1);
-						//browserHistory.push('/MeetOffLineDetail/' +  this.props.routeParams.id);
+						//global.customizeHistory.push('/MeetOffLineDetail/' +  this.props.routeParams.id);
 					}
 				})
 			}

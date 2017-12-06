@@ -1,12 +1,18 @@
 var url = {};
-
-let __host__ = 'http://api.mdslife.com';
+let __host__ = 'https://www.mdshealth.cn';
 
 switch (window.location.host) {
+  case 'doctor.mdshealth.cn':
+    __host__ = 'https://www.mdshealth.cn';
+    break;
+
+  case 'doctor.mdsonline.cn':
+    __host__ = 'http://api.mdslife.com';
+    break;
   case 'localhost:3000':
     // __host__ = "https://doctor.mdsonline.cn";
-    __host__ = 'http://rqiang.mynatapp.cc';
-    //__host__ = 'http://api.mdslife.com';
+    //__host__ = 'http://rqiang.mynatapp.cc';
+    __host__ = 'http://api.mdslife.com';
     //__host__ = 'doctor.zyremix.com';
     //__host__ = 'http://192.168.0.103:3000';
     //__host__ = 'http://192.168.0.104:3000';
@@ -64,6 +70,9 @@ url.streams = __host__ + '/api/doctor/streams';
 
 // 打赏排行榜
 url.bounty_ranking = __host__ + '/api/doctor/streams/bounty_ranking';
+
+// 聊天室记录
+url.stream_messages = __host__ + '/api/doctor/stream_messages';
 
 // 评论
 url.commentsDetail = __host__ + '/api/doctor/comments/detail';
@@ -141,7 +150,6 @@ url.wechats_share = __host__ + '/api/doctor/mobile/wechats/share';
 // 获取openid
 url.set_access_token = __host__ + '/api/doctor/auth/set_access_token';
 
-
 /*双鹤接口*/
 //投票读取
 url.readVote = __host__ + '/api/doctor/vote_users';
@@ -157,7 +165,6 @@ url.inviteCodeSubmit = __host__ + '/api/doctor/invitations'
 
 //搜索partner
 url.searchPartner = __host__ + '/api/doctor/users/search'
-
 
 
 module.exports = url;

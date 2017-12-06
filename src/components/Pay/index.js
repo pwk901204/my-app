@@ -4,7 +4,6 @@ import {Button ,List, Radio, WingBlank, WhiteSpace, Icon,Popup, Toast} from 'ant
 import wx from "svg/wx.svg";
 import zfb from "svg/zfb.svg";
 import PropTypes from 'prop-types';
-import {browserHistory} from "react-router";
 const RadioItem = Radio.RadioItem;
 
 export class Pay extends Component {
@@ -46,7 +45,7 @@ export class Pay extends Component {
 			amount:this.props.amount,
 			pay_way:this.state.pay_way,
 			callBack:(data)=>{
-				browserHistory.push({
+				global.customizeHistory.push({
 			        pathname: '/PayPage',
 			        state: {
 						topic:this.props.topic,
@@ -136,7 +135,7 @@ export class Reward extends Component {
 			callBack:(data)=>{
 				console.log(1231)
 				if(/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(this.state.amount) && this.state.amount > 0 ){
-					browserHistory.push({
+					global.customizeHistory.push({
 				        pathname: '/PayPage',
 				        state: {
 							topic:this.props.topic,

@@ -5,7 +5,6 @@ import { createForm } from 'rc-form';
 import {connect} from "react-redux";
 
 import {userInfo} from "reduxs/userInfo.js";
-import {browserHistory} from "react-router";
 
 class AddVisitorInfoForm extends Component {
 	state={
@@ -42,7 +41,7 @@ class AddVisitorInfoForm extends Component {
 						loading:false
 					})
 					this.props.userInfoAction(data.user);
-					browserHistory.push("/WXLogin");
+					global.customizeHistory.push("/WXLogin");
 				})
 			}
 		})

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { Router, Route, IndexRoute } from 'react-router';
+import { Router, Route, IndexRoute, Redirect } from 'react-router';
 import wxShare from 'common/wxShare';
-
-console.log(global)
-
 // containers
 const MiniNav = (location, cb) => {
   require.ensure([], require => {
@@ -236,32 +233,16 @@ const Pwk = (location, cb) => {
   });
 };
 
-
 const WXLogin = (location, cb) => {
   require.ensure([], require => {
     cb(null, require('containers/WXLogin').default);
   });
 };
 
-
-const requireAuth = (
-  { title = '麦迪森在线', needLogin = true, needShare = true } = {}
-) => {
-  //微信分享
-  return () => {
-    document.title = title;
-    // if (needLogin) {
-    //   setTimeout(() => {
-    //     if (!localStorage['reduxPersist:userInfo']) {
-    //       browserHistory.push('/Login');
-    //     }
-    //   }, 1000);
-    // }
-    needShare &&
-      setTimeout(() => {
-        wxShare();
-      });
-  };
+const NotFoundPage = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('containers/NotFoundPage').default);
+  });
 };
 
 //双鹤杯
@@ -296,17 +277,33 @@ const SuZuFei = (location, cb) => {
   });
 };
 
+const requireAuth = (
+  { title = '麦迪森在线', needLogin = true, needShare = true } = {}
+) => {
+  //微信分享
+  return () => {
+    document.title = title;
+    // if (needLogin) {
+    //   setTimeout(() => {
+    //     if (!localStorage['reduxPersist:userInfo']) {
+    //       global.customizeHistory.push('/Login');
+    //     }
+    //   }, 1000);
+    // }
+    needShare &&
+      setTimeout(() => {
+        wxShare();
+      });
+  };
+};
+
 class Routers extends Component {
   render() {
     return (
       <Router history={global.customizeHistory} key={Math.random()}>
-
         <Route path="/" getComponent={TabBar} onEnter={requireAuth()} />
+        <Route path="/WXLogin" getComponent={WXLogin} />
         <Route
-          path="/WXLogin"
-          getComponent={WXLogin}
-        />
-         <Route
           path="/HomePage(/:index)"
           getComponent={TabBar}
           onEnter={requireAuth()}
@@ -540,6 +537,8 @@ class Routers extends Component {
           getComponent={SuZuFei}
           onEnter={requireAuth({ title: '苏祖斐学院' })}
         />
+
+        <Route path="*" getComponent={NotFoundPage} />
       </Router>
     );
   }

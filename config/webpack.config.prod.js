@@ -35,9 +35,31 @@ const env = getClientEnvironment(publicUrl);
 if (env.stringified['process.env'].NODE_ENV !== '"production"') {
   throw new Error('Production builds must have NODE_ENV=production.');
 }
+var deploy={};
+if (process.env.DEPLOY === "test") {  //测试 服务器
+  deploy={
+      host: 'doctor.mdsonline.cn',
+      port: '22',
+      username: 'root',
+      //password: 'Remote password',//or use privateKey login(privateKey: require('fs').readFileSync('/path/to/private/key')).
+      privateKey: require('fs').readFileSync('/Users/Kkk/.ssh/id_rsa'),
+      // from: 'Deploy Local path',
+      to: '/var/www/build',//important: If the 'cover' of value is false,All files in this folder will be cleared before starting deployment.
+    }
+}else if(process.env.DEPLOY === "production") {  //开发服务器
+  deploy={
+      host: 'doctor.mdshealth.cn',
+      port: '22',
+      username: 'mds',
+      //password: 'Remote password',//or use privateKey login(privateKey: require('fs').readFileSync('/path/to/private/key')).
+      privateKey: require('fs').readFileSync('/Users/Kkk/.ssh/id_rsa'),
+      // from: 'Deploy Local path',
+      to: '/opt/www/mobile',//important: If the 'cover' of value is false,All files in this folder will be cleared before starting deployment.
+    }
+}
 
 // Note: defined here because it will be used more than once.
-const cssFilename = 'static/css/[name].[contenthash:8].css';
+const cssFilename = 'staticwx/css/[name].[contenthash:8].css';
 
 // ExtractTextPlugin expects the build output to be flat.
 // (See https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/27)
@@ -65,8 +87,8 @@ module.exports = {
     // Generated JS file names (with nested folders).
     // There will be one main bundle, and one file per asynchronous chunk.
     // We don't currently advertise code splitting but Webpack supports it.
-    filename: 'static/js/[name].[chunkhash:8].js',
-    chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
+    filename: 'staticwx/js/[name].[chunkhash:8].js',
+    chunkFilename: 'staticwx/js/[name].[chunkhash:8].chunk.js',
     // We inferred the "public path" (such as / or /my-project) from homepage.
     publicPath: publicPath,
     // Point sourcemap entries to original disk location (format as URL on Windows)
@@ -183,7 +205,7 @@ module.exports = {
             loader: require.resolve('url-loader'),
             options: {
               limit: 10000,
-              name: 'static/media/[name].[hash:8].[ext]',
+              name: 'staticwx/media/[name].[hash:8].[ext]',
             },
           },
           {
@@ -323,7 +345,7 @@ module.exports = {
             // by webpacks internal loaders.
             exclude: [/\.js$/, /\.html$/, /\.json$/,/\.less$/,/\.svg$/],
             options: {
-              name: 'static/media/[name].[hash:8].[ext]',
+              name: 'staticwx/media/[name].[hash:8].[ext]',
             },
           },
           // ** STOP ** Are you adding a new loader?
@@ -387,7 +409,7 @@ module.exports = {
     // to their corresponding output file so that tools can pick it up without
     // having to parse `index.html`.
     new ManifestPlugin({
-      fileName: 'asset-manifest.json',
+      fileName: 'staticwx/asset-manifest.json',
     }),
     // Generate a service worker script that will precache, and keep up to date,
     // the HTML & assets that are part of the Webpack build.
@@ -425,15 +447,8 @@ module.exports = {
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new SshWebpackPlugin({
-      host: 'doctor.mdsonline.cn',
-      port: '22',
-      username: 'root',
-      //password: 'Remote password',//or use privateKey login(privateKey: require('fs').readFileSync('/path/to/private/key')).
-      privateKey: require('fs').readFileSync('/Users/Kkk/.ssh/id_rsa'),
-      // from: 'Deploy Local path',
-      to: '/var/www/build',//important: If the 'cover' of value is false,All files in this folder will be cleared before starting deployment.
-    })
+    new SshWebpackPlugin(deploy),
+
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import style from './index.css';
 import {ActivityIndicator, Tabs,} from 'antd-mobile';
 import {connect} from "react-redux";
-
-import {browserHistory} from "react-router";
 import {SeriesReleaseItem,SeriesPurchaseItem} from "components/SeriesItem";
 import ReactIScroll from "react-iscroll";
 import iScroll from "iscroll/build/iscroll-probe.js";

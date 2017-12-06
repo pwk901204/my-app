@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import style from './index.css';
 import {List, Button, InputItem, Toast, ActivityIndicator} from 'antd-mobile';
-import { browserHistory } from 'react-router';
 import {connect} from "react-redux";
 import { createForm } from 'rc-form';
 
@@ -19,7 +18,7 @@ class ChangePassword extends Component {
 		.then((response)=>response.json())
 		.then((data)=>{
 			this.props.userInfoAction(data.user);
-			browserHistory.push('/HomePage/3');
+			global.customizeHistory.push('/HomePage/3');
 		})
 	}
 	fnSubmit = ()=>{
@@ -50,7 +49,7 @@ class ChangePassword extends Component {
 				if(data.message==="ok"){
 					Toast.info("修改成功",1.5);
 					this.getUser();
-					browserHistory.push('/HomePage/3');
+					global.customizeHistory.push('/HomePage/3');
 				}else{
 					Toast.info(data.message,1.5);
 				}

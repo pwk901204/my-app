@@ -36,8 +36,8 @@ export default class MeetRecordPlan extends Component {
 											<Icon type={clock} className={style.clock} />
 											<i className={style.fontBlue}>录播时长</i> {item.duration}
 										</span>
-										<span className={style.fontRed}>
-											¥{item.price}
+										<span className={Number(item.price) ? style.fontRed : style.fontBlue} >
+											{Number(item.price)?"¥"+item.price:"免费"}
 										</span>
 									</div>
 									<div className={style.itemBody}>

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import style from './index.css';
 import {List, Button, InputItem, Toast ,Picker, ActivityIndicator} from 'antd-mobile';
 import {connect} from "react-redux";
-import {browserHistory} from "react-router";
 import { createForm } from 'rc-form';
 import {userInfo} from "reduxs/userInfo";
 
@@ -144,7 +143,7 @@ class ModifyInfo extends Component {
 				if(data.message==="ok"){
 					Toast.info("修改成功",1);
 					this.getUser();
-					browserHistory.push('/HomePage/3');
+					global.customizeHistory.push('/HomePage/3');
 				}else{
 					Toast.info(data.message,1);
 				}
